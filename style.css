@@ -1,8 +1,8 @@
 /* Light mode (default) */
 body {
   text-align: center;
-  background-color: white;
-  color: black;
+  background-color: #003594;
+  color: #FFD100;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -44,8 +44,8 @@ body {
 
 /* Light Mode (default) */
 table.dataTable {
-  background-color: white;
-  color: black;
+  background-color: #003594;
+  color: #FFD100;
   border-collapse: collapse;
   width: 100%;
 }

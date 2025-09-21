@@ -1,28 +1,20 @@
 /* Link styles */
 a:link {
-  color: black;
+  color: #FFD100;
 }
 
 a:visited {
-  color: #FFD100;
+  color: #003594;
 }
 
 /* Light mode (default) */
 body {
   text-align: center;
-  background-color: #003594;
-  color: #FFD100;
+  background-color: black;
+  color: white;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: black;
-    color: white;
-  }
 }
 
     .header-img {
@@ -53,8 +45,8 @@ body {
 
 /* Light Mode (default) */
 table.dataTable {
-  background-color: #003594;
-  color: #FFD100;
+  background-color: black;
+  color: white;
   border-collapse: collapse;
   width: 100%;
 }
@@ -63,46 +55,3 @@ th, td {
   border: 1px solid #ccc;
   padding: 8px;
 
-  /* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  /* Table background and text */
-  table.display.dataTable,
-  table.display.dataTable th,
-  table.display.dataTable td {
-    background-color: #121212 !important;
-    color: white !important;
-  }
-
-  /* Even and odd row striping */
-  table.display.dataTable tr.odd {
-    background-color: #1e1e1e !important;
-  }
-
-  table.display.dataTable tr.even {
-    background-color: #2a2a2a !important;
-  }
-
-  /* Search box and dropdown */
-  .dataTables_filter input,
-  .dataTables_length select {
-    background-color: #1e1e1e !important;
-    color: white !important;
-    border: 1px solid #555 !important;
-  }
-
-  /* Pagination buttons */
-  .dataTables_paginate .paginate_button {
-    background-color: #1e1e1e !important;
-    color: white !important;
-  }
-
-  .dataTables_paginate .paginate_button.current {
-    background-color: #333 !important;
-    color: white !important;
-  }
-
-  /* Info text ("Showing 1 to 10 of X entries") */
-  .dataTables_info {
-    color: white !important;
-  }
-}

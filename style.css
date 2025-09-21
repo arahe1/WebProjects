@@ -56,33 +56,32 @@ th, td {
 
   /* Dark Mode */
 @media (prefers-color-scheme: dark) {
-  body,
-  table.dataTable,
-  table.dataTable th,
-  table.dataTable td,
-  .dataTables_wrapper,
-  .dataTables_filter input,
-  .dataTables_length select,
-  .dataTables_info,
-  .dataTables_paginate a {
+  /* Table background and text */
+  table.display.dataTable,
+  table.display.dataTable th,
+  table.display.dataTable td {
     background-color: #121212 !important;
     color: white !important;
-    border-color: #444 !important;
   }
 
-  table.dataTable tr.even {
+  /* Even and odd row striping */
+  table.display.dataTable tr.odd {
     background-color: #1e1e1e !important;
   }
 
-  table.dataTable tr.odd {
+  table.display.dataTable tr.even {
     background-color: #2a2a2a !important;
   }
 
+  /* Search box and dropdown */
   .dataTables_filter input,
   .dataTables_length select {
+    background-color: #1e1e1e !important;
+    color: white !important;
     border: 1px solid #555 !important;
   }
 
+  /* Pagination buttons */
   .dataTables_paginate .paginate_button {
     background-color: #1e1e1e !important;
     color: white !important;
@@ -92,6 +91,9 @@ th, td {
     background-color: #333 !important;
     color: white !important;
   }
-}
 
-  
+  /* Info text ("Showing 1 to 10 of X entries") */
+  .dataTables_info {
+    color: white !important;
+  }
+}

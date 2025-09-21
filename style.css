@@ -43,7 +43,7 @@ body {
     }
 
 /* Light Mode (default) */
-table {
+table.dataTable {
   background-color: white;
   color: black;
   border-collapse: collapse;
@@ -72,8 +72,8 @@ th, td {
     background-color: #1e1e1e !important;
   }
 
-  table.dataTable td, 
-  table.dataTable th {
+  table.dataTable th, 
+  table.dataTable td {
     color: white !important;
   }
 }

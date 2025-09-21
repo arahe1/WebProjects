@@ -56,29 +56,42 @@ th, td {
 
   /* Dark Mode */
 @media (prefers-color-scheme: dark) {
-  body, table.dataTable {
-    background-color: black !important;
-    color: white !important;
-  }
-
+  body,
+  table.dataTable,
   table.dataTable th,
-  table.dataTable td {
+  table.dataTable td,
+  .dataTables_wrapper,
+  .dataTables_filter input,
+  .dataTables_length select,
+  .dataTables_info,
+  .dataTables_paginate a {
+    background-color: #121212 !important;
     color: white !important;
+    border-color: #444 !important;
   }
 
-  .dataTables_wrapper {
-    color: white !important;
+  table.dataTable tr.even {
+    background-color: #1e1e1e !important;
+  }
+
+  table.dataTable tr.odd {
+    background-color: #2a2a2a !important;
   }
 
   .dataTables_filter input,
   .dataTables_length select {
-    background-color: black !important;
-    color: white !important;
     border: 1px solid #555 !important;
   }
 
-  .dataTables_paginate a {
+  .dataTables_paginate .paginate_button {
+    background-color: #1e1e1e !important;
+    color: white !important;
+  }
+
+  .dataTables_paginate .paginate_button.current {
+    background-color: #333 !important;
     color: white !important;
   }
 }
 
+  

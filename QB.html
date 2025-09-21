@@ -38,14 +38,6 @@ $(document).ready(function() {
         fixedHeader: true //scrollX: true
     });
     table.draw();  // Force a redraw in case anything breaks
-    // Add dark mode class every time the table is redrawn
-    table.on('draw', function () {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        $('table.display').addClass('dark-mode');
-      } else {
-        $('table.display').removeClass('dark-mode');
-      }
-    }
 });
 </script>
 

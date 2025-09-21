@@ -1,3 +1,12 @@
+/* Link styles */
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: #FFD100;
+}
+
 /* Light mode (default) */
 body {
   text-align: center;

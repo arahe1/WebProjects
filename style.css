@@ -1,7 +1,7 @@
 /* Light mode (default) */
 body {
   text-align: center;
-  background-color: powderblue;
+  background-color: white;
   color: black;
   font-family: Arial, sans-serif;
   margin: 0;
@@ -37,7 +37,7 @@ body {
     .link-icon a {
       text-decoration: none;
       display: block;
-      color: yellow;
+      color: gold;
       font-size: 18px;
       margin-top: 10px;
     }
@@ -57,7 +57,7 @@ th, td {
   /* Dark Mode */
 @media (prefers-color-scheme: dark) {
   body, table.dataTable {
-    background-color: #121212 !important;
+    background-color: black !important;
     color: white !important;
   }
 
@@ -72,7 +72,7 @@ th, td {
 
   .dataTables_filter input,
   .dataTables_length select {
-    background-color: #1e1e1e !important;
+    background-color: black !important;
     color: white !important;
     border: 1px solid #555 !important;
   }

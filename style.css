@@ -54,4 +54,14 @@ table.dataTable {
 th, td {
   border: 1px solid #ccc;
   padding: 8px;
+}
+
+/* Make DataTables sort arrows white */
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+  color: white !important;
+  opacity: 1;
+}
+
 

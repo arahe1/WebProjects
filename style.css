@@ -1,10 +1,10 @@
 /* Link styles */
 a:link {
-  color: #FFD100;
+  color: #003594;
 }
 
 a:visited {
-  color: #003594;
+  color: #FFD100;
 }
 
 /* Light mode (default) */
@@ -38,7 +38,7 @@ body {
     .link-icon a {
       text-decoration: none;
       display: block;
-      color: #FFD100;
+      color: #000000;
       font-size: 18px;
       margin-top: 10px;
     }
@@ -87,6 +87,18 @@ th, td {
     background-color: #2c2c2c;
   }
 
+  .link-icon a {
+    color: #f1f1f1;
+  }
+
+  a:link {
+    color: #FFD100;
+  }
+
+  a:visited {
+    color: #003594;
+  }
+  
   a {
     color: #80b3ff;
   }

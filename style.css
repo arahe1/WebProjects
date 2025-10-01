@@ -62,13 +62,13 @@ body {
       margin-top: 10px;
     }
 
-    a:link {
+    /*a:link {
       color: #000000;
     }
 
     a:visited {
       color: #002145;
-    }
+    }*/
 
 table {
   width: 100%;

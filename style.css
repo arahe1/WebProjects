@@ -1,3 +1,13 @@
+/* Light mode (default) */
+body {
+  text-align: center;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: #000000;
@@ -24,25 +34,6 @@
 .topnav a.active {
   background-color: #003594;
   color: white;
-}
-
-/* Link styles */
-a:link {
-  color: #003594;
-}
-
-a:visited {
-  color: #FFD100;
-}
-
-/* Light mode (default) */
-body {
-  text-align: center;
-  background-color: #ffffff;
-  color: #000000;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
 }
 
     .header-img {
@@ -105,6 +96,34 @@ th, td {
     background-color: #121212;
     color: #f1f1f1;
   }
+
+  /* Add a black background color to the top navigation */
+.topnav {
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #D8D3CC;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #003594;
+  color: white;
+}
 
   table {
     background-color: #1e1e1e;

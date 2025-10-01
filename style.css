@@ -43,6 +43,14 @@ body {
       margin-top: 10px;
     }
 
+    a:link {
+      color: #000000;
+    }
+
+    a:visited {
+      color: #002145;
+    }
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -92,11 +100,11 @@ th, td {
   }
 
   a:link {
-    color: #FFD100;
+    color: #f1f1f1;
   }
 
   a:visited {
-    color: #003594;
+    color: #FFD100;
   }
   
   a {

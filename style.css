@@ -97,16 +97,16 @@ th, td {
     color: #f1f1f1;
   }
 
-  /* Add a black background color to the top navigation */
+/* Add a black background color to the top navigation */
 .topnav {
-  background-color: #ffffff;
+  background-color: #000000;
   overflow: hidden;
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
-  color: #000000;
+  color: #ffffff;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;

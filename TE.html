@@ -17,19 +17,7 @@
     <a href="TE.html">TE</a>
     <a href="QB.html">QB</a>
 
-    <script>
-    $(document).ready(function() {
-        var table = $('table.display').DataTable({
-            paging: true,
-            searching: true,
-            ordering: true,
-            pageLength: -1,  // Show ALL rows
-            order: [[1, 'desc']],  // Sort by PPR
-            fixedHeader: true //scrollX: true
-        });
-        table.draw();  // Force a redraw in case anything breaks
-    });
-    </script>
+
 
     <table border="1" class="display">
   <thead>
@@ -1584,6 +1572,45 @@
     </tr>
   </tbody>
 </table>
+
+      <script>
+function getCellValue(row, index) {
+  return row.cells[index].textContent.trim();
+}
+
+function comparer(index, asc) {
+  return function(a, b) {
+    const v1 = getCellValue(a, index);
+    const v2 = getCellValue(b, index);
+
+    const num1 = parseFloat(v1);
+    const num2 = parseFloat(v2);
+    const bothNumbers = !isNaN(num1) && !isNaN(num2);
+
+    if (bothNumbers) {
+      return asc ? num1 - num2 : num2 - num1;
+    } else {
+      return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+    }
+  };
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("th").forEach(function (th, index) {
+    let ascending = true;
+    th.addEventListener("click", function () {
+      const table = th.closest("table");
+      const tbody = table.querySelector("tbody");
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      rows.sort(comparer(index, ascending));
+      rows.forEach(row => tbody.appendChild(row));
+      ascending = !ascending;
+    });
+  });
+});
+</script>
+
+
 
     </body>
     </html>

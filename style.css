@@ -7,7 +7,7 @@ a:visited {
   color: #003594;
 }
 
-/* Light mode (default) */
+/* Constant Dark mode (default) */
 body {
   text-align: center;
   background-color: black;
@@ -43,25 +43,22 @@ body {
       margin-top: 10px;
     }
 
-/* Light Mode (default) */
-table.dataTable {
-  background-color: black;
-  color: white;
-  border-collapse: collapse;
+table {
   width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
 }
 
 th, td {
+  padding: 8px 12px;
   border: 1px solid #ccc;
-  padding: 8px;
-}
-
-/* Make DataTables sort arrows white */
-table.dataTable thead .sorting:after,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_desc:after {
-  color: white !important;
-  opacity: 1;
+  text-align: left;
 }
 
 

@@ -75,6 +75,10 @@ th, td {
     color: #e0e0e0;
   }
 
+  thead th {
+  background: #2c2c2c
+}
+
   th, td {
     border: 1px solid #444;
   }

@@ -60,7 +60,7 @@ body {
   //object-fit: cover;
 }
 
-.link-icon {
+/*.link-icon {
   display: inline-block;
   margin: 20px;
   text-align: center;
@@ -77,7 +77,7 @@ body {
   color: #000000;
   font-size: 18px;
   margin-top: 10px;
-}
+}*/
 
 table {
   width: 100%;
@@ -97,6 +97,10 @@ th, td {
   padding: 8px 12px;
   border: 1px solid #ccc;
   text-align: left;
+}
+
+a {
+  color: #FFD100;
 }
 
 /* === Dark mode overrides === */
@@ -170,12 +174,7 @@ th, td {
     background-color: #2c2c2c;
   }
 
-  .link-icon a {
-    color: #f1f1f1;
-  }
-  
   a {
-    color: #80b3ff;
+    color: #FFD100;
   }
-}
 

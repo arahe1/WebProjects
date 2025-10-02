@@ -26,6 +26,7 @@ body {
 .topnav {
   background-color: #000000;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 /* Style the links inside the navigation bar */
@@ -59,25 +60,6 @@ body {
   margin: 0 auto;
   //object-fit: cover;
 }
-
-/*.link-icon {
-  display: inline-block;
-  margin: 20px;
-  text-align: center;
-}
-
-.link-icon img {
-  width: 100px;
-  height: 100px;
-}
-
-.link-icon a {
-  text-decoration: none;
-  display: block;
-  color: #000000;
-  font-size: 18px;
-  margin-top: 10px;
-}*/
 
 table {
   width: 100%;
@@ -128,6 +110,7 @@ a {
 .topnav {
   background-color: #000000;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 /* Style the links inside the navigation bar */

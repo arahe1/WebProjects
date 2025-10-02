@@ -8,6 +8,20 @@ body {
   padding: 0;
 }
 
+/* Button Styles */
+.button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: #000000;
@@ -36,39 +50,34 @@ body {
   color: white;
 }
 
-    .header-img {
-      width: auto;
-      height: auto;
-      max-height: 300px;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-      //object-fit: cover;
-    }
-    .link-icon {
-      display: inline-block;
-      margin: 20px;
-      text-align: center;
-    }
-    .link-icon img {
-      width: 100px;
-      height: 100px;
-    }
-    .link-icon a {
-      text-decoration: none;
-      display: block;
-      color: #000000;
-      font-size: 18px;
-      margin-top: 10px;
-    }
+.header-img {
+  width: auto;
+  height: auto;
+  max-height: 300px;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  //object-fit: cover;
+}
 
-    /*a:link {
-      color: #000000;
-    }
+.link-icon {
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+}
 
-    a:visited {
-      color: #002145;
-    }*/
+.link-icon img {
+  width: 100px;
+  height: 100px;
+}
+
+.link-icon a {
+  text-decoration: none;
+  display: block;
+  color: #000000;
+  font-size: 18px;
+  margin-top: 10px;
+}
 
 table {
   width: 100%;
@@ -96,6 +105,20 @@ th, td {
     background-color: #121212;
     color: #f1f1f1;
   }
+  
+/* Button Styles */
+.button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 
 /* Add a black background color to the top navigation */
 .topnav {
@@ -149,14 +172,6 @@ th, td {
 
   .link-icon a {
     color: #f1f1f1;
-  }
-
-  a:link {
-    color: #f1f1f1;
-  }
-
-  a:visited {
-    color: #FFD100;
   }
   
   a {

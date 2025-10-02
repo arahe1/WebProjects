@@ -16,39 +16,40 @@
     </head>
     <body>
 
-    <div class="topnav">
-    <a href="index.html">Home</a>
-    <a class="active" href="football.html">Football</a>
-    <a href="fitness.html">Fitness</a>
-    <a href="about.html">About</a>
-    </div>
+      <div class="topnav">
+      <a href="index.html">Home</a>
+      <a class="active" href="football.html">Football</a>
+      <a href="fitness.html">Fitness</a>
+      <a href="about.html">About</a>
+      <input type="text" placeholder="Search..">
+      </div>
 
 
-    <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
+      <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
 
-    <h1>TE ROS Predictions</h1>
-
-
-    <div class="topnav">
-    <a  href="SuperFlex.html">SuperFlex</a>
-    <a  href="Flex.html">Flex</a>
-    <a  href="WR.html">WR</a>
-    <a  href="RB.html">RB</a>
-    <a  href="TE.html">TE</a>
-    <a  href="QB.html">QB</a>
-    <a  href="Rest Of Season.html">Rest Of Season</a>
-    <a  href="WR ROS.html">WR ROS</a>
-    <a  href="RB ROS.html">RB ROS</a>
-    <a class='active' href="TE ROS.html">TE ROS</a>
-    <a  href="QB ROS.html">QB ROS</a>
-    </div>
+      <h1>TE ROS Predictions</h1>
 
 
+      <div class="topnav">
+      <a  href="SuperFlex.html">SuperFlex</a>
+      <a  href="Flex.html">Flex</a>
+      <a  href="WR.html">WR</a>
+      <a  href="RB.html">RB</a>
+      <a  href="TE.html">TE</a>
+      <a  href="QB.html">QB</a>
+      <a  href="Rest Of Season.html">Rest Of Season</a>
+      <a  href="WR ROS.html">WR ROS</a>
+      <a  href="RB ROS.html">RB ROS</a>
+      <a class='active' href="TE ROS.html">TE ROS</a>
+      <a  href="QB ROS.html">QB ROS</a>
+      </div>
 
 
 
 
-    <table border="1" class="display">
+
+
+      <table border="1" class="display">
   <thead>
     <tr style="text-align: right;">
       <th>Player</th>
@@ -1636,6 +1637,22 @@
             ascending = !ascending;
           });
         });
+      });
+      </script>
+
+      <script>
+      const searchBar = document.getElementById('searchBar');
+      const table = document.querySelector('table');
+      const rows = table.getElementsByTagName('tr');
+
+      searchBar.addEventListener('keyup', function () {
+        const searchText = searchBar.value.toLowerCase();
+
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const rowText = row.textContent.toLowerCase();
+          row.style.display = rowText.includes(searchText) ? '' : 'none';
+        }
       });
       </script>
 

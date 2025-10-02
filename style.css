@@ -88,8 +88,8 @@ a {
 /* === Dark mode overrides === */
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #121212;
-    color: #f1f1f1;
+    background-color: #000000;
+    color: #ffffff;
   }
   
 /* Button Styles */

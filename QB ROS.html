@@ -1,0 +1,833 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>QB ROS Stats</title>
+      <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
+      <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+      <link rel="shortcut icon" href="images/favicon.ico" />
+      <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+      <meta name="apple-mobile-web-app-title" content="MyWebSit" />
+      <link rel="manifest" href="images/site.webmanifest" />
+
+      <link rel="stylesheet" href="style.css">
+      <h1>QB ROS Predictions</h1>
+
+    </head>
+    <body>
+
+    <div class="topnav">
+    <a href="index.html">Home</a>
+    <a  href="Rest Of Season.html">Rest Of Season</a>
+    <a  href="WR ROS.html">WR ROS</a>
+    <a  href="RB ROS.html">RB ROS</a>
+    <a  href="TE ROS.html">TE ROS</a>
+    <a class='active' href="QB ROS.html">QB ROS</a>
+    </div>
+
+
+
+
+    <table border="1" class="display">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Player</th>
+      <th>PPR</th>
+      <th>STD</th>
+      <th>PassYds</th>
+      <th>PassTD</th>
+      <th>Rec</th>
+      <th>RecYds</th>
+      <th>RecTD</th>
+      <th>RushAtt</th>
+      <th>RushYds</th>
+      <th>RushTD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Aaron Rodgers</td>
+      <td>197.0</td>
+      <td>197.0</td>
+      <td>2384</td>
+      <td>24.7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>28</td>
+      <td>28</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Andy Dalton</td>
+      <td>39.0</td>
+      <td>39.0</td>
+      <td>372</td>
+      <td>6.2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>9</td>
+      <td>-8</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Anthony Richardson</td>
+      <td>-1.2</td>
+      <td>-1.2</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>49</td>
+      <td>-12</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Baker Mayfield</td>
+      <td>248.8</td>
+      <td>248.8</td>
+      <td>2774</td>
+      <td>24.6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>44</td>
+      <td>396</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Bo Nix</td>
+      <td>226.0</td>
+      <td>226.0</td>
+      <td>2569</td>
+      <td>19.9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>77</td>
+      <td>244</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <td>Brett Rypien</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Brock Purdy</td>
+      <td>247.4</td>
+      <td>247.4</td>
+      <td>3557</td>
+      <td>21.9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>42</td>
+      <td>174</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Bryce Young</td>
+      <td>190.8</td>
+      <td>190.8</td>
+      <td>2385</td>
+      <td>15.2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>33</td>
+      <td>170</td>
+      <td>2.9</td>
+    </tr>
+    <tr>
+      <td>C.J. Stroud</td>
+      <td>181.6</td>
+      <td>181.6</td>
+      <td>2596</td>
+      <td>12.2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>51</td>
+      <td>290</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Caleb Williams</td>
+      <td>254.9</td>
+      <td>254.9</td>
+      <td>2695</td>
+      <td>24.8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>69</td>
+      <td>304</td>
+      <td>2.9</td>
+    </tr>
+    <tr>
+      <td>Cam Ward</td>
+      <td>107.9</td>
+      <td>107.9</td>
+      <td>1953</td>
+      <td>4.4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>26</td>
+      <td>121</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Carson Wentz</td>
+      <td>241.4</td>
+      <td>241.4</td>
+      <td>3213</td>
+      <td>25.7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>24</td>
+      <td>100</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Cooper Rush</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>300</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>16</td>
+      <td>-21</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Dak Prescott</td>
+      <td>229.1</td>
+      <td>229.1</td>
+      <td>3212</td>
+      <td>18.7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>13</td>
+      <td>71</td>
+      <td>3.1</td>
+    </tr>
+    <tr>
+      <td>Daniel Jones</td>
+      <td>233.1</td>
+      <td>233.1</td>
+      <td>3225</td>
+      <td>10.2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>53</td>
+      <td>158</td>
+      <td>7.9</td>
+    </tr>
+    <tr>
+      <td>Dillon Gabriel</td>
+      <td>32.9</td>
+      <td>32.9</td>
+      <td>114</td>
+      <td>7.1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Drake Maye</td>
+      <td>259.6</td>
+      <td>259.6</td>
+      <td>2801</td>
+      <td>18.8</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0.0</td>
+      <td>72</td>
+      <td>316</td>
+      <td>6.7</td>
+    </tr>
+    <tr>
+      <td>Drew Lock</td>
+      <td>6.1</td>
+      <td>6.1</td>
+      <td>180</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>-12</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Gardner Minshew II</td>
+      <td>-4.2</td>
+      <td>-4.2</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>24</td>
+      <td>-42</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Geno Smith</td>
+      <td>193.4</td>
+      <td>193.4</td>
+      <td>2829</td>
+      <td>15.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>40</td>
+      <td>203</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>J.J. McCarthy</td>
+      <td>221.0</td>
+      <td>221.0</td>
+      <td>1887</td>
+      <td>13.8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>43</td>
+      <td>316</td>
+      <td>9.8</td>
+    </tr>
+    <tr>
+      <td>Jacoby Brissett</td>
+      <td>2.3</td>
+      <td>2.3</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>23</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Jake Browning</td>
+      <td>182.7</td>
+      <td>182.7</td>
+      <td>2000</td>
+      <td>15.8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>18</td>
+      <td>34</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <td>Jalen Hurts</td>
+      <td>281.7</td>
+      <td>281.7</td>
+      <td>1997</td>
+      <td>16.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>124</td>
+      <td>578</td>
+      <td>13.3</td>
+    </tr>
+    <tr>
+      <td>Jalen Milroe</td>
+      <td>2.5</td>
+      <td>2.5</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>25</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Jared Goff</td>
+      <td>225.5</td>
+      <td>225.5</td>
+      <td>2770</td>
+      <td>27.8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>16</td>
+      <td>34</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Jaxson Dart</td>
+      <td>84.1</td>
+      <td>84.1</td>
+      <td>434</td>
+      <td>4.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>51</td>
+      <td>220</td>
+      <td>4.5</td>
+    </tr>
+    <tr>
+      <td>Jayden Daniels</td>
+      <td>235.4</td>
+      <td>235.4</td>
+      <td>2711</td>
+      <td>18.9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>108</td>
+      <td>513</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Joe Burrow</td>
+      <td>104.1</td>
+      <td>104.1</td>
+      <td>1122</td>
+      <td>14.4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>16</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Joe Flacco</td>
+      <td>129.3</td>
+      <td>129.3</td>
+      <td>2409</td>
+      <td>7.3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>16</td>
+      <td>36</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Joe Milton</td>
+      <td>18.7</td>
+      <td>18.7</td>
+      <td>471</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Jordan Love</td>
+      <td>236.4</td>
+      <td>236.4</td>
+      <td>2836</td>
+      <td>26.4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>37</td>
+      <td>175</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Josh Allen</td>
+      <td>286.1</td>
+      <td>286.1</td>
+      <td>2762</td>
+      <td>20.4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>91</td>
+      <td>435</td>
+      <td>8.4</td>
+    </tr>
+    <tr>
+      <td>Joshua Dobbs</td>
+      <td>-2.5</td>
+      <td>-2.5</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>37</td>
+      <td>-25</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Justin Fields</td>
+      <td>247.2</td>
+      <td>247.2</td>
+      <td>1859</td>
+      <td>7.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>91</td>
+      <td>695</td>
+      <td>12.2</td>
+    </tr>
+    <tr>
+      <td>Justin Herbert</td>
+      <td>227.9</td>
+      <td>227.9</td>
+      <td>3088</td>
+      <td>19.1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>56</td>
+      <td>280</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Kirk Cousins</td>
+      <td>14.3</td>
+      <td>14.3</td>
+      <td>360</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Kyle Allen</td>
+      <td>-1.2</td>
+      <td>-1.2</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>-12</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Kyler Murray</td>
+      <td>202.8</td>
+      <td>202.8</td>
+      <td>2373</td>
+      <td>16.3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>76</td>
+      <td>427</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Lamar Jackson</td>
+      <td>280.2</td>
+      <td>280.2</td>
+      <td>2509</td>
+      <td>30.2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>56</td>
+      <td>427</td>
+      <td>2.7</td>
+    </tr>
+    <tr>
+      <td>Mac Jones</td>
+      <td>227.7</td>
+      <td>227.7</td>
+      <td>3422</td>
+      <td>22.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>42</td>
+      <td>29</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Marcus Mariota</td>
+      <td>244.7</td>
+      <td>244.7</td>
+      <td>2295</td>
+      <td>18.9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>49</td>
+      <td>363</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <td>Mason Rudolph</td>
+      <td>5.8</td>
+      <td>5.8</td>
+      <td>145</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Matthew Stafford</td>
+      <td>237.0</td>
+      <td>237.0</td>
+      <td>3426</td>
+      <td>25.3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>32</td>
+      <td>-12</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Max Brosmer</td>
+      <td>14.4</td>
+      <td>14.4</td>
+      <td>359</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Michael Penix</td>
+      <td>178.7</td>
+      <td>178.7</td>
+      <td>2825</td>
+      <td>9.7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>39</td>
+      <td>94</td>
+      <td>2.9</td>
+    </tr>
+    <tr>
+      <td>Mitchell Trubisky</td>
+      <td>10.9</td>
+      <td>10.9</td>
+      <td>360</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>35</td>
+      <td>-35</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Patrick Mahomes</td>
+      <td>287.5</td>
+      <td>287.5</td>
+      <td>2891</td>
+      <td>20.1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>67</td>
+      <td>441</td>
+      <td>7.9</td>
+    </tr>
+    <tr>
+      <td>Russell Wilson</td>
+      <td>163.0</td>
+      <td>163.0</td>
+      <td>2321</td>
+      <td>10.2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>52</td>
+      <td>293</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Sam Darnold</td>
+      <td>172.0</td>
+      <td>172.0</td>
+      <td>2705</td>
+      <td>13.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>118</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Spencer Rattler</td>
+      <td>178.7</td>
+      <td>178.7</td>
+      <td>2244</td>
+      <td>14.7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>47</td>
+      <td>302</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Trevor Lawrence</td>
+      <td>165.7</td>
+      <td>165.7</td>
+      <td>2594</td>
+      <td>13.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>45</td>
+      <td>98</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Tua Tagovailoa</td>
+      <td>177.3</td>
+      <td>177.3</td>
+      <td>2154</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>17</td>
+      <td>71</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Tyler Shough</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Tyrod Taylor</td>
+      <td>169.3</td>
+      <td>169.3</td>
+      <td>1500</td>
+      <td>17.3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>63</td>
+      <td>400</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Tyson Bagent</td>
+      <td>20.4</td>
+      <td>20.4</td>
+      <td>311</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>23</td>
+      <td>79</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>Zach Wilson</td>
+      <td>18.1</td>
+      <td>18.1</td>
+      <td>361</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>37</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+
+      <script>
+      function getCellValue(row, index) {
+        return row.cells[index].textContent.trim();
+      }
+
+      function comparer(index, asc) {
+        return function(a, b) {
+          const v1 = getCellValue(a, index);
+          const v2 = getCellValue(b, index);
+
+          const num1 = parseFloat(v1);
+          const num2 = parseFloat(v2);
+          const bothNumbers = !isNaN(num1) && !isNaN(num2);
+
+          if (bothNumbers) {
+            return asc ? num1 - num2 : num2 - num1;
+          } else {
+            return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+          }
+        };
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("th").forEach(function (th, index) {
+          let ascending = true;
+          th.addEventListener("click", function () {
+            const table = th.closest("table");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            rows.sort(comparer(index, ascending));
+            rows.forEach(row => tbody.appendChild(row));
+            ascending = !ascending;
+          });
+        });
+      });
+      </script>
+
+
+
+    </body>
+    </html>
+    

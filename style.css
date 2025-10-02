@@ -99,6 +99,10 @@ th, td {
   text-align: left;
 }
 
+a {
+  color: #FFD100;
+}
+
 /* === Dark mode overrides === */
 @media (prefers-color-scheme: dark) {
   body {

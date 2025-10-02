@@ -44,6 +44,10 @@
     </div>
 
 
+    <div class="topnav">
+    <input type="text" id="searchBar" placeholder="Search...">
+    </div>
+
 
     <table border="1" class="display">
   <thead>
@@ -2621,6 +2625,24 @@
             ascending = !ascending;
           });
         });
+      });
+      </script>
+
+
+
+      <script>
+      const searchBar = document.getElementById('searchBar');
+      const table = document.querySelector('table');
+      const rows = table.getElementsByTagName('tr');
+
+      searchBar.addEventListener('keyup', function () {
+        const searchText = searchBar.value.toLowerCase();
+
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const rowText = row.textContent.toLowerCase();
+          row.style.display = rowText.includes(searchText) ? '' : 'none';
+        }
       });
       </script>
 

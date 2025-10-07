@@ -26,7 +26,6 @@ body {
 .topnav {
   background-color: #000000;
   overflow: hidden;
-  margin-bottom: 20px;
 }
 
 /* Style the links inside the navigation bar */
@@ -66,6 +65,7 @@ table {
   border-collapse: collapse;
   background-color: #f9f9f9;
   color: #000;
+  margin-top: 10px;
 }
 
 thead th {
@@ -88,8 +88,8 @@ a {
 /* === Dark mode overrides === */
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #121212;
-    color: #f1f1f1;
+    background-color: #000000;
+    color: #ffffff;
   }
   
 /* Button Styles */
@@ -110,7 +110,6 @@ a {
 .topnav {
   background-color: #000000;
   overflow: hidden;
-  margin-bottom: 20px;
 }
 
 /* Style the links inside the navigation bar */

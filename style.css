@@ -194,7 +194,7 @@ a {
 /* Add a color to the active/current link */
 .topnav a.active {
   background-color: #003594; /*blue*/
-  color: white;
+  color: #FFD100; /*yellow*/
 }
 
 /* Dropdown container - needed to position the dropdown content */

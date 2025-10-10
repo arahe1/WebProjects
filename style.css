@@ -41,7 +41,7 @@ body {
 /* Change the color of links on hover */
 .topnav a:hover {
   background-color: #D8D3CC; /*gray*/
-  color: black;
+  color: #000000; /*black*/
 }
 
 /* Add a color to the active/current link */
@@ -61,7 +61,7 @@ body {
   font-size: 17px;
   border: none;
   outline: none;
-  color: white;
+  color: #000000; /*black*/
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;

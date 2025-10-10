@@ -50,6 +50,11 @@ body {
   color: #FFD100; /*yellow*/
 }
 
+.topnav .dropbtn.active {
+  background-color: #003594; /*blue*/
+  color: #FFD100; /*yellow*/
+}
+
 /* Dropdown container - needed to position the dropdown content */
 .dropdown {
   float: left;
@@ -190,6 +195,11 @@ a {
 .topnav a.active {
   background-color: #003594; /*blue*/
   color: white;
+}
+
+.topnav .dropbtn.active {
+  background-color: #003594; /*blue*/
+  color: #FFD100; /*yellow*/
 }
 
 /* Dropdown container - needed to position the dropdown content */

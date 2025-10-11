@@ -1,8 +1,16 @@
+def roshtml(alldataframes):
+    #html_dict = {}
 
+    for name, df in alldataframes.items():
+
+        html_string = df.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
+
+        # Full HTML file with sorting and ALL rows shown
+        html_script = f"""
         <!DOCTYPE html>
         <html>
         <head>
-        <title>RB ROS Stats</title>
+        <title>{name} Stats</title>
         <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
         <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
         <link rel="shortcut icon" href="images/favicon.ico" />
@@ -34,15 +42,15 @@
 
         <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
 
-        <h1>RB ROS Predictions</h1>
+        <h1>{name} Predictions</h1>
 
         
         <div class="topnav">
-        <a  href="Rest Of Season.html">Rest Of Season</a>
-        <a  href="QB ROS.html">QB ROS</a>
-        <a  href="WR ROS.html">WR ROS</a>
-        <a class='active' href="RB ROS.html">RB ROS</a>
-        <a  href="TE ROS.html">TE ROS</a>
+        <a {"class='active'" if name == "Rest Of Season" else ""} href="Rest Of Season.html">Rest Of Season</a>
+        <a {"class='active'" if name == "QB ROS" else ""} href="QB ROS.html">QB ROS</a>
+        <a {"class='active'" if name == "WR ROS" else ""} href="WR ROS.html">WR ROS</a>
+        <a {"class='active'" if name == "RB ROS" else ""} href="RB ROS.html">RB ROS</a>
+        <a {"class='active'" if name == "TE ROS" else ""} href="TE ROS.html">TE ROS</a>
 
         </div>
 
@@ -54,34 +62,15 @@
 
 
 
-        <table border="1" class="display">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Player</th>
-      <th>Team</th>
-      <th>PPR</th>
-      <th>STD</th>
-      <th>PassYds</th>
-      <th>PassTD</th>
-      <th>Rec</th>
-      <th>RecYds</th>
-      <th>RecTD</th>
-      <th>RushAtt</th>
-      <th>RushYds</th>
-      <th>RushTD</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+        {html_string}
 
         <script>
-        function getCellValue(row, index) {
+        function getCellValue(row, index) {{
             return row.cells[index].textContent.trim();
-        }
+        }}
 
-        function comparer(index, asc) {
-            return function(a, b) {
+        function comparer(index, asc) {{
+            return function(a, b) {{
             const v1 = getCellValue(a, index);
             const v2 = getCellValue(b, index);
 
@@ -89,27 +78,27 @@
             const num2 = parseFloat(v2);
             const bothNumbers = !isNaN(num1) && !isNaN(num2);
 
-            if (bothNumbers) {
+            if (bothNumbers) {{
                 return asc ? num1 - num2 : num2 - num1;
-            } else {
+            }} else {{
                 return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
-            }
-            };
-        }
+            }}
+            }};
+        }}
 
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll("th").forEach(function (th, index) {
+        document.addEventListener("DOMContentLoaded", function () {{
+            document.querySelectorAll("th").forEach(function (th, index) {{
             let ascending = true;
-            th.addEventListener("click", function () {
+            th.addEventListener("click", function () {{
                 const table = th.closest("table");
                 const tbody = table.querySelector("tbody");
                 const rows = Array.from(tbody.querySelectorAll("tr"));
                 rows.sort(comparer(index, ascending));
                 rows.forEach(row => tbody.appendChild(row));
                 ascending = !ascending;
-            });
-            });
-        });
+            }});
+            }});
+        }});
         </script>
 
         
@@ -119,19 +108,25 @@
         const table = document.querySelector('table');
         const rows = table.getElementsByTagName('tr');
 
-        searchBar.addEventListener('keyup', function () {
+        searchBar.addEventListener('keyup', function () {{
             const searchText = searchBar.value.toLowerCase();
 
-            for (let i = 1; i < rows.length; i++) {
+            for (let i = 1; i < rows.length; i++) {{
             const row = rows[i];
             const rowText = row.textContent.toLowerCase();
             row.style.display = rowText.includes(searchText) ? '' : 'none';
-            }
-        });
+            }}
+        }});
         </script>
 
         
 
         </body>
         </html>
-        
+        """
+
+        # Save to HTML file
+        with open(f"{name}.html", "w") as f:
+            f.write(html_script)
+
+    

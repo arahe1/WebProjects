@@ -7,7 +7,7 @@ Noche_Total = 0
 Paint_Total = 0
 Jerks_Total = 0
 n = 0
-while n > 10:
+while n < 10:
 
     #GC Score
     GC_Team = ['Patrick Mahomes', 'A.J. Brown', 'Brian Thomas', 'Xavier Worthy', 'Alvin Kamara', 'Rhamondre Stevenson', 'Sam LaPorta', 'Troy Franklin']

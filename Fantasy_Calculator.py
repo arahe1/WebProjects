@@ -2,10 +2,10 @@ from Weekly_Webpage_Creator import All_DataFrames
 
 
 SuperFlex = All_DataFrames["SuperFlex"]
-GC_Total = 0
-Noche_Total = 0
-Paint_Total = 0
-Jerks_Total = 0
+GC_Total = []
+Noche_Total = []
+Paint_Total = []
+Jerks_Total = []
 n = 0
 while n < 10:
 

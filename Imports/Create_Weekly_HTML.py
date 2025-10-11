@@ -1,0 +1,129 @@
+def weeklyhtml(alldataframes, week):
+    #html_dict = {}
+
+    for name, df in alldataframes.items():
+
+        html_string = df.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
+
+        # Full HTML file with sorting and ALL rows shown
+        html_script = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>{name} Stats</title>
+        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+        <link rel="shortcut icon" href="images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MyWebSit" />
+        <link rel="manifest" href="images/site.webmanifest" />
+
+        <link rel="stylesheet" href="style.css">
+
+
+        </head>
+        <body>
+
+        <div class="topnav">
+        <a href="index.html">Home</a>
+            <div class="dropdown">
+            <button class="dropbtn active">Football
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="SuperFlex.html">Weekly Predictions</a>
+                <a href="Rest Of Season.html">Rest of Season Predictions</a>
+            </div>
+            </div>
+        <a href="fitness.html">Fitness</a>
+        <a href="about.html">About</a>
+        </div>
+
+
+        <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
+
+        <h1>Week {week} {name} Predictions</h1>
+
+        
+        <div class="topnav">
+        <a {"class='active'" if name == "SuperFlex" else ""} href="SuperFlex.html">SuperFlex</a>
+        <a {"class='active'" if name == "Flex" else ""} href="Flex.html">Flex</a>
+        <a {"class='active'" if name == "QB" else ""} href="QB.html">QB</a>
+        <a {"class='active'" if name == "WR" else ""} href="WR.html">WR</a>
+        <a {"class='active'" if name == "RB" else ""} href="RB.html">RB</a>
+        <a {"class='active'" if name == "TE" else ""} href="TE.html">TE</a>
+
+        </div>
+
+        
+        <div class="topnav">
+        <input type="text" id="searchBar" placeholder="Search...">
+        </div>
+
+
+        {html_string}
+
+        <script>
+        function getCellValue(row, index) {{
+            return row.cells[index].textContent.trim();
+        }}
+
+        function comparer(index, asc) {{
+            return function(a, b) {{
+            const v1 = getCellValue(a, index);
+            const v2 = getCellValue(b, index);
+
+            const num1 = parseFloat(v1);
+            const num2 = parseFloat(v2);
+            const bothNumbers = !isNaN(num1) && !isNaN(num2);
+
+            if (bothNumbers) {{
+                return asc ? num1 - num2 : num2 - num1;
+            }} else {{
+                return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+            }}
+            }};
+        }}
+
+        document.addEventListener("DOMContentLoaded", function () {{
+            document.querySelectorAll("th").forEach(function (th, index) {{
+            let ascending = true;
+            th.addEventListener("click", function () {{
+                const table = th.closest("table");
+                const tbody = table.querySelector("tbody");
+                const rows = Array.from(tbody.querySelectorAll("tr"));
+                rows.sort(comparer(index, ascending));
+                rows.forEach(row => tbody.appendChild(row));
+                ascending = !ascending;
+            }});
+            }});
+        }});
+        </script>
+
+        
+
+        <script>
+        const searchBar = document.getElementById('searchBar');
+        const table = document.querySelector('table');
+        const rows = table.getElementsByTagName('tr');
+
+        searchBar.addEventListener('keyup', function () {{
+            const searchText = searchBar.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) {{
+            const row = rows[i];
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(searchText) ? '' : 'none';
+            }}
+        }});
+        </script>
+
+        
+
+        </body>
+        </html>
+        """
+
+        # Save to HTML file
+        with open(f"{name}.html", "w") as f:
+            f.write(html_script)

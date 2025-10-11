@@ -74,7 +74,4 @@ def fantasycalc(superflex):
 
 
 
-    print('GC Score    =', GC_Score.round(2))
-    print('Noche Score =', Noche_Score.round(2))
-    print('Paint Score =', Paint_Score.round(2))
-    print('Jerks Score =', Jerks_Score.round(2))
+    return ('GC Score    =', GC_Score.round(2)), ('Noche Score =', Noche_Score.round(2)), ('Paint Score =', Paint_Score.round(2)), ('Jerks Score =', Jerks_Score.round(2))

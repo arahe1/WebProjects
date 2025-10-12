@@ -1,5 +1,11 @@
 import pandas as pd
 
+
+Combined = pd.DataFrame()
+Numeric_Part = pd.DataFrame()
+Non_Numeric_Part = pd.DataFrame()
+Total_Stats = pd.DataFrame()
+
 def totalstatcombiner(dflist):
     if not isinstance(dflist, list):
         raise TypeError("Expected a List of dataframes Files")

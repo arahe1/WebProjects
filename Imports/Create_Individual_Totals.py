@@ -35,6 +35,16 @@ def individualtotals(dflist):
         total_team_rush_yards = 0
         total_team_rush_td = 0
 
+        team_total_PA = 0
+        team_total_PY = 0
+        team_total_PT = 0
+        team_total_R = 0
+        team_total_RY = 0
+        team_total_RT = 0
+        team_total_Ru = 0
+        team_total_RuY = 0
+        team_total_RuT = 0
+        
         for df in dflist:
             if player in df['Player'].values:
                 # Get the player's team (assumes 1 team per player per df)

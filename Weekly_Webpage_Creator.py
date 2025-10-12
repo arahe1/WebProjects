@@ -29,14 +29,19 @@ TeamTotals = ctt.teamtotals(DFs, Schedule)
 All_DataFrames = wfd.weeklyfinaldataframes(Useful, TeamTotals)
 wrh.weeklyhtml(All_DataFrames, Week)
 
-commit_msg = f"Adding data and producing predtictions for Week {Week-1}"
+QB = All_DataFrames['QB']
+player_row = QB[QB["Player"] == 'Patrick Mahomes']
+print(player_row)
+print(QB[QB['PassTD'] > 3])
 
-try:
-    subprocess.run(["git", "add", "."], check=True)
-    subprocess.run(["git", "commit", "-m", commit_msg], check=True)
-    subprocess.run(["git", "push"], check=True)
-    print("Git auto-update complete.")
-except subprocess.CalledProcessError:
-    print("Git command failed (maybe no changes to commit?)")
+#commit_msg = f"Adding data and producing predtictions for Week {Week-1}"
+
+#try:
+#    subprocess.run(["git", "add", "."], check=True)
+#    subprocess.run(["git", "commit", "-m", commit_msg], check=True)
+#    subprocess.run(["git", "push"], check=True)
+#    print("Git auto-update complete.")
+#except subprocess.CalledProcessError:
+#    print("Git command failed (maybe no changes to commit?)")
 
 

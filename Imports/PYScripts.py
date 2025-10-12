@@ -266,6 +266,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
     # Update Team Pass TD Percentage
     Useful['PassTD%'] = np.where(
         individualtotals['TeamTotalPassTD'] != 0, (Useful['PassTD'] / individualtotals['TeamTotalPassTD']), 0)
+    Useful['PassTD%'] = Useful['PassTD%'].fillna(0)
 
     # Update Team Catch Percentage
     Useful['TmCatch%'] = np.where(
@@ -278,6 +279,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
     # Update Team Receiving TD Percentage
     Useful['RecTD%'] = np.where(
         individualtotals['TeamTotalRecTD'] != 0, (Useful['RecTD'] / individualtotals['TeamTotalRecTD']), 0)
+    Useful['RecTD%'] = Useful['RecTD%'].fillna(0)
 
     # Update Team Rush Percentage
     Useful['Rush%'] = np.where(
@@ -290,6 +292,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
     # Update Team Rush TD Percentage
     Useful['RushTD%'] = np.where(
         individualtotals['TeamTotalRushTD'] != 0, (Useful['RushTD'] / individualtotals['TeamTotalRushTD']), 0)
+    Useful['RushTD%'] = Useful['RushTD%'].fillna(0)
 
     Useful['Week'] = week
 

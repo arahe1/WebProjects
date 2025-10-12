@@ -656,7 +656,7 @@ def weeklyhtml(alldataframes, week):
                 const tbody = table.querySelector("tbody");
                 const rows = Array.from(tbody.querySelectorAll("tr"));
                 rows.sort(comparer(index, ascending));
-                rows.forEach(row => tbody.appendChild(row));
+                //rows.forEach(row => tbody.appendChild(row));
                 rows.forEach((row, i) => {{
                     row.cells[0].textContent = i + 1; // Reset Rank to match new row position
                     tbody.appendChild(row);

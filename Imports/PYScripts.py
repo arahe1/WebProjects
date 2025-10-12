@@ -535,11 +535,23 @@ def weeklyfinaldataframes(useful, teamtotals):
     TE['Rank'] = range(1, len(TE) + 1)
     QB['Rank'] = range(1, len(QB) + 1)
 
-    Tmp_List = [SuperFlex, Flex, WR, RB, TE, QB]
-    
-    for df in Tmp_List:
-        cols = ['Rank'] + [col for col in df.columns if col != 'Rank']
-        df = df[cols]
+    cols = ['Rank'] + [col for col in SuperFlex.columns if col != 'Rank']
+    SuperFlex = SuperFlex[cols]
+
+    cols = ['Rank'] + [col for col in Flex.columns if col != 'Rank']
+    Flex = Flex[cols]
+
+    cols = ['Rank'] + [col for col in WR.columns if col != 'Rank']
+    WR = WR[cols]
+
+    cols = ['Rank'] + [col for col in RB.columns if col != 'Rank']
+    RB = RB[cols]
+
+    cols = ['Rank'] + [col for col in TE.columns if col != 'Rank']
+    TE = TE[cols]
+
+    cols = ['Rank'] + [col for col in QB.columns if col != 'Rank']
+    QB = QB[cols]
 
     All_DataFrames = {'SuperFlex': SuperFlex, 'Flex': Flex, 'WR': WR, 'RB': RB, 'TE': TE, 'QB': QB}
 
@@ -645,6 +657,9 @@ def weeklyhtml(alldataframes, week):
                 const rows = Array.from(tbody.querySelectorAll("tr"));
                 rows.sort(comparer(index, ascending));
                 rows.forEach(row => tbody.appendChild(row));
+                rows.forEach((row, i) => {{
+                    row.cells[0].textContent = i + 1; // Reset Rank to match new row position
+                    tbody.appendChild(row);
                 ascending = !ascending;
             }});
             }});
@@ -930,11 +945,23 @@ def rosfinaldataframes(useful, teamtotals, week, schedule):
     TE_ROS['Rank'] = range(1, len(TE_ROS) + 1)
     QB_ROS['Rank'] = range(1, len(QB_ROS) + 1)
 
-    Tmp_List = [ROS, Flex_ROS, WR_ROS, RB_ROS, TE_ROS, QB_ROS]
-    
-    for df in Tmp_List:
-        cols = ['Rank'] + [col for col in df.columns if col != 'Rank']
-        df = df[cols]
+    cols = ['Rank'] + [col for col in ROS.columns if col != 'Rank']
+    ROS = ROS[cols]
+
+    cols = ['Rank'] + [col for col in Flex_ROS.columns if col != 'Rank']
+    Flex_ROS = Flex_ROS[cols]
+
+    cols = ['Rank'] + [col for col in WR_ROS.columns if col != 'Rank']
+    WR_ROS = WR_ROS[cols]
+
+    cols = ['Rank'] + [col for col in RB_ROS.columns if col != 'Rank']
+    RB_ROS = RB_ROS[cols]
+
+    cols = ['Rank'] + [col for col in TE_ROS.columns if col != 'Rank']
+    TE_ROS = TE_ROS[cols]
+
+    cols = ['Rank'] + [col for col in QB_ROS.columns if col != 'Rank']
+    QB_ROS = QB_ROS[cols]
 
 
     All_DataFrames = {'Rest Of Season': ROS, 'Flex ROS': Flex_ROS, 'WR ROS': WR_ROS, 'RB ROS': RB_ROS, 'TE ROS': TE_ROS, 'QB ROS': QB_ROS}

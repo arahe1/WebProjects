@@ -660,6 +660,7 @@ def weeklyhtml(alldataframes, week):
                 rows.forEach((row, i) => {{
                     row.cells[0].textContent = i + 1; // Reset Rank to match new row position
                     tbody.appendChild(row);
+                }});
                 ascending = !ascending;
             }});
             }});

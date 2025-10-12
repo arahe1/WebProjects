@@ -527,7 +527,23 @@ def weeklyfinaldataframes(useful, teamtotals):
         if col != 'Player' and col in QB.columns:
             QB[col] = QB['Player'].map(SuperFlex.set_index('Player')[col])
 
+
+    SuperFlex['Rank'] = range(1, len(SuperFlex) + 1)
+    Flex['Rank'] = range(1, len(Flex) + 1)
+    WR['Rank'] = range(1, len(WR) + 1)
+    RB['Rank'] = range(1, len(RB) + 1)
+    TE['Rank'] = range(1, len(TE) + 1)
+    QB['Rank'] = range(1, len(QB) + 1)
+
+    Tmp_List = [SuperFlex, Flex, WR, RB, TE, QB]
+    
+    for df in Tmp_List:
+        cols = ['Rank'] + [col for col in df.columns if col != 'Rank']
+        df = df[cols]
+
     All_DataFrames = {'SuperFlex': SuperFlex, 'Flex': Flex, 'WR': WR, 'RB': RB, 'TE': TE, 'QB': QB}
+
+    
 
     return All_DataFrames
 
@@ -622,6 +638,7 @@ def weeklyhtml(alldataframes, week):
         document.addEventListener("DOMContentLoaded", function () {{
             document.querySelectorAll("th").forEach(function (th, index) {{
             let ascending = true;
+            if (index === 0) return;
             th.addEventListener("click", function () {{
                 const table = th.closest("table");
                 const tbody = table.querySelector("tbody");
@@ -906,7 +923,20 @@ def rosfinaldataframes(useful, teamtotals, week, schedule):
         if col != 'Player' and col in QB_ROS.columns:
             QB_ROS[col] = QB_ROS['Player'].map(ROS.set_index('Player')[col])
 
+    ROS['Rank'] = range(1, len(ROS) + 1)
+    Flex_ROS['Rank'] = range(1, len(Flex_ROS) + 1)
+    WR_ROS['Rank'] = range(1, len(WR_ROS) + 1)
+    RB_ROS['Rank'] = range(1, len(RB_ROS) + 1)
+    TE_ROS['Rank'] = range(1, len(TE_ROS) + 1)
+    QB_ROS['Rank'] = range(1, len(QB_ROS) + 1)
+
+
     All_DataFrames = {'Rest Of Season': ROS, 'Flex ROS': Flex_ROS, 'WR ROS': WR_ROS, 'RB ROS': RB_ROS, 'TE ROS': TE_ROS, 'QB ROS': QB_ROS}
+
+
+    for df in All_DataFrames.items():
+        cols = ['Rank'] + [col for col in df.columns if col != 'Rank']
+        df = df[cols]
 
     return All_DataFrames
 
@@ -1002,6 +1032,7 @@ def roshtml(alldataframes):
         document.addEventListener("DOMContentLoaded", function () {{
             document.querySelectorAll("th").forEach(function (th, index) {{
             let ascending = true;
+            if (index === 0) return;
             th.addEventListener("click", function () {{
                 const table = th.closest("table");
                 const tbody = table.querySelector("tbody");

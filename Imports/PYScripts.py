@@ -460,16 +460,16 @@ def weeklyfinaldataframes(useful, teamtotals):
 
         players.append(row['Player'])
 
-        predictedrushes.append(np.round(rushes.mean()).astype(int))
-        predictedrushyards.append(np.round(rushyards.mean()).astype(int))
-        predictedrushtds.append(np.round(rushtds.mean(),1))
+        predictedrushes.append(np.clip(np.round(rushes.mean()).astype(int), 0, None))
+        predictedrushyards.append(np.clip(np.round(rushyards.mean()).astype(int), 0, None))
+        predictedrushtds.append(np.clip(np.round(rushtds.mean(),1), 0, None))
 
-        predictedreceptions.append(np.round(receptions.mean()).astype(int))
-        predictedreceivingyards.append(np.round(receivingyards.mean()).astype(int))
-        predictedreceivingtds.append(np.round(receivingtds.mean(),1))
+        predictedreceptions.append(np.clip(np.round(receptions.mean()).astype(int), 0, None))
+        predictedreceivingyards.append(np.clip(np.round(receivingyards.mean()).astype(int), 0, None))
+        predictedreceivingtds.append(np.clip(np.round(receivingtds.mean(),1), 0, None))
 
-        predictedpassingyards.append(np.round(passingyards.mean()).astype(int))
-        predictedpassingtds.append(np.round(passingtds.mean(),1))
+        predictedpassingyards.append(np.clip(np.round(passingyards.mean()).astype(int), 0, None))
+        predictedpassingtds.append(np.clip(np.round(passingtds.mean(),1), 0, None))
         
 
         # Fantasy scoring
@@ -838,16 +838,16 @@ def rosfinaldataframes(useful, teamtotals, week, schedule):
 
             players.append(row['Player'])
 
-            predictedrushes.append(np.round(rushes.mean()).astype(int))
-            predictedrushyards.append(np.round(rushyards.mean()).astype(int))
-            predictedrushtds.append(np.round(rushtds.mean(),1))
+            predictedrushes.append(np.clip(np.round(rushes.mean()).astype(int), 0, None))
+            predictedrushyards.append(np.clip(np.round(rushyards.mean()).astype(int), 0, None))
+            predictedrushtds.append(np.clip(np.round(rushtds.mean(),1), 0, None))
 
-            predictedreceptions.append(np.round(receptions.mean()).astype(int))
-            predictedreceivingyards.append(np.round(receivingyards.mean()).astype(int))
-            predictedreceivingtds.append(np.round(receivingtds.mean(),1))
+            predictedreceptions.append(np.clip(np.round(receptions.mean()).astype(int), 0, None))
+            predictedreceivingyards.append(np.clip(np.round(receivingyards.mean()).astype(int), 0, None))
+            predictedreceivingtds.append(np.clip(np.round(receivingtds.mean(),1), 0, None))
 
-            predictedpassingyards.append(np.round(passingyards.mean()).astype(int))
-            predictedpassingtds.append(np.round(passingtds.mean(),1))
+            predictedpassingyards.append(np.clip(np.round(passingyards.mean()).astype(int), 0, None))
+            predictedpassingtds.append(np.clip(np.round(passingtds.mean(),1), 0, None))
             
 
             # Fantasy scoring

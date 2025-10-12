@@ -930,13 +930,15 @@ def rosfinaldataframes(useful, teamtotals, week, schedule):
     TE_ROS['Rank'] = range(1, len(TE_ROS) + 1)
     QB_ROS['Rank'] = range(1, len(QB_ROS) + 1)
 
+    Tmp_List = [ROS, Flex_ROS, WR_ROS, RB_ROS, TE_ROS, QB_ROS]
+    
+    for df in Tmp_List:
+        cols = ['Rank'] + [col for col in df.columns if col != 'Rank']
+        df = df[cols]
+
 
     All_DataFrames = {'Rest Of Season': ROS, 'Flex ROS': Flex_ROS, 'WR ROS': WR_ROS, 'RB ROS': RB_ROS, 'TE ROS': TE_ROS, 'QB ROS': QB_ROS}
 
-
-    for df in All_DataFrames.items():
-        cols = ['Rank'] + [col for col in df.columns if col != 'Rank']
-        df = df[cols]
 
     return All_DataFrames
 

@@ -245,6 +245,10 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
             if stat in stdev_col_map:
                 Useful.at[i, stdev_col_map[stat]] = stdev
 
+
+    Useful = Useful.set_index('Player')
+    individualtotals = individualtotals.set_index('Player')
+
     # Update Individual Completion Percentage
     Useful['IndComp%'] = np.where(Useful['PassAtt'] != 0, (Useful['Cmp'] / Useful['PassAtt']), 0)
 
@@ -288,6 +292,8 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
         individualtotals['TeamTotalRushTD'] != 0, (Useful['RushTD'] / individualtotals['TeamTotalRushTD']), 0)
 
     Useful['Week'] = week
+
+    Useful = Useful.reset_index()
 
     return Useful
 

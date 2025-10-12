@@ -1,28 +1,21 @@
 import pandas as pd
 import numpy as np
-import subprocess
 from collections import defaultdict
+import subprocess
 from IPython.display import HTML, display
 pd.set_option('display.max_columns', None)
-from Imports import CSV_Importer as ci
-from Imports import Schedule_Maker as sm
-from Imports import Total_Stats_Combiner as tsc
-from Imports import Create_Individual_Totals as cit
-from Imports import Create_Useful as cu
-from Imports import Create_Team_Totals as ctt
-from Imports import ROS_Final_Dataframes as rfd
-from Imports import Create_ROS_HTML as crh
+from Imports import PYScripts as ps
 
 listicle = ['CSVs/Week_1_NFL_2025.csv','CSVs/Week_2_NFL_2025.csv','CSVs/Week_3_NFL_2025.csv','CSVs/Week_4_NFL_2025.csv','CSVs/Week_5_NFL_2025.csv']
-DFs = ci.importstats(listicle)
-Schedule = sm.schedulemaker('CSVs/Schedule_2025.csv')
+DFs = ps.importstats(listicle)
+Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')
 Week = len(DFs)+1
-Total_Stats = tsc.totalstatcombiner(DFs)
-IndividualTotals = cit.individualtotals(DFs)
-Useful = cu.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
-TeamTotals = ctt.teamtotals(DFs, Schedule)
-All_DataFrames = rfd.rosfinaldataframes(Useful, TeamTotals, Week, Schedule)
-crh.roshtml(All_DataFrames)
+Total_Stats = ps.totalstatcombiner(DFs)
+IndividualTotals = ps.individualtotals(DFs)
+Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
+TeamTotals = ps.teamtotals(DFs, Schedule)
+All_DataFrames = ps.rosfinaldataframes(Useful, TeamTotals, Week, Schedule)
+ps.roshtml(All_DataFrames)
 
 commit_msg = f"Adding data for Week {Week-1} and Producing predictions for Rest Of Season"
 

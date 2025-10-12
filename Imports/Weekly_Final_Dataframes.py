@@ -98,16 +98,16 @@ def weeklyfinaldataframes(useful, teamtotals):
 
         players.append(row['Player'])
 
-        predictedrushes.append(np.round(rushes.mean()).astype(int))
-        predictedrushyards.append(np.round(rushyards.mean()).astype(int))
-        predictedrushtds.append(np.round(rushtds.mean(),1))
+        predictedrushes.append(np.clip(np.round(rushes.mean()).astype(int), a_min=0, a_max=None))
+        predictedrushyards.append(np.clip(np.round(rushyards.mean()).astype(int), a_min=0, a_max=None))
+        predictedrushtds.append(np.clip(np.round(rushtds.mean(),1), a_min=0, a_max=None))
 
-        predictedreceptions.append(np.round(receptions.mean()).astype(int))
-        predictedreceivingyards.append(np.round(receivingyards.mean()).astype(int))
-        predictedreceivingtds.append(np.round(receivingtds.mean(),1))
+        predictedreceptions.append(np.clip(np.round(receptions.mean()).astype(int), a_min=0, a_max=None))
+        predictedreceivingyards.append(np.clip(np.round(receivingyards.mean()).astype(int), a_min=0, a_max=None))
+        predictedreceivingtds.append(np.clip(np.round(receivingtds.mean(),1), a_min=0, a_max=None))
 
-        predictedpassingyards.append(np.round(passingyards.mean()).astype(int))
-        predictedpassingtds.append(np.round(passingtds.mean(),1))
+        predictedpassingyards.append(np.clip(np.round(passingyards.mean()).astype(int), a_min=0, a_max=None))
+        predictedpassingtds.append(np.clip(np.round(passingtds.mean(),1), a_min=0, a_max=None))
         
 
         # Fantasy scoring
@@ -141,6 +141,9 @@ def weeklyfinaldataframes(useful, teamtotals):
     SuperFlex['PPR'] = pprs
     SuperFlex['STD'] = stds
     SuperFlex.iloc[:, 2:4] = SuperFlex.iloc[:, 2:4].apply(pd.to_numeric).round(1)
+
+    #numeric_cols = SuperFlex.select_dtypes(include='number').columns
+    #SuperFlex = SuperFlex[:, 4:].clip(lower=0)
 
     for col in SuperFlex.columns:
         if col != 'Player' and col in Flex.columns:

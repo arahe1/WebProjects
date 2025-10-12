@@ -14,6 +14,36 @@ def rosfinaldataframes(useful, teamtotals, week, schedule):
     ROS = pd.DataFrame()
     ROS['Player'] = useful['Player']
 
+    #Populate Flex with Player names
+    for i, row in useful.iterrows():
+        keywords = ['WR', 'RB', 'TE']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            Flex_ROS.at[i, 'Player'] = row['Player']
+
+    #Populate WR with Player names
+    for i, row in useful.iterrows():
+        keywords = ['WR']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            WR_ROS.at[i, 'Player'] = row['Player']
+
+    #Populate RB with Player names
+    for i, row in useful.iterrows():
+        keywords = ['RB']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            RB_ROS.at[i, 'Player'] = row['Player']
+
+    #Populate TE with Player names
+    for i, row in useful.iterrows():
+        keywords = ['TE']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            TE_ROS.at[i, 'Player'] = row['Player']
+
+    #Populate QB with Player names
+    for i, row in useful.iterrows():
+        keywords = ['QB']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            QB_ROS.at[i, 'Player'] = row['Player']
+
     stats = [col for col in statcolumns if col != 'Player']
 
     # Initialize projection columns to 0
@@ -79,16 +109,16 @@ def rosfinaldataframes(useful, teamtotals, week, schedule):
 
             players.append(row['Player'])
 
-            predictedrushes.append(np.round(rushes.mean()).astype(int))
-            predictedrushyards.append(np.round(rushyards.mean()).astype(int))
-            predictedrushtds.append(np.round(rushtds.mean(),1))
+            predictedrushes.append(np.clip(np.round(rushes.mean()).astype(int), a_min=0, a_max=None))
+            predictedrushyards.append(np.clip(np.round(rushyards.mean()).astype(int), a_min=0, a_max=None))
+            predictedrushtds.append(np.clip(np.round(rushtds.mean(),1), a_min=0, a_max=None))
 
-            predictedreceptions.append(np.round(receptions.mean()).astype(int))
-            predictedreceivingyards.append(np.round(receivingyards.mean()).astype(int))
-            predictedreceivingtds.append(np.round(receivingtds.mean(),1))
+            predictedreceptions.append(np.clip(np.round(receptions.mean()).astype(int), a_min=0, a_max=None))
+            predictedreceivingyards.append(np.clip(np.round(receivingyards.mean()).astype(int), a_min=0, a_max=None))
+            predictedreceivingtds.append(np.clip(np.round(receivingtds.mean(),1), a_min=0, a_max=None))
 
-            predictedpassingyards.append(np.round(passingyards.mean()).astype(int))
-            predictedpassingtds.append(np.round(passingtds.mean(),1))
+            predictedpassingyards.append(np.clip(np.round(passingyards.mean()).astype(int), a_min=0, a_max=None))
+            predictedpassingtds.append(np.clip(np.round(passingtds.mean(),1), a_min=0, a_max=None))
             
 
             # Fantasy scoring

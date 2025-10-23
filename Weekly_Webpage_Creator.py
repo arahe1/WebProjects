@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 #import numpy as np
 import subprocess
 #from collections import defaultdict
@@ -25,6 +26,13 @@ Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
 Useful = ps.injuryremoval(Useful)
 TeamTotals = ps.teamtotals(DFs, Schedule)
 All_DataFrames = ps.weeklyfinaldataframes(Useful, TeamTotals)
+
+df = All_DataFrames['SuperFlex']
+relative_directory = 'CSVs'
+filename = 'SuperFlex.csv'
+full_path = os.path.join(relative_directory, filename)
+df.to_csv(full_path, index=False)
+
 ps.weeklyhtml(All_DataFrames, Week)
 
 commit_msg = f"Adding data and producing predtictions for Week {Week-1}"

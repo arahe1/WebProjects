@@ -369,47 +369,13 @@ def weeklySuperFlexdataframe(useful, teamtotals):
     n_simulations = 10000
     team_stats = teamtotals.set_index('Team').to_dict('index')
 
-    statcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    statcolumns = ['Player', 'Team', 'Pos.', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
     SuperFlex = pd.DataFrame(columns=statcolumns)
-    Flex = pd.DataFrame(columns=statcolumns)
-    WR = pd.DataFrame(columns=statcolumns)
-    RB = pd.DataFrame(columns=statcolumns)
-    TE = pd.DataFrame(columns=statcolumns)
-    QB = pd.DataFrame(columns=statcolumns)
 
     #Populate Superflex with Player names
     SuperFlex['Player'] = useful['Player']
     SuperFlex['Team'] = useful['Team']
-
-    #Populate Flex with Player names
-    for i, row in useful.iterrows():
-        keywords = ['WR', 'RB', 'TE']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            Flex.at[i, 'Player'] = row['Player']
-
-    #Populate WR with Player names
-    for i, row in useful.iterrows():
-        keywords = ['WR']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            WR.at[i, 'Player'] = row['Player']
-
-    #Populate RB with Player names
-    for i, row in useful.iterrows():
-        keywords = ['RB']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            RB.at[i, 'Player'] = row['Player']
-
-    #Populate TE with Player names
-    for i, row in useful.iterrows():
-        keywords = ['TE']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            TE.at[i, 'Player'] = row['Player']
-
-    #Populate QB with Player names
-    for i, row in useful.iterrows():
-        keywords = ['QB']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            QB.at[i, 'Player'] = row['Player']
+    SuperFlex['Pos.'] = useful['Pos.']
 
     players = []
 
@@ -502,7 +468,7 @@ def weeklySuperFlexdataframe(useful, teamtotals):
     SuperFlex['PassTD'] = predictedpassingtds
     SuperFlex['PPR'] = pprs
     SuperFlex['STD'] = stds
-    SuperFlex.iloc[:, 2:4] = SuperFlex.iloc[:, 2:4].apply(pd.to_numeric).round(1)
+    SuperFlex.iloc[:, 3:5] = SuperFlex.iloc[:, 3:5].apply(pd.to_numeric).round(1)
 
     #numeric_cols = SuperFlex.select_dtypes(include='number').columns
     #SuperFlex = SuperFlex[:, 4:].clip(lower=0)
@@ -517,6 +483,37 @@ def weeklyfinaldataframes(superflex):
     RB = pd.DataFrame(columns=statcolumns)
     TE = pd.DataFrame(columns=statcolumns)
     QB = pd.DataFrame(columns=statcolumns)
+
+        #Populate Flex with Player names
+    for i, row in superflex.iterrows():
+        keywords = ['WR', 'RB', 'TE']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            Flex.at[i, 'Player'] = row['Player']
+
+    #Populate WR with Player names
+    for i, row in superflex.iterrows():
+        keywords = ['WR']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            WR.at[i, 'Player'] = row['Player']
+
+    #Populate RB with Player names
+    for i, row in superflex.iterrows():
+        keywords = ['RB']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            RB.at[i, 'Player'] = row['Player']
+
+    #Populate TE with Player names
+    for i, row in superflex.iterrows():
+        keywords = ['TE']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            TE.at[i, 'Player'] = row['Player']
+
+    #Populate QB with Player names
+    for i, row in superflex.iterrows():
+        keywords = ['QB']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            QB.at[i, 'Player'] = row['Player']
+
 
     for col in superflex.columns:
         if col != 'Player' and col in Flex.columns:
@@ -762,7 +759,7 @@ def injuryremoval(superflex):
 
     #print(IR_Players)
 
-    superflex.loc[superflex['Player'].isin(IR_Players), ~superflex.columns.isin(['Player', 'Team', 'Rank'])] = 0
+    superflex.loc[superflex['Player'].isin(IR_Players), ~superflex.columns.isin(['Player', 'Team', 'Rank', 'Pos.'])] = 0
     #Useful = useful[~useful['Player'].isin(IR_Players)]
     #SuperFlex = SuperFlex[~SuperFlex['Player'].isin(IR_Players)]
     #Flex = Flex[~Flex['Player'].isin(IR_Players)]

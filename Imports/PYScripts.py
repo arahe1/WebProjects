@@ -363,7 +363,7 @@ def teamtotals(dflist, schedule):
     return TeamTotals
 
 
-def weeklyfinaldataframes(useful, teamtotals):
+def weeklySuperFlexdataframe(useful, teamtotals):
 
     #Simulate 10,000 games and average for predictions
     n_simulations = 10000
@@ -507,36 +507,47 @@ def weeklyfinaldataframes(useful, teamtotals):
     #numeric_cols = SuperFlex.select_dtypes(include='number').columns
     #SuperFlex = SuperFlex[:, 4:].clip(lower=0)
 
-    for col in SuperFlex.columns:
+    return SuperFlex
+
+def weeklyfinaldataframes(superflex):
+
+    statcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    Flex = pd.DataFrame(columns=statcolumns)
+    WR = pd.DataFrame(columns=statcolumns)
+    RB = pd.DataFrame(columns=statcolumns)
+    TE = pd.DataFrame(columns=statcolumns)
+    QB = pd.DataFrame(columns=statcolumns)
+
+    for col in superflex.columns:
         if col != 'Player' and col in Flex.columns:
-            Flex[col] = Flex['Player'].map(SuperFlex.set_index('Player')[col])
+            Flex[col] = Flex['Player'].map(superflex.set_index('Player')[col])
 
-    for col in SuperFlex.columns:
+    for col in superflex.columns:
         if col != 'Player' and col in WR.columns:
-            WR[col] = WR['Player'].map(SuperFlex.set_index('Player')[col])
+            WR[col] = WR['Player'].map(superflex.set_index('Player')[col])
 
-    for col in SuperFlex.columns:
+    for col in superflex.columns:
         if col != 'Player' and col in RB.columns:
-            RB[col] = RB['Player'].map(SuperFlex.set_index('Player')[col])
+            RB[col] = RB['Player'].map(superflex.set_index('Player')[col])
 
-    for col in SuperFlex.columns:
+    for col in superflex.columns:
         if col != 'Player' and col in TE.columns:
-            TE[col] = TE['Player'].map(SuperFlex.set_index('Player')[col])
+            TE[col] = TE['Player'].map(superflex.set_index('Player')[col])
 
-    for col in SuperFlex.columns:
+    for col in superflex.columns:
         if col != 'Player' and col in QB.columns:
-            QB[col] = QB['Player'].map(SuperFlex.set_index('Player')[col])
+            QB[col] = QB['Player'].map(superflex.set_index('Player')[col])
 
 
-    SuperFlex['Rank'] = range(1, len(SuperFlex) + 1)
+    superflex['Rank'] = range(1, len(superflex) + 1)
     Flex['Rank'] = range(1, len(Flex) + 1)
     WR['Rank'] = range(1, len(WR) + 1)
     RB['Rank'] = range(1, len(RB) + 1)
     TE['Rank'] = range(1, len(TE) + 1)
     QB['Rank'] = range(1, len(QB) + 1)
 
-    cols = ['Rank'] + [col for col in SuperFlex.columns if col != 'Rank']
-    SuperFlex = SuperFlex[cols]
+    cols = ['Rank'] + [col for col in superflex.columns if col != 'Rank']
+    superflex = superflex[cols]
 
     cols = ['Rank'] + [col for col in Flex.columns if col != 'Rank']
     Flex = Flex[cols]
@@ -553,7 +564,7 @@ def weeklyfinaldataframes(useful, teamtotals):
     cols = ['Rank'] + [col for col in QB.columns if col != 'Rank']
     QB = QB[cols]
 
-    All_DataFrames = {'SuperFlex': SuperFlex, 'Flex': Flex, 'WR': WR, 'RB': RB, 'TE': TE, 'QB': QB}
+    All_DataFrames = {'SuperFlex': superflex, 'Flex': Flex, 'WR': WR, 'RB': RB, 'TE': TE, 'QB': QB}
 
     
 
@@ -696,7 +707,7 @@ def weeklyhtml(alldataframes, week):
             f.write(html_script)
 
 
-def injuryremoval(useful):
+def injuryremoval(superflex):
     #Erasing Injured Players from DataFrames using ESPN
 
     # URL of the website you want to scrape
@@ -751,7 +762,8 @@ def injuryremoval(useful):
 
     #print(IR_Players)
 
-    Useful = useful[~useful['Player'].isin(IR_Players)]
+    superflex.loc[superflex['Player'].isin(IR_Players), ~superflex.columns.isin(['Player', 'Team', 'Rank'])] = 0
+    #Useful = useful[~useful['Player'].isin(IR_Players)]
     #SuperFlex = SuperFlex[~SuperFlex['Player'].isin(IR_Players)]
     #Flex = Flex[~Flex['Player'].isin(IR_Players)]
     #WR = WR[~WR['Player'].isin(IR_Players)]
@@ -759,7 +771,7 @@ def injuryremoval(useful):
     #TE = TE[~TE['Player'].isin(IR_Players)]
     #QB = QB[~QB['Player'].isin(IR_Players)]
 
-    return Useful
+    return superflex
 
 
 

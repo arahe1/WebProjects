@@ -24,14 +24,16 @@ Week = len(DFs)+1
 Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
-Useful = ps.injuryremoval(Useful)
 TeamTotals = ps.teamtotals(DFs, Schedule)
-All_DataFrames = ps.weeklyfinaldataframes(Useful, TeamTotals)
-
+SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
+SuperFlex = ps.injuryremoval(SuperFlex)
+All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
+All_DataFrames['SuperFlex'] = ps.injuryremoval(All_DataFrames['SuperFlex'])
 df = All_DataFrames['SuperFlex']
-relative_directory = 'CSVs'
-filename = 'SuperFlex.csv'
-full_path = os.path.join(relative_directory, filename)
+
+
+
+full_path = os.path.join('CSVs', 'SuperFlex.csv')
 df.to_csv(full_path, index=False)
 
 ps.weeklyhtml(All_DataFrames, Week)

@@ -1,5 +1,6 @@
 import pandas as pd
 import sys
+import os
 #import numpy as np
 #import subprocess
 #from collections import defaultdict
@@ -62,9 +63,10 @@ for player in GC_Bench:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
-print(f"\n GC Score    = {round(GC_Score+GC_DEF_approx, 2)} \n")
-pprint(GC_ScoreDF)
-pprint(GC_BenchDF)
+GC_FinalDF = {"Jerks Score": [GC_Score]}
+#print(f"\n GC Score    = {round(GC_Score+GC_DEF_approx, 2)} \n")
+#pprint(GC_ScoreDF)
+#pprint(GC_BenchDF)
 
 
 #Noche Score
@@ -106,9 +108,10 @@ for player in Noche_Bench:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
-print(f"\n Noche Score = {round(Noche_Score+Noche_DEF_approx, 2)} \n")
-pprint(Noche_ScoreDF)
-pprint(Noche_BenchDF)
+Noche_FinalDF = {"Jerks Score": [Noche_Score]}
+#print(f"\n Noche Score = {round(Noche_Score+Noche_DEF_approx, 2)} \n")
+#pprint(Noche_ScoreDF)
+#pprint(Noche_BenchDF)
 
 
 #Paint Score
@@ -151,9 +154,10 @@ for player in Paint_Bench:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
-print(f"\n Paint Score = {round(Paint_Score+Paint_K_approx+Paint_DEF_approx, 2)} \n")
-pprint(Paint_ScoreDF)
-pprint(Paint_BenchDF)
+Paint_FinalDF = {"Jerks Score": [Paint_Score]}
+#print(f"\n Paint Score = {round(Paint_Score+Paint_K_approx+Paint_DEF_approx, 2)} \n")
+#pprint(Paint_ScoreDF)
+#pprint(Paint_BenchDF)
 
 
 #Jerks Score
@@ -197,24 +201,32 @@ for player in Jerks_Bench:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
-print(f"\n Jerks Score = {round(Jerks_Score, 2)} \n")
-pprint(Jerks_ScoreDF)
-pprint(Jerks_BenchDF)
+Jerks_FinalDF = {"Jerks Score": [Jerks_Score]}
+#print(f"\n Jerks Score = {round(Jerks_Score, 2)} \n")
+#pprint(Jerks_ScoreDF)
+#pprint(Jerks_BenchDF)
 
 
 
-# File to save the outputs
-#output_file = "dataframes_log.txt"
+dfs = {"GC Starters": pd.DataFrame(GC_ScoreDF),
+       "GC Score": pd.DataFrame(GC_FinalDF),
+       "GC Bench": pd.DataFrame(GC_BenchDF),
+       "Noche Starters": pd.DataFrame(Noche_ScoreDF), 
+       "Noche Score": pd.DataFrame(Noche_FinalDF),
+       "Noche Bench": pd.DataFrame(Noche_BenchDF),
+       "Paint Starters": pd.DataFrame(Paint_ScoreDF),
+       "Paint Score": pd.DataFrame(Paint_FinalDF),
+       "Paint Bench": pd.DataFrame(Paint_BenchDF),
+       "Jerks Starters": pd.DataFrame(Jerks_ScoreDF),
+       "Jerks Score": pd.DataFrame(Jerks_FinalDF),
+       "Jerks Bench": pd.DataFrame(Jerks_BenchDF)}
 
-# Use append mode so each run adds to the same file
-#with open(output_file, "a") as f:
-#    f.write("\n" + "="*50 + "\n")
-#    f.write(f"Run on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-#    f.write("="*50 + "\n\n")
-    
-#    f.write("DataFrame 1:\n")
-#    f.write(df1.to_string(index=False))  # Convert DataFrame to text
-#    f.write("\n\nDataFrame 2:\n")
-#    f.write(df2.to_string(index=False))
-#    f.write("\n\n")
+full_path = os.path.join('CSVs', 'FantasyTeams.csv')
+
+with open(full_path, "w") as f:
+    for name, df in dfs.items():
+        print(f"--- {name} ---", file=f)  # header from dict key
+        print(df, file=f)
+        print("\n", file=f)
+
 

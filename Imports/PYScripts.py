@@ -547,8 +547,9 @@ def injuryremovalweekly(superflex):
 
 def weeklyfinaldataframes(superflex):
 
+    flexstatcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
     statcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
-    Flex = pd.DataFrame(columns=statcolumns)
+    Flex = pd.DataFrame(columns=flexstatcolumns)
     WR = pd.DataFrame(columns=statcolumns)
     RB = pd.DataFrame(columns=statcolumns)
     TE = pd.DataFrame(columns=statcolumns)
@@ -841,49 +842,15 @@ def injuryremovalros(superflex):
     return superflex
 
 
-def rosfinaldataframes(useful, teamtotals, week, schedule):
+def ROSdataframe(useful, teamtotals, week, schedule):
 
-    statcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
-    Flex_ROS = pd.DataFrame(columns=statcolumns)
-    WR_ROS = pd.DataFrame(columns=statcolumns)
-    RB_ROS = pd.DataFrame(columns=statcolumns)
-    TE_ROS = pd.DataFrame(columns=statcolumns)
-    QB_ROS = pd.DataFrame(columns=statcolumns)
+    statcolumns = ['Player', 'Team', 'Pos.', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
 
     # Prepare your output DataFrame
     ROS = pd.DataFrame()
     ROS['Player'] = useful['Player']
 
-    #Populate Flex with Player names
-    for i, row in useful.iterrows():
-        keywords = ['WR', 'RB', 'TE']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            Flex_ROS.at[i, 'Player'] = row['Player']
-
-    #Populate WR with Player names
-    for i, row in useful.iterrows():
-        keywords = ['WR']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            WR_ROS.at[i, 'Player'] = row['Player']
-
-    #Populate RB with Player names
-    for i, row in useful.iterrows():
-        keywords = ['RB']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            RB_ROS.at[i, 'Player'] = row['Player']
-
-    #Populate TE with Player names
-    for i, row in useful.iterrows():
-        keywords = ['TE']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            TE_ROS.at[i, 'Player'] = row['Player']
-
-    #Populate QB with Player names
-    for i, row in useful.iterrows():
-        keywords = ['QB']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            QB_ROS.at[i, 'Player'] = row['Player']
-
+    
     stats = [col for col in statcolumns if col != 'Player']
 
     # Initialize projection columns to 0
@@ -992,40 +959,82 @@ def rosfinaldataframes(useful, teamtotals, week, schedule):
         ROS['PassTD'] += predictedpassingtds
         ROS['PPR'] += pprs
         ROS['STD'] += stds
-        ROS.iloc[:, 2:4] = ROS.iloc[:, 2:4].apply(pd.to_numeric).round(1)
+        ROS.iloc[:, 3:5] = ROS.iloc[:, 3:5].apply(pd.to_numeric).round(1)
 
     ROS['Team'] = useful['Team']
 
+    return ROS
 
-    for col in ROS.columns:
+
+def rosfinaldataframes(ros):
+
+    flexstatcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    statcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    Flex = pd.DataFrame(columns=flexstatcolumns)
+    WR = pd.DataFrame(columns=statcolumns)
+    RB = pd.DataFrame(columns=statcolumns)
+    TE = pd.DataFrame(columns=statcolumns)
+    QB = pd.DataFrame(columns=statcolumns)
+
+        #Populate Flex with Player names
+    for i, row in ros.iterrows():
+        keywords = ['WR', 'RB', 'TE']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            Flex_ROS.at[i, 'Player'] = row['Player']
+
+    #Populate WR with Player names
+    for i, row in ros.iterrows():
+        keywords = ['WR']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            WR_ROS.at[i, 'Player'] = row['Player']
+
+    #Populate RB with Player names
+    for i, row in ros.iterrows():
+        keywords = ['RB']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            RB_ROS.at[i, 'Player'] = row['Player']
+
+    #Populate TE with Player names
+    for i, row in ros.iterrows():
+        keywords = ['TE']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            TE_ROS.at[i, 'Player'] = row['Player']
+
+    #Populate QB with Player names
+    for i, row in ros.iterrows():
+        keywords = ['QB']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            QB_ROS.at[i, 'Player'] = row['Player']
+
+    for col in ros.columns:
         if col != 'Player' and col in Flex_ROS.columns:
-            Flex_ROS[col] = Flex_ROS['Player'].map(ROS.set_index('Player')[col])
+            Flex_ROS[col] = Flex_ROS['Player'].map(ros.set_index('Player')[col])
 
-    for col in ROS.columns:
+    for col in ros.columns:
         if col != 'Player' and col in WR_ROS.columns:
-            WR_ROS[col] = WR_ROS['Player'].map(ROS.set_index('Player')[col])
+            WR_ROS[col] = WR_ROS['Player'].map(ros.set_index('Player')[col])
 
-    for col in ROS.columns:
+    for col in ros.columns:
         if col != 'Player' and col in RB_ROS.columns:
-            RB_ROS[col] = RB_ROS['Player'].map(ROS.set_index('Player')[col])
+            RB_ROS[col] = RB_ROS['Player'].map(ros.set_index('Player')[col])
 
-    for col in ROS.columns:
+    for col in ros.columns:
         if col != 'Player' and col in TE_ROS.columns:
-            TE_ROS[col] = TE_ROS['Player'].map(ROS.set_index('Player')[col])
+            TE_ROS[col] = TE_ROS['Player'].map(ros.set_index('Player')[col])
 
-    for col in ROS.columns:
+    for col in ros.columns:
         if col != 'Player' and col in QB_ROS.columns:
-            QB_ROS[col] = QB_ROS['Player'].map(ROS.set_index('Player')[col])
+            QB_ROS[col] = QB_ROS['Player'].map(ros.set_index('Player')[col])
 
-    ROS['Rank'] = range(1, len(ROS) + 1)
+    ros['Rank'] = range(1, len(ros) + 1)
     Flex_ROS['Rank'] = range(1, len(Flex_ROS) + 1)
     WR_ROS['Rank'] = range(1, len(WR_ROS) + 1)
     RB_ROS['Rank'] = range(1, len(RB_ROS) + 1)
     TE_ROS['Rank'] = range(1, len(TE_ROS) + 1)
     QB_ROS['Rank'] = range(1, len(QB_ROS) + 1)
 
-    cols = ['Rank'] + [col for col in ROS.columns if col != 'Rank']
-    ROS = ROS[cols]
+    cols = ['Rank'] + [col for col in ros.columns if col != 'Rank']
+    ros = ros[cols]
 
     cols = ['Rank'] + [col for col in Flex_ROS.columns if col != 'Rank']
     Flex_ROS = Flex_ROS[cols]
@@ -1043,7 +1052,7 @@ def rosfinaldataframes(useful, teamtotals, week, schedule):
     QB_ROS = QB_ROS[cols]
 
 
-    All_DataFrames = {'Rest Of Season': ROS, 'Flex ROS': Flex_ROS, 'WR ROS': WR_ROS, 'RB ROS': RB_ROS, 'TE ROS': TE_ROS, 'QB ROS': QB_ROS}
+    All_DataFrames = {'Rest Of Season': ros, 'Flex ROS': Flex_ROS, 'WR ROS': WR_ROS, 'RB ROS': RB_ROS, 'TE ROS': TE_ROS, 'QB ROS': QB_ROS}
 
 
     return All_DataFrames

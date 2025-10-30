@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 #import numpy as np
 #from collections import defaultdict
 import subprocess
@@ -21,7 +22,14 @@ Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs, Schedule)
+ROS = ps.ROSdataframe(Useful, TeamTotals, Week, Schedule)
 All_DataFrames = ps.rosfinaldataframes(Useful, TeamTotals, Week, Schedule)
+All_DataFrames = ps.injuryremovalros(All_DataFrames['ROS'])
+df = All_DataFrames['ROS']
+
+full_path = os.path.join('CSVs', 'ROS.csv')
+df.to_csv(full_path, index=False)
+
 ps.roshtml(All_DataFrames)
 
 commit_msg = f"Adding data for Week {Week-1} and Producing predictions for Rest Of Season"

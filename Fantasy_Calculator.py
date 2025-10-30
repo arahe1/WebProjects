@@ -28,7 +28,7 @@ except Exception as e:
 GC_QB = 'Patrick Mahomes'
 GC_WR1 = 'Brian Thomas'
 GC_WR2 = 'Xavier Worthy'
-GC_WR3 = 'Terry McLaurin'
+GC_WR3 = 'Elic Ayomanor'
 GC_RB1 = 'Alvin Kamara'
 GC_RB2 = 'Kimani Vidal'
 GC_TE = 'Sam LaPorta'
@@ -37,7 +37,7 @@ GC_Bench1 = 'Dalton Schultz'
 GC_Bench2 = 'A.J. Brown'
 GC_Bench3 = 'Bucky Irving'
 GC_Bench4 = 'Brian Robinson Jr.'
-GC_Bench5 = 'Elic Ayomanor'
+GC_Bench5 = 'Terry McLaurin'
 GC_IR = 'Trey Benson'
 GC_DEF_approx = 9.43
 GC_Team = [GC_QB, GC_WR1, GC_WR2, GC_WR3, GC_RB1, GC_RB2, GC_TE, GC_Flex]
@@ -53,6 +53,7 @@ for player in GC_Team:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
+GC_Score = GC_Score + GC_DEF_approx
 for player in GC_Bench:
     if player in df['Player'].values:  
         row = {'Player': player, 'Points': float(df.loc[df['Player'] == player, 'PPR'].iloc[0])}
@@ -63,7 +64,7 @@ for player in GC_Bench:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
-GC_FinalDF = {"Jerks Score": [GC_Score]}
+GC_FinalDF = {"GC Score": [GC_Score]}
 #print(f"\n GC Score    = {round(GC_Score+GC_DEF_approx, 2)} \n")
 #pprint(GC_ScoreDF)
 #pprint(GC_BenchDF)
@@ -84,7 +85,7 @@ Noche_Bench2 = 'Kareem Hunt'
 Noche_Bench3 = 'Jordan Mason'
 Noche_Bench4 = 'Cooper Kupp'
 Noche_IR = ''
-Noche_DEF_approx = 14.33
+Noche_DEF_approx = 8.71
 Noche_Team = [Noche_QB1, Noche_WR1, Noche_WR2, Noche_WR3, Noche_RB1, Noche_RB2, Noche_TE, Noche_Flex, Noche_SuperFlex]
 Noche_Bench = [Noche_Bench1, Noche_Bench2, Noche_Bench3, Noche_Bench4, Noche_IR]
 Noche_Score = 0
@@ -98,6 +99,7 @@ for player in Noche_Team:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
+Noche_Score = Noche_Score + Noche_DEF_approx
 for player in Noche_Bench:
     if player in df['Player'].values:  
         row = {'Player': player, 'Points': float(df.loc[df['Player'] == player, 'PPR'].iloc[0])}
@@ -108,7 +110,7 @@ for player in Noche_Bench:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
-Noche_FinalDF = {"Jerks Score": [Noche_Score]}
+Noche_FinalDF = {"Noche Score": [Noche_Score]}
 #print(f"\n Noche Score = {round(Noche_Score+Noche_DEF_approx, 2)} \n")
 #pprint(Noche_ScoreDF)
 #pprint(Noche_BenchDF)
@@ -126,11 +128,11 @@ Paint_Flex = 'Zonovan Knight'
 Paint_Bench1 = 'Rashid Shaheed'
 Paint_Bench2 = 'Breece Hall'
 Paint_Bench3 = 'Dallas Goedert'
-Paint_Bench4 = 'Rico Dowdle'
+Paint_Bench4 = 'Kareem Hunt'
 Paint_Bench5 = 'Rachaad White'
 Paint_IR = 'Trey Benson'
-Paint_K_approx = 8.60
-Paint_DEF_approx = 16.00
+Paint_K_approx = 9.70
+Paint_DEF_approx = 16.25
 Paint_Team = [Paint_QB, Paint_WR1, Paint_WR2, Paint_WR3, Paint_RB1, Paint_RB2, Paint_TE, Paint_Flex]
 Paint_Bench = [Paint_Bench1, Paint_Bench2, Paint_Bench3, Paint_Bench4, Paint_Bench5, Paint_IR]
 Paint_Score = 0
@@ -144,6 +146,7 @@ for player in Paint_Team:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
+Paint_Score = Paint_Score + Paint_K_approx + Paint_DEF_approx
 for player in Paint_Bench:
     if player in df['Player'].values:  
         row = {'Player': player, 'Points': float(df.loc[df['Player'] == player, 'PPR'].iloc[0])}
@@ -154,7 +157,7 @@ for player in Paint_Bench:
     else:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
-Paint_FinalDF = {"Jerks Score": [Paint_Score]}
+Paint_FinalDF = {"Paint Score": [Paint_Score]}
 #print(f"\n Paint Score = {round(Paint_Score+Paint_K_approx+Paint_DEF_approx, 2)} \n")
 #pprint(Paint_ScoreDF)
 #pprint(Paint_BenchDF)

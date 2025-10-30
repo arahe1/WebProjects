@@ -849,9 +849,11 @@ def ROSdataframe(useful, teamtotals, week, schedule):
     # Prepare your output DataFrame
     ROS = pd.DataFrame()
     ROS['Player'] = useful['Player']
+    ROS['Team'] = useful['Team']
+    ROS['Pos.'] = useful['Pos.']
 
-    
-    stats = [col for col in statcolumns if col != 'Player']
+    stats = [col for col in statcolumns if col not in ['Player', 'Team', 'Pos.']]
+    #stats = [col for col in statcolumns if col != 'Player']
 
     # Initialize projection columns to 0
     for stat in stats:
@@ -970,11 +972,12 @@ def rosfinaldataframes(ros):
 
     flexstatcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
     statcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
-    Flex = pd.DataFrame(columns=flexstatcolumns)
-    WR = pd.DataFrame(columns=statcolumns)
-    RB = pd.DataFrame(columns=statcolumns)
-    TE = pd.DataFrame(columns=statcolumns)
-    QB = pd.DataFrame(columns=statcolumns)
+    Flex_ROS = pd.DataFrame(columns=flexstatcolumns)
+    WR_ROS = pd.DataFrame(columns=statcolumns)
+    RB_ROS = pd.DataFrame(columns=statcolumns)
+    TE_ROS = pd.DataFrame(columns=statcolumns)
+    QB_ROS = pd.DataFrame(columns=statcolumns)
+
 
         #Populate Flex with Player names
     for i, row in ros.iterrows():

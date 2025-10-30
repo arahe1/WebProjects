@@ -24,10 +24,10 @@ Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs, Schedule)
 ROS = ps.ROSdataframe(Useful, TeamTotals, Week, Schedule)
 All_DataFrames = ps.rosfinaldataframes(ROS)
-All_DataFrames = ps.injuryremovalros(All_DataFrames['ROS'])
-df = All_DataFrames['ROS']
+All_DataFrames['Rest Of Season'] = ps.injuryremovalros(All_DataFrames['Rest Of Season'])
+df = All_DataFrames['Rest Of Season']
 
-full_path = os.path.join('CSVs', 'ROS.csv')
+full_path = os.path.join('CSVs', 'Rest_Of_Season.csv')
 df.to_csv(full_path, index=False)
 
 ps.roshtml(All_DataFrames)

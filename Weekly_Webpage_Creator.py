@@ -26,9 +26,9 @@ IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs, Schedule)
 SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
-SuperFlex = ps.injuryremoval(SuperFlex)
+#SuperFlex = ps.injuryremoval(SuperFlex)
 All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
-All_DataFrames['SuperFlex'] = ps.injuryremoval(All_DataFrames['SuperFlex'])
+All_DataFrames['SuperFlex'] = ps.injuryremovalweekly(All_DataFrames['SuperFlex'])
 df = All_DataFrames['SuperFlex']
 
 

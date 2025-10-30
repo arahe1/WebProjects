@@ -23,7 +23,7 @@ IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs, Schedule)
 ROS = ps.ROSdataframe(Useful, TeamTotals, Week, Schedule)
-All_DataFrames = ps.rosfinaldataframes(Useful, TeamTotals, Week, Schedule)
+All_DataFrames = ps.rosfinaldataframes(ROS)
 All_DataFrames = ps.injuryremovalros(All_DataFrames['ROS'])
 df = All_DataFrames['ROS']
 

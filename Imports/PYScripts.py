@@ -775,7 +775,7 @@ def weeklyhtml(alldataframes, week):
             f.write(html_script)
 
 
-def injuryremovalros(superflex):
+def injuryremovalros(ros):
     #Erasing Injured Players from DataFrames using ESPN
 
     # URL of the website you want to scrape
@@ -830,7 +830,13 @@ def injuryremovalros(superflex):
 
     #print(IR_Players)
 
-    superflex.loc[superflex['Player'].isin(IR_Players), ~superflex.columns.isin(['Player', 'Team', 'Rank', 'Pos.'])] = 0
+    #ros.loc[ros['Player'].isin(IR_Players), ros.columns.difference(['Player', 'Team', 'Rank', 'Pos.'])] = 0
+    ros.loc[ros['Player'].isin(IR_Players), [c for c in ros.columns if c not in ['Player', 'Team', 'Rank', 'Pos.']]] = 0
+    
+    #print(ros[ros['Player'] == 'Austin Ekeler'])
+    
+    
+    #print(ros[ros['Player'].isin(IR_Players)])
     #Useful = useful[~useful['Player'].isin(IR_Players)]
     #SuperFlex = SuperFlex[~SuperFlex['Player'].isin(IR_Players)]
     #Flex = Flex[~Flex['Player'].isin(IR_Players)]
@@ -839,7 +845,7 @@ def injuryremovalros(superflex):
     #TE = TE[~TE['Player'].isin(IR_Players)]
     #QB = QB[~QB['Player'].isin(IR_Players)]
 
-    return superflex
+    return ros
 
 
 def ROSdataframe(useful, teamtotals, week, schedule):

@@ -21,7 +21,6 @@ Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs, Schedule)
 ROS = ps.ROSdataframe(Useful, TeamTotals, Week, Schedule)
 All_DataFrames = ps.rosfinaldataframes(ROS)
-print(All_DataFrames)
 All_DataFrames['Rest Of Season'] = ps.injuryremovalros(All_DataFrames['Rest Of Season'])
 df = All_DataFrames['Rest Of Season']
 

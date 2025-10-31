@@ -25,6 +25,8 @@ body {
 /* Add a white background color to the top navigation */
 .topnav {
   background-color: #FFFFFF; /*white*/
+  position: sticky;
+  top: 0;
   overflow: hidden;
 }
 
@@ -172,6 +174,8 @@ a {
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: #000000; /*black*/
+  position: sticky;
+  top: 0;
   overflow: hidden;
 }
 

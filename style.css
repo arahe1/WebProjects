@@ -25,9 +25,9 @@ body {
 /* Add a white background color to the top navigation */
 .topnav {
   background-color: #FFFFFF; /*white*/
+  overflow: hidden;
   position: sticky;
   top: 0;
-  /*overflow: hidden;
 }
 
 /* Style the links inside the navigation bar */

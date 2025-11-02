@@ -533,7 +533,9 @@ def injuryremovalweekly(superflex):
 
     #print(IR_Players)
 
-    superflex.loc[superflex['Player'].isin(IR_Players), ~superflex.columns.isin(['Player', 'Team', 'Rank', 'Pos.'])] = 0
+    #superflex.loc[superflex['Player'].isin(IR_Players), ~superflex.columns.isin(['Player', 'Team', 'Rank', 'Pos.'])] = 0
+    superflex.loc[superflex['Player'].isin(IR_Players), [c for c in superflex.columns if c not in ['Player', 'Team', 'Rank', 'Pos.']]] = 0
+
     #Useful = useful[~useful['Player'].isin(IR_Players)]
     #SuperFlex = SuperFlex[~SuperFlex['Player'].isin(IR_Players)]
     #Flex = Flex[~Flex['Player'].isin(IR_Players)]

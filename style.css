@@ -38,7 +38,7 @@ body {
   margin-right: 10px;
 }
 
-.topnav:second-of-type{
+.topnav:nth-of-type(2){
   position: sticky;
   top: 0;
   z-index: 15;

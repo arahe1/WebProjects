@@ -27,7 +27,8 @@ body {
   background-color: #FFFFFF; /*white*/
   overflow: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  /*justify-content: space-between;*/
   align-items: center;
   flex-wrap: nowrap;
 }
@@ -178,7 +179,8 @@ a {
   background-color: #000000; /*black*/
   overflow: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  /*justify-content: space-between;*/
   align-items: center;
   flex-wrap: nowrap;
 }

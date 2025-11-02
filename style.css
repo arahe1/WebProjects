@@ -25,9 +25,9 @@ body {
 /* Add a white background color to the top navigation */
 .topnav {
   background-color: #FFFFFF; /*white*/
-  /*overflow: hidden;*/
   position: sticky;
   left: 0;
+  overflow: hidden;
   display: flex;
   justify-content: flex-start;
   /*justify-content: space-between;*/

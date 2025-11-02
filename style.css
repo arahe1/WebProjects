@@ -164,7 +164,7 @@ thead th:nth-child(1) {
 tbody td:nth-child(2),
 thead th:nth-child(2) {
   position: sticky;
-  left: 100px;   /* width of first column */
+  left: 60px;   /* width of first column */
   background: #f0f0f0;
   z-index: 2;
 }
@@ -314,6 +314,24 @@ a {
     background-color: #2c2c2c;
   }
 
+/* Sticky first column */
+tbody td:nth-child(1),
+thead th:nth-child(1) {
+  position: sticky;
+  left: 0;
+  background: #f0f0f0;
+  z-index: 2;
+}
+
+/* Sticky second column */
+tbody td:nth-child(2),
+thead th:nth-child(2) {
+  position: sticky;
+  left: 60px;   /* width of first column */
+  background: #f0f0f0;
+  z-index: 2;
+}
+  
   a {
     color: #FFD100;
   }

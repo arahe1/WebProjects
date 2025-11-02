@@ -136,6 +136,7 @@ table {
   background-color: #f9f9f9;
   color: #000;
   margin-top: 10px;
+  z-index: 1
 }
 
 thead th {
@@ -153,8 +154,7 @@ th, td {
 }
 
 /* Sticky first column */
-tbody tr:not(:first-child) td:nth-child(1),
-thead th:nth-child(1) {
+tbody td:nth-child(1){
   position: sticky;
   left: 0;
   background: #f0f0f0;
@@ -162,8 +162,7 @@ thead th:nth-child(1) {
 }
 
 /* Sticky second column */
-tbody tr:not(:first-child) td:nth-child(2),
-thead th:nth-child(2) {
+tbody td:nth-child(2){
   position: sticky;
   left: 60px;   /* width of first column */
   background: #f0f0f0;

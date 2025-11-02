@@ -142,6 +142,9 @@ thead th {
   position: sticky;
   top: 0;
   background: #eee;
+}
+
+th {
   z-index: 5;
 }
 

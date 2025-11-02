@@ -31,7 +31,6 @@ body {
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
-  /*justify-content: space-between;*/
   align-items: center;
   flex-wrap: nowrap;
   margin-bottom: 10px;
@@ -150,7 +149,7 @@ table {
 
 thead th {
   position: sticky;
-  top: 60px;
+  top: 40px;
   background: #eee;
   /*transform: translateZ(0);*/
   z-index: 5;
@@ -186,6 +185,8 @@ a {
 @media (max-width: 768px) {
   .topnav {
     width: 100vw;
+    position: fixed;
+    left: 0;
   }
 }
 

@@ -38,15 +38,9 @@ body {
   margin-right: 10px;
 }
 
-.topnav:first-of-type{
-  position: sticky;
-  top: 0;
-  z-index: 20;
-}
-
 .topnav:second-of-type{
   position: sticky;
-  top: 60px;
+  top: 0;
   z-index: 15;
 }
 
@@ -156,9 +150,9 @@ table {
 
 thead th {
   position: sticky;
-  top: 0;
+  top: 100px;
   background: #eee;
-  transform: translateZ(0);
+  /*transform: translateZ(0);*/
   z-index: 5;
 }
 

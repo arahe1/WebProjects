@@ -177,6 +177,10 @@ a {
 .topnav {
   background-color: #000000; /*black*/
   overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 /* Style the links inside the navigation bar */

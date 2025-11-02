@@ -142,13 +142,31 @@ thead th {
   position: sticky;
   top: 0;
   background: #eee;
-  z-index: 2;
+  z-index: 3;
 }
 
 th, td {
   padding: 8px 12px;
   border: 1px solid #ccc;
   text-align: left;
+}
+
+/* Sticky first column */
+tbody td:nth-child(1),
+thead th:nth-child(1) {
+  position: sticky;
+  left: 0;
+  background: #f0f0f0;
+  z-index: 2;
+}
+
+/* Sticky second column */
+tbody td:nth-child(2),
+thead th:nth-child(2) {
+  position: sticky;
+  left: 100px;   /* width of first column */
+  background: #f0f0f0;
+  z-index: 2;
 }
 
 a {

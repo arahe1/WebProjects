@@ -654,6 +654,7 @@ def weeklyhtml(alldataframes, week):
         <html>
         <head>
         <title>{name} Stats</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
         <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
         <link rel="shortcut icon" href="images/favicon.ico" />

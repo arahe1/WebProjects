@@ -304,6 +304,7 @@ a {
   thead th {
     background: #2c2c2c;
     color: #f1f1f1;
+    z-index: 5
   }
 
   th, td {
@@ -315,8 +316,7 @@ a {
   }
 
 /* Sticky first column */
-tbody td:nth-child(1),
-thead th:nth-child(1) {
+tbody td:nth-child(1){
   position: sticky;
   left: 0;
   background: #f0f0f0;
@@ -324,8 +324,7 @@ thead th:nth-child(1) {
 }
 
 /* Sticky second column */
-tbody td:nth-child(2),
-thead th:nth-child(2) {
+tbody td:nth-child(2){
   position: sticky;
   left: 60px;   /* width of first column */
   background: #f0f0f0;

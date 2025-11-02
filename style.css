@@ -160,7 +160,7 @@ th, td {
 tbody td:nth-child(1){
   position: sticky;
   left: 0;
-  background: #f0f0f0;
+  background: #eee;
   z-index: 2;
 }
 
@@ -168,7 +168,7 @@ tbody td:nth-child(1){
 tbody td:nth-child(2){
   position: sticky;
   left: 60px;   /* width of first column */
-  background: #f0f0f0;
+  background: #eee;
   z-index: 2;
 }
 
@@ -176,7 +176,14 @@ a {
   color: #FFD100;
 }
 
-/* === Dark mode overrides === */
+/* === Mobile Overrides ===*/
+@media (max-width: 768px) {
+  .topnav {
+    width: 100vw;
+  }
+}
+
+/* === Dark Mode Overrides === */
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #000000; /*black*/
@@ -322,7 +329,7 @@ a {
 tbody td:nth-child(1){
   position: sticky;
   left: 0;
-  background: #f0f0f0;
+  background: #2c2c2c;
   z-index: 2;
 }
 
@@ -330,11 +337,12 @@ tbody td:nth-child(1){
 tbody td:nth-child(2){
   position: sticky;
   left: 60px;   /* width of first column */
-  background: #f0f0f0;
+  background: #2c2c2c;
   z-index: 2;
 }
   
   a {
     color: #FFD100;
   }
+}
 

@@ -38,6 +38,18 @@ body {
   margin-right: 10px;
 }
 
+.topnav:first-of-type{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.topnav:second-of-type{
+  position: sticky;
+  top: 60px;
+  z-index: 15;
+}
+
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;

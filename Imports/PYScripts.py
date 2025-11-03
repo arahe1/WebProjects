@@ -688,6 +688,9 @@ def weeklyhtml(alldataframes, week):
 
         <h1>Week {week} {name} Predictions</h1>
 
+        <div class="topnav">
+        <input type="text" id="searchBar" placeholder="Search...">
+        </div>
         
         <div class="topnav">
         <a {"class='active'" if name == "SuperFlex" else ""} href="SuperFlex.html">SuperFlex</a>
@@ -700,9 +703,6 @@ def weeklyhtml(alldataframes, week):
         </div>
 
         
-        <div class="topnav">
-        <input type="text" id="searchBar" placeholder="Search...">
-        </div>
 
 
         {html_string}
@@ -1117,7 +1117,10 @@ def roshtml(alldataframes):
 
         <h1>{name} Predictions</h1>
 
-        
+        <div class="topnav">
+        <input type="text" id="searchBar" placeholder="Search...">
+        </div>
+
         <div class="topnav">
         <a {"class='active'" if name == "Rest Of Season" else ""} href="Rest Of Season.html">Rest Of Season</a>
         <a {"class='active'" if name == "QB ROS" else ""} href="QB ROS.html">QB ROS</a>
@@ -1125,10 +1128,6 @@ def roshtml(alldataframes):
         <a {"class='active'" if name == "RB ROS" else ""} href="RB ROS.html">RB ROS</a>
         <a {"class='active'" if name == "TE ROS" else ""} href="TE ROS.html">TE ROS</a>
 
-        </div>
-
-        <div class="topnav">
-        <input type="text" id="searchBar" placeholder="Search...">
         </div>
 
 

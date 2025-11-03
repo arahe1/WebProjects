@@ -342,22 +342,21 @@ tbody td:nth-child(2){
 
 /* === Mobile Overrides ===*/
 @media (max-width: 768px) {
-  /*Fix Mobile Stuff*/
   .topnav a {
     font-size: 12px;
-    padding:  10px 12px;
+    padding:  8px 10px;
     white-space: nowrap;
   }
 
   .topnav a.active {
     font-size: 12px;
-    padding:  10px 12px;
+    padding:  8px 10px;
     white-space: nowrap;
   }
 
   .dropdown .dropbtn {
     font-size: 12px;
-    padding:  10px 12px;
+    padding:  8px 10px;
     white-space: nowrap;
   }
 }

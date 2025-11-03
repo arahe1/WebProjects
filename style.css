@@ -25,9 +25,6 @@ body {
 /* Add a white background color to the top navigation */
 .topnav {
   background-color: #FFFFFF; /*white*/
-  position: sticky;
-  top: 0;
-  left: 0;
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
@@ -183,11 +180,7 @@ a {
 
 /* === Mobile Overrides ===*/
 @media (max-width: 768px) {
-  .topnav:nth-of-type(2){
-    position: fixed;
-    left: 0;
-    z-index: 15;
-  }
+  /*Fix Mobile Stuff*/
 }
 
 /* === Dark Mode Overrides === */
@@ -217,7 +210,6 @@ a {
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
-  /*justify-content: space-between;*/
   align-items: center;
   flex-wrap: nowrap;
   margin-bottom: 10px;

@@ -146,7 +146,7 @@ table {
 
 thead th {
   position: sticky;
-  top: 40px;
+  top: 45px;
   background: #eee;
   /*transform: translateZ(0);*/
   z-index: 5;
@@ -368,6 +368,11 @@ tbody td:nth-child(2){
     padding:  8px 10px;
     white-space: nowrap;
   }
+
+  thead th {
+  top: 28px;
+  }
+  
 }
 
 

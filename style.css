@@ -345,6 +345,11 @@ tbody td:nth-child(2){
   body h1 {
     font-size: 24px;
   }
+
+  .header-img {
+    width: 200px;
+    height: auto;
+  }
   
   .topnav a {
     font-size: 12px;

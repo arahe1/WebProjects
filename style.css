@@ -181,6 +181,9 @@ a {
 /* === Mobile Overrides ===*/
 @media (max-width: 768px) {
   /*Fix Mobile Stuff*/
+  .topnav {
+    white-space: nowrap;
+  }
 }
 
 /* === Dark Mode Overrides === */

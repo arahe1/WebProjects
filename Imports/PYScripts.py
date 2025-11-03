@@ -1123,6 +1123,7 @@ def roshtml(alldataframes):
 
         <div class="topnav">
         <a {"class='active'" if name == "Rest Of Season" else ""} href="Rest Of Season.html">Rest Of Season</a>
+        <a {"class='active'" if name == "Flex ROS" else ""} href="Flex ROS.html">Flex ROS</a>
         <a {"class='active'" if name == "QB ROS" else ""} href="QB ROS.html">QB ROS</a>
         <a {"class='active'" if name == "WR ROS" else ""} href="WR ROS.html">WR ROS</a>
         <a {"class='active'" if name == "RB ROS" else ""} href="RB ROS.html">RB ROS</a>

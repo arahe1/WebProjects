@@ -183,10 +183,10 @@ a {
 
 /* === Mobile Overrides ===*/
 @media (max-width: 768px) {
-  .topnav {
-    width: 100vw;
+  .topnav:nth-of-type(2){
     position: fixed;
     left: 0;
+    z-index: 15;
   }
 }
 

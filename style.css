@@ -182,6 +182,8 @@ a {
 @media (max-width: 768px) {
   /*Fix Mobile Stuff*/
   .topnav {
+    font-size: clamp(0.73, 0.88, 0.90);
+    padding: 0.73vw 0.83vw;
     white-space: nowrap;
   }
 }

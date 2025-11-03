@@ -182,7 +182,7 @@ a {
 @media (max-width: 768px) {
   /*Fix Mobile Stuff*/
   .topnav a {
-    font-size: 8px;
+    font-size: 8px !important;
     padding:  6px 8px;
     white-space: nowrap;
   }

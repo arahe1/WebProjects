@@ -342,6 +342,10 @@ tbody td:nth-child(2){
 
 /* === Mobile Overrides ===*/
 @media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+  
   .topnav a {
     font-size: 12px;
     padding:  8px 10px;

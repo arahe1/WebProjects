@@ -342,7 +342,7 @@ tbody td:nth-child(2){
 
 /* === Mobile Overrides ===*/
 @media (max-width: 768px) {
-  h1 {
+  body h1 {
     font-size: 16px !important;
   }
   

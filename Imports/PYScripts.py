@@ -531,8 +531,9 @@ def injuryremovalweekly(superflex):
     ]
 
 
-    #print(IR_Players)
-
+    print(IR_Players)
+    print(superflex.columns.tolist())
+    print(superflex['Player'].isin(IR_Players).value_counts())
     #superflex.loc[superflex['Player'].isin(IR_Players), ~superflex.columns.isin(['Player', 'Team', 'Rank', 'Pos.'])] = 0
     superflex.loc[superflex['Player'].isin(IR_Players), [c for c in superflex.columns if c not in ['Player', 'Team', 'Rank', 'Pos.']]] = 0
 

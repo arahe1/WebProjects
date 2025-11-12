@@ -4,6 +4,8 @@ import subprocess
 pd.set_option('display.max_columns', None)
 from Imports import PYScripts as ps
 
+from Imports import PYScripts as ps
+
 listicle = ['CSVs/Week_1_NFL_2025.csv',
             'CSVs/Week_2_NFL_2025.csv',
             'CSVs/Week_3_NFL_2025.csv',
@@ -12,7 +14,8 @@ listicle = ['CSVs/Week_1_NFL_2025.csv',
             'CSVs/Week_6_NFL_2025.csv',
             'CSVs/Week_7_NFL_2025.csv',
             'CSVs/Week_8_NFL_2025.csv',
-            'CSVs/Week_9_NFL_2025.csv']
+            'CSVs/Week_9_NFL_2025.csv',
+            'CSVs/Week_10_NFL_2025.csv']
 DFs = ps.importstats(listicle)
 Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')
 Week = len(DFs)+1

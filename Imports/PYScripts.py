@@ -1427,6 +1427,11 @@ def teammc(useful,homefield):
     FinalScores = FinalScores.rename(columns={"Points For": "Home Score"})
     FinalScores = FinalScores.rename(columns={"Points Against": "Away Score"})
 
+    FinalScores['Rank'] = range(1, len(FinalScores) + 1)
+
+    cols = ['Rank'] + [col for col in FinalScores.columns if col != 'Rank']
+    FinalScores = FinalScores[cols]
+
     return FinalScores
 
 

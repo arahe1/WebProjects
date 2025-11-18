@@ -5,11 +5,6 @@ pd.set_option('display.max_columns', None)
 from Imports import PYScripts as ps
 
 directory_path = "CSVs"
-#Week = 0
-#for filename in os.listdir(directory_path):
-#    # Only count files (not directories)
-#    if os.path.isfile(os.path.join(directory_path, filename)) and "Scores" in filename:
-#        Week += 1
 
 listicle = ['CSVs/Week_1_Scores_2025.csv',
             'CSVs/Week_2_Scores_2025.csv',
@@ -28,6 +23,7 @@ Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')
 HomeField = ps.teamwinnerschedule('CSVs/Schedule_2025.csv', Week)
 Useful = ps.teamuseful(DFs, Week, Schedule)
 FinalScores = ps.teammc(Useful,HomeField)
+print(FinalScores.head())
 ps.teampredictionshtml(FinalScores, Week)
 
 

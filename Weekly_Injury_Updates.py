@@ -8,7 +8,7 @@ directory_path = "CSVs"
 Week = 0
 for filename in os.listdir(directory_path):
     # Only count files (not directories)
-    if os.path.isfile(os.path.join(directory_path, filename)) and "Week" in filename:
+    if os.path.isfile(os.path.join(directory_path, filename)) and "NFL" in filename:
         Week += 1
 
 

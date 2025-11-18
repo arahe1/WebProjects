@@ -24,7 +24,6 @@ TeamTotals = ps.teamtotals(DFs, Schedule)
 SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
 SuperFlex = ps.injuryremovalweekly(SuperFlex)
 All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
-#All_DataFrames['SuperFlex'] = ps.injuryremovalweekly(All_DataFrames['SuperFlex'])
 df = All_DataFrames['SuperFlex']
 
 

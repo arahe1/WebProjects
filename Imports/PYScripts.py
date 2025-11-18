@@ -1224,4 +1224,335 @@ def roshtml(alldataframes):
             f.write(html_script)
 
 
+def teamwinnerschedule(csv, week):
+    if not isinstance(csv, str):
+        raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv)}: {csv}")
+    if not csv.lower().endswith('.csv'):
+        raise ValueError(f"File is not a CSV file: {csv}")
+    if not os.path.exists(csv):
+        raise ValueError(f"File not found: {csv}")
+    
+    #NFL Schedule
+    Schedule = pd.read_csv(csv)
+    #Schedule = Schedule.map(lambda x: x.replace('@', '') if isinstance(x, str) else x)
+
+    #Conform to Stathead Labels
+    Schedule = Schedule.map(lambda x: x.replace('GB', 'GNB') if isinstance(x, str) else x)
+    Schedule = Schedule.map(lambda x: x.replace('KC', 'KAN') if isinstance(x, str) else x)
+    Schedule = Schedule.map(lambda x: x.replace('LV', 'LVR') if isinstance(x, str) else x)
+    Schedule = Schedule.map(lambda x: x.replace('NO', 'NOR') if isinstance(x, str) else x)
+    Schedule = Schedule.map(lambda x: x.replace('NE', 'NWE') if isinstance(x, str) else x)
+    Schedule = Schedule.map(lambda x: x.replace('SF', 'SFO') if isinstance(x, str) else x)
+    Schedule = Schedule.map(lambda x: x.replace('TB', 'TAM') if isinstance(x, str) else x)
+
+    Week = 'W' + str(week)
+    Schedule = Schedule[~Schedule[Week].str.contains("@", na=False)]
+    Schedule = Schedule[~Schedule[Week].str.contains('BYE',na=False)]
+    Schedule = Schedule[['Team', Week]]
+    Schedule = Schedule.rename(columns={Week: "Opp"})
+
+    return Schedule
+
+
+def weeklyteamwinner(csv):
+    Dataframes=[]
+
+    if not isinstance(csv, list):
+        raise TypeError("Expected a List of CSV Files")
+    
+    for file in csv:
+        if not isinstance(file, str):
+            raise TypeError(f"List should contain strings of CSV file names. Got {type(file)}: {file}")
+        if not file.lower().endswith('.csv'):
+            raise ValueError(f"File is not a CSV file: {file}")
+        if not os.path.exists(file):
+            raise ValueError(f"File not found: {file}")
+
+    for ele in csv:
+        importer = pd.read_csv(ele, quotechar="'")
+        Dataframes.append(importer)
+    for i, df in enumerate(Dataframes):
+        df.columns = df.columns.str.replace('"', '', regex=False)
+        df['Rk'] = df['Rk'].str.replace('"', '', regex=False)
+        df = df.drop(['Rk', 'Day', 'Date', 'Result', 'Pts.1', 'PtsO.1', 'PtDif', 'PC', 'G#', 'Unnamed: 8', 'Opp'], axis=1)
+        #df = df.rename(columns={'Unnamed: 8': 'HomeField'})
+
+        Dataframes[i] = df
+
+
+    return Dataframes
+
+
+def teamuseful(dflist, week, schedule):
+
+    # Pre-map Opponents for quick lookup
+    schedule_map = {row[0]: row[week] for row in schedule.itertuples(index=False)}
+
+    # Initialize containers for computed values
+    stat_fields = ['Pts', 'PtsO']
+
+    # Create per-player stat collections
+    team_stats = defaultdict(lambda: defaultdict(list))
+    team_games_played = defaultdict(int)
+
+    # Add Useful DataFrame
+    Useful = pd.DataFrame(columns=dflist[0].columns)
+    Useful['Team'] = dflist[0]['Team']
+    #Useful['Team'] = homefield['Team']
+    #Useful['Opp'] = homefield['Opp']
+
+
+    for df in dflist:
+        if 'Team' not in df.columns:
+            continue
+
+        for row in df.itertuples(index=False):
+            team = getattr(row, 'Team')
+
+            team_games_played[team] += 1
+
+            for stat in stat_fields:
+                if hasattr(row, stat):
+                    val = getattr(row, stat)
+                    if pd.notnull(val):
+                        team_stats[team][stat].append(val)
+
+    # Now update Useful efficiently
+    for i, row in Useful.iterrows():
+        team = row['Team']
+
+        # Opponent from map
+        Useful.at[i, 'Opp'] = schedule_map.get(team, None)
+
+        # Games played
+        Useful.at[i, 'G'] = team_games_played.get(team, 0)
+
+
+        # Standard Deviations
+        for stat in stat_fields:
+            values = team_stats[team].get(stat, [])
+            ave = np.mean(values) if len(values) > 0 else 0
+            if len(values) >= 2:
+                stdev = np.std(values, ddof=1)
+            else:
+                stdev = 0
+                
+
+            # Map stat name to your column names in Useful
+            stdev_col_map = {
+                'Pts': 'PtsDev',
+                'PtsO': 'PtsODev',
+            }
+
+            Useful.at[i,stat] = ave
+
+            if stat in stdev_col_map:
+                Useful.at[i, stdev_col_map[stat]] = stdev
+
+            
+            
+    # Update Team Averages
+    Useful['Week'] = week
+    Useful['Pts'] = pd.to_numeric(Useful['Pts']).round(1)#.astype(str)
+    Useful['PtsO'] = pd.to_numeric(Useful['PtsO']).round(1)#.astype(str)
+    Useful['PtsDev'] = pd.to_numeric(Useful['PtsDev']).round(2)#.astype(str)
+    Useful['PtsODev'] = pd.to_numeric(Useful['PtsODev']).round(2)#.astype(str) 
+
+
+
+
+    return Useful
+
+
+def teammc(useful,homefield):
+    #Simulate 10,000 games and average for predictions
+    n_simulations = 10000
+    opp_stats = useful.set_index('Team').to_dict('index')
+
+    statcolumns = ['Team', 'Opp', 'Winner', 'Points For', 'Points Against', 'Total', 'Spread']
+    FinalScores = pd.DataFrame(columns=statcolumns)
+
+    #Populate Superflex with Player names
+    FinalScores['Team'] = useful['Team']
+    FinalScores['Opp'] = useful['Opp']
+
+    Points_For = []
+
+
+    ave = useful['PtsO'].mean()
+    avestd = useful['PtsODev'].mean()
+
+    for i, row in useful.iterrows():
+        opp = row['Opp']
+        rand1 = np.random.uniform(-1, 1, n_simulations)
+        rand2 = np.random.uniform(-1, 1, n_simulations)
+        rand3 = np.random.uniform(-1, 1, n_simulations)
+
+        if opp == 'BYE':
+            defense = np.zeros(n_simulations)
+            points_for = np.zeros(n_simulations)
+
+        else:
+            defense = opp_stats[opp]['PtsO'] + opp_stats[opp]['PtsODev']*rand1
+            defense_deviation = ave + avestd * rand2
+            defense_over_average = defense - defense_deviation
+            offense = row['Pts'] + row['PtsDev'] * rand3
+            if row['Team'] in homefield["Team"].values:
+                points_for = offense + 3.5 + defense_over_average
+            else:
+                points_for = offense + defense_over_average
+
+
+        Points_For.append(points_for.mean().round())
+
+    FinalScores['Points For'] = Points_For
+
+
+    HomeScores = FinalScores[FinalScores["Team"].isin(homefield["Team"])]
+    AwayScores = FinalScores[~FinalScores["Team"].isin(homefield["Team"])]
+    FinalScores = HomeScores
+
+    points_map = AwayScores.set_index("Team")["Points For"]
+    FinalScores["Points Against"] = FinalScores["Opp"].map(points_map)
+
+    FinalScores['Total'] = pd.to_numeric(FinalScores['Points For']) + pd.to_numeric(FinalScores['Points Against'])
+    FinalScores['Spread'] = pd.to_numeric(FinalScores['Points For']) - pd.to_numeric(FinalScores['Points Against'])
+
+
+
+    FinalScores['Winner'] = np.where(FinalScores['Points For'] > FinalScores['Points Against'], FinalScores['Team'], np.where(FinalScores['Points For'] < FinalScores['Points Against'], FinalScores['Opp'], 'Tie'))    
+    
+    FinalScores = FinalScores.rename(columns={"Team": "Home"})
+    FinalScores = FinalScores.rename(columns={"Opp": "Away"})
+    FinalScores = FinalScores.rename(columns={"Points For": "Home Score"})
+    FinalScores = FinalScores.rename(columns={"Points Against": "Away Score"})
+
+    return FinalScores
+
+
+def teampredictionshtml(finalscores, week):
+    html_string = finalscores.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
+
+        # Full HTML file with sorting and ALL rows shown
+    html_script = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title> Game Predictions </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+        <link rel="shortcut icon" href="images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MyWebSit" />
+        <link rel="manifest" href="images/site.webmanifest" />
+
+        <link rel="stylesheet" href="style.css">
+
+
+        </head>
+        <body>
+
+        <div class="topnav">
+        <a href="index.html">Home</a>
+            <div class="dropdown">
+            <button class="dropbtn active">Football
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="SuperFlex.html">Weekly Predictions</a>
+                <a href="Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
+            </div>
+            </div>
+        <a href="fitness.html">Fitness</a>
+        <a href="about.html">About</a>
+        </div>
+        
+
+        <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
+
+        <h1>Week {week} Predictions</h1>
+
+        <div class="topnav">
+        <input type="text" id="searchBar" placeholder="Search...">
+        </div>
+
+
+
+
+
+
+        {html_string}
+
+        <script>
+        function getCellValue(row, index) {{
+            return row.cells[index].textContent.trim();
+        }}
+
+        function comparer(index, asc) {{
+            return function(a, b) {{
+            const v1 = getCellValue(a, index);
+            const v2 = getCellValue(b, index);
+
+            const num1 = parseFloat(v1);
+            const num2 = parseFloat(v2);
+            const bothNumbers = !isNaN(num1) && !isNaN(num2);
+
+            if (bothNumbers) {{
+                return asc ? num1 - num2 : num2 - num1;
+            }} else {{
+                return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+            }}
+            }};
+        }}
+
+        document.addEventListener("DOMContentLoaded", function () {{
+            document.querySelectorAll("th").forEach(function (th, index) {{
+            let ascending = true;
+            if (index === 0) return;
+            th.addEventListener("click", function () {{
+                const table = th.closest("table");
+                const tbody = table.querySelector("tbody");
+                const rows = Array.from(tbody.querySelectorAll("tr"));
+                rows.sort(comparer(index, ascending));
+                //rows.forEach(row => tbody.appendChild(row));
+                rows.forEach((row, i) => {{
+                    row.cells[0].textContent = i + 1; // Reset Rank to match new row position
+                    tbody.appendChild(row);
+                }});
+                ascending = !ascending;
+            }});
+            }});
+        }});
+        </script>
+
+        
+
+        <script>
+        const searchBar = document.getElementById('searchBar');
+        const table = document.querySelector('table');
+        const rows = table.getElementsByTagName('tr');
+
+        searchBar.addEventListener('keyup', function () {{
+            const searchText = searchBar.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) {{
+            const row = rows[i];
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(searchText) ? '' : 'none';
+            }}
+        }});
+        </script>
+
+        
+
+        </body>
+        </html>
+        """
+
+    # Save to HTML file
+    with open(f"Weekly Game Predictions.html", "w") as f:
+        f.write(html_script)
+
 

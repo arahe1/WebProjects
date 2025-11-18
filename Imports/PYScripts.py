@@ -686,6 +686,7 @@ def weeklyhtml(alldataframes, week):
             <div class="dropdown-content">
                 <a href="SuperFlex.html">Weekly Predictions</a>
                 <a href="Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
             </div>
             </div>
         <a href="fitness.html">Fitness</a>
@@ -1122,6 +1123,7 @@ def roshtml(alldataframes):
             <div class="dropdown-content">
                 <a href="SuperFlex.html">Weekly Predictions</a>
                 <a href="Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
             </div>
             </div>
         <a href="fitness.html">Fitness</a>

@@ -1418,7 +1418,7 @@ def teammc(useful,homefield):
     FinalScores["Points Against"] = FinalScores["Opp"].map(points_map)
 
     FinalScores['Total'] = pd.to_numeric(FinalScores['Points For']) + pd.to_numeric(FinalScores['Points Against'])
-    FinalScores['Spread'] = pd.to_numeric(FinalScores['Points For']) - pd.to_numeric(FinalScores['Points Against'])
+    FinalScores['Spread'] = -pd.to_numeric(FinalScores['Points For']) + pd.to_numeric(FinalScores['Points Against'])
 
 
 

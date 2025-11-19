@@ -15,7 +15,8 @@ listicle = ['CSVs/Week_1_Scores_2025.csv',
             'CSVs/Week_7_Scores_2025.csv',
             'CSVs/Week_8_Scores_2025.csv',
             'CSVs/Week_9_Scores_2025.csv',
-            'CSVs/Week_10_Scores_2025.csv']
+            'CSVs/Week_10_Scores_2025.csv',
+            'CSVs/Week_11_Scores_2025.csv']
 
 DFs = ps.weeklyteamwinner(listicle)
 Week = len(DFs)+1

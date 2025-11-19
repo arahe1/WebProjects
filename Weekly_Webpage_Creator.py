@@ -34,7 +34,7 @@ df.to_csv(full_path, index=False)
 
 ps.weeklyhtml(All_DataFrames, Week)
 
-commit_msg = f"Adding data and producing predictions for Week {Week-1}"
+commit_msg = f"Adding data and producing predictions for Week {Week}"
 
 try:
     subprocess.run(["git", "add", "."], check=True)

@@ -29,7 +29,7 @@ ps.teampredictionshtml(FinalScores, Week)
 
 
 
-commit_msg = f"Adding data and producing team predictions for Week {Week-1}"
+commit_msg = f"Adding data and producing team predictions for Week {Week}"
 
 try:
     subprocess.run(["git", "add", "."], check=True)

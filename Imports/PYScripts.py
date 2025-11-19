@@ -1371,7 +1371,7 @@ def teammc(useful,homefield):
     n_simulations = 10000
     opp_stats = useful.set_index('Team').to_dict('index')
 
-    statcolumns = ['Team', 'Opp', 'Winner', 'Points For', 'Points Against', 'Total', 'Spread']
+    statcolumns = ['Team', 'Opp', 'Winner', 'Points For', 'Points Against', 'Total', 'Home Spread']
     FinalScores = pd.DataFrame(columns=statcolumns)
 
     #Populate Superflex with Player names

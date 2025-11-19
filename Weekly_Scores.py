@@ -24,6 +24,7 @@ Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')
 HomeField = ps.teamwinnerschedule('CSVs/Schedule_2025.csv', Week)
 Useful = ps.teamuseful(DFs, Week, Schedule)
 FinalScores = ps.teammc(Useful,HomeField)
+print(FinalScores)
 ps.teampredictionshtml(FinalScores, Week)
 
 

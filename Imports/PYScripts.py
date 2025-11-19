@@ -1399,8 +1399,9 @@ def teammc(useful,homefield):
             defense_deviation = ave + avestd * rand2
             defense_over_average = defense - defense_deviation
             offense = row['Pts'] + row['PtsDev'] * rand3
+            homefield_adv = 2.5 #detemine team specific homefield advantage later
             if row['Team'] in homefield["Team"].values:
-                points_for = offense + 3.5 + defense_over_average
+                points_for = offense + homefield_adv + defense_over_average 
             else:
                 points_for = offense + defense_over_average
 
@@ -1418,11 +1419,11 @@ def teammc(useful,homefield):
     FinalScores["Points Against"] = FinalScores["Opp"].map(points_map)
 
     FinalScores['Total'] = pd.to_numeric(FinalScores['Points For']) + pd.to_numeric(FinalScores['Points Against'])
-    FinalScores['Spread'] = -pd.to_numeric(FinalScores['Points For']) + pd.to_numeric(FinalScores['Points Against'])
+    FinalScores['Home Spread'] = -pd.to_numeric(FinalScores['Points For']) + pd.to_numeric(FinalScores['Points Against'])
 
 
 
-    FinalScores['Winner'] = np.where(FinalScores['Points For'] > FinalScores['Points Against'], FinalScores['Team'], np.where(FinalScores['Points For'] < FinalScores['Points Against'], FinalScores['Opp'], 'Tie'))    
+    FinalScores['Winner'] = np.where(FinalScores['Points For'] > FinalScores['Points Against'], FinalScores['Team'], np.where(FinalScores['Points For'] < FinalScores['Points Against'], FinalScores['Opp'], FinalScores['Team']))    
     
     FinalScores = FinalScores.rename(columns={"Team": "Home"})
     FinalScores = FinalScores.rename(columns={"Opp": "Away"})

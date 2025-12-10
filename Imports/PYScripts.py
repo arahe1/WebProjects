@@ -1626,22 +1626,22 @@ def analysis(useful, individualtotals):
         
 
         if passatt != 0:
-            QBDom.at[i, 'YPA'] = passyds/passatt
+            QBDom.at[i, 'YPA'] = round(passyds/passatt,1)
         else:
             QBDom.at[i, 'YPA'] = 0
         
         if passints != 0:
-            QBDom.at[i, 'TD:Int'] = passtds/passints
+            QBDom.at[i, 'TD:Int'] = round(passtds/passints,1)
         else:
             QBDom.at[i, 'TD:Int'] = 0
         
         if totalpasstds + totalrectds + totalrushtds != 0:
-            QBDom.at[i, 'TotalTD%'] = passtds/(totalpasstds + totalrectds + totalrushtds) * 100
+            QBDom.at[i, 'TotalTD%'] = round(passtds/(totalpasstds + totalrectds + totalrushtds) * 100,1)
         else:
             QBDom.at[i, 'TotalTD%'] = 0
         
         if passatt != 0 and passints != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            QBDom.at[i, 'Dominance'] = passyds/passatt + passtds/passints + totalpasstds/(totalpasstds + totalrectds + totalrushtds)
+            QBDom.at[i, 'Dominance'] = round(passyds/passatt + passtds/passints + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
         else:
             QBDom.at[i, 'Dominance'] = 0
 
@@ -1665,27 +1665,27 @@ def analysis(useful, individualtotals):
 
 
         if totaltargets != 0:
-            WRDom.at[i, 'Tgt%'] = targets/totaltargets * 100
+            WRDom.at[i, 'Tgt%'] = round(targets/totaltargets * 100,1)
         else:
             WRDom.at[i, 'Tgt%'] = 0
         
         if totalrecyds !=0:
-            WRDom.at[i, 'RecYds%'] = recyds/totalrecyds * 100
+            WRDom.at[i, 'RecYds%'] = round(recyds/totalrecyds * 100,1)
         else:
             WRDom.at[i, 'RecYds%'] = 0
         
         if totalrectds != 0:
-            WRDom.at[i, 'RecTD%'] = rectds/totalrectds * 100
+            WRDom.at[i, 'RecTD%'] = round(rectds/totalrectds * 100,1)
         else:
             WRDom.at[i, 'RecTD%'] = 0
         
         if totalpasstds + totalrectds + totalrushtds != 0:
-            WRDom.at[i, 'TotalTD%'] = rectds/(totalpasstds + totalrectds + totalrushtds) * 100
+            WRDom.at[i, 'TotalTD%'] = round(rectds/(totalpasstds + totalrectds + totalrushtds) * 100,1)
         else:
             WRDom.at[i, 'TotalTD%'] = 0
         
         if totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            WRDom.at[i, 'Dominance'] = (targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100
+            WRDom.at[i, 'Dominance'] = round((targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
         else:
             WRDom.at[i, 'Dominance'] = 0
 
@@ -1708,28 +1708,28 @@ def analysis(useful, individualtotals):
         totalrushtds = teamtotalrow['TeamTotalRushTD']
         
         if totalrushatt != 0:
-            RBDom.at[i, 'Rush%'] = rushatt/totalrushatt * 100
+            RBDom.at[i, 'Rush%'] = round(rushatt/totalrushatt * 100,1)
         else:
             RBDom.at[i, 'Rush%'] = 0
 
         if totalrushyds != 0:
-            RBDom.at[i, 'RushYds%'] = rushyds/totalrushyds * 100
+            RBDom.at[i, 'RushYds%'] = round(rushyds/totalrushyds * 100,1)
         else:
             RBDom.at[i, 'RushYds%'] = 0
         
         if totalrushtds != 0:
-            RBDom.at[i, 'RushTD%'] = rushtds/totalrushtds * 100
+            RBDom.at[i, 'RushTD%'] = round(rushtds/totalrushtds * 100,1)
         else:
             RBDom.at[i, 'RushTD%'] = 0
         
         if totalpasstds + totalrectds + totalrushtds != 0:
-            RBDom.at[i, 'TotalTD%'] = rushtds/(totalpasstds + totalrectds + totalrushtds) * 100
+            RBDom.at[i, 'TotalTD%'] = round(rushtds/(totalpasstds + totalrectds + totalrushtds) * 100,1)
         else:
             RBDom.at[i, 'TotalTD%'] = 0
         
         
         if totalrushatt != 0 and totalrushyds != 0 and totalrushtds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            RBDom.at[i, 'Dominance'] = (rushatt/totalrushatt + rushyds/totalrushyds + rushtds/totalrushtds + rushtds/(totalpasstds + totalrectds + totalrushtds)) * 100
+            RBDom.at[i, 'Dominance'] = round((rushatt/totalrushatt + rushyds/totalrushyds + rushtds/totalrushtds + rushtds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
         else:
             RBDom.at[i, 'Dominance'] = 0
 
@@ -1752,27 +1752,27 @@ def analysis(useful, individualtotals):
 
         
         if totaltargets != 0:
-            TEDom.at[i, 'Tgt%'] = targets/totaltargets * 100
+            TEDom.at[i, 'Tgt%'] = round(targets/totaltargets * 100,1)
         else:
             TEDom.at[i, 'Tgt%'] = 0
         
         if totalrecyds !=0:
-            TEDom.at[i, 'RecYds%'] = recyds/totalrecyds * 100
+            TEDom.at[i, 'RecYds%'] = round(recyds/totalrecyds * 100,1)
         else:
             TEDom.at[i, 'RecYds%'] = 0
         
         if totalrectds != 0:
-            TEDom.at[i, 'RecTD%'] = rectds/totalrectds * 100
+            TEDom.at[i, 'RecTD%'] = round(rectds/totalrectds * 100,1)
         else:
             TEDom.at[i, 'RecTD%'] = 0
         
         if totalpasstds + totalrectds + totalrushtds != 0:
-            TEDom.at[i, 'TotalTD%'] = rectds/(totalpasstds + totalrectds + totalrushtds) * 100
+            TEDom.at[i, 'TotalTD%'] = round(rectds/(totalpasstds + totalrectds + totalrushtds) * 100,1)
         else:
             TEDom.at[i, 'TotalTD%'] = 0
         
         if totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            TEDom.at[i, 'Dominance'] = (targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100
+            TEDom.at[i, 'Dominance'] = round((targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
         else:
             TEDom.at[i, 'Dominance'] = 0
 

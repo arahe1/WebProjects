@@ -1700,8 +1700,8 @@ def analysis(useful, individualtotals):
         else:
             WRDom.at[i, 'TotalTD%'] = 0
         
-        if totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            WRDom.at[i, 'Off Focus'] = round((targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
+        if totalrushtds != 0 and totalrushyds != 0 and totalrushatt != 0 and totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+            WRDom.at[i, 'Off Focus'] = round((rushtds/totalrushtds + rushyds/totalrushyds + rushatt/totalrushatt + targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
         else:
             WRDom.at[i, 'Off Focus'] = 0
 
@@ -1762,8 +1762,8 @@ def analysis(useful, individualtotals):
         else:
             RBDom.at[i, 'TotalTD%'] = 0
         
-        if totalrushatt != 0 and totalrushyds != 0 and totalrushtds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            RBDom.at[i, 'Off Focus'] = round((rushatt/totalrushatt + rushyds/totalrushyds + rushtds/totalrushtds + rushtds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
+        if totalrushtds != 0 and totalrushyds != 0 and totalrushatt != 0 and totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+            RBDom.at[i, 'Off Focus'] = round((rushtds/totalrushtds + rushyds/totalrushyds + rushatt/totalrushatt + targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
         else:
             RBDom.at[i, 'Off Focus'] = 0
 
@@ -1820,8 +1820,8 @@ def analysis(useful, individualtotals):
         else:
             TEDom.at[i, 'TotalTD%'] = 0
         
-        if totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            TEDom.at[i, 'Off Focus'] = round((targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
+        if totalrushtds != 0 and totalrushyds != 0 and totalrushatt != 0 and totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+            TEDom.at[i, 'Off Focus'] = round((rushtds/totalrushtds + rushyds/totalrushyds + rushatt/totalrushatt + targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
         else:
             TEDom.at[i, 'Off Focus'] = 0
 

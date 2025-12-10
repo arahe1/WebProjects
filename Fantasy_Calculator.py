@@ -1,16 +1,8 @@
 import pandas as pd
 import sys
 import os
-#import numpy as np
-#import subprocess
-#from collections import defaultdict
-#from IPython.display import HTML, display
-#import requests
-#from bs4 import BeautifulSoup
-#import ast
+
 pd.set_option('display.max_columns', None)
-from Imports import PYScripts as ps
-from pprint import pprint
 
 
 csv_filepath = 'CSVs/SuperFlex.csv'
@@ -25,21 +17,21 @@ except Exception as e:
     sys.exit(1)
 
 #GC Score
-GC_QB = 'Brock Purdy'
-GC_WR1 = 'Brian Thomas'
-GC_WR2 = 'Parker Washington'
-GC_WR3 = 'A.J. Brown'
-GC_RB1 = 'Alvin Kamara'
-GC_RB2 = 'Kimani Vidal'
-GC_TE = 'Sam LaPorta'
-GC_Flex = 'Kyle Monangai'
-GC_Bench1 = 'Xavier Worthy'
-GC_Bench2 = 'Rhamondre Stevenson'
-GC_Bench3 = 'Bucky Irving'
-GC_Bench4 = 'Patrick Mahomes'
-GC_Bench5 = 'Terry McLaurin'
-GC_IR = 'Trey Benson'
-GC_DEF_approx = 9.25
+GC_QB = 'Patrick Mahomes'
+GC_WR1 = 'A.J. Brown'
+GC_WR2 = 'Xavier Worthy'
+GC_WR3 = 'Terry McLaurin'
+GC_RB1 = 'Bucky Irving'
+GC_RB2 = 'Alvin Kamara'
+GC_TE = 'Darren Waller'
+GC_Flex = 'Brian Thomas'
+GC_Bench1 = 'Kyle Monangai'
+GC_Bench2 = 'Bhashul Tuten'
+GC_Bench3 = 'Parker Washington'
+GC_Bench4 = 'Trey Benson'
+GC_Bench5 = 'Kimani Vidal'
+GC_IR = 'Braelon Allen'
+GC_DEF_approx = 8.90
 GC_Team = [GC_QB, GC_WR1, GC_WR2, GC_WR3, GC_RB1, GC_RB2, GC_TE, GC_Flex]
 GC_Bench = [GC_Bench1, GC_Bench2, GC_Bench3, GC_Bench4, GC_Bench5, GC_IR]
 GC_Score = 0
@@ -65,27 +57,24 @@ for player in GC_Bench:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
 GC_FinalDF = {"GC Score": [GC_Score]}
-#print(f"\n GC Score    = {round(GC_Score+GC_DEF_approx, 2)} \n")
-#pprint(GC_ScoreDF)
-#pprint(GC_BenchDF)
 
 
 #Noche Score
-Noche_QB1 = 'Bo Nix'
-Noche_WR1 = 'Stefon Diggs'
-Noche_WR2 = 'Justin Jefferson'
-Noche_WR3 = 'Parker Washington'
+Noche_QB1 = 'Jared Goff'
+Noche_WR1 = 'Justin Jefferson'
+Noche_WR2 = "Ja'Marr Chase"
+Noche_WR3 = 'Stefon Diggs'
 Noche_RB1 = 'Kyren Williams'
-Noche_RB2 = 'Alvin Kamara'
-Noche_TE = 'Dallas Goedert'
+Noche_RB2 = 'Devin Neal'
+Noche_TE = 'Dalton Kincaid'
 Noche_Flex = 'Jordan Mason'
-Noche_SuperFlex = 'Jared Goff'
-Noche_Bench1 = 'Hunter Henry'
+Noche_SuperFlex = 'Bo Nix'
+Noche_Bench1 = 'Dallas Goedert'
 Noche_Bench2 = 'Kareem Hunt'
-Noche_Bench3 = "Ja'Marr Chase"
+Noche_Bench3 = 'Alvin Kamara'
 Noche_Bench4 = 'Cooper Kupp'
 Noche_IR = ''
-Noche_DEF_approx = 8.75
+Noche_DEF_approx = 8.67
 Noche_Team = [Noche_QB1, Noche_WR1, Noche_WR2, Noche_WR3, Noche_RB1, Noche_RB2, Noche_TE, Noche_Flex, Noche_SuperFlex]
 Noche_Bench = [Noche_Bench1, Noche_Bench2, Noche_Bench3, Noche_Bench4, Noche_IR]
 Noche_Score = 0
@@ -111,28 +100,26 @@ for player in Noche_Bench:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
 Noche_FinalDF = {"Noche Score": [Noche_Score]}
-#print(f"\n Noche Score = {round(Noche_Score+Noche_DEF_approx, 2)} \n")
-#pprint(Noche_ScoreDF)
-#pprint(Noche_BenchDF)
+
 
 
 #Paint Score
-Paint_QB = 'Jared Goff'
+Paint_QB = 'Matthew Stafford'
 Paint_WR1 = 'Puka Nacua'
 Paint_WR2 = 'Jaxon Smith-Njigba'
 Paint_WR3 = 'Nico Collins'
-Paint_RB1 = 'Jonathan Taylor'
-Paint_RB2 = 'Breece Hall'
-Paint_TE = 'Oronde Gadsden II'
-Paint_Flex = 'Dallas Goedert'
-Paint_Bench1 = 'Troy Franklin'
+Paint_RB1 = 'Breece Hall'
+Paint_RB2 = 'Jonathan Taylor'
+Paint_TE = 'Dallas Goedert'
+Paint_Flex = 'Christian Watson'
+Paint_Bench1 = 'Brian Thomas'
 Paint_Bench2 = 'Kimani Vidal'
-Paint_Bench3 = "Wan'Dale Robinson"
-Paint_Bench4 = 'Kareem Hunt'
-Paint_Bench5 = 'Rachaad White'
+Paint_Bench3 = 'Jared Goff'
+Paint_Bench4 = 'Devin Neal'
+Paint_Bench5 = 'Darren Waller'
 Paint_IR = 'Trey Benson'
-Paint_K_approx = 10.83
-Paint_DEF_approx = 16.00
+Paint_K_approx = 12.81
+Paint_DEF_approx = 14.70
 Paint_Team = [Paint_QB, Paint_WR1, Paint_WR2, Paint_WR3, Paint_RB1, Paint_RB2, Paint_TE, Paint_Flex]
 Paint_Bench = [Paint_Bench1, Paint_Bench2, Paint_Bench3, Paint_Bench4, Paint_Bench5, Paint_IR]
 Paint_Score = 0
@@ -158,29 +145,27 @@ for player in Paint_Bench:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
 Paint_FinalDF = {"Paint Score": [Paint_Score]}
-#print(f"\n Paint Score = {round(Paint_Score+Paint_K_approx+Paint_DEF_approx, 2)} \n")
-#pprint(Paint_ScoreDF)
-#pprint(Paint_BenchDF)
+
 
 
 #Jerks Score
 Jerks_QB1 = 'Jaxson Dart'
-Jerks_QB2 = 'Brock Purdy'
-Jerks_WR1 = 'Stefon Diggs'
-Jerks_WR2 = 'Quentin Johnston'
+Jerks_QB2 = 'C.J. Stroud'
+Jerks_WR1 = 'Xavier Worthy'
+Jerks_WR2 = 'Stefon Diggs'
 Jerks_WR3 = 'Marvin Harrison Jr.'
 Jerks_RB1 = 'Jahmyr Gibbs'
 Jerks_RB2 = 'James Cook'
 Jerks_TEFlex = 'Brock Bowers'
-Jerks_Flex1 = 'J.K. Dobbins'
+Jerks_Flex1 = "D'Andre Swift"
 Jerks_Flex2 = 'Breece Hall'
-Jerks_Flex3 = "D'Andre Swift"
-Jerks_Flex4 = 'Alec Pierce'
-Jerks_Flex5 = 'Dalton Schultz'
-Jerks_Bench1 = 'Xavier Worthy'
-Jerks_Bench2 = 'Cade Otton'
-Jerks_Bench3 = 'Rachaad White'
-Jerks_IR = 'Jayden Daniels'
+Jerks_Flex3 = 'Devin Neal'
+Jerks_Flex4 = 'Brenton Strange'
+Jerks_Flex5 = 'Alec Pierce'
+Jerks_Bench1 = 'Jayden Daniels'
+Jerks_Bench2 = 'Quentin Johnston'
+Jerks_Bench3 = 'Jalen Wright'
+Jerks_IR = 'Trey Benson'
 Jerks_Team = [Jerks_QB1, Jerks_QB2, Jerks_WR1, Jerks_WR2, Jerks_WR3, Jerks_RB1, Jerks_RB2, Jerks_TEFlex, Jerks_Flex1, Jerks_Flex2, Jerks_Flex3, Jerks_Flex4, Jerks_Flex5]
 Jerks_Bench = [Jerks_Bench1, Jerks_Bench2, Jerks_Bench3, Jerks_IR]
 Jerks_Score = 0
@@ -205,9 +190,6 @@ for player in Jerks_Bench:
         print(f"{player} not found in the DataFrame.")
         sys.exit()
 Jerks_FinalDF = {"Jerks Score": [Jerks_Score]}
-#print(f"\n Jerks Score = {round(Jerks_Score, 2)} \n")
-#pprint(Jerks_ScoreDF)
-#pprint(Jerks_BenchDF)
 
 
 

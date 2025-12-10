@@ -1838,7 +1838,7 @@ def dominancehtml(alldataframes):
                 <a href="SuperFlex.html">Weekly Predictions</a>
                 <a href="Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="QBDom.html">Dominance</a>
+                <a href="QBDom.html">Offensive Focus</a>
             </div>
             </div>
         <a href="fitness.html">Fitness</a>
@@ -1848,17 +1848,17 @@ def dominancehtml(alldataframes):
 
         <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
 
-        <h1>{name} Predictions</h1>
+        <h1>Offensive Focus</h1>
 
         <div class="topnav">
         <input type="text" id="searchBar" placeholder="Search...">
         </div>
 
         <div class="topnav">
-        <a {"class='active'" if name == "QBDom" else ""} href="QBDom.html">QB ROS</a>
-        <a {"class='active'" if name == "WRDom" else ""} href="WRDom.html">WR ROS</a>
-        <a {"class='active'" if name == "RBDom" else ""} href="RBDom.html">RB ROS</a>
-        <a {"class='active'" if name == "TEDom" else ""} href="TEDom.html">TE ROS</a>
+        <a {"class='active'" if name == "QBDom" else ""} href="QBDom.html">QB</a>
+        <a {"class='active'" if name == "WRDom" else ""} href="WRDom.html">WR</a>
+        <a {"class='active'" if name == "RBDom" else ""} href="RBDom.html">RB</a>
+        <a {"class='active'" if name == "TEDom" else ""} href="TEDom.html">TE</a>
 
         </div>
 

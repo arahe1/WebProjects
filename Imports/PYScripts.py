@@ -684,7 +684,7 @@ def weeklyhtml(alldataframes, week):
                 <a href="SuperFlex.html">Weekly Predictions</a>
                 <a href="Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="QBDom.html">Dominance</a>
+                <a href="QBDom.html">Offensive Focus</a>
             </div>
             </div>
         <a href="fitness.html">Fitness</a>
@@ -1122,7 +1122,7 @@ def roshtml(alldataframes):
                 <a href="SuperFlex.html">Weekly Predictions</a>
                 <a href="Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="QBDom.html">Dominance</a>
+                <a href="QBDom.html">Offensive Focus</a>
             </div>
             </div>
         <a href="fitness.html">Fitness</a>
@@ -1470,7 +1470,7 @@ def teampredictionshtml(finalscores, week):
                 <a href="SuperFlex.html">Weekly Predictions</a>
                 <a href="Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="QBDom.html">Dominance</a>
+                <a href="QBDom.html">Offensive Focus</a>
             </div>
             </div>
         <a href="fitness.html">Fitness</a>
@@ -1567,9 +1567,9 @@ def teampredictionshtml(finalscores, week):
 def analysis(useful, individualtotals):
     #Separate by position
 
-    QBstatcolumns = ['Player', 'Team', 'Pos.', 'Dominance', 'YPA', 'TD:Int', 'TotalTD%']
-    WRstatcolumns = ['Player', 'Team', 'Pos.', 'Dominance', 'Tgt%', 'RecYds%', 'RecTD%', 'TotalTD%']
-    RBstatcolumns = ['Player', 'Team', 'Pos.', 'Dominance', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
+    QBstatcolumns = ['Player', 'Team', 'Pos.', 'Off Focus', 'YPA', 'TD:Int', 'TotalTD%']
+    WRstatcolumns = ['Player', 'Team', 'Pos.', 'Off Focus', 'Tgt%', 'RecYds%', 'RecTD%', 'TotalTD%']
+    RBstatcolumns = ['Player', 'Team', 'Pos.', 'Off Focus', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
 
 
     QBDom = pd.DataFrame(columns=QBstatcolumns)
@@ -1641,9 +1641,9 @@ def analysis(useful, individualtotals):
             QBDom.at[i, 'TotalTD%'] = 0
         
         if passatt != 0 and passints != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            QBDom.at[i, 'Dominance'] = round(passyds/passatt + passtds/passints + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
+            QBDom.at[i, 'Off Focus'] = round(passyds/passatt + passtds/passints + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
         else:
-            QBDom.at[i, 'Dominance'] = 0
+            QBDom.at[i, 'Off Focus'] = 0
 
 
     for i, row in WRDom.iterrows():
@@ -1685,9 +1685,9 @@ def analysis(useful, individualtotals):
             WRDom.at[i, 'TotalTD%'] = 0
         
         if totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            WRDom.at[i, 'Dominance'] = round((targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
+            WRDom.at[i, 'Off Focus'] = round((targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
         else:
-            WRDom.at[i, 'Dominance'] = 0
+            WRDom.at[i, 'Off Focus'] = 0
 
 
     for i, row in RBDom.iterrows():
@@ -1729,9 +1729,9 @@ def analysis(useful, individualtotals):
         
         
         if totalrushatt != 0 and totalrushyds != 0 and totalrushtds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            RBDom.at[i, 'Dominance'] = round((rushatt/totalrushatt + rushyds/totalrushyds + rushtds/totalrushtds + rushtds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
+            RBDom.at[i, 'Off Focus'] = round((rushatt/totalrushatt + rushyds/totalrushyds + rushtds/totalrushtds + rushtds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
         else:
-            RBDom.at[i, 'Dominance'] = 0
+            RBDom.at[i, 'Off Focus'] = 0
 
     for i, row in TEDom.iterrows():
         key = row['Player']
@@ -1772,9 +1772,9 @@ def analysis(useful, individualtotals):
             TEDom.at[i, 'TotalTD%'] = 0
         
         if totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            TEDom.at[i, 'Dominance'] = round((targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
+            TEDom.at[i, 'Off Focus'] = round((targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
         else:
-            TEDom.at[i, 'Dominance'] = 0
+            TEDom.at[i, 'Off Focus'] = 0
 
 
     QBDom['Rank'] = range(1, len(QBDom) + 1)

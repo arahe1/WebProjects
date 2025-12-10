@@ -1567,9 +1567,9 @@ def teampredictionshtml(finalscores, week):
 def analysis(useful, individualtotals):
     #Separate by position
 
-    QBstatcolumns = ['Player', 'Team', 'Pos.', 'YPA', 'TD:Int', 'TotalTD%', 'Dominance']
-    WRstatcolumns = ['Player', 'Team', 'Pos.', 'Tgt%', 'RecYds%', 'RecTD%', 'TotalTD%', 'Dominance']
-    RBstatcolumns = ['Player', 'Team', 'Pos.', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%', 'Dominance']
+    QBstatcolumns = ['Player', 'Team', 'Pos.', 'Dominance', 'YPA', 'TD:Int', 'TotalTD%']
+    WRstatcolumns = ['Player', 'Team', 'Pos.', 'Dominance', 'Tgt%', 'RecYds%', 'RecTD%', 'TotalTD%']
+    RBstatcolumns = ['Player', 'Team', 'Pos.', 'Dominance', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
 
 
     QBDom = pd.DataFrame(columns=QBstatcolumns)

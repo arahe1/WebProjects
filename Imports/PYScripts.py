@@ -684,6 +684,7 @@ def weeklyhtml(alldataframes, week):
                 <a href="SuperFlex.html">Weekly Predictions</a>
                 <a href="Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="QBDom.html">Dominance</a>
             </div>
             </div>
         <a href="fitness.html">Fitness</a>
@@ -1121,6 +1122,7 @@ def roshtml(alldataframes):
                 <a href="SuperFlex.html">Weekly Predictions</a>
                 <a href="Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="QBDom.html">Dominance</a>
             </div>
             </div>
         <a href="fitness.html">Fitness</a>
@@ -1468,6 +1470,7 @@ def teampredictionshtml(finalscores, week):
                 <a href="SuperFlex.html">Weekly Predictions</a>
                 <a href="Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="QBDom.html">Dominance</a>
             </div>
             </div>
         <a href="fitness.html">Fitness</a>

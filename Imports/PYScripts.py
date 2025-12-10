@@ -1567,9 +1567,9 @@ def teampredictionshtml(finalscores, week):
 def analysis(useful, individualtotals):
     #Separate by position
 
-    QBstatcolumns = ['Player', 'Team', 'Pos.', 'Off Focus', 'YPA', 'TD:Int', 'TotalTD%']
-    WRstatcolumns = ['Player', 'Team', 'Pos.', 'Off Focus', 'Tgt%', 'RecYds%', 'RecTD%', 'TotalTD%']
-    RBstatcolumns = ['Player', 'Team', 'Pos.', 'Off Focus', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
+    QBstatcolumns = ['Player', 'Team', 'Off Focus', 'YPA', 'TD:Int', 'TotalTD%']
+    WRstatcolumns = ['Player', 'Team', 'Off Focus', 'Tgt%', 'RecYds%', 'RecTD%', 'TotalTD%']
+    RBstatcolumns = ['Player', 'Team', 'Off Focus', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
 
 
     QBDom = pd.DataFrame(columns=QBstatcolumns)
@@ -1584,28 +1584,24 @@ def analysis(useful, individualtotals):
         if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
             QBDom.at[i, 'Player'] = row['Player']
             QBDom.at[i, 'Team'] = row['Team']
-            QBDom.at[i, 'Pos.'] = row['Pos.']
 
     for i, row in useful.iterrows():
         keywords = ['WR']
         if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
             WRDom.at[i, 'Player'] = row['Player']
             WRDom.at[i, 'Team'] = row['Team']
-            WRDom.at[i, 'Pos.'] = row['Pos.']
 
     for i, row in useful.iterrows():
         keywords = ['RB']
         if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
             RBDom.at[i, 'Player'] = row['Player']
             RBDom.at[i, 'Team'] = row['Team']
-            RBDom.at[i, 'Pos.'] = row['Pos.']
 
     for i, row in useful.iterrows():
         keywords = ['TE']
         if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
             TEDom.at[i, 'Player'] = row['Player']
             TEDom.at[i, 'Team'] = row['Team']
-            TEDom.at[i, 'Pos.'] = row['Pos.']
     
 
     for i, row in QBDom.iterrows():

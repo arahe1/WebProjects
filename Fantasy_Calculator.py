@@ -26,11 +26,11 @@ GC_RB2 = 'Alvin Kamara'
 GC_TE = 'Darren Waller'
 GC_Flex = 'Brian Thomas'
 GC_Bench1 = 'Kyle Monangai'
-GC_Bench2 = 'Bhashul Tuten'
+GC_Bench2 = 'Bhayshul Tuten'
 GC_Bench3 = 'Parker Washington'
-GC_Bench4 = 'Trey Benson'
+GC_Bench4 = ''#'Trey Benson'
 GC_Bench5 = 'Kimani Vidal'
-GC_IR = 'Braelon Allen'
+GC_IR = ''#'Braelon Allen'
 GC_DEF_approx = 8.90
 GC_Team = [GC_QB, GC_WR1, GC_WR2, GC_WR3, GC_RB1, GC_RB2, GC_TE, GC_Flex]
 GC_Bench = [GC_Bench1, GC_Bench2, GC_Bench3, GC_Bench4, GC_Bench5, GC_IR]
@@ -117,7 +117,7 @@ Paint_Bench2 = 'Kimani Vidal'
 Paint_Bench3 = 'Jared Goff'
 Paint_Bench4 = 'Devin Neal'
 Paint_Bench5 = 'Darren Waller'
-Paint_IR = 'Trey Benson'
+Paint_IR = ''#'Trey Benson'
 Paint_K_approx = 12.81
 Paint_DEF_approx = 14.70
 Paint_Team = [Paint_QB, Paint_WR1, Paint_WR2, Paint_WR3, Paint_RB1, Paint_RB2, Paint_TE, Paint_Flex]
@@ -128,7 +128,7 @@ Paint_BenchDF = []
 for player in Paint_Team:
     if player in df['Player'].values:  
         Paint_Score += df.loc[df['Player'] == player, 'STD'].iloc[0]
-        row = {'Player': player, 'Points': float(df.loc[df['Player'] == player, 'PPR'].iloc[0])}
+        row = {'Player': player, 'Points': float(df.loc[df['Player'] == player, 'STD'].iloc[0])}
         Paint_ScoreDF.append(row)    
     else:
         print(f"{player} not found in the DataFrame.")
@@ -136,7 +136,7 @@ for player in Paint_Team:
 Paint_Score = Paint_Score + Paint_K_approx + Paint_DEF_approx
 for player in Paint_Bench:
     if player in df['Player'].values:  
-        row = {'Player': player, 'Points': float(df.loc[df['Player'] == player, 'PPR'].iloc[0])}
+        row = {'Player': player, 'Points': float(df.loc[df['Player'] == player, 'STD'].iloc[0])}
         Paint_BenchDF.append(row)   
     elif player == '':
         row = {'Player': player, 'Points': 0}
@@ -164,8 +164,8 @@ Jerks_Flex4 = 'Brenton Strange'
 Jerks_Flex5 = 'Alec Pierce'
 Jerks_Bench1 = 'Jayden Daniels'
 Jerks_Bench2 = 'Quentin Johnston'
-Jerks_Bench3 = 'Jalen Wright'
-Jerks_IR = 'Trey Benson'
+Jerks_Bench3 = 'Jaylen Wright'
+Jerks_IR = ''#'Trey Benson'
 Jerks_Team = [Jerks_QB1, Jerks_QB2, Jerks_WR1, Jerks_WR2, Jerks_WR3, Jerks_RB1, Jerks_RB2, Jerks_TEFlex, Jerks_Flex1, Jerks_Flex2, Jerks_Flex3, Jerks_Flex4, Jerks_Flex5]
 Jerks_Bench = [Jerks_Bench1, Jerks_Bench2, Jerks_Bench3, Jerks_IR]
 Jerks_Score = 0

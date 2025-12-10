@@ -23,17 +23,18 @@ DFs = ps.importstats(listicle)
 Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')
 Week = len(DFs)+1
 Total_Stats = ps.totalstatcombiner(DFs)
+#print(Total_Stats[Total_Stats['Player'] == 'Jakobi Meyers'])
+#print(len(Total_Stats['Player']))
 IndividualTotals = ps.individualtotals(DFs)
+#print(len(IndividualTotals['Player']))
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
 #print(IndividualTotals.head())
 #print(Useful.head())
 Dominance = ps.analysis(Useful,IndividualTotals)
-print(Dominance.head())
-
-#TeamTotals = ps.teamtotals(DFs, Schedule)
-#SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
-#SuperFlex = ps.injuryremovalweekly(SuperFlex)
-#All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
-#df = All_DataFrames['SuperFlex']
+TeamTotals = ps.teamtotals(DFs, Schedule)
+SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
+SuperFlex = ps.injuryremovalweekly(SuperFlex)
+All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
+df = All_DataFrames['SuperFlex']
 
 

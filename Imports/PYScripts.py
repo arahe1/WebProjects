@@ -70,11 +70,20 @@ def totalstatcombiner(dflist):
         if not isinstance(file, pd.DataFrame):
             raise TypeError(f"List should contain strings of dataframes. Got {type(file)}: {file}")
 
-        
     Combined = pd.concat(dflist, ignore_index=True)
-    Numeric_Part = Combined.groupby('Player', as_index=False).sum(numeric_only=True)
-    Non_Numeric_Part = Combined.groupby('Player', as_index=False).first(numeric_only=False).drop(columns=Numeric_Part.columns[1:])
-    Total_Stats = pd.merge(Numeric_Part, Non_Numeric_Part, on='Player')
+    latest_rows = Combined.groupby("Player").last().reset_index()
+    latest_col = latest_rows[["Player", "Team"]]
+    Filtered = Combined.merge(latest_col, on=["Player", "Team"], how="inner")
+    Numeric = Filtered.groupby("Player", as_index=False).sum(numeric_only=True)
+    NonNumeric = latest_rows.drop(columns=Numeric.columns[1:], errors="ignore")
+    Total_Stats = Numeric.merge(NonNumeric, on="Player")
+
+    #Combined = pd.concat(dflist, ignore_index=True)
+    #Numeric_Part = Combined.groupby(['Player', 'Team'], as_index=False).sum(numeric_only=True)
+    #Non_Numeric_Part = Combined.groupby('Player', as_index=False).first(numeric_only=False).drop(columns=Numeric_Part.columns[1:])
+    #Non_Numeric_Part = Combined.groupby(['Player', 'Team'], as_index=False).agg({'Team': 'last'})
+    #Total_Stats = pd.merge(Numeric_Part, Non_Numeric_Part, on='Player')
+    #Total_Stats = pd.merge(Numeric_Part, Non_Numeric_Part, on=['Player', 'Team'], how='left')
 
     return Total_Stats
 

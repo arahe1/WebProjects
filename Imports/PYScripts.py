@@ -102,60 +102,59 @@ def individualtotals(dflist):
     # Convert back to list if needed
     unique_names_list = list(unique_names)
 
-    # Loop through each player in Useful
+    # Loop through each player in unique_names_list
     for player in unique_names_list:
-        total_team_pass_att = 0  # Total sum across all DataFrames
-        total_team_pass_yards = 0
-        total_team_pass_td = 0
-        total_team_rec = 0
-        total_team_rec_yards = 0
-        total_team_rec_td = 0
-        total_team_rush_att = 0
-        total_team_rush_yards = 0
-        total_team_rush_td = 0
+        total_ind_pass_att = 0  
+        total_ind_pass_yards = 0
+        total_ind_pass_td = 0
+        total_ind_targets = 0
+        total_ind_rec = 0
+        total_ind_rec_yards = 0
+        total_ind_rec_td = 0
+        total_ind_rush_att = 0
+        total_ind_rush_yards = 0
+        total_ind_rush_td = 0
 
-        team_total_PA = 0
-        team_total_PY = 0
-        team_total_PT = 0
-        team_total_R = 0
-        team_total_RY = 0
-        team_total_RT = 0
-        team_total_Ru = 0
-        team_total_RuY = 0
-        team_total_RuT = 0
+        ind_total_PA = 0
+        ind_total_PY = 0
+        ind_total_PT = 0
+        ind_total_T = 0
+        ind_total_R = 0
+        ind_total_RY = 0
+        ind_total_RT = 0
+        ind_total_Ru = 0
+        ind_total_RuY = 0
+        ind_total_RuT = 0
         
         for df in dflist:
             if player in df['Player'].values:
                 # Get the player's team (assumes 1 team per player per df)
                 player_team = df.loc[df['Player'] == player, 'Team'].iloc[0]
-                #latest_df_with_player = df
-                #print(latest_df_with_player.columns)
 
-                # Sum Cmp for all players on the same team
-                #player_row = latest_df_with_player[latest_df_with_player['Player'] == player]
-                #team_total_PA = latest_df_with_player.loc[latest_df_with_player['Team'] == player_team, 'PassAtt'].sum()
-                team_total_PA = df.loc[df['Team'] == player_team, 'PassAtt'].sum()
-                team_total_PY = df.loc[df['Team'] == player_team, 'PassYds'].sum()
-                team_total_PT = df.loc[df['Team'] == player_team, 'PassTD'].sum()
-                team_total_R = df.loc[df['Team'] == player_team, 'Rec'].sum()
-                team_total_RY = df.loc[df['Team'] == player_team, 'RecYds'].sum()
-                team_total_RT = df.loc[df['Team'] == player_team, 'RecTD'].sum()
-                team_total_Ru = df.loc[df['Team'] == player_team, 'RushAtt'].sum()
-                team_total_RuY = df.loc[df['Team'] == player_team, 'RushYds'].sum()
-                team_total_RuT = df.loc[df['Team'] == player_team, 'RushTD'].sum()
+                ind_total_PA = df.loc[df['Team'] == player_team, 'PassAtt'].sum()
+                ind_total_PY = df.loc[df['Team'] == player_team, 'PassYds'].sum()
+                ind_total_PT = df.loc[df['Team'] == player_team, 'PassTD'].sum()
+                ind_total_T = df.loc[df['Team'] == player_team, 'Tgt'].sum()
+                ind_total_R = df.loc[df['Team'] == player_team, 'Rec'].sum()
+                ind_total_RY = df.loc[df['Team'] == player_team, 'RecYds'].sum()
+                ind_total_RT = df.loc[df['Team'] == player_team, 'RecTD'].sum()
+                ind_total_Ru = df.loc[df['Team'] == player_team, 'RushAtt'].sum()
+                ind_total_RuY = df.loc[df['Team'] == player_team, 'RushYds'].sum()
+                ind_total_RuT = df.loc[df['Team'] == player_team, 'RushTD'].sum()
 
-                total_team_pass_att += team_total_PA
-                total_team_pass_yards += team_total_PY
-                total_team_pass_td += team_total_PT
-                total_team_rec += team_total_R
-                total_team_rec_yards += team_total_RY
-                total_team_rec_td += team_total_RT
-                total_team_rush_att += team_total_Ru
-                total_team_rush_yards += team_total_RuY
-                total_team_rush_td += team_total_RuT
+                total_ind_pass_att += ind_total_PA
+                total_ind_pass_yards += ind_total_PY
+                total_ind_pass_td += ind_total_PT
+                total_ind_targets += ind_total_T
+                total_ind_rec += ind_total_R
+                total_ind_rec_yards += ind_total_RY
+                total_ind_rec_td += ind_total_RT
+                total_ind_rush_att += ind_total_Ru
+                total_ind_rush_yards += ind_total_RuY
+                total_ind_rush_td += ind_total_RuT
 
         # Save result
-        totals.append({'Player': player, 'TeamTotalPassAtt': total_team_pass_att, 'TeamTotalPassYds': total_team_pass_yards, 'TeamTotalPassTD': total_team_pass_td, 'TeamTotalRec': total_team_rec, 'TeamTotalRecYds': total_team_rec_yards, 'TeamTotalRecTD': total_team_rec_td, 'TeamTotalRushAtt': total_team_rush_att, 'TeamTotalRushYds': total_team_rush_yards, 'TeamTotalRushTD': total_team_rush_td})
+        totals.append({'Player': player, 'TeamTotalPassAtt': total_ind_pass_att, 'TeamTotalPassYds': total_ind_pass_yards, 'TeamTotalPassTD': total_ind_pass_td, 'TeamTotalTgt': total_ind_targets , 'TeamTotalRec': total_ind_rec, 'TeamTotalRecYds': total_ind_rec_yards, 'TeamTotalRecTD': total_ind_rec_td, 'TeamTotalRushAtt': total_ind_rush_att, 'TeamTotalRushYds': total_ind_rush_yards, 'TeamTotalRushTD': total_ind_rush_td})
 
     # Create the final result DataFrame
     IndividualTotals = pd.DataFrame(totals)
@@ -174,7 +173,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
         raise TypeError("int required for Week number")
     
     # Set up Useful Stats Dataframe columns
-    Usefulcolumns = ['Player', 'Team', 'Opp', 'Week', 'Pos.', 'G', 'PassAtt', 'PassAttStDev', 'Cmp', 'IndComp%', 'CompStDev', 'TeamComp%', 'PassYds', 'PassYdsStDev', 'PassYds%', 'PassTD', 'PassTDStDev', 'PassTD%','Tgt', 'TgtStDev','Rec', 'IndCatch%', 'CatStDev', 'TmCatch%', 'RecYds', 'RecYdsStDev', 'RecYds%', 'RecTD', 'RecTDStDev', 'RecTD%', 'RushAtt', 'RushStDev', 'Rush%', 'RushYds', 'RushYdsStDev', 'RushYds%', 'RushTD', 'RushTDStDev', 'RushTD%', ]
+    Usefulcolumns = ['Player', 'Team', 'Opp', 'Week', 'Pos.', 'G', 'PassAtt', 'PassAttStDev', 'Cmp', 'IndComp%', 'CompStDev', 'TeamComp%', 'PassYds', 'PassYdsStDev', 'PassYds%', 'PassTD', 'PassTDStDev', 'PassTD%', 'Int', 'Tgt', 'TgtStDev','Rec', 'IndCatch%', 'CatStDev', 'TmCatch%', 'RecYds', 'RecYdsStDev', 'RecYds%', 'RecTD', 'RecTDStDev', 'RecTD%', 'RushAtt', 'RushStDev', 'Rush%', 'RushYds', 'RushYdsStDev', 'RushYds%', 'RushTD', 'RushTDStDev', 'RushTD%', ]
     Useful = pd.DataFrame(columns=Usefulcolumns)
 
     # Pre-map Opponents for quick lookup
@@ -187,7 +186,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
 
 
     # Initialize containers for computed values
-    stat_fields = ['PassAtt', 'Cmp', 'PassYds', 'PassTD', 'Tgt', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    stat_fields = ['PassAtt', 'Cmp', 'PassYds', 'PassTD', 'Int', 'Tgt', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
 
     # Create per-player stat collections
     player_stats = defaultdict(lambda: defaultdict(list))
@@ -479,8 +478,6 @@ def weeklySuperFlexdataframe(useful, teamtotals):
     SuperFlex['STD'] = stds
     SuperFlex.iloc[:, 3:5] = SuperFlex.iloc[:, 3:5].apply(pd.to_numeric).round(1)
 
-    #numeric_cols = SuperFlex.select_dtypes(include='number').columns
-    #SuperFlex = SuperFlex[:, 4:].clip(lower=0)
 
     return SuperFlex
 
@@ -1562,5 +1559,368 @@ def teampredictionshtml(finalscores, week):
     # Save to HTML file
     with open(f"Weekly Game Predictions.html", "w") as f:
         f.write(html_script)
+
+
+def analysis(useful, individualtotals):
+    #Separate by position
+
+    QBstatcolumns = ['Player', 'Team', 'Pos.', 'YPA', 'TD:Int', 'TotalTD%', 'Dominance']
+    WRstatcolumns = ['Player', 'Team', 'Pos.', 'Tgt%', 'RecYds%', 'RecTD%', 'TotalTD%', 'Dominance']
+    RBstatcolumns = ['Player', 'Team', 'Pos.', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%', 'Dominance']
+
+
+    QBDom = pd.DataFrame(columns=QBstatcolumns)
+    WRDom = pd.DataFrame(columns=WRstatcolumns)
+    RBDom = pd.DataFrame(columns=RBstatcolumns)
+    TEDom = pd.DataFrame(columns=WRstatcolumns)
+
+
+    #Populate each DF with Player names, Team name, Position
+    for i, row in useful.iterrows():
+        keywords = ['QB']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            QBDom.at[i, 'Player'] = row['Player']
+            QBDom.at[i, 'Team'] = row['Team']
+            QBDom.at[i, 'Pos.'] = row['Pos.']
+
+    for i, row in useful.iterrows():
+        keywords = ['WR']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            WRDom.at[i, 'Player'] = row['Player']
+            WRDom.at[i, 'Team'] = row['Team']
+            WRDom.at[i, 'Pos.'] = row['Pos.']
+
+    for i, row in useful.iterrows():
+        keywords = ['RB']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            RBDom.at[i, 'Player'] = row['Player']
+            RBDom.at[i, 'Team'] = row['Team']
+            RBDom.at[i, 'Pos.'] = row['Pos.']
+
+    for i, row in useful.iterrows():
+        keywords = ['TE']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            TEDom.at[i, 'Player'] = row['Player']
+            TEDom.at[i, 'Team'] = row['Team']
+            TEDom.at[i, 'Pos.'] = row['Pos.']
+    
+
+    for i, row in QBDom.iterrows():
+        key = row['Player']
+       
+
+        usefulrow = useful[useful['Player'] == key].iloc[0]
+        teamtotalrow = individualtotals[individualtotals['Player'] == key].iloc[0]
+       
+
+        passatt = usefulrow['PassAtt']
+        passyds = usefulrow['PassYds']
+        passtds = usefulrow['PassTD']
+        passints = usefulrow['Int'] 
+        totalpasstds = teamtotalrow['TeamTotalPassTD']
+        totalrectds = teamtotalrow['TeamTotalRecTD']
+        totalrushtds = teamtotalrow['TeamTotalRushTD']
+        
+
+        if passatt != 0:
+            QBDom.at[i, 'YPA'] = passyds/passatt
+        else:
+            QBDom.at[i, 'YPA'] = 0
+        
+        if passints != 0:
+            QBDom.at[i, 'TD:Int'] = passtds/passints
+        else:
+            QBDom.at[i, 'TD:Int'] = 0
+        
+        if totalpasstds + totalrectds + totalrushtds != 0:
+            QBDom.at[i, 'TotalTD%'] = passtds/(totalpasstds + totalrectds + totalrushtds) * 100
+        else:
+            QBDom.at[i, 'TotalTD%'] = 0
+        
+        if passatt != 0 and passints != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+            QBDom.at[i, 'Dominance'] = passyds/passatt + passtds/passints + totalpasstds/(totalpasstds + totalrectds + totalrushtds)
+        else:
+            QBDom.at[i, 'Dominance'] = 0
+
+
+    for i, row in WRDom.iterrows():
+        key = row['Player']
+       
+
+        usefulrow = useful[useful['Player'] == key].iloc[0]
+        teamtotalrow = individualtotals[individualtotals['Player'] == key].iloc[0]
+       
+
+        targets = usefulrow['Tgt']
+        totaltargets = teamtotalrow['TeamTotalTgt'] 
+        recyds = usefulrow['RecYds']
+        totalrecyds = teamtotalrow['TeamTotalRecYds']
+        rectds = usefulrow['RecTD']
+        totalpasstds = teamtotalrow['TeamTotalPassTD']
+        totalrectds = teamtotalrow['TeamTotalRecTD']
+        totalrushtds = teamtotalrow['TeamTotalRushTD']
+
+
+        if totaltargets != 0:
+            WRDom.at[i, 'Tgt%'] = targets/totaltargets * 100
+        else:
+            WRDom.at[i, 'Tgt%'] = 0
+        
+        if totalrecyds !=0:
+            WRDom.at[i, 'RecYds%'] = recyds/totalrecyds * 100
+        else:
+            WRDom.at[i, 'RecYds%'] = 0
+        
+        if totalrectds != 0:
+            WRDom.at[i, 'RecTD%'] = rectds/totalrectds * 100
+        else:
+            WRDom.at[i, 'RecTD%'] = 0
+        
+        if totalpasstds + totalrectds + totalrushtds != 0:
+            WRDom.at[i, 'TotalTD%'] = rectds/(totalpasstds + totalrectds + totalrushtds) * 100
+        else:
+            WRDom.at[i, 'TotalTD%'] = 0
+        
+        if totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+            WRDom.at[i, 'Dominance'] = (targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100
+        else:
+            WRDom.at[i, 'Dominance'] = 0
+
+
+    for i, row in RBDom.iterrows():
+        key = row['Player']
+       
+
+        usefulrow = useful[useful['Player'] == key].iloc[0]
+        teamtotalrow = individualtotals[individualtotals['Player'] == key].iloc[0]
+       
+
+        rushatt = usefulrow['RushAtt']
+        totalrushatt = teamtotalrow['TeamTotalRushAtt']
+        rushyds = usefulrow['RushYds']
+        totalrushyds = teamtotalrow['TeamTotalRushYds']
+        rushtds = usefulrow['RushTD']
+        totalpasstds = teamtotalrow['TeamTotalPassTD']
+        totalrectds = teamtotalrow['TeamTotalRecTD']
+        totalrushtds = teamtotalrow['TeamTotalRushTD']
+        
+        if totalrushatt != 0:
+            RBDom.at[i, 'Rush%'] = rushatt/totalrushatt * 100
+        else:
+            RBDom.at[i, 'Rush%'] = 0
+
+        if totalrushyds != 0:
+            RBDom.at[i, 'RushYds%'] = rushyds/totalrushyds * 100
+        else:
+            RBDom.at[i, 'RushYds%'] = 0
+        
+        if totalrushtds != 0:
+            RBDom.at[i, 'RushTD%'] = rushtds/totalrushtds * 100
+        else:
+            RBDom.at[i, 'RushTD%'] = 0
+        
+        if totalpasstds + totalrectds + totalrushtds != 0:
+            RBDom.at[i, 'TotalTD%'] = rushtds/(totalpasstds + totalrectds + totalrushtds) * 100
+        else:
+            RBDom.at[i, 'TotalTD%'] = 0
+        
+        
+        if totalrushatt != 0 and totalrushyds != 0 and totalrushtds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+            RBDom.at[i, 'Dominance'] = (rushatt/totalrushatt + rushyds/totalrushyds + rushtds/totalrushtds + rushtds/(totalpasstds + totalrectds + totalrushtds)) * 100
+        else:
+            RBDom.at[i, 'Dominance'] = 0
+
+    for i, row in TEDom.iterrows():
+        key = row['Player']
+       
+
+        usefulrow = useful[useful['Player'] == key].iloc[0]
+        teamtotalrow = individualtotals[individualtotals['Player'] == key].iloc[0]
+       
+
+        targets = usefulrow['Tgt']
+        totaltargets = teamtotalrow['TeamTotalTgt'] 
+        recyds = usefulrow['RecYds']
+        totalrecyds = teamtotalrow['TeamTotalRecYds']
+        rectds = usefulrow['RecTD']
+        totalpasstds = teamtotalrow['TeamTotalPassTD']
+        totalrectds = teamtotalrow['TeamTotalRecTD']
+        totalrushtds = teamtotalrow['TeamTotalRushTD']
+
+        
+        if totaltargets != 0:
+            TEDom.at[i, 'Tgt%'] = targets/totaltargets * 100
+        else:
+            TEDom.at[i, 'Tgt%'] = 0
+        
+        if totalrecyds !=0:
+            TEDom.at[i, 'RecYds%'] = recyds/totalrecyds * 100
+        else:
+            TEDom.at[i, 'RecYds%'] = 0
+        
+        if totalrectds != 0:
+            TEDom.at[i, 'RecTD%'] = rectds/totalrectds * 100
+        else:
+            TEDom.at[i, 'RecTD%'] = 0
+        
+        if totalpasstds + totalrectds + totalrushtds != 0:
+            TEDom.at[i, 'TotalTD%'] = rectds/(totalpasstds + totalrectds + totalrushtds) * 100
+        else:
+            TEDom.at[i, 'TotalTD%'] = 0
+        
+        if totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+            TEDom.at[i, 'Dominance'] = (targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100
+        else:
+            TEDom.at[i, 'Dominance'] = 0
+
+
+
+    
+
+    Dom_DataFrames = {'QBDom': QBDom, 'WRDom': WRDom, 'RBDom': RBDom, 'TEDom': TEDom}
+
+    return Dom_DataFrames
+
+def dominancehtml(alldataframes):
+    #html_dict = {}
+
+    for name, df in alldataframes.items():
+
+        html_string = df.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
+
+        # Full HTML file with sorting and ALL rows shown
+        html_script = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>{name} Stats</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+        <link rel="shortcut icon" href="images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MyWebSit" />
+        <link rel="manifest" href="images/site.webmanifest" />
+
+        <link rel="stylesheet" href="style.css">
+
+
+        </head>
+        <body>
+
+        <div class="topnav">
+        <a href="index.html">Home</a>
+            <div class="dropdown">
+            <button class="dropbtn active">Football
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="SuperFlex.html">Weekly Predictions</a>
+                <a href="Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="QBDom.html">Dominance</a>
+            </div>
+            </div>
+        <a href="fitness.html">Fitness</a>
+        <a href="about.html">About</a>
+        </div>
+        
+
+        <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
+
+        <h1>{name} Predictions</h1>
+
+        <div class="topnav">
+        <input type="text" id="searchBar" placeholder="Search...">
+        </div>
+
+        <div class="topnav">
+        <a {"class='active'" if name == "QB" else ""} href="QBDom.html">QB ROS</a>
+        <a {"class='active'" if name == "WR" else ""} href="WRDom.html">WR ROS</a>
+        <a {"class='active'" if name == "RB" else ""} href="RBDom.html">RB ROS</a>
+        <a {"class='active'" if name == "TE" else ""} href="TEDom.html">TE ROS</a>
+
+        </div>
+
+
+
+
+
+        {html_string}
+
+        <script>
+        function getCellValue(row, index) {{
+            return row.cells[index].textContent.trim();
+        }}
+
+        function comparer(index, asc) {{
+            return function(a, b) {{
+            const v1 = getCellValue(a, index);
+            const v2 = getCellValue(b, index);
+
+            const num1 = parseFloat(v1);
+            const num2 = parseFloat(v2);
+            const bothNumbers = !isNaN(num1) && !isNaN(num2);
+
+            if (bothNumbers) {{
+                return asc ? num1 - num2 : num2 - num1;
+            }} else {{
+                return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+            }}
+            }};
+        }}
+
+        document.addEventListener("DOMContentLoaded", function () {{
+            document.querySelectorAll("th").forEach(function (th, index) {{
+            let ascending = true;
+            if (index === 0) return;
+            th.addEventListener("click", function () {{
+                const table = th.closest("table");
+                const tbody = table.querySelector("tbody");
+                const rows = Array.from(tbody.querySelectorAll("tr"));
+                rows.sort(comparer(index, ascending));
+                //rows.forEach(row => tbody.appendChild(row));
+                rows.forEach((row, i) => {{
+                    row.cells[0].textContent = i + 1; // Reset Rank to match new row position
+                    tbody.appendChild(row);
+                }});
+                ascending = !ascending;
+            }});
+            }});
+        }});
+        </script>
+
+        
+
+        <script>
+        const searchBar = document.getElementById('searchBar');
+        const table = document.querySelector('table');
+        const rows = table.getElementsByTagName('tr');
+
+        searchBar.addEventListener('keyup', function () {{
+            const searchText = searchBar.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) {{
+            const row = rows[i];
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(searchText) ? '' : 'none';
+            }}
+        }});
+        </script>
+
+        
+
+        </body>
+        </html>
+        """
+
+        # Save to HTML file
+        with open(f"{name}.html", "w") as f:
+            f.write(html_script)
+
+
+
+
+
 
 

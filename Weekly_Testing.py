@@ -25,28 +25,15 @@ Week = len(DFs)+1
 Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
-TeamTotals = ps.teamtotals(DFs, Schedule)
-SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
-SuperFlex = ps.injuryremovalweekly(SuperFlex)
-All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
-df = All_DataFrames['SuperFlex']
+#print(IndividualTotals.head())
+#print(Useful.head())
+Dominance = ps.analysis(Useful,IndividualTotals)
+print(Dominance.head())
 
-full_path = os.path.join('CSVs', 'Useful.csv')
-Useful.to_csv(full_path, index=False)
-
-full_path = os.path.join('CSVs', 'SuperFlex.csv')
-df.to_csv(full_path, index=False)
-
-ps.weeklyhtml(All_DataFrames, Week)
-
-commit_msg = f"Adding data and producing predictions for Week {Week}"
-
-try:
-    subprocess.run(["git", "add", "."], check=True)
-    subprocess.run(["git", "commit", "-m", commit_msg], check=True)
-    subprocess.run(["git", "push"], check=True)
-    print("Git auto-update complete.")
-except subprocess.CalledProcessError:
-    print("Git command failed (maybe no changes to commit?)")
+#TeamTotals = ps.teamtotals(DFs, Schedule)
+#SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
+#SuperFlex = ps.injuryremovalweekly(SuperFlex)
+#All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
+#df = All_DataFrames['SuperFlex']
 
 

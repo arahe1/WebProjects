@@ -1777,12 +1777,29 @@ def analysis(useful, individualtotals):
             TEDom.at[i, 'Dominance'] = 0
 
 
+    QBDom['Rank'] = range(1, len(QBDom) + 1)
+    WRDom['Rank'] = range(1, len(WRDom) + 1)
+    RBDom['Rank'] = range(1, len(RBDom) + 1)
+    TEDom['Rank'] = range(1, len(TEDom) + 1)
+
+    cols = ['Rank'] + [col for col in QBDom.columns if col != 'Rank']
+    QBDom = QBDom[cols]
+
+    cols = ['Rank'] + [col for col in WRDom.columns if col != 'Rank']
+    WRDom = WRDom[cols]
+
+    cols = ['Rank'] + [col for col in RBDom.columns if col != 'Rank']
+    RBDom = RBDom[cols]
+
+    cols = ['Rank'] + [col for col in TEDom.columns if col != 'Rank']
+    TEDom = TEDom[cols]
 
     
 
     Dom_DataFrames = {'QBDom': QBDom, 'WRDom': WRDom, 'RBDom': RBDom, 'TEDom': TEDom}
 
     return Dom_DataFrames
+
 
 def dominancehtml(alldataframes):
     #html_dict = {}
@@ -1838,10 +1855,10 @@ def dominancehtml(alldataframes):
         </div>
 
         <div class="topnav">
-        <a {"class='active'" if name == "QB" else ""} href="QBDom.html">QB ROS</a>
-        <a {"class='active'" if name == "WR" else ""} href="WRDom.html">WR ROS</a>
-        <a {"class='active'" if name == "RB" else ""} href="RBDom.html">RB ROS</a>
-        <a {"class='active'" if name == "TE" else ""} href="TEDom.html">TE ROS</a>
+        <a {"class='active'" if name == "QBDom" else ""} href="QBDom.html">QB ROS</a>
+        <a {"class='active'" if name == "WRDom" else ""} href="WRDom.html">WR ROS</a>
+        <a {"class='active'" if name == "RBDom" else ""} href="RBDom.html">RB ROS</a>
+        <a {"class='active'" if name == "TEDom" else ""} href="TEDom.html">TE ROS</a>
 
         </div>
 

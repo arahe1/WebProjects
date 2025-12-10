@@ -1568,8 +1568,8 @@ def analysis(useful, individualtotals):
     #Separate by position
 
     QBstatcolumns = ['Player', 'Team', 'Off Focus', 'YPA', 'TD:Int', 'TotalTD%']
-    WRstatcolumns = ['Player', 'Team', 'Off Focus', 'Tgt%', 'RecYds%', 'RecTD%', 'TotalTD%']
-    RBstatcolumns = ['Player', 'Team', 'Off Focus', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
+    WRstatcolumns = ['Player', 'Team', 'Off Focus', 'Tgt%', 'RecYds%', 'RecTD%', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
+    RBstatcolumns = ['Player', 'Team', 'Off Focus', 'Tgt%', 'RecYds%', 'RecTD%', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
 
 
     QBDom = pd.DataFrame(columns=QBstatcolumns)
@@ -1655,6 +1655,11 @@ def analysis(useful, individualtotals):
         recyds = usefulrow['RecYds']
         totalrecyds = teamtotalrow['TeamTotalRecYds']
         rectds = usefulrow['RecTD']
+        rushatt = usefulrow['RushAtt']
+        totalrushatt = teamtotalrow['TeamTotalRushAtt']
+        rushyds = usefulrow['RushYds']
+        totalrushyds = teamtotalrow['TeamTotalRushYds']
+        rushtds = usefulrow['RushTD']
         totalpasstds = teamtotalrow['TeamTotalPassTD']
         totalrectds = teamtotalrow['TeamTotalRecTD']
         totalrushtds = teamtotalrow['TeamTotalRushTD']
@@ -1674,6 +1679,21 @@ def analysis(useful, individualtotals):
             WRDom.at[i, 'RecTD%'] = round(rectds/totalrectds * 100,1)
         else:
             WRDom.at[i, 'RecTD%'] = 0
+
+        if totalrushatt != 0:
+            WRDom.at[i, 'Rush%'] = round(rushatt/totalrushatt * 100,1)
+        else:
+            WRDom.at[i, 'Rush%'] = 0
+
+        if totalrushyds != 0:
+            WRDom.at[i, 'RushYds%'] = round(rushyds/totalrushyds * 100,1)
+        else:
+            WRDom.at[i, 'RushYds%'] = 0
+        
+        if totalrushtds != 0:
+            WRDom.at[i, 'RushTD%'] = round(rushtds/totalrushtds * 100,1)
+        else:
+            WRDom.at[i, 'RushTD%'] = 0
         
         if totalpasstds + totalrectds + totalrushtds != 0:
             WRDom.at[i, 'TotalTD%'] = round(rectds/(totalpasstds + totalrectds + totalrushtds) * 100,1)
@@ -1693,7 +1713,11 @@ def analysis(useful, individualtotals):
         usefulrow = useful[useful['Player'] == key].iloc[0]
         teamtotalrow = individualtotals[individualtotals['Player'] == key].iloc[0]
        
-
+        targets = usefulrow['Tgt']
+        totaltargets = teamtotalrow['TeamTotalTgt'] 
+        recyds = usefulrow['RecYds']
+        totalrecyds = teamtotalrow['TeamTotalRecYds']
+        rectds = usefulrow['RecTD']
         rushatt = usefulrow['RushAtt']
         totalrushatt = teamtotalrow['TeamTotalRushAtt']
         rushyds = usefulrow['RushYds']
@@ -1703,6 +1727,21 @@ def analysis(useful, individualtotals):
         totalrectds = teamtotalrow['TeamTotalRecTD']
         totalrushtds = teamtotalrow['TeamTotalRushTD']
         
+        if totaltargets != 0:
+            RBDom.at[i, 'Tgt%'] = round(targets/totaltargets * 100,1)
+        else:
+            RBDom.at[i, 'Tgt%'] = 0
+        
+        if totalrecyds !=0:
+            RBDom.at[i, 'RecYds%'] = round(recyds/totalrecyds * 100,1)
+        else:
+            RBDom.at[i, 'RecYds%'] = 0
+        
+        if totalrectds != 0:
+            RBDom.at[i, 'RecTD%'] = round(rectds/totalrectds * 100,1)
+        else:
+            RBDom.at[i, 'RecTD%'] = 0
+
         if totalrushatt != 0:
             RBDom.at[i, 'Rush%'] = round(rushatt/totalrushatt * 100,1)
         else:
@@ -1722,7 +1761,6 @@ def analysis(useful, individualtotals):
             RBDom.at[i, 'TotalTD%'] = round(rushtds/(totalpasstds + totalrectds + totalrushtds) * 100,1)
         else:
             RBDom.at[i, 'TotalTD%'] = 0
-        
         
         if totalrushatt != 0 and totalrushyds != 0 and totalrushtds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
             RBDom.at[i, 'Off Focus'] = round((rushatt/totalrushatt + rushyds/totalrushyds + rushtds/totalrushtds + rushtds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
@@ -1761,6 +1799,21 @@ def analysis(useful, individualtotals):
             TEDom.at[i, 'RecTD%'] = round(rectds/totalrectds * 100,1)
         else:
             TEDom.at[i, 'RecTD%'] = 0
+
+        if totalrushatt != 0:
+            TEDom.at[i, 'Rush%'] = round(rushatt/totalrushatt * 100,1)
+        else:
+            TEDom.at[i, 'Rush%'] = 0
+
+        if totalrushyds != 0:
+            TEDom.at[i, 'RushYds%'] = round(rushyds/totalrushyds * 100,1)
+        else:
+            TEDom.at[i, 'RushYds%'] = 0
+        
+        if totalrushtds != 0:
+            TEDom.at[i, 'RushTD%'] = round(rushtds/totalrushtds * 100,1)
+        else:
+            TEDom.at[i, 'RushTD%'] = 0
         
         if totalpasstds + totalrectds + totalrushtds != 0:
             TEDom.at[i, 'TotalTD%'] = round(rectds/(totalpasstds + totalrectds + totalrushtds) * 100,1)

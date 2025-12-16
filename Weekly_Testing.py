@@ -18,7 +18,8 @@ listicle = ['CSVs/Week_1_NFL_2025.csv',
             'CSVs/Week_11_NFL_2025.csv',
             'CSVs/Week_12_NFL_2025.csv',
             'CSVs/Week_13_NFL_2025.csv',
-            'CSVs/Week_14_NFL_2025.csv']
+            'CSVs/Week_14_NFL_2025.csv',
+            'CSVs/Week_15_NFL_2025.csv']
 
 DFs = ps.importstats(listicle)
 Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')
@@ -35,12 +36,31 @@ Dominance = ps.analysis(Useful,IndividualTotals)
 
 
 
-combined = pd.concat([Dominance['WRDom'], Dominance['TEDom']], ignore_index=True)
+#combined = pd.concat([Dominance['WRDom'], Dominance['TEDom']], ignore_index=True)
+combined = Dominance['WRDom']
 
 points_sum = combined.groupby('Team', as_index=False)['Off Focus'].sum()
+#points_sum = combined['Off Focus'].sum()
 points_sum['Pass Focus'] = points_sum['Off Focus']
-merged = pd.merge(points_sum, Dominance['RBDom']['Off Focus'], on='Team')
-plt.scatter(merged['Pass Focus'], merged['Off Focus'])
+dominance_df = Dominance['RBDom'].groupby('Team', as_index=False)['Off Focus'].sum()
+dominance_df['Run Focus'] = dominance_df['Off Focus']
+merged = pd.merge(points_sum, dominance_df, on='Team')
+
+merged[['Pass Focus', 'Run Focus']] = merged[['Pass Focus', 'Run Focus']] / merged[['Pass Focus', 'Run Focus']].max() * 100
+
+avg_x = sum(merged['Pass Focus']) / len(merged['Pass Focus'])
+avg_y = sum(merged['Run Focus']) / len(merged['Run Focus'])
+
+
+plt.scatter(merged['Pass Focus'], merged['Run Focus'])
+
+for i, row in merged.iterrows():
+    plt.text(row['Pass Focus'], row['Run Focus'], row['Team'],
+             fontsize=9, ha='right', va='bottom')  # adjust text position
+
+plt.axvline(avg_x, color='black', linestyle='--', label=f'Avg X = {avg_x:.1f}')
+plt.axhline(avg_y, color='black', linestyle='--', label=f'Avg Y = {avg_y:.1f}')
+
 plt.xlabel('Pass Focus')
 plt.ylabel('Run Focus')
 plt.title('Offensive Focus')

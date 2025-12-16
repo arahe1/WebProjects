@@ -1994,7 +1994,7 @@ def dominancehtml(alldataframes):
 
         <div class="topnav">
         <a {"class='active'" if name == "QBDom" else ""} href="QBDom.html">QB</a>
-        <a {"class='active'" if name == "FlexDom" else ""} href="FlexDom.html">QB</a>
+        <a {"class='active'" if name == "FlexDom" else ""} href="FlexDom.html">Flex</a>
         <a {"class='active'" if name == "WRDom" else ""} href="WRDom.html">WR</a>
         <a {"class='active'" if name == "RBDom" else ""} href="RBDom.html">RB</a>
         <a {"class='active'" if name == "TEDom" else ""} href="TEDom.html">TE</a>

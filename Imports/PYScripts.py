@@ -1912,12 +1912,16 @@ def analysis(useful, individualtotals):
 
 
     QBDom['Rank'] = range(1, len(QBDom) + 1)
+    FlexDom['Rank'] = range(1, len(FlexDom) + 1)
     WRDom['Rank'] = range(1, len(WRDom) + 1)
     RBDom['Rank'] = range(1, len(RBDom) + 1)
     TEDom['Rank'] = range(1, len(TEDom) + 1)
 
     cols = ['Rank'] + [col for col in QBDom.columns if col != 'Rank']
     QBDom = QBDom[cols]
+
+    cols = ['Rank'] + [col for col in FlexDom.columns if col != 'Rank']
+    FlexDom = FlexDom[cols]
 
     cols = ['Rank'] + [col for col in WRDom.columns if col != 'Rank']
     WRDom = WRDom[cols]
@@ -1930,7 +1934,7 @@ def analysis(useful, individualtotals):
 
     
 
-    Dom_DataFrames = {'QBDom': QBDom, 'WRDom': WRDom, 'RBDom': RBDom, 'TEDom': TEDom}
+    Dom_DataFrames = {'QBDom': QBDom, 'FlexDom': FlexDom, 'WRDom': WRDom, 'RBDom': RBDom, 'TEDom': TEDom}
 
     return Dom_DataFrames
 
@@ -1990,6 +1994,7 @@ def dominancehtml(alldataframes):
 
         <div class="topnav">
         <a {"class='active'" if name == "QBDom" else ""} href="QBDom.html">QB</a>
+        <a {"class='active'" if name == "FlexDom" else ""} href="FlexDom.html">QB</a>
         <a {"class='active'" if name == "WRDom" else ""} href="WRDom.html">WR</a>
         <a {"class='active'" if name == "RBDom" else ""} href="RBDom.html">RB</a>
         <a {"class='active'" if name == "TEDom" else ""} href="TEDom.html">TE</a>

@@ -1577,14 +1577,14 @@ def analysis(useful, individualtotals):
     #Separate by position
 
     QBstatcolumns = ['Player', 'Team', 'Off Focus', 'YPA', 'TD:Int', 'TotalTD%']
-    WRstatcolumns = ['Player', 'Team', 'Off Focus', 'Tgt%', 'RecYds%', 'RecTD%', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
-    RBstatcolumns = ['Player', 'Team', 'Off Focus', 'Tgt%', 'RecYds%', 'RecTD%', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
+    statcolumns = ['Player', 'Team', 'Off Focus', 'Tgt%', 'RecYds%', 'RecTD%', 'Rush%', 'RushYds%', 'RushTD%', 'TotalTD%']
 
 
     QBDom = pd.DataFrame(columns=QBstatcolumns)
-    WRDom = pd.DataFrame(columns=WRstatcolumns)
-    RBDom = pd.DataFrame(columns=RBstatcolumns)
-    TEDom = pd.DataFrame(columns=WRstatcolumns)
+    FlexDom = pd.DataFrame(columns=statcolumns)
+    WRDom = pd.DataFrame(columns=statcolumns)
+    RBDom = pd.DataFrame(columns=statcolumns)
+    TEDom = pd.DataFrame(columns=statcolumns)
 
 
     #Populate each DF with Player names, Team name, Position
@@ -1593,6 +1593,12 @@ def analysis(useful, individualtotals):
         if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
             QBDom.at[i, 'Player'] = row['Player']
             QBDom.at[i, 'Team'] = row['Team']
+
+    for i, row in useful.iterrows():
+        keywords = ['WR', 'RB', 'TE']
+        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+            FlexDom.at[i, 'Player'] = row['Player']
+            FlexDom.at[i, 'Team'] = row['Team']
 
     for i, row in useful.iterrows():
         keywords = ['WR']
@@ -1649,6 +1655,71 @@ def analysis(useful, individualtotals):
             QBDom.at[i, 'Off Focus'] = round(passyds/passatt + passtds/passints + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
         else:
             QBDom.at[i, 'Off Focus'] = 0
+
+
+    for i, row in FlexDom.iterrows():
+        key = row['Player']
+       
+
+        usefulrow = useful[useful['Player'] == key].iloc[0]
+        teamtotalrow = individualtotals[individualtotals['Player'] == key].iloc[0]
+       
+
+        targets = usefulrow['Tgt']
+        totaltargets = teamtotalrow['TeamTotalTgt'] 
+        recyds = usefulrow['RecYds']
+        totalrecyds = teamtotalrow['TeamTotalRecYds']
+        rectds = usefulrow['RecTD']
+        rushatt = usefulrow['RushAtt']
+        totalrushatt = teamtotalrow['TeamTotalRushAtt']
+        rushyds = usefulrow['RushYds']
+        totalrushyds = teamtotalrow['TeamTotalRushYds']
+        rushtds = usefulrow['RushTD']
+        totalpasstds = teamtotalrow['TeamTotalPassTD']
+        totalrectds = teamtotalrow['TeamTotalRecTD']
+        totalrushtds = teamtotalrow['TeamTotalRushTD']
+
+
+        if totaltargets != 0:
+            FlexDom.at[i, 'Tgt%'] = round(targets/totaltargets * 100,1)
+        else:
+            FlexDom.at[i, 'Tgt%'] = 0
+        
+        if totalrecyds !=0:
+            FlexDom.at[i, 'RecYds%'] = round(recyds/totalrecyds * 100,1)
+        else:
+            FlexDom.at[i, 'RecYds%'] = 0
+        
+        if totalrectds != 0:
+            FlexDom.at[i, 'RecTD%'] = round(rectds/totalrectds * 100,1)
+        else:
+            FlexDom.at[i, 'RecTD%'] = 0
+
+        if totalrushatt != 0:
+            FlexDom.at[i, 'Rush%'] = round(rushatt/totalrushatt * 100,1)
+        else:
+            FlexDom.at[i, 'Rush%'] = 0
+
+        if totalrushyds != 0:
+            FlexDom.at[i, 'RushYds%'] = round(rushyds/totalrushyds * 100,1)
+        else:
+            FlexDom.at[i, 'RushYds%'] = 0
+        
+        if totalrushtds != 0:
+            FlexDom.at[i, 'RushTD%'] = round(rushtds/totalrushtds * 100,1)
+        else:
+            FlexDom.at[i, 'RushTD%'] = 0
+        
+        if totalpasstds + totalrectds + totalrushtds != 0:
+            FlexDom.at[i, 'TotalTD%'] = round(rectds/(totalpasstds + totalrectds + totalrushtds) * 100,1)
+        else:
+            FlexDom.at[i, 'TotalTD%'] = 0
+        
+        if totalrushtds != 0 and totalrushyds != 0 and totalrushatt != 0 and totaltargets != 0 and totalrecyds !=0 and totalrectds != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+            FlexDom.at[i, 'Off Focus'] = round((rushtds/totalrushtds + rushyds/totalrushyds + rushatt/totalrushatt + targets/totaltargets + recyds/totalrecyds + rectds/totalrectds + rectds/(totalpasstds + totalrectds + totalrushtds)) * 100,1)
+        else:
+            FlexDom.at[i, 'Off Focus'] = 0
+
 
 
     for i, row in WRDom.iterrows():

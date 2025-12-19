@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import subprocess
 pd.set_option('display.max_columns', None)
-from Imports import PYScripts as ps
+from Imports import PyFunc as ps
 import matplotlib.pyplot as plt
 
 listicle = ['CSVs/Week_1_NFL_2025.csv',

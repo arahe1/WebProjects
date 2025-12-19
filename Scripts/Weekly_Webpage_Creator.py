@@ -2,9 +2,7 @@ import pandas as pd
 import os
 import subprocess
 pd.set_option('display.max_columns', None)
-from Imports import PYScripts as ps
-
-from Imports import PYScripts as ps
+from Imports import PyFunc as ps
 
 listicle = ['CSVs/Week_1_NFL_2025.csv',
             'CSVs/Week_2_NFL_2025.csv',
@@ -29,17 +27,20 @@ Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs, Schedule)
-ROS = ps.ROSdataframe(Useful, TeamTotals, Week, Schedule)
-All_DataFrames = ps.rosfinaldataframes(ROS)
-All_DataFrames['Rest Of Season'] = ps.injuryremovalros(All_DataFrames['Rest Of Season'])
-df = All_DataFrames['Rest Of Season']
+SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
+SuperFlex = ps.injuryremovalweekly(SuperFlex)
+All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
+df = All_DataFrames['SuperFlex']
 
-full_path = os.path.join('CSVs', 'Rest_Of_Season.csv')
+full_path = os.path.join('CSVs', 'Useful.csv')
+Useful.to_csv(full_path, index=False)
+
+full_path = os.path.join('CSVs', 'SuperFlex.csv')
 df.to_csv(full_path, index=False)
 
-ps.roshtml(All_DataFrames)
+ps.weeklyhtml(All_DataFrames, Week)
 
-commit_msg = f"Adding data for Week {Week-1} and Producing predictions for Rest Of Season"
+commit_msg = f"Adding data and producing predictions for Week {Week}"
 
 try:
     subprocess.run(["git", "add", "."], check=True)
@@ -48,3 +49,5 @@ try:
     print("Git auto-update complete.")
 except subprocess.CalledProcessError:
     print("Git command failed (maybe no changes to commit?)")
+
+

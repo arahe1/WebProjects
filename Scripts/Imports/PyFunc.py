@@ -668,14 +668,14 @@ def weeklyhtml(alldataframes, week):
         <head>
         <title>{name} Stats</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
-        <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-        <link rel="shortcut icon" href="images/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="/WebProjects/images/favicon.svg" />
+        <link rel="shortcut icon" href="/WebProjects/images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/WebProjects/images/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="MyWebSit" />
-        <link rel="manifest" href="images/site.webmanifest" />
+        <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
 
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="/style.css">
 
 
         </head>
@@ -699,7 +699,7 @@ def weeklyhtml(alldataframes, week):
         </div>
 
 
-        <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
+        <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
 
         <h1>Week {week} {name} Predictions</h1>
 
@@ -1106,14 +1106,14 @@ def roshtml(alldataframes):
         <head>
         <title>{name} Stats</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
-        <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-        <link rel="shortcut icon" href="images/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="/WebProjects/images/favicon.svg" />
+        <link rel="shortcut icon" href="/WebProjects/images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/WebProjects/images/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="MyWebSit" />
-        <link rel="manifest" href="images/site.webmanifest" />
+        <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
 
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="/WebProjects/style.css">
 
 
         </head>
@@ -1137,7 +1137,7 @@ def roshtml(alldataframes):
         </div>
         
 
-        <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
+        <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
 
         <h1>{name} Predictions</h1>
 
@@ -1454,14 +1454,14 @@ def teampredictionshtml(finalscores, week):
         <head>
         <title> Game Predictions </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
-        <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-        <link rel="shortcut icon" href="images/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="/WebProjects/images/favicon.svg" />
+        <link rel="shortcut icon" href="/WebProjects/images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/WebProjects/images/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="MyWebSit" />
-        <link rel="manifest" href="images/site.webmanifest" />
+        <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
 
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="/WebProjects/style.css">
 
 
         </head>
@@ -1485,7 +1485,7 @@ def teampredictionshtml(finalscores, week):
         </div>
         
 
-        <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
+        <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
 
         <h1>Week {week} Predictions</h1>
 
@@ -1951,14 +1951,14 @@ def dominancehtml(alldataframes):
         <head>
         <title>{name} Stats</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png" />
-        <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-        <link rel="shortcut icon" href="images/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="/WebProjects/images/favicon.svg" />
+        <link rel="shortcut icon" href="/WebProjects/images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/WebProjects/images/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="MyWebSit" />
-        <link rel="manifest" href="images/site.webmanifest" />
+        <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
 
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="/WebProjects/style.css">
 
 
         </head>
@@ -1982,7 +1982,7 @@ def dominancehtml(alldataframes):
         </div>
         
 
-        <img src="images/Banner_Logo.png" alt="Header Image" class="header-img">
+        <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
 
         <h1>Offensive Focus</h1>
 

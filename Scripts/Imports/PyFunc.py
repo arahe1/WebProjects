@@ -682,20 +682,20 @@ def weeklyhtml(alldataframes, week):
         <body>
 
         <div class="topnav">
-        <a href="/index.html">Home</a>
+        <a href="/WebProjects/index.html">Home</a>
             <div class="dropdown">
             <button class="dropbtn active">Football
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
-                <a href="/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
-                <a href="/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="/Fitness_html/fitness.html">Fitness</a>
-        <a href="/about.html">About</a>
+        <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
+        <a href="/WebProjects/about.html">About</a>
         </div>
 
 
@@ -1120,20 +1120,20 @@ def roshtml(alldataframes):
         <body>
 
         <div class="topnav">
-        <a href="/index.html">Home</a>
+        <a href="/WebProjects/index.html">Home</a>
             <div class="dropdown">
             <button class="dropbtn active">Football
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
-                <a href="/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
-                <a href="/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="/Fitness_html/fitness.html">Fitness</a>
-        <a href="/about.html">About</a>
+        <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
+        <a href="/WebProjects/about.html">About</a>
         </div>
         
 
@@ -1468,20 +1468,20 @@ def teampredictionshtml(finalscores, week):
         <body>
 
         <div class="topnav">
-        <a href="/index.html">Home</a>
+        <a href="/WebProjects/index.html">Home</a>
             <div class="dropdown">
             <button class="dropbtn active">Football
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
-                <a href="/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
-                <a href="/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="/Fitness_html/fitness.html">Fitness</a>
-        <a href="/about.html">About</a>
+        <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
+        <a href="/WebProjects/about.html">About</a>
         </div>
         
 
@@ -1965,20 +1965,20 @@ def dominancehtml(alldataframes):
         <body>
 
         <div class="topnav">
-        <a href="/index.html">Home</a>
+        <a href="/WebProjects/index.html">Home</a>
             <div class="dropdown">
             <button class="dropbtn active">Football
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
-                <a href="/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
-                <a href="/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="/Fitness_html/fitness.html">Fitness</a>
-        <a href="/about.html">About</a>
+        <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
+        <a href="/WebProjects/about.html">About</a>
         </div>
         
 

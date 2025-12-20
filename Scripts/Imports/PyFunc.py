@@ -675,7 +675,7 @@ def weeklyhtml(alldataframes, week):
         <meta name="apple-mobile-web-app-title" content="MyWebSit" />
         <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
 
-        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/WebProjects/style.css">
 
 
         </head>

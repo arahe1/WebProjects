@@ -675,7 +675,7 @@ def weeklyhtml(alldataframes, week):
         <meta name="apple-mobile-web-app-title" content="MyWebSit" />
         <link rel="manifest" href="images/site.webmanifest" />
 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
 
 
         </head>
@@ -789,7 +789,7 @@ def weeklyhtml(alldataframes, week):
         """
 
         # Save to HTML file
-        with open(f"../WeeklyPred_html/{name}.html", "w") as f:
+        with open(f"WeeklyPred_html/{name}.html", "w") as f:
             f.write(html_script)
 
 
@@ -1113,7 +1113,7 @@ def roshtml(alldataframes):
         <meta name="apple-mobile-web-app-title" content="MyWebSit" />
         <link rel="manifest" href="images/site.webmanifest" />
 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
 
 
         </head>
@@ -1228,7 +1228,7 @@ def roshtml(alldataframes):
         """
 
         # Save to HTML file
-        with open(f"../ROS_html/{name}.html", "w") as f:
+        with open(f"ROS_html/{name}.html", "w") as f:
             f.write(html_script)
 
 
@@ -1461,7 +1461,7 @@ def teampredictionshtml(finalscores, week):
         <meta name="apple-mobile-web-app-title" content="MyWebSit" />
         <link rel="manifest" href="images/site.webmanifest" />
 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
 
 
         </head>
@@ -1567,7 +1567,7 @@ def teampredictionshtml(finalscores, week):
         """
 
     # Save to HTML file
-    with open(f"../WeeklyScores_html/Weekly Game Predictions.html", "w") as f:
+    with open(f"WeeklyScores_html/Weekly Game Predictions.html", "w") as f:
         f.write(html_script)
 
 
@@ -1958,7 +1958,7 @@ def dominancehtml(alldataframes):
         <meta name="apple-mobile-web-app-title" content="MyWebSit" />
         <link rel="manifest" href="images/site.webmanifest" />
 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
 
 
         </head>
@@ -2072,7 +2072,7 @@ def dominancehtml(alldataframes):
         """
 
         # Save to HTML file
-        with open(f"../Dominance_html/{name}.html", "w") as f:
+        with open(f"Dominance_html/{name}.html", "w") as f:
             f.write(html_script)
 
 

@@ -1,6 +1,6 @@
 import subprocess
 
-commit_msg = input("Please comment on the changes that have been made.")
+commit_msg = input("Please comment on the changes that have been made: ")
 
 try:
     subprocess.run(["git", "add", "."], check=True)

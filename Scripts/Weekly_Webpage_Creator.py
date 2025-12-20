@@ -40,14 +40,7 @@ df.to_csv(full_path, index=False)
 
 ps.weeklyhtml(All_DataFrames, Week)
 
-commit_msg = f"Adding data and producing predictions for Week {Week}"
+print("Predictions Updated")
 
-try:
-    subprocess.run(["git", "add", "."], check=True)
-    subprocess.run(["git", "commit", "-m", commit_msg], check=True)
-    subprocess.run(["git", "push"], check=True)
-    print("Git auto-update complete.")
-except subprocess.CalledProcessError:
-    print("Git command failed (maybe no changes to commit?)")
 
 

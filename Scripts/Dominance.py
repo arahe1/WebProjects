@@ -31,15 +31,7 @@ Dominance = ps.analysis(Useful,IndividualTotals)
 
 ps.dominancehtml(Dominance)
 
-commit_msg = f"Adding data and producing Dominance Tables for Week {Week}"
-
-try:
-    subprocess.run(["git", "add", "."], check=True)
-    subprocess.run(["git", "commit", "-m", commit_msg], check=True)
-    subprocess.run(["git", "push"], check=True)
-    print("Git auto-update complete.")
-except subprocess.CalledProcessError:
-    print("Git command failed (maybe no changes to commit?)")
+print("Dominance Updated")
 
 
 # for name, df in Dominance.items():

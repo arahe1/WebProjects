@@ -34,6 +34,7 @@ def importstats(csv): #imports CSV's via list and organizes them appropriately
 
     return Dataframes
 
+
 def schedulemaker(csv):
     if not isinstance(csv, str):
         raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv)}: {csv}")
@@ -57,12 +58,9 @@ def schedulemaker(csv):
     return Schedule
 
 
-Combined = pd.DataFrame()
-Numeric_Part = pd.DataFrame()
-Non_Numeric_Part = pd.DataFrame()
-Total_Stats = pd.DataFrame()
-
 def totalstatcombiner(dflist):
+    Combined = pd.DataFrame()
+    Total_Stats = pd.DataFrame()
     if not isinstance(dflist, list):
         raise TypeError("Expected a List of dataframes Files")
     
@@ -690,13 +688,13 @@ def weeklyhtml(alldataframes, week):
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="SuperFlex.html">Weekly Predictions</a>
-                <a href="Rest Of Season.html">Rest of Season Predictions</a>
-                <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="QBDom.html">Offensive Focus</a>
+                <a href="WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="fitness.html">Fitness</a>
+        <a href="Fitness_html/fitness.html">Fitness</a>
         <a href="about.html">About</a>
         </div>
 
@@ -791,7 +789,7 @@ def weeklyhtml(alldataframes, week):
         """
 
         # Save to HTML file
-        with open(f"{name}.html", "w") as f:
+        with open(f"../WeeklyPred_html/{name}.html", "w") as f:
             f.write(html_script)
 
 
@@ -1128,13 +1126,13 @@ def roshtml(alldataframes):
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="SuperFlex.html">Weekly Predictions</a>
-                <a href="Rest Of Season.html">Rest of Season Predictions</a>
-                <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="QBDom.html">Offensive Focus</a>
+                <a href="WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="fitness.html">Fitness</a>
+        <a href="Fitness_html/fitness.html">Fitness</a>
         <a href="about.html">About</a>
         </div>
         
@@ -1230,7 +1228,7 @@ def roshtml(alldataframes):
         """
 
         # Save to HTML file
-        with open(f"{name}.html", "w") as f:
+        with open(f"../ROS_html/{name}.html", "w") as f:
             f.write(html_script)
 
 
@@ -1476,13 +1474,13 @@ def teampredictionshtml(finalscores, week):
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="SuperFlex.html">Weekly Predictions</a>
-                <a href="Rest Of Season.html">Rest of Season Predictions</a>
-                <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="QBDom.html">Offensive Focus</a>
+                <a href="WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="fitness.html">Fitness</a>
+        <a href="Fitness_html/fitness.html">Fitness</a>
         <a href="about.html">About</a>
         </div>
         
@@ -1569,7 +1567,7 @@ def teampredictionshtml(finalscores, week):
         """
 
     # Save to HTML file
-    with open(f"Weekly Game Predictions.html", "w") as f:
+    with open(f"../WeeklyScores_html/Weekly Game Predictions.html", "w") as f:
         f.write(html_script)
 
 
@@ -1973,13 +1971,13 @@ def dominancehtml(alldataframes):
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="SuperFlex.html">Weekly Predictions</a>
-                <a href="Rest Of Season.html">Rest of Season Predictions</a>
-                <a href="Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="QBDom.html">Offensive Focus</a>
+                <a href="WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="fitness.html">Fitness</a>
+        <a href="Fitness_html/fitness.html">Fitness</a>
         <a href="about.html">About</a>
         </div>
         
@@ -2074,7 +2072,7 @@ def dominancehtml(alldataframes):
         """
 
         # Save to HTML file
-        with open(f"{name}.html", "w") as f:
+        with open(f"../Dominance_html/{name}.html", "w") as f:
             f.write(html_script)
 
 

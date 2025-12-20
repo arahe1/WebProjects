@@ -24,14 +24,7 @@ df.to_csv(full_path, index=False)
 
 ps.weeklyhtml(All_DataFrames, Week)
 
-commit_msg = f"Removing players either Out or on Injured Reserve for Week {Week-1}"
+print("Injuries Updated")
 
-try:
-    subprocess.run(["git", "add", "."], check=True)
-    subprocess.run(["git", "commit", "-m", commit_msg], check=True)
-    subprocess.run(["git", "push"], check=True)
-    print("Git auto-update complete.")
-except subprocess.CalledProcessError:
-    print("Git command failed (maybe no changes to commit?)")
 
 

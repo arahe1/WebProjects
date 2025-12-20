@@ -37,12 +37,4 @@ df.to_csv(full_path, index=False)
 
 ps.roshtml(All_DataFrames)
 
-commit_msg = f"Adding data for Week {Week-1} and Producing predictions for Rest Of Season"
-
-try:
-    subprocess.run(["git", "add", "."], check=True)
-    subprocess.run(["git", "commit", "-m", commit_msg], check=True)
-    subprocess.run(["git", "push"], check=True)
-    print("Git auto-update complete.")
-except subprocess.CalledProcessError:
-    print("Git command failed (maybe no changes to commit?)")
+print("ROS Updated")

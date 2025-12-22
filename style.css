@@ -192,8 +192,8 @@ a {
   border: #FFFFFF; /*white*/
   color: #FFD100; /*yellow*/
   padding: 40px;
-  display: block;
-  margin-left: 0;
+  display: flex;
+  justify-content: flex-start;
   width: 100px;
   height: 40px;
   text-align: center;

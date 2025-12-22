@@ -166,106 +166,181 @@
     <tr>
       <td></td>
       <td></td>
+      <td>class="col-a"</td>
       <td></td>
+      <td>class="col-b"</td>
       <td></td>
+      <td>class="col-c"</td>
       <td></td>
+      <td>class="col-d"</td>
       <td></td>
+      <td>class="col-e"</td>
       <td></td>
+      <td>class="col-f"</td>
       <td></td>
+      <td>class="col-g"</td>
       <td></td>
+      <td>class="col-h"</td>
       <td></td>
+      <td>class="col-i"</td>
       <td></td>
+      <td>class="col-j"</td>
       <td></td>
+      <td>class="col-k"</td>
       <td></td>
+      <td>class="col-l"</td>
       <td></td>
+      <td>class="col-m"</td>
       <td></td>
+      <td>class="col-n"</td>
       <td></td>
+      <td>class="col-o"</td>
       <td></td>
+      <td>class="col-p"</td>
       <td></td>
+      <td>class="col-q"</td>
       <td></td>
+      <td>class="col-r"</td>
       <td></td>
+      <td>class="col-s"</td>
       <td></td>
+      <td>class="col-t"</td>
       <td></td>
+      <td>class="col-u"</td>
       <td></td>
+      <td>class="col-v"</td>
       <td></td>
+      <td>class="col-w"</td>
       <td></td>
+      <td>class="col-x"</td>
       <td></td>
+      <td>class="col-y"</td>
       <td></td>
+      <td>class="col-z"</td>
       <td></td>
+      <td>class="col-aa"</td>
       <td></td>
+      <td>class="col-ab"</td>
       <td></td>
+      <td>class="col-ac"</td>
       <td></td>
+      <td>class="col-ad"</td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>class="col-ae"</td>
     </tr>
 
     <tr>
       <td>Total</td>
       <td></td>
+      <td>class="sum-a"</td>
       <td></td>
+      <td>class="sum-b"</td>
       <td></td>
+      <td>class="sum-c"</td>
       <td></td>
+      <td>class="sum-d"</td>
       <td></td>
+      <td>class="sum-e"</td>
       <td></td>
+      <td>class="sum-f"</td>
       <td></td>
+      <td>class="sum-g"</td>
       <td></td>
+      <td>class="sum-h"</td>
       <td></td>
+      <td>class="sum-i"</td>
       <td></td>
+      <td>class="sum-j"</td>
       <td></td>
+      <td>class="sum-k"</td>
       <td></td>
+      <td>class="sum-l"</td>
       <td></td>
+      <td>class="sum-m"</td>
       <td></td>
+      <td>class="sum-n"</td>
       <td></td>
+      <td>class="sum-o"</td>
       <td></td>
+      <td>class="sum-p"</td>
       <td></td>
+      <td>class="sum-q"</td>
       <td></td>
+      <td>class="sum-r"</td>
       <td></td>
+      <td>class="sum-s"</td>
       <td></td>
+      <td>class="sum-t"</td>
       <td></td>
+      <td>class="sum-u"</td>
       <td></td>
+      <td>class="sum-v"</td>
       <td></td>
+      <td>class="sum-w"</td>
       <td></td>
+      <td>class="sum-x"</td>
       <td></td>
+      <td>class="sum-y"</td>
       <td></td>
+      <td>class="sum-z"</td>
       <td></td>
+      <td>class="sum-aa"</td>
       <td></td>
+      <td>class="sum-ab"</td>
       <td></td>
+      <td>class="sum-ac"</td>
       <td></td>
+      <td>class="sum-ad"</td>
       <td></td>
+      <td>class="sum-ae"</td>
     </tr>
   <tbody>
 </table>
+
+
+<script>
+function sumColumn(numClass, sumClass) {
+  let total = 0;
+
+  document.querySelectorAll(`.${numClass}`).forEach(cell => {
+    total += Number(cell.textContent);
+  });
+
+  document.querySelector(`.${sumClass}`).textContent = total;
+}
+
+sumColumn("col-a", "sum-a");
+sumColumn("col-b", "sum-b");
+sumColumn("col-c", "sum-c");
+sumColumn("col-a", "sum-d");
+sumColumn("col-b", "sum-e");
+sumColumn("col-c", "sum-f");
+sumColumn("col-a", "sum-g");
+sumColumn("col-b", "sum-h");
+sumColumn("col-c", "sum-i");
+sumColumn("col-a", "sum-j");
+sumColumn("col-b", "sum-k");
+sumColumn("col-c", "sum-l");
+sumColumn("col-a", "sum-m");
+sumColumn("col-b", "sum-n");
+sumColumn("col-c", "sum-o");
+sumColumn("col-a", "sum-p");
+sumColumn("col-b", "sum-q");
+sumColumn("col-c", "sum-r");
+sumColumn("col-a", "sum-s");
+sumColumn("col-b", "sum-t");
+sumColumn("col-c", "sum-u");
+sumColumn("col-a", "sum-v");
+sumColumn("col-b", "sum-w");
+sumColumn("col-c", "sum-x");
+sumColumn("col-a", "sum-y");
+sumColumn("col-b", "sum-z");
+sumColumn("col-c", "sum-aa");
+sumColumn("col-a", "sum-ab");
+sumColumn("col-b", "sum-ac");
+sumColumn("col-c", "sum-ad");
+sumColumn("col-a", "sum-ae");
+</script>
 
 
 

@@ -20,12 +20,11 @@ h1 {
   text-align: center;
   text-decoration: none;
   font-size: 17px;
-  margin: 8px 4px;
   cursor: pointer;
   float: left;
   clear: left;
-  margin-top: 10px;
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 /* Add a white background color to the top navigation */

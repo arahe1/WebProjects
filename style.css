@@ -364,14 +364,12 @@ tbody td:nth-child(2){
     font-size: 12px;
     padding:  8px 10px;
     white-space: nowrap;
-    overflow-x: auto;
   }
 
   .dropdown .dropbtn {
     font-size: 12px;
     padding:  8px 10px;
     white-space: nowrap;
-    overflow-x: auto;
   }
 
   thead th {

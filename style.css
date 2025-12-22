@@ -74,6 +74,12 @@ h1 {
   color: #FFD100; /*yellow*/
 }
 
+/* Change the color of active links on hover */
+.topnav a.active:hover {
+  background-color: #D8D3CC; /*gray*/
+  color: #000000; /*black*/
+}
+
 /* Dropdown container - needed to position the dropdown content */
 .dropdown {
   float: left;
@@ -96,6 +102,10 @@ h1 {
 .topnav .dropbtn.active {
   background-color: #003594; /*blue*/
   color: #FFD100; /*yellow*/
+}
+
+.topnav .dropbtn.active:hover {
+  color: #000000; /*black*/
 }
 
 /* Style the dropdown content (hidden by default) */

@@ -192,7 +192,8 @@ a {
   border: #FFFFFF; /*white*/
   color: #FFD100; /*yellow*/
   padding: 40px;
-  left: 0;
+  display: block;
+  margin-left: 0;
   width: 100px;
   height: 40px;
   text-align: center;

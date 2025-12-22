@@ -256,8 +256,7 @@ a {
   font-size: 17px;
   border: none;
   outline: none;
-  /*color: white;*/
-  color: #000000; /*black*/
+  color: white;
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;
@@ -268,6 +267,10 @@ a {
 .topnav .dropbtn.active {
   background-color: #003594; /*blue*/
   color: #FFD100; /*yellow*/
+}
+
+.topnav .dropbtn.active:hover {
+  color: #000000; /*black*/
 }
 
 /* Style the dropdown content (hidden by default) */

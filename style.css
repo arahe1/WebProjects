@@ -22,9 +22,10 @@ h1 {
   font-size: 17px;
   margin: 8px 4px;
   cursor: pointer;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  margin-right: 10px;
+  float: left;
+  clear: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Add a white background color to the top navigation */

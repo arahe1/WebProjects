@@ -354,7 +354,9 @@ tbody td:nth-child(2){
   }
   
   .topnav {
+    width: 100%;
     overflow-x: auto;
+    white-space: nowrap;
   }
 
   .topnav a {

@@ -245,6 +245,10 @@ a {
   color: #FFD100; /*yellow*/
 }
 
+.topnav a.active:hover {
+  color: #000000; /*black*/
+}
+
 /* Dropdown container - needed to position the dropdown content */
 .dropdown {
   float: left;

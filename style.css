@@ -1,6 +1,5 @@
 /* Light mode (default) */
 body {
-  text-align: center;
   background-color: #ffffff; /*white*/
   color: #000000; /*black*/
   font-family: Arial, sans-serif;
@@ -8,17 +7,19 @@ body {
   padding: 0;
 }
 
+h1 {
+  text-align: center;
+}
+
 /* Button Styles */
 .button {
   background-color: #003594;
   border: #FFFFFF; /*white*/
   color: #FFD100; /*yellow*/
-  padding: 40px;
-  margin-left: 0;
+  padding: 14px 16px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 32px;
+  font-size: 17px;
   margin: 8px 4px;
   cursor: pointer;
 }
@@ -191,16 +192,6 @@ a {
   background-color: #003594; /*blue*/
   border: #FFFFFF; /*white*/
   color: #FFD100; /*yellow*/
-  padding: 14px 16px;
-  display: flex;
-  justify-content: flex-start;
-  display: inline-block;
-  margin-left: 0;
-  text-align: center;
-  text-decoration: none;
-  font-size: 17px;
-  margin: 8px 4px;
-  cursor: pointer;
 }
 
 /* Add a black background color to the top navigation */

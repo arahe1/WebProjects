@@ -27,6 +27,22 @@ h1 {
   margin-right: 10px;
 }
 
+/* Style the links inside the button */
+.button a {
+  float: left;
+  color: #000000; /*black*/
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.button a:hover {
+  background-color: #D8D3CC; /*gray*/
+  color: #000000; /*black*/
+}
+
 /* Add a white background color to the top navigation */
 .topnav {
   background-color: #FFFFFF; /*white*/

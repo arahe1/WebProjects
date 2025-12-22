@@ -78,11 +78,11 @@
     <tr>
       <td>January</td>
       <td>31</td>
-      <td contenteditable="true"></td>
-      <td contenteditable="true">5</td>
-      <td></td> <!-- Should be calculated from the BMR+ and lbs to Lose-->
-      <td></td> <!-- Should be calclated from the totals of this month's page -->
-      <td></td> <!-- Calculated from the difference between allowance and actual -->
+      <td contenteditable="true" class="bmr"></td>
+      <td contenteditable="true" class="loss">5</td>
+      <td class="daily"></td> <!-- Should be calculated from the BMR+ and lbs to Lose-->
+      <td class="actual"></td> <!-- Should be calclated from the totals of this month's page -->
+      <td class="projection"></td> <!-- Calculated from the difference between allowance and actual -->
     </tr>
 
         <tr>
@@ -187,16 +187,27 @@
 
         <tr>
       <td>December</td>
-      <td>31</td>
-      <td contenteditable="true"></td>
-      <td contenteditable="true">5</td>
-      <td></td> <!-- Should be calculated from the BMR+ and lbs to Lose-->
-      <td></td> <!-- Should be calclated from the totals of this month's page -->
-      <td></td> <!-- Calculated from the difference between allowance and actual -->
+      <td oninput="calculateRow(this)">31</td>
+      <td contenteditable="true" class="bmr" oninput="calculateRow(this)"></td>
+      <td contenteditable="true" class="loss" oninput="calculateRow(this)">5</td>
+      <td class="daily"></td> <!-- Should be calculated from the BMR+ and lbs to Lose-->
+      <td class="actual"></td> <!-- Should be calclated from the totals of this month's page -->
+      <td class="projection"></td> <!-- Calculated from the difference between allowance and actual -->
     </tr>
 
 
 </script>
+function calculateRow(cell) {
+  const row = cell.closest("tr");
+
+  const bmr  = Number(row.querySelector(".bmr").textContent);
+  const loss = Number(row.querySelector(".loss").textContent);
+  const days = Number(row.querySelector(".days").textContent);
+
+  const result = ((bmr * 1.2) - ((loss * 3500)/days));
+
+  row.querySelector(".daily").textContent = result;
+}
 </script>
 
 

@@ -305,6 +305,12 @@ function sumColumn(numClass, sumClass) {
   document.querySelector(`.${sumClass}`).textContent = total;
 }
 
+
+document.querySelectorAll(`.${numClass}`).forEach(cell => {
+  cell.addEventListener("input", sumColumn); // triggers when typing
+  cell.addEventListener("keyup", sumColumn); // for some browsers
+});
+
 sumColumn("col-a", "sum-a");
 sumColumn("col-b", "sum-b");
 sumColumn("col-c", "sum-c");

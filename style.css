@@ -99,6 +99,14 @@ h1 {
   cursor: pointer;
 }
 
+.dropdown:hover .dropbtn {
+  color: #000000; /*black*/
+}
+
+.dropdown:hover .dropbtn.active{
+  color: #000000; /*black*/
+}
+
 .topnav .dropbtn.active {
   background-color: #003594; /*blue*/
   color: #FFD100; /*yellow*/

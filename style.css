@@ -14,6 +14,7 @@ body {
   border: #FFFFFF; /*white*/
   color: #FFD100; /*yellow*/
   padding: 40px;
+  margin-left: 0;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -132,7 +133,7 @@ body {
   max-width: 100%;
   display: block;
   margin: 0 auto;
-  //object-fit: cover;
+  /*object-fit: cover;*/
 }
 
 table {
@@ -191,6 +192,7 @@ a {
   border: #FFFFFF; /*white*/
   color: #FFD100; /*yellow*/
   padding: 40px;
+  margin-left: 0;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -355,18 +357,21 @@ tbody td:nth-child(2){
     font-size: 12px;
     padding:  8px 10px;
     white-space: nowrap;
+    overflow-x: auto;
   }
 
   .topnav a.active {
     font-size: 12px;
     padding:  8px 10px;
     white-space: nowrap;
+    overflow-x: auto;
   }
 
   .dropdown .dropbtn {
     font-size: 12px;
     padding:  8px 10px;
     white-space: nowrap;
+    overflow-x: auto;
   }
 
   thead th {

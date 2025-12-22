@@ -353,11 +353,14 @@ tbody td:nth-child(2){
     height: auto;
   }
   
+  .topnav {
+    overflow-x: auto;
+  }
+
   .topnav a {
     font-size: 12px;
     padding:  8px 10px;
     white-space: nowrap;
-    overflow-x: auto;
   }
 
   .topnav a.active {

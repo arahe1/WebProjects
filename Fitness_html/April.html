@@ -306,9 +306,12 @@ function sumColumn(numClass, sumClass) {
 }
 
 
-document.querySelectorAll(`.${numClass}`).forEach(cell => {
-  cell.addEventListener("input", sumColumn); // triggers when typing
-  cell.addEventListener("keyup", sumColumn); // for some browsers
+document.querySelectorAll("td[class^='col-']").forEach(cell => {
+  const colClass = cell.className; // e.g., "col-a", "col-b", etc.
+  const sumClass = colClass.replace("col-", "sum-"); // match your sum cell class
+
+  cell.addEventListener("input", () => sumColumn(colClass, sumClass));
+  cell.addEventListener("keyup", () => sumColumn(colClass, sumClass));
 });
 
 sumColumn("col-a", "sum-a");

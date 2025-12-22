@@ -383,6 +383,11 @@ tbody td:nth-child(2){
     font-size: 24px;
   }
 
+  .button {
+    font-size: 12px;
+    padding:  8px 10px;
+  }
+
   .header-img {
     width: 200px;
     height: auto;

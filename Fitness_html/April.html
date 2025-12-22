@@ -162,68 +162,68 @@
   </thead>
   <tbody>
     <tr>
-      <td></td>
-      <td class="col-a"><input type="number"></td>
-      <td></td>
-      <td class="col-b"><input type="number"></td>
-      <td></td>
-      <td class="col-c"><input type="number"></td>
-      <td></td>
-      <td class="col-d"><input type="number"></td>
-      <td></td>
-      <td class="col-e"><input type="number"></td>
-      <td></td>
-      <td class="col-f"><input type="number"></td>
-      <td></td>
-      <td class="col-g"><input type="number"></td>
-      <td></td>
-      <td class="col-h"><input type="number"></td>
-      <td></td>
-      <td class="col-i"><input type="number"></td>
-      <td></td>
-      <td class="col-j"><input type="number"></td>
-      <td></td>
-      <td class="col-k"><input type="number"></td>
-      <td></td>
-      <td class="col-l"><input type="number"></td>
-      <td></td>
-      <td class="col-m"><input type="number"></td>
-      <td></td>
-      <td class="col-n"><input type="number"></td>
-      <td></td>
-      <td class="col-o"><input type="number"></td>
-      <td></td>
-      <td class="col-p"><input type="number"></td>
-      <td></td>
-      <td class="col-q"><input type="number"></td>
-      <td></td>
-      <td class="col-r"><input type="number"></td>
-      <td></td>
-      <td class="col-s"><input type="number"></td>
-      <td></td>
-      <td class="col-t"><input type="number"></td>
-      <td></td>
-      <td class="col-u"><input type="number"></td>
-      <td></td>
-      <td class="col-v"><input type="number"></td>
-      <td></td>
-      <td class="col-w"><input type="number"></td>
-      <td></td>
-      <td class="col-x"><input type="number"></td>
-      <td></td>
-      <td class="col-y"><input type="number"></td>
-      <td></td>
-      <td class="col-z"><input type="number"></td>
-      <td></td>
-      <td class="col-aa"><input type="number"></td>
-      <td></td>
-      <td class="col-ab"><input type="number"></td>
-      <td></td>
-      <td class="col-ac"><input type="number"></td>
-      <td></td>
-      <td class="col-ad"><input type="number"></td>
-      <td></td>
-      <td class="col-ae"><input type="number"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-a"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-b"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-c"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-d"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-e"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-f"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-g"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-h"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-i"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-j"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-k"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-l"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-m"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-n"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-o"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-p"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-q"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-r"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-s"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-t"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-u"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-v"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-w"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-x"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-y"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-z"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-aa"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-ab"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-ac"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-ad"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true" class="col-ae"></td>
     </tr>
 
     <tr>
@@ -299,10 +299,10 @@ function sumColumn(numClass, sumClass) {
   let total = 0;
 
   document.querySelectorAll(`.${numClass}`).forEach(cell => {
-    total += Number(cell.value);
+    total += Number(cell.textContent);
   });
 
-  document.querySelector(`.${sumClass}`).value = total;
+  document.querySelector(`.${sumClass}`).textContent = total;
 }
 
 sumColumn("col-a", "sum-a");

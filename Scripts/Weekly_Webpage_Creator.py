@@ -18,7 +18,8 @@ listicle = ['CSVs/Week_1_NFL_2025.csv',
             'CSVs/Week_12_NFL_2025.csv',
             'CSVs/Week_13_NFL_2025.csv',
             'CSVs/Week_14_NFL_2025.csv',
-            'CSVs/Week_15_NFL_2025.csv']
+            'CSVs/Week_15_NFL_2025.csv',
+            'CSVs/Week_16_NFL_2025.csv']
 
 DFs = ps.importstats(listicle)
 Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')

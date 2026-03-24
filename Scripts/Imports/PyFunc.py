@@ -2198,7 +2198,7 @@ def seasonpredictions(csv1, csv2, csv3, csv4):
     #future['is_in_df2'] = future['Player'].isin(df2['Player'])
     #future['is_in_df1'] = future['Player'].isin(df1['Player'])
 
-    num_sim = 10
+    num_sim = 1000
 
     weights = [np.random.uniform(0.6, 0.8, num_sim), np.random.uniform(0.4, 0.5, num_sim), np.random.uniform(0,0.2, num_sim)]
     weights2 = [np.random.uniform(0.7, 0.9, num_sim), np.random.uniform(0.1, 0.3, num_sim)]
@@ -2514,7 +2514,7 @@ def seasonpredictions(csv1, csv2, csv3, csv4):
 
     future = future.assign(Position=future['Pos'].apply(lambda x: ', '.join(p.split('-')[0] for p in x.split())))[list(future.columns[:2]) + ['Position'] + list(future.columns[2:])]
 
-
+    future = future.drop('Pos', axis=1) 
 
     return future
 

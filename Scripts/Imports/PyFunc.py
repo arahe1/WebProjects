@@ -2512,6 +2512,9 @@ def seasonpredictions(csv1, csv2, csv3, csv4):
     future = future.drop('rOBA', axis=1) 
     future[future.select_dtypes('number').columns] = future.select_dtypes('number').fillna(0)
 
+    future = future.assign(Position=future['Pos'].apply(lambda x: ', '.join(p.split('-')[0] for p in x.split())))[list(future.columns[:2]) + ['Position'] + list(future.columns[2:])]
+
+
 
     return future
 

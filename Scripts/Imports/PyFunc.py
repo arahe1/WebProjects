@@ -2228,7 +2228,8 @@ def seasonpredictions(csv1, csv2, csv3, csv4):
 
     #duplicates = merged_df['PlayerID'][merged_df['PlayerID'].duplicated(keep=False)]
     #print(duplicates)
-    merged_df = merged_df.fillna(0)
+    #merged_df = merged_df.fillna(0)
+    merged_df[merged_df.select_dtypes('number').columns] = merged_df.select_dtypes('number').fillna(0)
     merged_df = merged_df.drop_duplicates(subset='PlayerID')
     merged_df = merged_df.reset_index(drop=True)
 

@@ -2555,6 +2555,7 @@ def preseasonmlbhtml(future):
 
         <div class="topnav">
         <input type="text" id="searchBar" placeholder="Search...">
+        </div>
 
 
 

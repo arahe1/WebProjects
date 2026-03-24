@@ -1485,6 +1485,7 @@ def teampredictionshtml(finalscores, week):
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
+        <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>
         </div>

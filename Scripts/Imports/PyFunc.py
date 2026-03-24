@@ -2194,11 +2194,12 @@ def seasonpredictions(csv1, csv2, csv3, csv4):
     # Now `merged_df` has all the columns merged and renamed appropriately
 
 
-    future['is_in_df3'] = future['Player'].isin(df3['Player'])
-    future['is_in_df2'] = future['Player'].isin(df2['Player'])
-    future['is_in_df1'] = future['Player'].isin(df1['Player'])
+    #future['is_in_df3'] = future['Player'].isin(df3['Player'])
+    #future['is_in_df2'] = future['Player'].isin(df2['Player'])
+    #future['is_in_df1'] = future['Player'].isin(df1['Player'])
 
     num_sim = 10
+
     weights = [np.random.uniform(0.6, 0.8, num_sim), np.random.uniform(0.4, 0.5, num_sim), np.random.uniform(0,0.2, num_sim)]
     weights2 = [np.random.uniform(0.7, 0.9, num_sim), np.random.uniform(0.1, 0.3, num_sim)]
     weights1 = [np.random.uniform(0.9, 1.1, num_sim)]
@@ -2507,6 +2508,10 @@ def seasonpredictions(csv1, csv2, csv3, csv4):
     future['Rank'] = range(1, len(future) + 1)
     coles = ['Rank'] + [col for col in future.columns if col != 'Rank']
     future = future[coles]
+    future = future.drop('PlayerID', axis=1) 
+    future = future.drop('rOBA', axis=1) 
+    future[future.select_dtypes('number').columns] = future.select_dtypes('number').fillna(0)
+
 
     return future
 

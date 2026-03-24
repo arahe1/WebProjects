@@ -2515,6 +2515,7 @@ def preseasonmlbhtml(future):
         <!DOCTYPE html>
         <html>
         <head>
+        <meta charset="UTF-8">
         <title> Preseason Predictions </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />

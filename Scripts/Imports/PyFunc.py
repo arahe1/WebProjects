@@ -669,6 +669,7 @@ def weeklyhtml(alldataframes, week):
         <!DOCTYPE html>
         <html>
         <head>
+        <meta charset="UTF-8">
         <title>{name} Stats</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
@@ -793,7 +794,7 @@ def weeklyhtml(alldataframes, week):
         """
 
         # Save to HTML file
-        with open(f"WeeklyPred_html/{name}.html", "w") as f:
+        with open(f"WeeklyPred_html/{name}.html", "w", encoding="utf-8") as f:
             f.write(html_script)
 
 
@@ -1108,6 +1109,7 @@ def roshtml(alldataframes):
         <!DOCTYPE html>
         <html>
         <head>
+        <meta charset="UTF-8">
         <title>{name} Stats</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
@@ -1233,7 +1235,7 @@ def roshtml(alldataframes):
         """
 
         # Save to HTML file
-        with open(f"ROS_html/{name}.html", "w") as f:
+        with open(f"ROS_html/{name}.html", "w", encoding="utf-8") as f:
             f.write(html_script)
 
 
@@ -1457,6 +1459,7 @@ def teampredictionshtml(finalscores, week):
         <!DOCTYPE html>
         <html>
         <head>
+        <meta charset="UTF-8">
         <title> Game Predictions </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
@@ -1573,7 +1576,7 @@ def teampredictionshtml(finalscores, week):
         """
 
     # Save to HTML file
-    with open(f"WeeklyScores_html/Weekly Game Predictions.html", "w") as f:
+    with open(f"WeeklyScores_html/Weekly Game Predictions.html", "w", encoding="utf-8") as f:
         f.write(html_script)
 
 
@@ -1955,6 +1958,7 @@ def dominancehtml(alldataframes):
         <!DOCTYPE html>
         <html>
         <head>
+        <meta charset="UTF-8">
         <title>{name} Stats</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
@@ -2079,7 +2083,7 @@ def dominancehtml(alldataframes):
         """
 
         # Save to HTML file
-        with open(f"Dominance_html/{name}.html", "w") as f:
+        with open(f"Dominance_html/{name}.html", "w", encoding="utf-8") as f:
             f.write(html_script)
 
 
@@ -2629,7 +2633,7 @@ def preseasonmlbhtml(future):
         """
 
         # Save to HTML file
-        with open(f"PreseasonMLBPredictions.html", "w") as f:
+        with open(f"PreseasonMLBPredictions.html", "w", encoding="utf-8") as f:
             f.write(html_script)
 
 

@@ -4,7 +4,10 @@ from collections import defaultdict
 import numpy as np
 import requests
 from bs4 import BeautifulSoup
+import unicodedata
 
+
+#NFL Scripts
 
 def importstats(csv): #imports CSV's via list and organizes them appropriately
     Dataframes=[]
@@ -694,6 +697,7 @@ def weeklyhtml(alldataframes, week):
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
+        <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>
         </div>
@@ -1132,6 +1136,7 @@ def roshtml(alldataframes):
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
+        <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>
         </div>
@@ -1977,6 +1982,7 @@ def dominancehtml(alldataframes):
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
+        <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>
         </div>
@@ -2076,8 +2082,548 @@ def dominancehtml(alldataframes):
             f.write(html_script)
 
 
+#MLB Scripts
+
+def seasonpredictions(csv1, csv2, csv3, csv4):
+
+    if not isinstance(csv1, str):
+        raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv1)}: {csv1}")
+    if not csv1.lower().endswith('.csv'):
+        raise ValueError(f"File is not a CSV file: {csv1}")
+    if not os.path.exists(csv1):
+        raise ValueError(f"File not found: {csv1}")
+
+    if not isinstance(csv2, str):
+        raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv2)}: {csv2}")
+    if not csv2.lower().endswith('.csv'):
+        raise ValueError(f"File is not a CSV file: {csv2}")
+    if not os.path.exists(csv2):
+        raise ValueError(f"File not found: {csv2}")
+
+    if not isinstance(csv3, str):
+        raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv3)}: {csv3}")
+    if not csv3.lower().endswith('.csv'):
+        raise ValueError(f"File is not a CSV file: {csv3}")
+    if not os.path.exists(csv3):
+        raise ValueError(f"File not found: {csv3}")
+
+    if not isinstance(csv4, str):
+        raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv4)}: {csv4}")
+    if not csv4.lower().endswith('.csv'):
+        raise ValueError(f"File is not a CSV file: {csv4}")
+    if not os.path.exists(csv4):
+        raise ValueError(f"File not found: {csv4}")
+
+    df1 = pd.read_csv(csv1)
+    df1["Player"] = df1["Player"].str.replace(r"[\*#]+$", "", regex=True).str.strip()
+    df1['Player'] = df1['Player'].apply(lambda x: "".join(c for c in unicodedata.normalize("NFKC", str(x)) if c not in "*#\u200B\u200C\u200D\uFEFF"))
+    df2 = pd.read_csv(csv2)
+    df2["Player"] = df2["Player"].str.replace(r"[\*#]+$", "", regex=True).str.strip()
+    df2['Player'] = df2['Player'].apply(lambda x: "".join(c for c in unicodedata.normalize("NFKC", str(x)) if c not in "*#\u200B\u200C\u200D\uFEFF"))
+    df3 = pd.read_csv(csv3)
+    df3["Player"] = df3["Player"].str.replace(r"[\*#]+$", "", regex=True).str.strip()
+    df3['Player'] = df3['Player'].apply(lambda x: "".join(c for c in unicodedata.normalize("NFKC", str(x)) if c not in "*#\u200B\u200C\u200D\uFEFF"))
+    df4 = pd.read_csv(csv4)
+    df4["Name"] = df4["Name"].str.replace(r"[\*#]+$", "", regex=True).str.strip()
+    df4['Name'] = df4['Name'].apply(lambda x: "".join(c for c in unicodedata.normalize("NFKC", str(x)) if c not in "*#\u200B\u200C\u200D\uFEFF"))
+
+    #row1 = df1[df1['Player'] == 'CJ Abrams']
+    #row2 = df2[df2['Player'] == 'CJ Abrams']
+    #row3 = df3[df3['Player'] == 'CJ Abrams']
+    #row4 = df4[df4['Name'] == 'CJ Abrams']
+
+    #print(row1)
+    #print(row2)
+    #print(row3)
+    #print(row4)
+
+    future = pd.DataFrame(columns=df3.columns)
+    future['Player'] = df4['Name']
+    future['Age'] = df4['Age']
+    future['Team'] = df4['Tm']
+    future['Pos'] = df4['Pos Summary']
+    future = future.drop('Rk', axis=1) 
+    future = future.drop('Lg', axis=1) 
+    future = future.drop('WAR', axis=1) 
+    future = future.drop('Awards', axis=1) 
+    future = future.drop('Player-additional', axis=1) 
+
+
+    future['Player'] = future['Player'].astype(str)
+    df1['Player'] = df1['Player'].astype(str)
+    df2['Player'] = df2['Player'].astype(str)
+    df3['Player'] = df3['Player'].astype(str)
+
+    future['PlayerID'] = future['Player'] + "_" + future['Team']
+    df1['PlayerID'] = df1['Player'] + "_" + df1['Team']
+    df2['PlayerID'] = df2['Player'] + "_" + df2['Team']
+    df3['PlayerID'] = df2['Player'] + "_" + df3['Team']
+
+    future['PlayerID'] = future['PlayerID'].astype(str)
+    df1['PlayerID'] = df1['PlayerID'].astype(str)
+    df2['PlayerID'] = df2['PlayerID'].astype(str)
+    df3['PlayerID'] = df3['PlayerID'].astype(str)
+
+
+    def gaussian_pdf(age):
+        return np.exp(-0.5 * ((age - 28)/5)**2)
+
+    cols = ['G', 'PA', 'AB', 'R', 'H', '2B', '3B', 'HR', 'RBI', 'SB', 'CS', 'BB', 'SO', 'OPS+', 'Rbat+', 'TB', 'GIDP', 'HBP', 'SH', 'SF', 'IBB']
+
+    # Merge future with df1, df2, df3
+    merged_df = future.copy()
+
+    # List of dataframes to merge with suffixes
+    dfs = [(df1, '_df1'), (df2, '_df2'), (df3, '_df3')]
+
+    # Merge each dataframe
+    for df, suffix in dfs:
+        merged_df = pd.merge(merged_df, df, on='Player', how='left', suffixes=('', suffix))
+
+    # Rename the columns for the specified ones
+    for col in cols:
+        for suffix in ['_df1', '_df2', '_df3']:
+            if f'{col}{suffix}' in merged_df.columns:
+                merged_df.rename(columns={f'{col}{suffix}': f'{col}{suffix}'}, inplace=True)
+
+    # Now `merged_df` has all the columns merged and renamed appropriately
+
+
+    future['is_in_df3'] = future['Player'].isin(df3['Player'])
+    future['is_in_df2'] = future['Player'].isin(df2['Player'])
+    future['is_in_df1'] = future['Player'].isin(df1['Player'])
+
+    num_sim = 10
+    weights = [np.random.uniform(0.6, 0.8, num_sim), np.random.uniform(0.4, 0.5, num_sim), np.random.uniform(0,0.2, num_sim)]
+    weights2 = [np.random.uniform(0.7, 0.9, num_sim), np.random.uniform(0.1, 0.3, num_sim)]
+    weights1 = [np.random.uniform(0.9, 1.1, num_sim)]
+
+    predictedgames = []
+    predictedPA = []
+    predictedAB = []
+    predictedR = []
+    predictedH = []
+    predictedDub = []
+    predictedTrip = []
+    predictedHR = []
+    predictedRBI = []
+    predictedSB = []
+    predictedCS = []
+    predictedBB = []
+    predictedSO = []
+    predictedOPSplus = []
+    predictedRbat = []
+    predictedTB = []
+    predictedGIDP = []
+    predictedHBP = []
+    predictedSH = []
+    predictedSF = []
+    predictedIBB = []
+
+
+    #duplicates = merged_df['PlayerID'][merged_df['PlayerID'].duplicated(keep=False)]
+    #print(duplicates)
+    merged_df = merged_df.fillna(0)
+    merged_df = merged_df.drop_duplicates(subset='PlayerID')
+    merged_df = merged_df.reset_index(drop=True)
+
+    #print(merged_df.head(5))
+
+    for i, row in merged_df.iterrows():
+        player = row['Player']  # Get the player name
+
+        in_df1 = df1['Player'].isin([player]).any()
+        in_df2 = df2['Player'].isin([player]).any()
+        in_df3 = df3['Player'].isin([player]).any()
+
+
+        if in_df1 and in_df2 and in_df3:
+            games = gaussian_pdf(row['Age']) * (weights[0]*row['G_df3'] + weights[1]*row['G_df2'] + weights[2]*row['G_df1'])
+            PA = gaussian_pdf(row['Age']) * (weights[0]*row['PA_df3'] + weights[1]*row['PA_df2'] + weights[2]*row['PA_df1'])
+            AB = gaussian_pdf(row['Age']) * (weights[0]*row['AB_df3'] + weights[1]*row['AB_df2'] + weights[2]*row['AB_df1'])
+            R = gaussian_pdf(row['Age']) * (weights[0]*row['R_df3'] + weights[1]*row['R_df2'] + weights[2]*row['R_df1'])
+            H = gaussian_pdf(row['Age']) * (weights[0]*row['H_df3'] + weights[1]*row['H_df2'] + weights[2]*row['H_df1'])
+            Dub = gaussian_pdf(row['Age']) * (weights[0]*row['2B_df3'] + weights[1]*row['2B_df2'] + weights[2]*row['2B_df1'])
+            Trip = gaussian_pdf(row['Age']) * (weights[0]*row['3B_df3'] + weights[1]*row['3B_df2'] + weights[2]*row['3B_df1'])
+            HR = gaussian_pdf(row['Age']) * (weights[0]*row['HR_df3'] + weights[1]*row['HR_df2'] + weights[2]*row['HR_df1'])
+            RBI = gaussian_pdf(row['Age']) * (weights[0]*row['RBI_df3'] + weights[1]*row['RBI_df2'] + weights[2]*row['RBI_df1'])
+            SB = gaussian_pdf(row['Age']) * (weights[0]*row['SB_df3'] + weights[1]*row['SB_df2'] + weights[2]*row['SB_df1'])
+            CS = gaussian_pdf(row['Age']) * (weights[0]*row['CS_df3'] + weights[1]*row['CS_df2'] + weights[2]*row['CS_df1'])
+            BB = gaussian_pdf(row['Age']) * (weights[0]*row['BB_df3'] + weights[1]*row['BB_df2'] + weights[2]*row['BB_df1'])
+            SO = gaussian_pdf(row['Age']) * (weights[0]*row['SO_df3'] + weights[1]*row['SO_df2'] + weights[2]*row['SO_df1'])
+            OPSplus = gaussian_pdf(row['Age']) * (weights[0]*row['OPS+_df3'] + weights[1]*row['OPS+_df2'] + weights[2]*row['OPS+_df1'])
+            Rbat = gaussian_pdf(row['Age']) * (weights[0]*row['Rbat+_df3'] + weights[1]*row['Rbat+_df2'] + weights[2]*row['Rbat+_df1'])
+            TB = gaussian_pdf(row['Age']) * (weights[0]*row['TB_df3'] + weights[1]*row['TB_df2'] + weights[2]*row['TB_df1'])
+            GIDP = gaussian_pdf(row['Age']) * (weights[0]*row['GIDP_df3'] + weights[1]*row['GIDP_df2'] + weights[2]*row['GIDP_df1'])
+            HBP = gaussian_pdf(row['Age']) * (weights[0]*row['HBP_df3'] + weights[1]*row['HBP_df2'] + weights[2]*row['HBP_df1'])
+            SH = gaussian_pdf(row['Age']) * (weights[0]*row['SH_df3'] + weights[1]*row['SH_df2'] + weights[2]*row['SH_df1'])
+            SF = gaussian_pdf(row['Age']) * (weights[0]*row['SF_df3'] + weights[1]*row['SF_df2'] + weights[2]*row['SF_df1'])
+            IBB = gaussian_pdf(row['Age']) * (weights[0]*row['IBB_df3'] + weights[1]*row['IBB_df2'] + weights[2]*row['IBB_df1'])
+        elif in_df3 and in_df2:
+            games = gaussian_pdf(row['Age']) * (weights2[0]*row['G_df3'] + weights2[1]*row['G_df2'])
+            PA = gaussian_pdf(row['Age']) * (weights2[0]*row['PA_df3'] + weights2[1]*row['PA_df2'])
+            AB = gaussian_pdf(row['Age']) * (weights2[0]*row['AB_df3'] + weights2[1]*row['AB_df2'])
+            R = gaussian_pdf(row['Age']) * (weights2[0]*row['R_df3'] + weights2[1]*row['R_df2'])
+            H = gaussian_pdf(row['Age']) * (weights2[0]*row['H_df3'] + weights2[1]*row['H_df2'])
+            Dub = gaussian_pdf(row['Age']) * (weights2[0]*row['2B_df3'] + weights2[1]*row['2B_df2'])
+            Trip = gaussian_pdf(row['Age']) * (weights2[0]*row['3B_df3'] + weights2[1]*row['3B_df2'])
+            HR = gaussian_pdf(row['Age']) * (weights2[0]*row['HR_df3'] + weights2[1]*row['HR_df2'])
+            RBI = gaussian_pdf(row['Age']) * (weights2[0]*row['RBI_df3'] + weights2[1]*row['RBI_df2'])
+            SB = gaussian_pdf(row['Age']) * (weights2[0]*row['SB_df3'] + weights2[1]*row['SB_df2'])
+            CS = gaussian_pdf(row['Age']) * (weights2[0]*row['CS_df3'] + weights2[1]*row['CS_df2'])
+            BB = gaussian_pdf(row['Age']) * (weights2[0]*row['BB_df3'] + weights2[1]*row['BB_df2'])
+            SO = gaussian_pdf(row['Age']) * (weights2[0]*row['SO_df3'] + weights2[1]*row['SO_df2'])
+            OPSplus = gaussian_pdf(row['Age']) * (weights2[0]*row['OPS+_df3'] + weights2[1]*row['OPS+_df2'])
+            Rbat = gaussian_pdf(row['Age']) * (weights2[0]*row['Rbat+_df3'] + weights2[1]*row['Rbat+_df2'])
+            TB = gaussian_pdf(row['Age']) * (weights2[0]*row['TB_df3'] + weights2[1]*row['TB_df2'])
+            GIDP = gaussian_pdf(row['Age']) * (weights2[0]*row['GIDP_df3'] + weights2[1]*row['GIDP_df2'])
+            HBP = gaussian_pdf(row['Age']) * (weights2[0]*row['HBP_df3'] + weights2[1]*row['HBP_df2'])
+            SH = gaussian_pdf(row['Age']) * (weights2[0]*row['SH_df3'] + weights2[1]*row['SH_df2'])
+            SF = gaussian_pdf(row['Age']) * (weights2[0]*row['SF_df3'] + weights2[1]*row['SF_df2'])
+            IBB = gaussian_pdf(row['Age']) * (weights2[0]*row['IBB_df3'] + weights2[1]*row['IBB_df2'])
+        elif in_df3 and in_df1:
+            games = gaussian_pdf(row['Age']) * (weights2[0]*row['G_df3'] + weights2[1]*row['G_df1'])
+            PA = gaussian_pdf(row['Age']) * (weights2[0]*row['PA_df3'] + weights2[1]*row['PA_df1'])
+            AB = gaussian_pdf(row['Age']) * (weights2[0]*row['AB_df3'] + weights2[1]*row['AB_df1'])
+            R = gaussian_pdf(row['Age']) * (weights2[0]*row['R_df3'] + weights2[1]*row['R_df1'])
+            H = gaussian_pdf(row['Age']) * (weights2[0]*row['H_df3'] + weights2[1]*row['H_df1'])
+            Dub = gaussian_pdf(row['Age']) * (weights2[0]*row['2B_df3'] + weights2[1]*row['2B_df1'])
+            Trip = gaussian_pdf(row['Age']) * (weights2[0]*row['3B_df3'] + weights2[1]*row['3B_df1'])
+            HR = gaussian_pdf(row['Age']) * (weights2[0]*row['HR_df3'] + weights2[1]*row['HR_df1'])
+            RBI = gaussian_pdf(row['Age']) * (weights2[0]*row['RBI_df3'] + weights2[1]*row['RBI_df1'])
+            SB = gaussian_pdf(row['Age']) * (weights2[0]*row['SB_df3'] + weights2[1]*row['SB_df1'])
+            CS = gaussian_pdf(row['Age']) * (weights2[0]*row['CS_df3'] + weights2[1]*row['CS_df1'])
+            BB = gaussian_pdf(row['Age']) * (weights2[0]*row['BB_df3'] + weights2[1]*row['BB_df1'])
+            SO = gaussian_pdf(row['Age']) * (weights2[0]*row['SO_df3'] + weights2[1]*row['SO_df1'])
+            OPSplus = gaussian_pdf(row['Age']) * (weights2[0]*row['OPS+_df3'] + weights2[1]*row['OPS+_df1'])
+            Rbat = gaussian_pdf(row['Age']) * (weights2[0]*row['Rbat+_df3'] + weights2[1]*row['Rbat+_df1'])
+            TB = gaussian_pdf(row['Age']) * (weights2[0]*row['TB_df3'] + weights2[1]*row['TB_df1'])
+            GIDP = gaussian_pdf(row['Age']) * (weights2[0]*row['GIDP_df3'] + weights2[1]*row['GIDP_df1'])
+            HBP = gaussian_pdf(row['Age']) * (weights2[0]*row['HBP_df3'] + weights2[1]*row['HBP_df1'])
+            SH = gaussian_pdf(row['Age']) * (weights2[0]*row['SH_df3'] + weights2[1]*row['SH_df1'])
+            SF = gaussian_pdf(row['Age']) * (weights2[0]*row['SF_df3'] + weights2[1]*row['SF_df1'])
+            IBB = gaussian_pdf(row['Age']) * (weights2[0]*row['IBB_df3'] + weights2[1]*row['IBB_df1'])
+        elif in_df2 and in_df1:
+            games = gaussian_pdf(row['Age']) * (weights2[0]*row['G_df2'] + weights2[1]*row['G_df1'])
+            PA = gaussian_pdf(row['Age']) * (weights2[0]*row['PA_df2'] + weights2[1]*row['PA_df1'])
+            AB = gaussian_pdf(row['Age']) * (weights2[0]*row['AB_df2'] + weights2[1]*row['AB_df1'])
+            R = gaussian_pdf(row['Age']) * (weights2[0]*row['R_df2'] + weights2[1]*row['R_df1'])
+            H = gaussian_pdf(row['Age']) * (weights2[0]*row['H_df2'] + weights2[1]*row['H_df1'])
+            Dub = gaussian_pdf(row['Age']) * (weights2[0]*row['2B_df2'] + weights2[1]*row['2B_df1'])
+            Trip = gaussian_pdf(row['Age']) * (weights2[0]*row['3B_df2'] + weights2[1]*row['3B_df1'])
+            HR = gaussian_pdf(row['Age']) * (weights2[0]*row['HR_df2'] + weights2[1]*row['HR_df1'])
+            RBI = gaussian_pdf(row['Age']) * (weights2[0]*row['RBI_df2'] + weights2[1]*row['RBI_df1'])
+            SB = gaussian_pdf(row['Age']) * (weights2[0]*row['SB_df2'] + weights2[1]*row['SB_df1'])
+            CS = gaussian_pdf(row['Age']) * (weights2[0]*row['CS_df2'] + weights2[1]*row['CS_df1'])
+            BB = gaussian_pdf(row['Age']) * (weights2[0]*row['BB_df2'] + weights2[1]*row['BB_df1'])
+            SO = gaussian_pdf(row['Age']) * (weights2[0]*row['SO_df2'] + weights2[1]*row['SO_df1'])
+            OPSplus = gaussian_pdf(row['Age']) * (weights2[0]*row['OPS+_df2'] + weights2[1]*row['OPS+_df1'])
+            Rbat = gaussian_pdf(row['Age']) * (weights2[0]*row['Rbat+_df2'] + weights2[1]*row['Rbat+_df1'])
+            TB = gaussian_pdf(row['Age']) * (weights2[0]*row['TB_df2'] + weights2[1]*row['TB_df1'])
+            GIDP = gaussian_pdf(row['Age']) * (weights2[0]*row['GIDP_df2'] + weights2[1]*row['GIDP_df1'])
+            HBP = gaussian_pdf(row['Age']) * (weights2[0]*row['HBP_df2'] + weights2[1]*row['HBP_df1'])
+            SH = gaussian_pdf(row['Age']) * (weights2[0]*row['SH_df2'] + weights2[1]*row['SH_df1'])
+            SF = gaussian_pdf(row['Age']) * (weights2[0]*row['SF_df2'] + weights2[1]*row['SF_df1'])
+            IBB = gaussian_pdf(row['Age']) * (weights2[0]*row['IBB_df2'] + weights2[1]*row['IBB_df1'])
+        elif in_df3:
+            games = gaussian_pdf(row['Age']) * (weights1[0]*row['G_df3'])
+            PA = gaussian_pdf(row['Age']) * (weights1[0]*row['PA_df3'])
+            AB = gaussian_pdf(row['Age']) * (weights1[0]*row['AB_df3'])
+            R = gaussian_pdf(row['Age']) * (weights1[0]*row['R_df3'])
+            H = gaussian_pdf(row['Age']) * (weights1[0]*row['H_df3'])
+            Dub = gaussian_pdf(row['Age']) * (weights1[0]*row['2B_df3'])
+            Trip = gaussian_pdf(row['Age']) * (weights1[0]*row['3B_df3'])
+            HR = gaussian_pdf(row['Age']) * (weights1[0]*row['HR_df3'])
+            RBI = gaussian_pdf(row['Age']) * (weights1[0]*row['RBI_df3'])
+            SB = gaussian_pdf(row['Age']) * (weights1[0]*row['SB_df3'])
+            CS = gaussian_pdf(row['Age']) * (weights1[0]*row['CS_df3'])
+            BB = gaussian_pdf(row['Age']) * (weights1[0]*row['BB_df3'])
+            SO = gaussian_pdf(row['Age']) * (weights1[0]*row['SO_df3'])
+            OPSplus = gaussian_pdf(row['Age']) * (weights1[0]*row['OPS+_df3'])
+            Rbat = gaussian_pdf(row['Age']) * (weights1[0]*row['Rbat+_df3'])
+            TB = gaussian_pdf(row['Age']) * (weights1[0]*row['TB_df3'])
+            GIDP = gaussian_pdf(row['Age']) * (weights1[0]*row['GIDP_df3'])
+            HBP = gaussian_pdf(row['Age']) * (weights1[0]*row['HBP_df3'])
+            SH = gaussian_pdf(row['Age']) * (weights1[0]*row['SH_df3'])
+            SF = gaussian_pdf(row['Age']) * (weights1[0]*row['SF_df3'])
+            IBB = gaussian_pdf(row['Age']) * (weights1[0]*row['IBB_df3'])
+        elif in_df2:
+            games = gaussian_pdf(row['Age']) * (weights1[0]*row['G_df2'])
+            PA = gaussian_pdf(row['Age']) * (weights1[0]*row['PA_df2'])
+            AB = gaussian_pdf(row['Age']) * (weights1[0]*row['AB_df2'])
+            R = gaussian_pdf(row['Age']) * (weights1[0]*row['R_df2'])
+            H = gaussian_pdf(row['Age']) * (weights1[0]*row['H_df2'])
+            Dub = gaussian_pdf(row['Age']) * (weights1[0]*row['2B_df2'])
+            Trip = gaussian_pdf(row['Age']) * (weights1[0]*row['3B_df2'])
+            HR = gaussian_pdf(row['Age']) * (weights1[0]*row['HR_df2'])
+            RBI = gaussian_pdf(row['Age']) * (weights1[0]*row['RBI_df2'])
+            SB = gaussian_pdf(row['Age']) * (weights1[0]*row['SB_df2'])
+            CS = gaussian_pdf(row['Age']) * (weights1[0]*row['CS_df2'])
+            BB = gaussian_pdf(row['Age']) * (weights1[0]*row['BB_df2'])
+            SO = gaussian_pdf(row['Age']) * (weights1[0]*row['SO_df2'])
+            OPSplus = gaussian_pdf(row['Age']) * (weights1[0]*row['OPS+_df2'])
+            Rbat = gaussian_pdf(row['Age']) * (weights1[0]*row['Rbat+_df2'])
+            TB = gaussian_pdf(row['Age']) * (weights1[0]*row['TB_df2'])
+            GIDP = gaussian_pdf(row['Age']) * (weights1[0]*row['GIDP_df2'])
+            HBP = gaussian_pdf(row['Age']) * (weights1[0]*row['HBP_df2'])
+            SH = gaussian_pdf(row['Age']) * (weights1[0]*row['SH_df2'])
+            SF = gaussian_pdf(row['Age']) * (weights1[0]*row['SF_df2'])
+            IBB = gaussian_pdf(row['Age']) * (weights1[0]*row['IBB_df2'])
+        elif in_df1:
+            games = gaussian_pdf(row['Age']) * (weights1[0]*row['G_df1'])
+            PA = gaussian_pdf(row['Age']) * (weights1[0]*row['PA_df1'])
+            AB = gaussian_pdf(row['Age']) * (weights1[0]*row['AB_df1'])
+            R = gaussian_pdf(row['Age']) * (weights1[0]*row['R_df1'])
+            H = gaussian_pdf(row['Age']) * (weights1[0]*row['H_df1'])
+            Dub = gaussian_pdf(row['Age']) * (weights1[0]*row['2B_df1'])
+            Trip = gaussian_pdf(row['Age']) * (weights1[0]*row['3B_df1'])
+            HR = gaussian_pdf(row['Age']) * (weights1[0]*row['HR_df1'])
+            RBI = gaussian_pdf(row['Age']) * (weights1[0]*row['RBI_df1'])
+            SB = gaussian_pdf(row['Age']) * (weights1[0]*row['SB_df1'])
+            CS = gaussian_pdf(row['Age']) * (weights1[0]*row['CS_df1'])
+            BB = gaussian_pdf(row['Age']) * (weights1[0]*row['BB_df1'])
+            SO = gaussian_pdf(row['Age']) * (weights1[0]*row['SO_df1'])
+            OPSplus = gaussian_pdf(row['Age']) * (weights1[0]*row['OPS+_df1'])
+            Rbat = gaussian_pdf(row['Age']) * (weights1[0]*row['Rbat+_df1'])
+            TB = gaussian_pdf(row['Age']) * (weights1[0]*row['TB_df1'])
+            GIDP = gaussian_pdf(row['Age']) * (weights1[0]*row['GIDP_df1'])
+            HBP = gaussian_pdf(row['Age']) * (weights1[0]*row['HBP_df1'])
+            SH = gaussian_pdf(row['Age']) * (weights1[0]*row['SH_df1'])
+            SF = gaussian_pdf(row['Age']) * (weights1[0]*row['SF_df1'])
+            IBB = gaussian_pdf(row['Age']) * (weights1[0]*row['IBB_df1'])
+        else:
+            games = np.zeros(num_sim)
+            PA = np.zeros(num_sim)
+            AB = np.zeros(num_sim)
+            R = np.zeros(num_sim)
+            H = np.zeros(num_sim)
+            Dub = np.zeros(num_sim)
+            Trip = np.zeros(num_sim)
+            HR = np.zeros(num_sim)
+            RBI = np.zeros(num_sim)
+            SB = np.zeros(num_sim)
+            CS = np.zeros(num_sim)
+            BB = np.zeros(num_sim)
+            SO = np.zeros(num_sim)
+            OPSplus = np.zeros(num_sim)
+            Rbat = np.zeros(num_sim)
+            TB = np.zeros(num_sim)
+            GIDP = np.zeros(num_sim)
+            HBP = np.zeros(num_sim)
+            SH = np.zeros(num_sim)
+            SF = np.zeros(num_sim)
+            IBB = np.zeros(num_sim)
+
+        
+        predictedgames.append(games.mean())
+        predictedPA.append(PA.mean())
+        predictedAB.append(AB.mean())
+        predictedR.append(R.mean())
+        predictedH.append(H.mean())
+        predictedDub.append(Dub.mean())
+        predictedTrip.append(Trip.mean())
+        predictedHR.append(HR.mean())
+        predictedRBI.append(RBI.mean())
+        predictedSB.append(SB.mean())
+        predictedCS.append(CS.mean())
+        predictedBB.append(BB.mean())
+        predictedSO.append(SO.mean())
+        predictedOPSplus.append(OPSplus.mean())
+        predictedRbat.append(Rbat.mean())
+        predictedTB.append(TB.mean())
+        predictedGIDP.append(GIDP.mean())
+        predictedHBP.append(HBP.mean())
+        predictedSH.append(SH.mean())
+        predictedSF.append(SF.mean())
+        predictedIBB.append(IBB.mean())
+
+    future['G'] = predictedgames
+    future['PA'] = predictedPA
+    future['AB'] = predictedAB
+    future['R'] = predictedR
+    future['H'] = predictedH
+    future['2B'] = predictedDub
+    future['3B'] = predictedTrip
+    future['HR'] = predictedHR
+    future['RBI'] = predictedRBI
+    future['SB'] = predictedSB
+    future['CS'] = predictedCS
+    future['BB'] = predictedBB
+    future['SO'] = predictedSO
+    future['OPS+'] = predictedOPSplus
+    future['Rbat+'] = predictedRbat
+    future['TB'] = predictedTB
+    future['GIDP'] = predictedGIDP
+    future['HBP'] = predictedSH
+    future['SH'] = predictedSH
+    future['SF'] = predictedSF
+    future['IBB'] = predictedIBB
+
+    future['BA'] = future['H']/future['AB']
+    future['OBP'] = (future['H']+future['BB']+future['HBP']+future['IBB']) / (future['AB']+future['BB']+future['HBP']+future['IBB']+future['SF'])
+    future['SLG'] = future['TB']/future['AB']
+    future['OPS'] = future['OBP'] + future['SLG']
+
+    scale = future['G'].apply(lambda x: min(1, 162 / x) if x > 0 else 1)
+    stats_cols = ['G', 'PA', 'AB', 'R', 'H', '2B', '3B', 'HR', 'RBI', 'SB', 'CS', 'BB', 'SO', 'OPS+', 'Rbat+', 'TB', 'GIDP', 'HBP', 'SH', 'SF', 'IBB']
+
+    future[stats_cols] = future[stats_cols].multiply(scale, axis=0)
 
 
 
+    future['G'] = future['G'].round(1)
+    future['PA'] = future['PA'].round(1)
+    future['AB'] = future['AB'].round(1)
+    future['R'] = future['R'].round(1)
+    future['H'] = future['H'].round(1)
+    future['2B'] = future['2B'].round(1)
+    future['3B'] = future['3B'].round(1)
+    future['HR'] = future['HR'].round(1)
+    future['RBI'] = future['RBI'].round(1)
+    future['SB'] = future['SB'].round(1)
+    future['CS'] = future['CS'].round(1)
+    future['BB'] = future['BB'].round(1)
+    future['SO'] = future['SO'].round(1)
+    future['OPS+'] = future['OPS+'].round(1)
+    future['Rbat+'] = future['Rbat+'].round(1)
+    future['TB'] = future['TB'].round(1)
+    future['GIDP'] = future['GIDP'].round(1)
+    future['HBP'] = future['HBP'].round(1)
+    future['SH'] = future['SH'].round(1)
+    future['SF'] = future['SF'].round(1)
+    future['IBB'] = future['IBB'].round(1)
+
+    future['BA'] = future['BA'].round(4)
+    future['OBP'] = future['OBP'].round(4)
+    future['SLG'] = future['SLG'].round(4)
+    future['OPS'] = future['OPS'].round(4)
+
+
+    return future
+
+
+def preseasonmlbhtml(future):
+
+        html_string = future.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
+
+        # Full HTML file with sorting and ALL rows shown
+        html_script = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title> Preseason Predictions </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="/WebProjects/images/favicon.svg" />
+        <link rel="shortcut icon" href="/WebProjects/images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/WebProjects/images/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MyWebSit" />
+        <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
+
+        <link rel="stylesheet" href="/WebProjects/style.css">
+
+
+        </head>
+        <body>
+
+        <div class="topnav">
+        <a href="/WebProjects/index.html">Home</a>
+            <div class="dropdown">
+            <button class="dropbtn active">Football
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+            </div>
+            </div>
+        <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
+        <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
+        <a href="/WebProjects/about.html">About</a>
+        </div>
+        
+
+        <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
+
+        <h1>MLB Preseason Predictions</h1>
+
+        <div class="topnav">
+        <input type="text" id="searchBar" placeholder="Search...">
+
+
+
+        {html_string}
+
+        <script>
+        function getCellValue(row, index) {{
+            return row.cells[index].textContent.trim();
+        }}
+
+        function comparer(index, asc) {{
+            return function(a, b) {{
+            const v1 = getCellValue(a, index);
+            const v2 = getCellValue(b, index);
+
+            const num1 = parseFloat(v1);
+            const num2 = parseFloat(v2);
+            const bothNumbers = !isNaN(num1) && !isNaN(num2);
+
+            if (bothNumbers) {{
+                return asc ? num1 - num2 : num2 - num1;
+            }} else {{
+                return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+            }}
+            }};
+        }}
+
+        document.addEventListener("DOMContentLoaded", function () {{
+            document.querySelectorAll("th").forEach(function (th, index) {{
+            let ascending = true;
+            if (index === 0) return;
+            th.addEventListener("click", function () {{
+                const table = th.closest("table");
+                const tbody = table.querySelector("tbody");
+                const rows = Array.from(tbody.querySelectorAll("tr"));
+                rows.sort(comparer(index, ascending));
+                //rows.forEach(row => tbody.appendChild(row));
+                rows.forEach((row, i) => {{
+                    row.cells[0].textContent = i + 1; // Reset Rank to match new row position
+                    tbody.appendChild(row);
+                }});
+                ascending = !ascending;
+            }});
+            }});
+        }});
+        </script>
+
+        
+
+        <script>
+        const searchBar = document.getElementById('searchBar');
+        const table = document.querySelector('table');
+        const rows = table.getElementsByTagName('tr');
+
+        searchBar.addEventListener('keyup', function () {{
+            const searchText = searchBar.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) {{
+            const row = rows[i];
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(searchText) ? '' : 'none';
+            }}
+        }});
+        </script>
+
+        
+
+        </body>
+        </html>
+        """
+
+        # Save to HTML file
+        with open(f"PreseasonMLBPredictions.html", "w") as f:
+            f.write(html_script)
 
 

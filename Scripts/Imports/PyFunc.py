@@ -2498,6 +2498,9 @@ def seasonpredictions(csv1, csv2, csv3, csv4):
     future['SLG'] = future['SLG'].round(4)
     future['OPS'] = future['OPS'].round(4)
 
+    future['Rank'] = range(1, len(future) + 1)
+    coles = ['Rank'] + [col for col in future.columns if col != 'Rank']
+    future = future[coles]
 
     return future
 

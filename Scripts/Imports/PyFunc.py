@@ -703,8 +703,8 @@ def weeklyhtml(alldataframes, week):
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
-                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions</a>
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions</a>
             </div>
             </div>
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
@@ -1151,8 +1151,8 @@ def roshtml(alldataframes):
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
-                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions</a>
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions</a>
             </div>
             </div>
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
@@ -2008,8 +2008,8 @@ def dominancehtml(alldataframes):
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
-                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions</a>
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions</a>
             </div>
             </div>        
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
@@ -2586,8 +2586,8 @@ def preseasonmlbhittinghtml(future):
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
-                    <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+                    <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions</a>
+                    <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions</a>
                 </div>
             </div>
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
@@ -3165,8 +3165,8 @@ def preseasonmlbpitchinghtml(future):
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
-                <a class="active" href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions</a>
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions</a>
             </div>
             </div>
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>

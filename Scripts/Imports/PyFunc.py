@@ -2595,7 +2595,7 @@ def preseasonmlbhittinghtml(future):
         </div>
         
 
-        <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
+        <img src="/WebProjects/images/Baseball_Logo.png" alt="Header Image" class="header-img">
 
         <h1>MLB Hitting Predictions</h1>
 
@@ -3174,7 +3174,7 @@ def preseasonmlbpitchinghtml(future):
         </div>
         
 
-        <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
+        <img src="/WebProjects/images/Baseball_Logo.png" alt="Header Image" class="header-img">
 
         <h1>MLB Pitching Predictions</h1>
 

@@ -2571,24 +2571,24 @@ def preseasonmlbhittinghtml(future):
         <div class="topnav">
         <a href="/WebProjects/index.html">Home</a>
             <div class="dropdown">
-            <button class="dropbtn">Football
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
-                <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
-                <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
-                <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
-            </div>
+                <button class="dropbtn">Football
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                    <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                    <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                    <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+                </div>
             </div>
             <div class="dropdown">
-            <button class="dropbtn active">Baseball
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a class="active" href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
-                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
-            </div>
+                <button class="dropbtn active">Baseball
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
+                    <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+                </div>
             </div>
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>

@@ -698,7 +698,15 @@ def weeklyhtml(alldataframes, week):
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
+            <div class="dropdown">
+            <button class="dropbtn">Baseball
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+            </div>
+            </div>
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>
         </div>
@@ -1138,7 +1146,15 @@ def roshtml(alldataframes):
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
+            <div class="dropdown">
+            <button class="dropbtn">Baseball
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+            </div>
+            </div>
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>
         </div>
@@ -1987,7 +2003,15 @@ def dominancehtml(alldataframes):
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
+            <div class="dropdown">
+            <button class="dropbtn">Baseball
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+            </div>
+            </div>        
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>
         </div>
@@ -2089,7 +2113,7 @@ def dominancehtml(alldataframes):
 
 #MLB Scripts
 
-def seasonpredictions(csv1, csv2, csv3, csv4):
+def hitterpredictions(csv1, csv2, csv3, csv4):
 
     if not isinstance(csv1, str):
         raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv1)}: {csv1}")
@@ -2519,7 +2543,7 @@ def seasonpredictions(csv1, csv2, csv3, csv4):
     return future
 
 
-def preseasonmlbhtml(future):
+def preseasonmlbhittinghtml(future):
 
         html_string = future.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
 
@@ -2557,7 +2581,15 @@ def preseasonmlbhtml(future):
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
             </div>
             </div>
-        <a class="active" href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
+            <div class="dropdown">
+            <button class="dropbtn active">Baseball
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a class="active" href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+            </div>
+            </div>
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>
         </div>
@@ -2565,7 +2597,7 @@ def preseasonmlbhtml(future):
 
         <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
 
-        <h1>MLB Preseason Predictions</h1>
+        <h1>MLB Hitting Predictions</h1>
 
         <div class="topnav">
         <input type="text" id="searchBar" placeholder="Search...">
@@ -2642,7 +2674,586 @@ def preseasonmlbhtml(future):
         """
 
         # Save to HTML file
-        with open(f"PreseasonMLBPredictions.html", "w", encoding="utf-8") as f:
+        with open(f"PreseasonMLBHittingPredictions.html", "w", encoding="utf-8") as f:
+            f.write(html_script)
+
+
+def pitcherpredictions(csv1, csv2, csv3, csv4):
+
+    if not isinstance(csv1, str):
+        raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv1)}: {csv1}")
+    if not csv1.lower().endswith('.csv'):
+        raise ValueError(f"File is not a CSV file: {csv1}")
+    if not os.path.exists(csv1):
+        raise ValueError(f"File not found: {csv1}")
+
+    if not isinstance(csv2, str):
+        raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv2)}: {csv2}")
+    if not csv2.lower().endswith('.csv'):
+        raise ValueError(f"File is not a CSV file: {csv2}")
+    if not os.path.exists(csv2):
+        raise ValueError(f"File not found: {csv2}")
+
+    if not isinstance(csv3, str):
+        raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv3)}: {csv3}")
+    if not csv3.lower().endswith('.csv'):
+        raise ValueError(f"File is not a CSV file: {csv3}")
+    if not os.path.exists(csv3):
+        raise ValueError(f"File not found: {csv3}")
+
+    if not isinstance(csv4, str):
+        raise TypeError(f"Input should be a CSV path to file name as a string. Got {type(csv4)}: {csv4}")
+    if not csv4.lower().endswith('.csv'):
+        raise ValueError(f"File is not a CSV file: {csv4}")
+    if not os.path.exists(csv4):
+        raise ValueError(f"File not found: {csv4}")
+
+    df1 = pd.read_csv(csv1)
+    df1["Player"] = df1["Player"].str.replace(r"[\*#]+$", "", regex=True).str.strip()
+    df1['Player'] = df1['Player'].apply(lambda x: "".join(c for c in unicodedata.normalize("NFKC", str(x)) if c not in "*#\u200B\u200C\u200D\uFEFF"))
+    df2 = pd.read_csv(csv2)
+    df2["Player"] = df2["Player"].str.replace(r"[\*#]+$", "", regex=True).str.strip()
+    df2['Player'] = df2['Player'].apply(lambda x: "".join(c for c in unicodedata.normalize("NFKC", str(x)) if c not in "*#\u200B\u200C\u200D\uFEFF"))
+    df3 = pd.read_csv(csv3)
+    df3["Player"] = df3["Player"].str.replace(r"[\*#]+$", "", regex=True).str.strip()
+    df3['Player'] = df3['Player'].apply(lambda x: "".join(c for c in unicodedata.normalize("NFKC", str(x)) if c not in "*#\u200B\u200C\u200D\uFEFF"))
+    df4 = pd.read_csv(csv4)
+    df4["Name"] = df4["Name"].str.replace(r"[\*#]+$", "", regex=True).str.strip()
+    df4['Name'] = df4['Name'].apply(lambda x: "".join(c for c in unicodedata.normalize("NFKC", str(x)) if c not in "*#\u200B\u200C\u200D\uFEFF"))
+
+    #row1 = df1[df1['Player'] == 'CJ Abrams']
+    #row2 = df2[df2['Player'] == 'CJ Abrams']
+    #row3 = df3[df3['Player'] == 'CJ Abrams']
+    #row4 = df4[df4['Name'] == 'CJ Abrams']
+
+    #print(row1)
+    #print(row2)
+    #print(row3)
+    #print(row4)
+
+    future = pd.DataFrame(columns=df3.columns)
+    future['Player'] = df4['Name']
+    future['Age'] = df4['Age']
+    future['Team'] = df4['Tm']
+    future = future.drop('Rk', axis=1) 
+    future = future.drop('Lg', axis=1) 
+    future = future.drop('WAR', axis=1) 
+    future = future.drop('Awards', axis=1) 
+    future = future.drop('Player-additional', axis=1) 
+
+
+    future['Player'] = future['Player'].astype(str)
+    df1['Player'] = df1['Player'].astype(str)
+    df2['Player'] = df2['Player'].astype(str)
+    df3['Player'] = df3['Player'].astype(str)
+
+    future['PlayerID'] = future['Player'] + "_" + future['Team']
+    df1['PlayerID'] = df1['Player'] + "_" + df1['Team']
+    df2['PlayerID'] = df2['Player'] + "_" + df2['Team']
+    df3['PlayerID'] = df2['Player'] + "_" + df3['Team']
+
+    future['PlayerID'] = future['PlayerID'].astype(str)
+    df1['PlayerID'] = df1['PlayerID'].astype(str)
+    df2['PlayerID'] = df2['PlayerID'].astype(str)
+    df3['PlayerID'] = df3['PlayerID'].astype(str)
+
+
+    def gaussian_pdf(age):
+        return np.exp(-0.5 * ((age - 28)/5)**2)
+
+    #cols = ['G', 'PA', 'AB', 'R', 'H', '2B', '3B', 'HR', 'RBI', 'SB', 'CS', 'BB', 'SO', 'OPS+', 'Rbat+', 'TB', 'GIDP', 'HBP', 'SH', 'SF', 'IBB']
+    cols = ["W", "L", "ERA", "G", "GS", "GF", "CG", "SHO", "SV", "IP", "H", "R", "ER", "HR", "BB", "IBB", "SO", "HBP", "BK", "WP", "BF", "ERA+", "FIP", "WHIP", "H9", "HR9", "BB9", "SO9"]
+    # Merge future with df1, df2, df3
+    merged_df = future.copy()
+
+    # List of dataframes to merge with suffixes
+    dfs = [(df1, '_df1'), (df2, '_df2'), (df3, '_df3')]
+
+    # Merge each dataframe
+    for df, suffix in dfs:
+        merged_df = pd.merge(merged_df, df, on='Player', how='left', suffixes=('', suffix))
+
+    # Rename the columns for the specified ones
+    for col in cols:
+        for suffix in ['_df1', '_df2', '_df3']:
+            if f'{col}{suffix}' in merged_df.columns:
+                merged_df.rename(columns={f'{col}{suffix}': f'{col}{suffix}'}, inplace=True)
+
+    # Now `merged_df` has all the columns merged and renamed appropriately
+
+
+    #future['is_in_df3'] = future['Player'].isin(df3['Player'])
+    #future['is_in_df2'] = future['Player'].isin(df2['Player'])
+    #future['is_in_df1'] = future['Player'].isin(df1['Player'])
+
+    num_sim = 1000
+
+    weights = [np.random.uniform(0.6, 0.8, num_sim), np.random.uniform(0.4, 0.5, num_sim), np.random.uniform(0,0.2, num_sim)]
+    weights2 = [np.random.uniform(0.7, 0.9, num_sim), np.random.uniform(0.1, 0.3, num_sim)]
+    weights1 = [np.random.uniform(0.9, 1.1, num_sim)]
+
+    predictedW = []
+    predictedL = []
+    predictedG = []
+    predictedGS = []
+    predictedGF = []
+    predictedCG = []
+    predictedSHO = []
+    predictedSV = []
+    predictedIP = []
+    predictedH = []
+    predictedR = []
+    predictedER = []
+    predictedHR = []
+    predictedBB = []
+    predictedIBB = []
+    predictedSO = []
+    predictedHBP = []
+    predictedBK = []
+    predictedWP = []
+    predictedBF = []
+    predictedERAplus = []
+    predictedFIP = []
+
+    #duplicates = merged_df['PlayerID'][merged_df['PlayerID'].duplicated(keep=False)]
+    #print(duplicates)
+    #merged_df = merged_df.fillna(0)
+    merged_df[merged_df.select_dtypes('number').columns] = merged_df.select_dtypes('number').fillna(0)
+    merged_df = merged_df.drop_duplicates(subset='PlayerID')
+    merged_df = merged_df.reset_index(drop=True)
+
+    #print(merged_df.head(5))
+
+    for i, row in merged_df.iterrows():
+        player = row['Player']  # Get the player name
+
+        in_df1 = df1['Player'].isin([player]).any()
+        in_df2 = df2['Player'].isin([player]).any()
+        in_df3 = df3['Player'].isin([player]).any()
+
+
+        if in_df1 and in_df2 and in_df3:
+            W = gaussian_pdf(row['Age']) * (weights[0]*row['W_df3'] + weights[1]*row['W_df2'] + weights[2]*row['W_df1'])
+            L = gaussian_pdf(row['Age']) * (weights[0]*row['L_df3'] + weights[1]*row['L_df2'] + weights[2]*row['L_df1'])
+            G = gaussian_pdf(row['Age']) * (weights[0]*row['G_df3'] + weights[1]*row['G_df2'] + weights[2]*row['G_df1'])
+            GS = gaussian_pdf(row['Age']) * (weights[0]*row['GS_df3'] + weights[1]*row['GS_df2'] + weights[2]*row['GS_df1'])
+            GF = gaussian_pdf(row['Age']) * (weights[0]*row['GF_df3'] + weights[1]*row['GF_df2'] + weights[2]*row['GF_df1'])
+            CG = gaussian_pdf(row['Age']) * (weights[0]*row['CG_df3'] + weights[1]*row['CG_df2'] + weights[2]*row['CG_df1'])
+            SHO = gaussian_pdf(row['Age']) * (weights[0]*row['SHO_df3'] + weights[1]*row['SHO_df2'] + weights[2]*row['SHO_df1'])
+            SV = gaussian_pdf(row['Age']) * (weights[0]*row['SV_df3'] + weights[1]*row['SV_df2'] + weights[2]*row['SV_df1'])
+            IP = gaussian_pdf(row['Age']) * (weights[0]*row['IP_df3'] + weights[1]*row['IP_df2'] + weights[2]*row['IP_df1'])
+            H = gaussian_pdf(row['Age']) * (weights[0]*row['H_df3'] + weights[1]*row['H_df2'] + weights[2]*row['H_df1'])
+            R = gaussian_pdf(row['Age']) * (weights[0]*row['R_df3'] + weights[1]*row['R_df2'] + weights[2]*row['R_df1'])
+            ER = gaussian_pdf(row['Age']) * (weights[0]*row['ER_df3'] + weights[1]*row['ER_df2'] + weights[2]*row['ER_df1'])
+            HR = gaussian_pdf(row['Age']) * (weights[0]*row['HR_df3'] + weights[1]*row['HR_df2'] + weights[2]*row['HR_df1'])
+            BB = gaussian_pdf(row['Age']) * (weights[0]*row['BB_df3'] + weights[1]*row['BB_df2'] + weights[2]*row['BB_df1'])
+            IBB = gaussian_pdf(row['Age']) * (weights[0]*row['IBB_df3'] + weights[1]*row['IBB_df2'] + weights[2]*row['IBB_df1'])
+            SO = gaussian_pdf(row['Age']) * (weights[0]*row['SO_df3'] + weights[1]*row['SO_df2'] + weights[2]*row['SO_df1'])
+            HBP = gaussian_pdf(row['Age']) * (weights[0]*row['HBP_df3'] + weights[1]*row['HBP_df2'] + weights[2]*row['HBP_df1'])
+            BK = gaussian_pdf(row['Age']) * (weights[0]*row['BK_df3'] + weights[1]*row['BK_df2'] + weights[2]*row['BK_df1'])
+            WP = gaussian_pdf(row['Age']) * (weights[0]*row['WP_df3'] + weights[1]*row['WP_df2'] + weights[2]*row['WP_df1'])
+            BF = gaussian_pdf(row['Age']) * (weights[0]*row['BF_df3'] + weights[1]*row['BF_df2'] + weights[2]*row['BF_df1'])
+            ERAplus = gaussian_pdf(row['Age']) * (weights[0]*row['ERA+_df3'] + weights[1]*row['ERA+_df2'] + weights[2]*row['ERA+_df1'])
+            FIP = gaussian_pdf(row['Age']) * (weights[0]*row['FIP_df3'] + weights[1]*row['FIP_df2'] + weights[2]*row['FIP_df1'])
+        elif in_df3 and in_df2:
+            W = gaussian_pdf(row['Age']) * (weights2[0]*row['W_df3'] + weights2[1]*row['W_df2'])
+            L = gaussian_pdf(row['Age']) * (weights2[0]*row['L_df3'] + weights2[1]*row['L_df2'])
+            G = gaussian_pdf(row['Age']) * (weights2[0]*row['G_df3'] + weights2[1]*row['G_df2'])
+            GS = gaussian_pdf(row['Age']) * (weights2[0]*row['GS_df3'] + weights2[1]*row['GS_df2'])
+            GF = gaussian_pdf(row['Age']) * (weights2[0]*row['GF_df3'] + weights2[1]*row['GF_df2'])
+            CG = gaussian_pdf(row['Age']) * (weights2[0]*row['CG_df3'] + weights2[1]*row['CG_df2'])
+            SHO = gaussian_pdf(row['Age']) * (weights2[0]*row['SHO_df3'] + weights2[1]*row['SHO_df2'])
+            SV = gaussian_pdf(row['Age']) * (weights2[0]*row['SV_df3'] + weights2[1]*row['SV_df2'])
+            IP = gaussian_pdf(row['Age']) * (weights2[0]*row['IP_df3'] + weights2[1]*row['IP_df2'])
+            H = gaussian_pdf(row['Age']) * (weights2[0]*row['H_df3'] + weights2[1]*row['H_df2'])
+            R = gaussian_pdf(row['Age']) * (weights2[0]*row['R_df3'] + weights2[1]*row['R_df2'])
+            ER = gaussian_pdf(row['Age']) * (weights2[0]*row['ER_df3'] + weights2[1]*row['ER_df2'])
+            HR = gaussian_pdf(row['Age']) * (weights2[0]*row['HR_df3'] + weights2[1]*row['HR_df2'])
+            BB = gaussian_pdf(row['Age']) * (weights2[0]*row['BB_df3'] + weights2[1]*row['BB_df2'])
+            IBB = gaussian_pdf(row['Age']) * (weights2[0]*row['IBB_df3'] + weights2[1]*row['IBB_df2'])
+            SO = gaussian_pdf(row['Age']) * (weights2[0]*row['SO_df3'] + weights2[1]*row['SO_df2'])
+            HBP = gaussian_pdf(row['Age']) * (weights2[0]*row['HBP_df3'] + weights2[1]*row['HBP_df2'])
+            BK = gaussian_pdf(row['Age']) * (weights2[0]*row['BK_df3'] + weights2[1]*row['BK_df2'])
+            WP = gaussian_pdf(row['Age']) * (weights2[0]*row['WP_df3'] + weights2[1]*row['WP_df2'])
+            BF = gaussian_pdf(row['Age']) * (weights2[0]*row['BF_df3'] + weights2[1]*row['BF_df2'])
+            ERAplus = gaussian_pdf(row['Age']) * (weights2[0]*row['ERA+_df3'] + weights2[1]*row['ERA+_df2'])
+            FIP = gaussian_pdf(row['Age']) * (weights2[0]*row['FIP_df3'] + weights2[1]*row['FIP_df2'])
+        elif in_df3 and in_df1:
+            W = gaussian_pdf(row['Age']) * (weights2[0]*row['W_df3'] + weights2[1]*row['W_df1'])
+            L = gaussian_pdf(row['Age']) * (weights2[0]*row['L_df3'] + weights2[1]*row['L_df1'])
+            G = gaussian_pdf(row['Age']) * (weights2[0]*row['G_df3'] + weights2[1]*row['G_df1'])
+            GS = gaussian_pdf(row['Age']) * (weights2[0]*row['GS_df3'] + weights2[1]*row['GS_df1'])
+            GF = gaussian_pdf(row['Age']) * (weights2[0]*row['GF_df3'] + weights2[1]*row['GF_df1'])
+            CG = gaussian_pdf(row['Age']) * (weights2[0]*row['CG_df3'] + weights2[1]*row['CG_df1'])
+            SHO = gaussian_pdf(row['Age']) * (weights2[0]*row['SHO_df3'] + weights2[1]*row['SHO_df1'])
+            SV = gaussian_pdf(row['Age']) * (weights2[0]*row['SV_df3'] + weights2[1]*row['SV_df1'])
+            IP = gaussian_pdf(row['Age']) * (weights2[0]*row['IP_df3'] + weights2[1]*row['IP_df1'])
+            H = gaussian_pdf(row['Age']) * (weights2[0]*row['H_df3'] + weights2[1]*row['H_df1'])
+            R = gaussian_pdf(row['Age']) * (weights2[0]*row['R_df3'] + weights2[1]*row['R_df1'])
+            ER = gaussian_pdf(row['Age']) * (weights2[0]*row['ER_df3'] + weights2[1]*row['ER_df1'])
+            HR = gaussian_pdf(row['Age']) * (weights2[0]*row['HR_df3'] + weights2[1]*row['HR_df1'])
+            BB = gaussian_pdf(row['Age']) * (weights2[0]*row['BB_df3'] + weights2[1]*row['BB_df1'])
+            IBB = gaussian_pdf(row['Age']) * (weights2[0]*row['IBB_df3'] + weights2[1]*row['IBB_df1'])
+            SO = gaussian_pdf(row['Age']) * (weights2[0]*row['SO_df3'] + weights2[1]*row['SO_df1'])
+            HBP = gaussian_pdf(row['Age']) * (weights2[0]*row['HBP_df3'] + weights2[1]*row['HBP_df1'])
+            BK = gaussian_pdf(row['Age']) * (weights2[0]*row['BK_df3'] + weights2[1]*row['BK_df1'])
+            WP = gaussian_pdf(row['Age']) * (weights2[0]*row['WP_df3'] + weights2[1]*row['WP_df1'])
+            BF = gaussian_pdf(row['Age']) * (weights2[0]*row['BF_df3'] + weights2[1]*row['BF_df1'])
+            ERAplus = gaussian_pdf(row['Age']) * (weights2[0]*row['ERA+_df3'] + weights2[1]*row['ERA+_df1'])
+            FIP = gaussian_pdf(row['Age']) * (weights2[0]*row['FIP_df3'] + weights2[1]*row['FIP_df1'])
+        elif in_df2 and in_df1:
+            W = gaussian_pdf(row['Age']) * (weights2[0]*row['W_df2'] + weights2[1]*row['W_df1'])
+            L = gaussian_pdf(row['Age']) * (weights2[0]*row['L_df2'] + weights2[1]*row['L_df1'])
+            G = gaussian_pdf(row['Age']) * (weights2[0]*row['G_df2'] + weights2[1]*row['G_df1'])
+            GS = gaussian_pdf(row['Age']) * (weights2[0]*row['GS_df2'] + weights2[1]*row['GS_df1'])
+            GF = gaussian_pdf(row['Age']) * (weights2[0]*row['GF_df2'] + weights2[1]*row['GF_df1'])
+            CG = gaussian_pdf(row['Age']) * (weights2[0]*row['CG_df2'] + weights2[1]*row['CG_df1'])
+            SHO = gaussian_pdf(row['Age']) * (weights2[0]*row['SHO_df2'] + weights2[1]*row['SHO_df1'])
+            SV = gaussian_pdf(row['Age']) * (weights2[0]*row['SV_df2'] + weights2[1]*row['SV_df1'])
+            IP = gaussian_pdf(row['Age']) * (weights2[0]*row['IP_df2'] + weights2[1]*row['IP_df1'])
+            H = gaussian_pdf(row['Age']) * (weights2[0]*row['H_df2'] + weights2[1]*row['H_df1'])
+            R = gaussian_pdf(row['Age']) * (weights2[0]*row['R_df2'] + weights2[1]*row['R_df1'])
+            ER = gaussian_pdf(row['Age']) * (weights2[0]*row['ER_df2'] + weights2[1]*row['ER_df1'])
+            HR = gaussian_pdf(row['Age']) * (weights2[0]*row['HR_df2'] + weights2[1]*row['HR_df1'])
+            BB = gaussian_pdf(row['Age']) * (weights2[0]*row['BB_df2'] + weights2[1]*row['BB_df1'])
+            IBB = gaussian_pdf(row['Age']) * (weights2[0]*row['IBB_df2'] + weights2[1]*row['IBB_df1'])
+            SO = gaussian_pdf(row['Age']) * (weights2[0]*row['SO_df2'] + weights2[1]*row['SO_df1'])
+            HBP = gaussian_pdf(row['Age']) * (weights2[0]*row['HBP_df2'] + weights2[1]*row['HBP_df1'])
+            BK = gaussian_pdf(row['Age']) * (weights2[0]*row['BK_df2'] + weights2[1]*row['BK_df1'])
+            WP = gaussian_pdf(row['Age']) * (weights2[0]*row['WP_df2'] + weights2[1]*row['WP_df1'])
+            BF = gaussian_pdf(row['Age']) * (weights2[0]*row['BF_df2'] + weights2[1]*row['BF_df1'])
+            ERAplus = gaussian_pdf(row['Age']) * (weights2[0]*row['ERA+_df2'] + weights2[1]*row['ERA+_df1'])
+            FIP = gaussian_pdf(row['Age']) * (weights2[0]*row['FIP_df2'] + weights2[1]*row['FIP_df1'])
+        elif in_df3:
+            W = gaussian_pdf(row['Age']) * (weights1[0]*row['W_df3'])
+            L = gaussian_pdf(row['Age']) * (weights1[0]*row['L_df3'])
+            G = gaussian_pdf(row['Age']) * (weights1[0]*row['G_df3'])
+            GS = gaussian_pdf(row['Age']) * (weights1[0]*row['GS_df3'])
+            GF = gaussian_pdf(row['Age']) * (weights1[0]*row['GF_df3'])
+            CG = gaussian_pdf(row['Age']) * (weights1[0]*row['CG_df3'])
+            SHO = gaussian_pdf(row['Age']) * (weights1[0]*row['SHO_df3'])
+            SV = gaussian_pdf(row['Age']) * (weights1[0]*row['SV_df3'])
+            IP = gaussian_pdf(row['Age']) * (weights1[0]*row['IP_df3'])
+            H = gaussian_pdf(row['Age']) * (weights1[0]*row['H_df3'])
+            R = gaussian_pdf(row['Age']) * (weights1[0]*row['R_df3'])
+            ER = gaussian_pdf(row['Age']) * (weights1[0]*row['ER_df3'])
+            HR = gaussian_pdf(row['Age']) * (weights1[0]*row['HR_df3'])
+            BB = gaussian_pdf(row['Age']) * (weights1[0]*row['BB_df3'])
+            IBB = gaussian_pdf(row['Age']) * (weights1[0]*row['IBB_df3'])
+            SO = gaussian_pdf(row['Age']) * (weights1[0]*row['SO_df3'])
+            HBP = gaussian_pdf(row['Age']) * (weights1[0]*row['HBP_df3'])
+            BK = gaussian_pdf(row['Age']) * (weights1[0]*row['BK_df3'])
+            WP = gaussian_pdf(row['Age']) * (weights1[0]*row['WP_df3'])
+            BF = gaussian_pdf(row['Age']) * (weights1[0]*row['BF_df3'])
+            ERAplus = gaussian_pdf(row['Age']) * (weights1[0]*row['ERA+_df3'])
+            FIP = gaussian_pdf(row['Age']) * (weights1[0]*row['FIP_df3'])
+        elif in_df2:
+            W = gaussian_pdf(row['Age']) * (weights1[0]*row['W_df2'])
+            L = gaussian_pdf(row['Age']) * (weights1[0]*row['L_df2'])
+            G = gaussian_pdf(row['Age']) * (weights1[0]*row['G_df2'])
+            GS = gaussian_pdf(row['Age']) * (weights1[0]*row['GS_df2'])
+            GF = gaussian_pdf(row['Age']) * (weights1[0]*row['GF_df2'])
+            CG = gaussian_pdf(row['Age']) * (weights1[0]*row['CG_df2'])
+            SHO = gaussian_pdf(row['Age']) * (weights1[0]*row['SHO_df2'])
+            SV = gaussian_pdf(row['Age']) * (weights1[0]*row['SV_df2'])
+            IP = gaussian_pdf(row['Age']) * (weights1[0]*row['IP_df2'])
+            H = gaussian_pdf(row['Age']) * (weights1[0]*row['H_df2'])
+            R = gaussian_pdf(row['Age']) * (weights1[0]*row['R_df2'])
+            ER = gaussian_pdf(row['Age']) * (weights1[0]*row['ER_df2'])
+            HR = gaussian_pdf(row['Age']) * (weights1[0]*row['HR_df2'])
+            BB = gaussian_pdf(row['Age']) * (weights1[0]*row['BB_df2'])
+            IBB = gaussian_pdf(row['Age']) * (weights1[0]*row['IBB_df2'])
+            SO = gaussian_pdf(row['Age']) * (weights1[0]*row['SO_df2'])
+            HBP = gaussian_pdf(row['Age']) * (weights1[0]*row['HBP_df2'])
+            BK = gaussian_pdf(row['Age']) * (weights1[0]*row['BK_df2'])
+            WP = gaussian_pdf(row['Age']) * (weights1[0]*row['WP_df2'])
+            BF = gaussian_pdf(row['Age']) * (weights1[0]*row['BF_df2'])
+            ERAplus = gaussian_pdf(row['Age']) * (weights1[0]*row['ERA+_df2'])
+            FIP = gaussian_pdf(row['Age']) * (weights1[0]*row['FIP_df2'])
+        elif in_df1:
+            W = gaussian_pdf(row['Age']) * (weights1[0]*row['W_df1'])
+            L = gaussian_pdf(row['Age']) * (weights1[0]*row['L_df1'])
+            G = gaussian_pdf(row['Age']) * (weights1[0]*row['G_df1'])
+            GS = gaussian_pdf(row['Age']) * (weights1[0]*row['GS_df1'])
+            GF = gaussian_pdf(row['Age']) * (weights1[0]*row['GF_df1'])
+            CG = gaussian_pdf(row['Age']) * (weights1[0]*row['CG_df1'])
+            SHO = gaussian_pdf(row['Age']) * (weights1[0]*row['SHO_df1'])
+            SV = gaussian_pdf(row['Age']) * (weights1[0]*row['SV_df1'])
+            IP = gaussian_pdf(row['Age']) * (weights1[0]*row['IP_df1'])
+            H = gaussian_pdf(row['Age']) * (weights1[0]*row['H_df1'])
+            R = gaussian_pdf(row['Age']) * (weights1[0]*row['R_df1'])
+            ER = gaussian_pdf(row['Age']) * (weights1[0]*row['ER_df1'])
+            HR = gaussian_pdf(row['Age']) * (weights1[0]*row['HR_df1'])
+            BB = gaussian_pdf(row['Age']) * (weights1[0]*row['BB_df1'])
+            IBB = gaussian_pdf(row['Age']) * (weights1[0]*row['IBB_df1'])
+            SO = gaussian_pdf(row['Age']) * (weights1[0]*row['SO_df1'])
+            HBP = gaussian_pdf(row['Age']) * (weights1[0]*row['HBP_df1'])
+            BK = gaussian_pdf(row['Age']) * (weights1[0]*row['BK_df1'])
+            WP = gaussian_pdf(row['Age']) * (weights1[0]*row['WP_df1'])
+            BF = gaussian_pdf(row['Age']) * (weights1[0]*row['BF_df1'])
+            ERAplus = gaussian_pdf(row['Age']) * (weights1[0]*row['ERA+_df1'])
+            FIP = gaussian_pdf(row['Age']) * (weights1[0]*row['FIP_df1'])
+        else:
+            W = np.zeros(num_sim)
+            L = np.zeros(num_sim)
+            G = np.zeros(num_sim)
+            GS = np.zeros(num_sim)
+            GF = np.zeros(num_sim)
+            CG = np.zeros(num_sim)
+            SHO = np.zeros(num_sim)
+            SV = np.zeros(num_sim)
+            IP = np.zeros(num_sim)
+            H = np.zeros(num_sim)
+            R = np.zeros(num_sim)
+            ER = np.zeros(num_sim)
+            HR = np.zeros(num_sim)
+            BB = np.zeros(num_sim)
+            IBB = np.zeros(num_sim)
+            SO = np.zeros(num_sim)
+            HBP = np.zeros(num_sim)
+            BK = np.zeros(num_sim)
+            WP = np.zeros(num_sim)
+            BF = np.zeros(num_sim)
+            ERAplus = np.zeros(num_sim)
+            FIP = np.zeros(num_sim)
+
+        predictedW.append(W.mean())
+        predictedL.append(L.mean())
+        predictedG.append(G.mean())
+        predictedGS.append(GS.mean())
+        predictedGF.append(GF.mean())
+        predictedCG.append(CG.mean())
+        predictedSHO.append(SHO.mean())
+        predictedSV.append(SV.mean())
+        predictedIP.append(IP.mean())
+        predictedH.append(H.mean())
+        predictedR.append(R.mean())
+        predictedER.append(ER.mean())
+        predictedHR.append(HR.mean())
+        predictedBB.append(BB.mean())
+        predictedIBB.append(IBB.mean())
+        predictedSO.append(SO.mean())
+        predictedHBP.append(HBP.mean())
+        predictedBK.append(BK.mean())
+        predictedWP.append(WP.mean())
+        predictedBF.append(BF.mean())
+        predictedERAplus.append(ERAplus.mean())
+        predictedFIP.append(FIP.mean())
+
+    future['W'] = predictedW
+    future['L'] = predictedL
+    future['G'] = predictedG
+    future['GS'] = predictedGS
+    future['GF'] = predictedGF
+    future['CG'] = predictedCG
+    future['SHO'] = predictedSHO
+    future['SV'] = predictedSV
+    future['IP'] = predictedIP
+    future['H'] = predictedH
+    future['R'] = predictedR
+    future['ER'] = predictedER
+    future['HR'] = predictedHR
+    future['BB'] = predictedBB
+    future['IBB'] = predictedIBB
+    future['SO'] = predictedSO
+    future['HBP'] = predictedHBP
+    future['BK'] = predictedBK
+    future['WP'] = predictedWP
+    future['BF'] = predictedBF
+    future['ERA+'] = predictedERAplus
+    future['FIP'] = predictedFIP
+
+    future['ERA'] = 9*future['ER']/future['IP']
+    future['WHIP'] = (future['H']+future['BB']+future['IBB']) / (future['IP'])
+    future['H9'] = 9*future['H']/future['IP']
+    future['BB9'] = 9*future['BB']/future['IP']
+    future['HR9'] = 9*future['HR']/future['IP']
+    future['SO9'] = 9*future['SO']/future['IP']
+    future['SO-HR-BB/IP'] = (future['SO'] - future['HR'] - future['BB'])/future['IP']
+
+
+    scale = future['GS'].apply(lambda x: min(1, 33 / x) if x > 0 else 1)
+    #stats_cols = ['G', 'PA', 'AB', 'R', 'H', '2B', '3B', 'HR', 'RBI', 'SB', 'CS', 'BB', 'SO', 'OPS+', 'Rbat+', 'TB', 'GIDP', 'HBP', 'SH', 'SF', 'IBB']
+
+    future[cols] = future[cols].multiply(scale, axis=0)
+
+    future['W'] = future['W'].round(1)
+    future['L'] = future['L'].round(1)
+    future['G'] = future['G'].round(0)
+    future['GS'] = future['GS'].round(0)
+    future['GF'] = future['GF'].round(0)
+    future['CG'] = future['CG'].round(0)
+    future['SHO'] = future['SHO'].round(1)
+    future['SV'] = future['SV'].round(1)
+    future['IP'] = future['IP'].round(0)
+    future['H'] = future['H'].round(1)
+    future['R'] = future['R'].round(1)
+    future['ER'] = future['ER'].round(1)
+    future['HR'] = future['HR'].round(1)
+    future['BB'] = future['BB'].round(1)
+    future['IBB'] = future['IBB'].round(1)
+    future['SO'] = future['SO'].round(1)
+    future['HBP'] = future['HBP'].round(1)
+    future['BK'] = future['BK'].round(1)
+    future['WP'] = future['WP'].round(1)
+    future['BF'] = future['BF'].round(1)
+    future['ERA+'] = future['ERA+'].round(1)
+    future['FIP'] = future['FIP'].round(3)
+
+    future['ERA'] = future['ERA'].round(3)
+    future['WHIP'] = future['WHIP'].round(3)
+    future['H9'] = future['H9'].round(3)
+    future['BB9'] = future['BB9'].round(3)
+    future['HR9'] = future['HR9'].round(3)
+    future['SO9'] = future['SO9'].round(3)
+    future['SO-HR-BB/IP'] = future['SO-HR-BB/IP'].round(3)
+
+
+    future['Rank'] = range(1, len(future) + 1)
+    coles = ['Rank'] + [col for col in future.columns if col != 'Rank']
+    future = future[coles]
+    future = future.drop('PlayerID', axis=1) 
+    future = future.drop('SO/BB', axis=1) 
+    future = future.drop('W-L%', axis=1) 
+    future[future.select_dtypes('number').columns] = future.select_dtypes('number').fillna(0)
+
+    print(future.head(5))
+
+    return future
+
+
+def preseasonmlbpitchinghtml(future):
+
+        html_string = future.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
+
+        # Full HTML file with sorting and ALL rows shown
+        html_script = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="UTF-8">
+        <title> Preseason Predictions </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="/WebProjects/images/favicon.svg" />
+        <link rel="shortcut icon" href="/WebProjects/images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/WebProjects/images/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MyWebSit" />
+        <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
+
+        <link rel="stylesheet" href="/WebProjects/style.css">
+
+
+        </head>
+        <body>
+
+        <div class="topnav">
+        <a href="/WebProjects/index.html">Home</a>
+            <div class="dropdown">
+            <button class="dropbtn">Football
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+            </div>
+            </div>
+            <div class="dropdown">
+            <button class="dropbtn active">Baseball
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions
+                <a class="active" href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions
+            </div>
+            </div>
+        <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
+        <a href="/WebProjects/about.html">About</a>
+        </div>
+        
+
+        <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
+
+        <h1>MLB Pitching Predictions</h1>
+
+        <div class="topnav">
+        <input type="text" id="searchBar" placeholder="Search...">
+        </div>
+
+
+
+        {html_string}
+
+        <script>
+        function getCellValue(row, index) {{
+            return row.cells[index].textContent.trim();
+        }}
+
+        function comparer(index, asc) {{
+            return function(a, b) {{
+            const v1 = getCellValue(a, index);
+            const v2 = getCellValue(b, index);
+
+            const num1 = parseFloat(v1);
+            const num2 = parseFloat(v2);
+            const bothNumbers = !isNaN(num1) && !isNaN(num2);
+
+            if (bothNumbers) {{
+                return asc ? num1 - num2 : num2 - num1;
+            }} else {{
+                return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+            }}
+            }};
+        }}
+
+        document.addEventListener("DOMContentLoaded", function () {{
+            document.querySelectorAll("th").forEach(function (th, index) {{
+            let ascending = true;
+            if (index === 0) return;
+            th.addEventListener("click", function () {{
+                const table = th.closest("table");
+                const tbody = table.querySelector("tbody");
+                const rows = Array.from(tbody.querySelectorAll("tr"));
+                rows.sort(comparer(index, ascending));
+                //rows.forEach(row => tbody.appendChild(row));
+                rows.forEach((row, i) => {{
+                    row.cells[0].textContent = i + 1; // Reset Rank to match new row position
+                    tbody.appendChild(row);
+                }});
+                ascending = !ascending;
+            }});
+            }});
+        }});
+        </script>
+
+        
+
+        <script>
+        const searchBar = document.getElementById('searchBar');
+        const table = document.querySelector('table');
+        const rows = table.getElementsByTagName('tr');
+
+        searchBar.addEventListener('keyup', function () {{
+            const searchText = searchBar.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) {{
+            const row = rows[i];
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(searchText) ? '' : 'none';
+            }}
+        }});
+        </script>
+
+        
+
+        </body>
+        </html>
+        """
+
+        # Save to HTML file
+        with open(f"PreseasonMLBPitchingPredictions.html", "w", encoding="utf-8") as f:
             f.write(html_script)
 
 

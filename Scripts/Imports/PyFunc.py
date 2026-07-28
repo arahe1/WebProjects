@@ -12,6 +12,8 @@ import unicodedata
 def importstats(csv): #imports CSV's via list and organizes them appropriately
     Dataframes=[]
 
+    # Stats need to be from Stathead by sorted >0 snaps, pass attempts, rush attempts, targets
+    
     if not isinstance(csv, list):
         raise TypeError("Expected a List of CSV Files")
     

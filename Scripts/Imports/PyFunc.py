@@ -9,6 +9,30 @@ import unicodedata
 
 #NFL Scripts
 
+def get_nfl_week_files(year, folder="CSVs"):
+    files = []
+
+    for filename in os.listdir(folder):
+        if filename.startswith("Week_") and filename.endswith(f"_NFL_{year}.csv"):
+            files.append(os.path.join(folder, filename))
+
+    # Sort by week number
+    files.sort(key=lambda x: int(os.path.basename(x).split("_")[1]))
+
+    return files
+
+def get_nfl_scores_files(year, folder="CSVs"):
+    files = []
+
+    for filename in os.listdir(folder):
+        if filename.startswith("Week_") and filename.endswith(f"_Scores_{year}.csv"):
+            files.append(os.path.join(folder, filename))
+
+    # Sort by week number
+    files.sort(key=lambda x: int(os.path.basename(x).split("_")[1]))
+
+    return files
+
 def importstats(csv): #imports CSV's via list and organizes them appropriately
     Dataframes=[]
 

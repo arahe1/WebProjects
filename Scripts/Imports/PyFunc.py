@@ -338,8 +338,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
     Useful = Useful.reset_index()
 
     return Useful
-
-import pandas as pd
+    
 
 def build_depth_chart(df, year, output_dir="CSVs"): #builds depth chart and saves it by year
 
@@ -374,6 +373,95 @@ def build_depth_chart(df, year, output_dir="CSVs"): #builds depth chart and save
     print(f"Depth chart saved to {filename}")
 
     return df
+
+
+def update_depth_chart(previous_depth, new_roster, off_focus_df):
+    """
+    Update depth chart after offseason roster changes.
+
+    Ranking priority:
+    1. Previous depth number (lower is better)
+    2. Off Focus (higher is better)
+    3. Usage metric:
+       - TmCatch% for WR/TE
+       - Rush% for RB
+
+    Parameters
+    ----------
+    previous_depth : DataFrame
+        Prior depth chart containing:
+        Player, Team, Pos., Depth, TmCatch%, Rush%
+
+    new_roster : DataFrame
+        New roster containing:
+        Player, Team, Pos.
+
+    off_focus_df : DataFrame
+        Player evaluation containing:
+        Player, Off Focus
+
+    Returns
+    -------
+    DataFrame
+        Updated depth chart
+    """
+
+    df = new_roster.copy()
+
+    # Bring previous player information forward
+    df = df.merge(
+        previous_depth[
+            ["Player", "Pos.", "Depth", "TmCatch%", "Rush%"]
+        ],
+        on=["Player", "Pos."],
+        how="left"
+    )
+
+    df = df.rename(columns={"Depth": "PrevDepth"})
+
+    # Players without a previous depth go last
+    df["PrevDepth"] = df["PrevDepth"].fillna(99)
+
+    # Add offensive focus
+    df = df.merge(
+        off_focus_df[["Player", "Off Focus"]],
+        on="Player",
+        how="left"
+    )
+
+    df["Off Focus"] = df["Off Focus"].fillna(0)
+
+    results = []
+
+    for pos, metric in {
+        "WR": "TmCatch%",
+        "TE": "TmCatch%",
+        "RB": "Rush%"
+    }.items():
+
+        temp = df[df["Pos."] == pos].copy()
+
+        # New players with no history have no usage metric
+        temp[metric] = temp[metric].fillna(0)
+
+        temp = temp.sort_values(
+            ["Team", "PrevDepth", "Off Focus", metric],
+            ascending=[True, True, False, False]
+        )
+
+        temp["Depth"] = (
+            temp.groupby("Team")
+                .cumcount()
+                .add(1)
+        )
+
+        results.append(temp)
+
+    return (
+        pd.concat(results)
+        .sort_values(["Team", "Pos.", "Depth"])
+        .reset_index(drop=True)
+    )
 
 
 def teamtotals(dflist, schedule):

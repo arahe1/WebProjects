@@ -6,23 +6,24 @@ from Imports import PyFunc as ps
 
 directory_path = "CSVs"
 
-listicle = ['CSVs/Week_1_Scores_2025.csv',
-            'CSVs/Week_2_Scores_2025.csv',
-            'CSVs/Week_3_Scores_2025.csv',
-            'CSVs/Week_4_Scores_2025.csv',
-            'CSVs/Week_5_Scores_2025.csv',
-            'CSVs/Week_6_Scores_2025.csv',
-            'CSVs/Week_7_Scores_2025.csv',
-            'CSVs/Week_8_Scores_2025.csv',
-            'CSVs/Week_9_Scores_2025.csv',
-            'CSVs/Week_10_Scores_2025.csv',
-            'CSVs/Week_11_Scores_2025.csv',
-            'CSVs/Week_12_Scores_2025.csv',
-            'CSVs/Week_13_Scores_2025.csv',
-            'CSVs/Week_14_Scores_2025.csv',
-            'CSVs/Week_15_Scores_2025.csv',
-            'CSVs/Week_16_Scores_2025.csv']
+#listicle = ['CSVs/Week_1_Scores_2025.csv',
+#            'CSVs/Week_2_Scores_2025.csv',
+#            'CSVs/Week_3_Scores_2025.csv',
+#            'CSVs/Week_4_Scores_2025.csv',
+#            'CSVs/Week_5_Scores_2025.csv',
+#            'CSVs/Week_6_Scores_2025.csv',
+#            'CSVs/Week_7_Scores_2025.csv',
+#            'CSVs/Week_8_Scores_2025.csv',
+#            'CSVs/Week_9_Scores_2025.csv',
+#            'CSVs/Week_10_Scores_2025.csv',
+#            'CSVs/Week_11_Scores_2025.csv',
+#            'CSVs/Week_12_Scores_2025.csv',
+#            'CSVs/Week_13_Scores_2025.csv',
+#            'CSVs/Week_14_Scores_2025.csv',
+#            'CSVs/Week_15_Scores_2025.csv',
+#            'CSVs/Week_16_Scores_2025.csv']
 
+listicle = get_nfl_scores_files(2025, folder="CSVs")
 DFs = ps.weeklyteamwinner(listicle)
 Week = len(DFs)+1
 Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')

@@ -339,6 +339,42 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
 
     return Useful
 
+import pandas as pd
+
+def build_depth_chart(df, year, output_dir="CSVs"): #builds depth chart and saves it by year
+
+    df = df.copy()
+    df["Depth"] = pd.NA
+
+    rank_metrics = {
+        "WR": "TmCatch%",
+        "TE": "TmCatch%",
+        "RB": "Rush%",
+    }
+
+    for pos, metric in rank_metrics.items():
+        mask = df["Pos."] == pos
+
+        ranked = (
+            df.loc[mask]
+              .sort_values(["Team", metric], ascending=[True, False])
+              .groupby("Team")
+              .cumcount() + 1
+        )
+
+        df.loc[ranked.index, "Depth"] = pos + ranked.astype(str)
+
+    # Optional: sort the final output
+    df = df.sort_values(["Team", "Pos.", "Depth", "Player"])
+
+    # Save to CSV
+    filename = f"{output_dir}/depth_chart_{year}.csv"
+    df.to_csv(filename, index=False)
+
+    print(f"Depth chart saved to {filename}")
+
+    return df
+
 
 def teamtotals(dflist, schedule):
        # Initialize a list to collect results

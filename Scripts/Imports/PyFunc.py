@@ -45,8 +45,11 @@ def schedulemaker(csv):
         raise ValueError(f"File is not a CSV file: {csv}")
     if not os.path.exists(csv):
         raise ValueError(f"File not found: {csv}")
+
+    # Get Schedule Grid from YEAR NFL Season Schedule Grid ESPN website
+    # https://www.espn.com/nfl/schedulegrid
     
-    #NFL Schedule
+    # NFL Schedule
     Schedule = pd.read_csv(csv)
     Schedule = Schedule.map(lambda x: x.replace('@', '') if isinstance(x, str) else x)
 

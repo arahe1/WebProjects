@@ -13,6 +13,6 @@ Week = len(DFs)+1
 Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
-Dominance = ps.analysis(Useful,IndividualTotals)
-updated_depth = update_depth_chart(prevdepth, newrosters, off_focus_df)
+Dominance = ps.analysis(Useful,IndividualTotals)['FlexDom']
+updated_depth = update_depth_chart(prevdepth, newrosters, Dominance)
 

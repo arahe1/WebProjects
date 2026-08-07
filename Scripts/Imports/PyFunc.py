@@ -4,6 +4,7 @@ from collections import defaultdict
 import numpy as np
 import requests
 from bs4 import BeautifulSoup
+import time
 import unicodedata
 
 
@@ -373,6 +374,70 @@ def build_depth_chart(df, year, output_dir="CSVs"): #builds depth chart and save
     print(f"Depth chart saved to {filename}")
 
     return df
+
+
+def get_preseason_rosters(year):
+    """
+    Scrape QB, RB, WR, and TE rosters for all 32 NFL teams from ESPN.
+
+    Parameters
+    ----------
+    year : int or str
+        Used only to label the output CSV.
+
+    Returns
+    -------
+    pandas.DataFrame
+        DataFrame containing all skill position players.
+    """
+
+    teams = [
+        "ari","atl","bal","buf","car","chi","cin","cle",
+        "dal","den","det","gb","hou","ind","jax","kc",
+        "lv","lac","lar","mia","min","ne","no","nyg",
+        "nyj","phi","pit","sf","sea","tb","ten","was"
+    ]
+
+    all_players = []
+
+    for team in teams:
+        url = f"https://www.espn.com/nfl/team/roster/_/name/{team}"
+
+        try:
+            tables = pd.read_html(url)
+            df = pd.concat(tables, ignore_index=True)
+
+            # Keep desired columns
+            df = df[["Name", "POS", "Age", "HT", "WT", "Exp", "College"]]
+
+            # Filter to skill positions
+            df = df[df["POS"].isin(["QB", "RB", "WR", "TE"])]
+
+            # Add team
+            df["Team"] = team.upper()
+
+            all_players.append(df)
+
+            print(f"✓ {team.upper()}")
+
+            # Be polite to ESPN
+            time.sleep(2)
+
+        except Exception as e:
+            print(f"Error with {team.upper()}: {e}")
+
+    roster_df = pd.concat(all_players, ignore_index=True)
+
+    roster_df = roster_df[
+        ["Team", "Name", "POS", "Age", "HT", "WT", "Exp", "College"]
+    ]
+
+    filename = f"nfl_skill_players_{year}.csv"
+    roster_df.to_csv(filename, index=False)
+
+    print(f"\nSaved {len(roster_df)} players to '{filename}'")
+
+    return roster_df
 
 
 def update_depth_chart(previous_depth, new_roster, off_focus_df):

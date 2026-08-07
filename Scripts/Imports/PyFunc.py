@@ -439,6 +439,119 @@ def get_preseason_rosters(year):
 
     return roster_df
 
+import pandas as pd
+import requests
+import time
+
+
+def get_nfl_draft(year):
+    """
+    Scrape ESPN NFL Draft data for QB, RB, WR, and TE.
+
+    Returns a DataFrame and saves it as a CSV labeled by draft year.
+    """
+
+    positions = {
+        "qb": "QB",
+        "rb": "RB",
+        "wr": "WR",
+        "te": "TE"
+    }
+
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/138.0 Safari/537.36"
+        )
+    }
+
+    results = []
+
+    for position_code, position_name in positions.items():
+
+        url = (
+            f"https://www.espn.com/nfl/draft/positions/"
+            f"_/position/{position_code}"
+        )
+
+        try:
+            response = requests.get(
+                url,
+                headers=headers,
+                timeout=20
+            )
+            response.raise_for_status()
+
+            tables = pd.read_html(response.text)
+
+            for table in tables:
+
+                # Clean column names
+                table.columns = [
+                    str(col).strip()
+                    for col in table.columns
+                ]
+
+                # Make sure this is a player table
+                if "Name" not in table.columns:
+                    continue
+
+                # Rename columns
+                table = table.rename(
+                    columns={
+                        "Name": "Player"
+                    }
+                )
+
+                needed = ["Round", "Player", "School"]
+
+                if not all(col in table.columns for col in needed):
+                    continue
+
+                table = table[needed].copy()
+
+                # Add position
+                table["Position"] = position_name
+
+                # Add draft year
+                table["Draft_Year"] = year
+
+                results.append(table)
+
+            print(f"✓ {position_name}")
+
+            # Small delay between ESPN requests
+            time.sleep(1)
+
+        except Exception as e:
+            print(f"Error with {position_name}: {e}")
+
+    # Combine all positions
+    df = pd.concat(results, ignore_index=True)
+
+    # Remove duplicates
+    df = df.drop_duplicates()
+
+    # Set column order
+    df = df[
+        [
+            "Draft_Year",
+            "Round",
+            "Player",
+            "School",
+            "Position"
+        ]
+    ]
+
+    # Save CSV
+    filename = f"nfl_draft_{year}.csv"
+    df.to_csv(filename, index=False)
+
+    print(f"\nSaved {len(df)} players to '{filename}'")
+
+    return df
+
 
 def update_depth_chart(previous_depth, new_roster, off_focus_df):
     """

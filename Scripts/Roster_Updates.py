@@ -13,3 +13,5 @@ IndividualTotals = ps.individualtotals(DFs)
 Dominance = ps.analysis(Total_Stats,IndividualTotals)['FlexDom']
 updated_depth = update_depth_chart(prevdepth, newrosters, Dominance)
 
+updated_depth.to_csv("Preseason_DepthChart_2026.csv", index=False)
+

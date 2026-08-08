@@ -347,6 +347,7 @@ def build_depth_chart(df, year, output_dir="CSVs"): #builds depth chart and save
     df["Depth"] = pd.NA
 
     rank_metrics = {
+        "QB": "PassYds%",
         "WR": "TmCatch%",
         "TE": "TmCatch%",
         "RB": "Rush%",

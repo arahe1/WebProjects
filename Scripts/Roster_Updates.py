@@ -12,7 +12,7 @@ Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Dominance = ps.analysis(Total_Stats,IndividualTotals)['FlexDom']
 Draft = ps.get_nfl_draft(year)
-updated_depth = ps.update_depth_chart(prevdepth, newrosters, Dominance)
+updated_depth = ps.update_depth_chart(prevdepth, newrosters, Dominance, Draft)
 
 updated_depth.to_csv("Preseason_DepthChart_2026.csv", index=False)
 

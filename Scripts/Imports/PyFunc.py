@@ -440,10 +440,6 @@ def get_preseason_rosters(year):
 
     return roster_df
 
-import pandas as pd
-import requests
-import time
-
 
 def get_nfl_draft(year):
     """

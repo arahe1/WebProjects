@@ -549,8 +549,8 @@ def get_nfl_draft(year):
 
     return df
 
-
-def update_depth_chart(previous_depth, new_roster, off_focus_df):
+```python
+def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
     """
     Update depth chart after offseason roster changes.
 
@@ -558,14 +558,18 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df):
     1. Previous depth number (lower is better)
     2. Off Focus (higher is better)
     3. Usage metric:
+       - PassYds% for QB
        - TmCatch% for WR/TE
        - Rush% for RB
+
+    Draft prospects receive an Off Focus score based on
+    their draft round and position.
 
     Parameters
     ----------
     previous_depth : DataFrame
         Prior depth chart containing:
-        Player, Team, Pos., Depth, TmCatch%, Rush%
+        Player, Team, Pos., Depth, TmCatch%, Rush%, PassYds%
 
     new_roster : DataFrame
         New roster containing:
@@ -575,6 +579,10 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df):
         Player evaluation containing:
         Player, Off Focus
 
+    draft_df : DataFrame
+        Draft data containing:
+        Player, Round, Position
+
     Returns
     -------
     DataFrame
@@ -583,10 +591,13 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df):
 
     df = new_roster.copy()
 
+    # ---------------------------------------------------------
     # Bring previous player information forward
+    # ---------------------------------------------------------
+
     df = df.merge(
         previous_depth[
-            ["Player", "Pos.", "Depth", "TmCatch%", "Rush%"]
+            ["Player", "Pos.", "Depth", "TmCatch%", "Rush%", "PassYds%"]
         ],
         on=["Player", "Pos."],
         how="left"
@@ -597,18 +608,101 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df):
     # Players without a previous depth go last
     df["PrevDepth"] = df["PrevDepth"].fillna(99)
 
-    # Add offensive focus
+    # ---------------------------------------------------------
+    # Add existing offensive focus
+    # ---------------------------------------------------------
+
     df = df.merge(
         off_focus_df[["Player", "Off Focus"]],
         on="Player",
         how="left"
     )
 
+    # ---------------------------------------------------------
+    # Add draft-round offensive focus
+    # ---------------------------------------------------------
+
+    draft_off_focus = {
+        "QB": {
+            1: 10,
+            2: 9,
+            3: 7,
+            4: 5,
+            5: 3,
+            6: 1,
+            7: 0
+        },
+        "WR": {
+            1: 85,
+            2: 60,
+            3: 35,
+            4: 10,
+            5: 5,
+            6: 0,
+            7: 0
+        },
+        "TE": {
+            1: 65,
+            2: 50,
+            3: 35,
+            4: 20,
+            5: 10,
+            6: 5,
+            7: 0
+        },
+        "RB": {
+            1: 200,
+            2: 150,
+            3: 125,
+            4: 100,
+            5: 75,
+            6: 50,
+            7: 25
+        }
+    }
+
+    draft_info = draft_df[
+        ["Player", "Round", "Position"]
+    ].copy()
+
+    draft_info["Draft Off Focus"] = draft_info.apply(
+        lambda row: draft_off_focus
+            .get(row["Position"], {})
+            .get(row["Round"], 0),
+        axis=1
+    )
+
+    # Add draft information to roster
+    df = df.merge(
+        draft_info[
+            ["Player", "Round", "Position", "Draft Off Focus"]
+        ],
+        on="Player",
+        how="left"
+    )
+
+    # Use existing Off Focus if one exists.
+    # Otherwise use the draft-based Off Focus.
+    df.loc[
+        df["Off Focus"].isna(),
+        "Off Focus"
+    ] = df.loc[
+        df["Off Focus"].isna(),
+        "Draft Off Focus"
+    ]
+
+    # Players with neither an existing Off Focus
+    # nor a draft score receive 0
     df["Off Focus"] = df["Off Focus"].fillna(0)
+
+    # ---------------------------------------------------------
+    # Rank each position
+    # ---------------------------------------------------------
 
     results = []
 
     for pos, metric in {
+        "QB": "PassYds%",
         "WR": "TmCatch%",
         "TE": "TmCatch%",
         "RB": "Rush%"
@@ -631,6 +725,10 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df):
         )
 
         results.append(temp)
+
+    # ---------------------------------------------------------
+    # Combine and clean
+    # ---------------------------------------------------------
 
     return (
         pd.concat(results)

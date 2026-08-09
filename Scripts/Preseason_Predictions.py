@@ -89,3 +89,14 @@ df[cols] = df[cols].clip(lower=0)
 
 full_path = os.path.join('CSVs', 'PreSeason_2026.csv')
 df.to_csv(full_path, index=False)
+
+team_totals = team_totals.drop(columns=["Age", "Exp", "Depth", "Week", "IndComp%", "TeamComp%", "PassYds%", "PassTD%", "IndCatch%", "TmCatch%", "RecYds%", "RecTD%", "Rush%", "RushYds%", "RushTD%"])
+
+with open("Team_Totals.md", "w", encoding="utf-8") as f:
+    team_totals.to_markdown(buf=f, index=False)
+
+with open("Team_Totals_Future.md", "w", encoding="utf-8") as f:
+    team_totals_future.to_markdown(buf=f, index=False)
+
+with open("Preseason_2026.md", "w", encoding="utf-8") as f:
+    df.to_markdown(buf=f, index=False)

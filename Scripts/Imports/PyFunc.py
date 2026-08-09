@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import unicodedata
+import random
 
 
 #NFL Scripts
@@ -139,11 +140,15 @@ def individualtotals(dflist):
     for df in dflist:
         unique_names.update(df[name_col].dropna().unique())
 
+        
+
     # Convert back to list if needed
     unique_names_list = list(unique_names)
 
     # Loop through each player in unique_names_list
     for player in unique_names_list:
+        player_pos = None
+
         total_ind_pass_att = 0  
         total_ind_pass_yards = 0
         total_ind_pass_td = 0
@@ -170,6 +175,7 @@ def individualtotals(dflist):
             if player in df['Player'].values:
                 # Get the player's team (assumes 1 team per player per df)
                 player_team = df.loc[df['Player'] == player, 'Team'].iloc[0]
+                player_pos = df.loc[df['Player'] == player, 'Pos.'].iloc[0]
 
                 ind_total_PA = df.loc[df['Team'] == player_team, 'PassAtt'].sum()
                 ind_total_PY = df.loc[df['Team'] == player_team, 'PassYds'].sum()
@@ -194,7 +200,8 @@ def individualtotals(dflist):
                 total_ind_rush_td += ind_total_RuT
 
         # Save result
-        totals.append({'Player': player, 'TeamTotalPassAtt': total_ind_pass_att, 'TeamTotalPassYds': total_ind_pass_yards, 'TeamTotalPassTD': total_ind_pass_td, 'TeamTotalTgt': total_ind_targets , 'TeamTotalRec': total_ind_rec, 'TeamTotalRecYds': total_ind_rec_yards, 'TeamTotalRecTD': total_ind_rec_td, 'TeamTotalRushAtt': total_ind_rush_att, 'TeamTotalRushYds': total_ind_rush_yards, 'TeamTotalRushTD': total_ind_rush_td})
+        totals.append({'Player': player, 'Pos.': player_pos, 'Team': player_team, 'TeamTotalPassAtt': total_ind_pass_att, 'TeamTotalPassYds': total_ind_pass_yards, 'TeamTotalPassTD': total_ind_pass_td, 'TeamTotalTgt': total_ind_targets , 'TeamTotalRec': total_ind_rec, 'TeamTotalRecYds': total_ind_rec_yards, 'TeamTotalRecTD': total_ind_rec_td, 'TeamTotalRushAtt': total_ind_rush_att, 'TeamTotalRushYds': total_ind_rush_yards, 'TeamTotalRushTD': total_ind_rush_td})
+    
 
     # Create the final result DataFrame
     IndividualTotals = pd.DataFrame(totals)
@@ -217,6 +224,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
     Useful = pd.DataFrame(columns=Usefulcolumns)
 
     # Pre-map Opponents for quick lookup
+    week = min(week, 18)
     schedule_map = {row[0]: row[week] for row in schedule.itertuples(index=False)}
 
     # Pre-fill columns from Total_Stats if they exist
@@ -358,12 +366,16 @@ def build_depth_chart(df, year, output_dir="CSVs"): #builds depth chart and save
 
         ranked = (
             df.loc[mask]
-              .sort_values(["Team", metric], ascending=[True, False])
-              .groupby("Team")
-              .cumcount() + 1
+            .sort_values(
+                ["Team", metric],
+                ascending=[True, False]
+            )
+            .groupby("Team")
+            .cumcount()
+            .add(1)
         )
 
-        df.loc[ranked.index, "Depth"] = pos + ranked.astype(str)
+        df.loc[ranked.index, "Depth"] = ranked.astype(int)
 
     # Optional: sort the final output
     df = df.sort_values(["Team", "Pos.", "Depth", "Player"])
@@ -377,160 +389,193 @@ def build_depth_chart(df, year, output_dir="CSVs"): #builds depth chart and save
     return df
 
 
-def get_preseason_rosters(year):
-    """
-    Scrape QB, RB, WR, and TE rosters for all 32 NFL teams from ESPN.
+def get_preseason_rosters(year): 
+    """ Pull QB, RB, WR, and TE rosters for all 32 NFL teams from ESPN's public JSON API. 
+    Parameters ---------- year : int or str Used to label the output CSV. 
+    Returns ------- pandas.DataFrame DataFrame containing all skill-position players. 
+    """ 
+    teams = [ "ari", "atl", "bal", "buf", 
+             "car", "chi", "cin", "cle", 
+             "dal", "den", "det", "gb", 
+             "hou", "ind", "jax", "kc", 
+             "lv", "lac", "lar", "mia", 
+             "min", "ne", "no", "nyg", 
+             "nyj", "phi", "pit", "sf", 
+             "sea", "tb", "ten", "wsh" ] 
+    
+    all_players = [] 
+    headers = { "User-Agent": "Mozilla/5.0" } 
 
-    Parameters
-    ----------
-    year : int or str
-        Used only to label the output CSV.
 
-    Returns
-    -------
-    pandas.DataFrame
-        DataFrame containing all skill position players.
-    """
+    for team in teams: 
+        url = ( f"https://site.api.espn.com/apis/site/v2/" f"sports/football/nfl/teams/{team}" f"?enable=roster" ) 
+        try: 
+            response = requests.get( url, headers=headers, timeout=15 ) 
+            response.raise_for_status() 
+            data = response.json() 
+            team_data = data.get("team", {})
+            athletes = team_data.get("athletes", [])
 
-    teams = [
-        "ari","atl","bal","buf","car","chi","cin","cle",
-        "dal","den","det","gb","hou","ind","jax","kc",
-        "lv","lac","lar","mia","min","ne","no","nyg",
-        "nyj","phi","pit","sf","sea","tb","ten","was"
-    ]
+            if not athletes: 
+                for group in team_data.get("groups", []): 
+                    athletes.extend(group.get("athletes", []))
 
-    all_players = []
+            for player in athletes: 
+                position = player.get("position", {}) 
 
-    for team in teams:
-        url = f"https://www.espn.com/nfl/team/roster/_/name/{team}"
+                if isinstance(position, dict): 
+                    pos = position.get("abbreviation") 
 
-        try:
-            tables = pd.read_html(url)
-            df = pd.concat(tables, ignore_index=True)
+                else: 
+                    pos = position 
 
-            # Keep desired columns
-            df = df[["Name", "POS", "Age", "HT", "WT", "Exp", "College"]]
+                if pos not in ["QB", "RB", "WR", "TE"]: 
+                    continue 
 
-            # Filter to skill positions
-            df = df[df["POS"].isin(["QB", "RB", "WR", "TE"])]
+                experience = player.get("experience", {}) 
 
-            # Add team
-            df["Team"] = team.upper()
+                if isinstance(experience, dict): 
+                    exp = experience.get("years") 
 
-            all_players.append(df)
+                else: 
+                    exp = experience 
+                college = player.get("college", {}) 
 
-            print(f"✓ {team.upper()}")
+                if isinstance(college, dict): 
+                    college_name = college.get("name") 
 
-            # Be polite to ESPN
-            time.sleep(2)
+                else: 
+                    college_name = college 
 
-        except Exception as e:
-            print(f"Error with {team.upper()}: {e}")
+                all_players.append({ "Team": team.upper(), "Player": player.get("fullName"), "Pos.": pos, "Age": player.get("age"), "HT": player.get("displayHeight"), "WT": player.get("displayWeight"), "Exp": exp, "College": college_name }) 
+            
+            time.sleep(random.uniform(5, 15))
 
-    roster_df = pd.concat(all_players, ignore_index=True)
+        except Exception as e: 
+            print(f"Missed {team}: {e}")
+            time.sleep(random.uniform(5, 15))
+            continue 
 
-    roster_df = roster_df[
-        ["Team", "Name", "POS", "Age", "HT", "WT", "Exp", "College"]
-    ]
+    if not all_players: 
+        raise RuntimeError("No roster data was returned from ESPN.") 
+    
+    roster_df = pd.DataFrame(all_players) 
+    roster_df = roster_df[ ["Team", "Player", "Pos.", "Age", "HT", "WT", "Exp", "College"] ] 
+    roster_df = roster_df.sort_values( ["Team", "Pos.", "Player"] ).reset_index(drop=True) 
 
-    filename = f"nfl_skill_players_{year}.csv"
-    roster_df.to_csv(filename, index=False)
+    filename = f"CSVs/nfl_skill_players_{year}.csv" 
+    roster_df.to_csv(filename, index=False) 
 
-    print(f"\nSaved {len(roster_df)} players to '{filename}'")
-
+    print("Preseason Rosters completed") 
+    
     return roster_df
 
 
 def get_nfl_draft(year):
     """
-    Scrape ESPN NFL Draft data for QB, RB, WR, and TE.
+    Pull QB, RB, WR, and TE selections from the specified NFL Draft
+    using ESPN's API.
 
-    Returns a DataFrame and saves it as a CSV labeled by draft year.
+    Parameters
+    ----------
+    year : int or str
+        NFL Draft year.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Drafted QB, RB, WR, and TE players.
     """
 
-    positions = {
-        "qb": "QB",
-        "rb": "RB",
-        "wr": "WR",
-        "te": "TE"
+    headers = {
+        "User-Agent": "Mozilla/5.0"
     }
 
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/138.0 Safari/537.36"
-        )
-    }
+    rounds_url = (
+        f"https://sports.core.api.espn.com/v2/"
+        f"sports/football/leagues/nfl/seasons/{year}/draft/rounds"
+    )
+
+    response = requests.get(
+        rounds_url,
+        headers=headers,
+        timeout=20
+    )
+    response.raise_for_status()
+
+    rounds_data = response.json()
 
     results = []
 
-    for position_code, position_name in positions.items():
+    for draft_round in rounds_data.get("items", []):
 
-        url = (
-            f"https://www.espn.com/nfl/draft/positions/"
-            f"_/position/{position_code}"
-        )
+        round_number = draft_round.get("number")
 
-        try:
-            response = requests.get(
-                url,
-                headers=headers,
-                timeout=20
+        for pick in draft_round.get("picks", []):
+
+            athlete = pick.get("athlete", {})
+
+            # ESPN sometimes returns an athlete as a $ref
+            athlete_url = athlete.get("$ref")
+
+            if not athlete_url:
+                continue
+
+            # Convert ESPN's http reference to https
+            athlete_url = athlete_url.replace(
+                "http://",
+                "https://"
             )
-            response.raise_for_status()
 
-            tables = pd.read_html(response.text)
-
-            for table in tables:
-
-                # Clean column names
-                table.columns = [
-                    str(col).strip()
-                    for col in table.columns
-                ]
-
-                # Make sure this is a player table
-                if "Name" not in table.columns:
-                    continue
-
-                # Rename columns
-                table = table.rename(
-                    columns={
-                        "Name": "Player"
-                    }
+            try:
+                player_response = requests.get(
+                    athlete_url,
+                    headers=headers,
+                    timeout=20
                 )
 
-                needed = ["Round", "Player", "School"]
+                player_response.raise_for_status()
 
-                if not all(col in table.columns for col in needed):
-                    continue
+                player = player_response.json()
 
-                table = table[needed].copy()
+            except requests.RequestException:
+                continue
 
-                # Add position
-                table["Position"] = position_name
+            position = player.get("position", {})
 
-                # Add draft year
-                table["Draft_Year"] = year
+            if isinstance(position, dict):
+                position_name = position.get("abbreviation")
+            else:
+                position_name = position
 
-                results.append(table)
+            # Only keep QB, RB, WR, TE
+            if position_name not in ["QB", "RB", "WR", "TE"]:
+                continue
 
-            print(f"✓ {position_name}")
+            college = player.get("college", {})
 
-            # Small delay between ESPN requests
-            time.sleep(1)
+            if isinstance(college, dict):
+                school = college.get("name")
+            else:
+                school = college
 
-        except Exception as e:
-            print(f"Error with {position_name}: {e}")
+            results.append({
+                "Draft_Year": year,
+                "Round": round_number,
+                "Player": player.get("fullName"),
+                "School": school,
+                "Position": position_name
+            })
 
-    # Combine all positions
-    df = pd.concat(results, ignore_index=True)
+    if not results:
+        raise RuntimeError(
+            f"No NFL draft data was returned for {year}."
+        )
 
-    # Remove duplicates
+    df = pd.DataFrame(results)
+
     df = df.drop_duplicates()
 
-    # Set column order
     df = df[
         [
             "Draft_Year",
@@ -541,15 +586,47 @@ def get_nfl_draft(year):
         ]
     ]
 
-    # Save CSV
-    filename = f"nfl_draft_{year}.csv"
-    df.to_csv(filename, index=False)
+    filename = f"CSVs/nfl_draft_{year}.csv"
 
-    print(f"\nSaved {len(df)} players to '{filename}'")
+    df.to_csv(
+        filename,
+        index=False
+    )
+
+    print("NFL Draft completed")
 
     return df
 
-```python
+def standardize_player_names(df):
+    name_fixes = {
+        "Michael Penix Jr.": "Michael Penix",
+        "Bam Knight": "Zonovan Knight",
+        "James Cook III": "James Cook",
+        "DJ Moore": "D.J. Moore",
+        "Joshua Palmer": "Josh Palmer",
+        "Mecole Hardman Jr.": "Mecole Hardman",
+        "Luther Burden III": "Luther Burden",
+        "Scotty Miller": "Scott Miller",
+        "Harold Fannin Jr.": "Harold Fannin",
+        "Joe Milton III": "Joe Milton",
+        "Anthony Richardson Sr.": "Anthony Richardson",
+        "Chris Rodriguez Jr.": "Chris Rodriguez",
+        "Brian Thomas Jr.": "Brian Thomas",
+        "Stetson Bennett IV": "Stetson Bennett",
+        "Phillip Dorsett II": "Phillip Dorsett",
+        "Ollie Gordon II": "Ollie Gordon",
+        "Aaron Jones Sr.": "Aaron Jones",
+        "Travis Etienne Jr.": "Travis Etienne",
+        "Hollywood Brown": "Marquise Brown",
+        "DK Metcalf": "D.K. Metcalf",
+        "Deebo Samuel Sr.": "Deebo Samuel",
+        "Chris Godwin Jr.": "Chris Godwin"
+    }
+    df["Player"] = (df["Player"].replace(name_fixes)
+    )
+
+    return df
+
 def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
     """
     Update depth chart after offseason roster changes.
@@ -589,11 +666,16 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
         Updated depth chart
     """
 
+    off_focus_df = standardize_player_names(off_focus_df)
+    new_roster = standardize_player_names(new_roster)
+    previous_depth = standardize_player_names(previous_depth)
+
     df = new_roster.copy()
 
     # ---------------------------------------------------------
     # Bring previous player information forward
     # ---------------------------------------------------------
+
 
     df = df.merge(
         previous_depth[
@@ -606,7 +688,7 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
     df = df.rename(columns={"Depth": "PrevDepth"})
 
     # Players without a previous depth go last
-    df["PrevDepth"] = df["PrevDepth"].fillna(99)
+    df["PrevDepth"] = pd.to_numeric(df["PrevDepth"], errors="coerce").fillna(99)
 
     # ---------------------------------------------------------
     # Add existing offensive focus
@@ -693,7 +775,7 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
 
     # Players with neither an existing Off Focus
     # nor a draft score receive 0
-    df["Off Focus"] = df["Off Focus"].fillna(0)
+    df["Off Focus"] = pd.to_numeric(df["Off Focus"], errors="coerce").fillna(0)
 
     # ---------------------------------------------------------
     # Rank each position
@@ -714,8 +796,8 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
         temp[metric] = temp[metric].fillna(0)
 
         temp = temp.sort_values(
-            ["Team", "PrevDepth", "Off Focus", metric],
-            ascending=[True, True, False, False]
+            ["Team", "Off Focus", "PrevDepth", metric],
+            ascending=[True, False, True, False]
         )
 
         temp["Depth"] = (
@@ -730,11 +812,35 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
     # Combine and clean
     # ---------------------------------------------------------
 
-    return (
-        pd.concat(results)
-        .sort_values(["Team", "Pos.", "Depth"])
-        .reset_index(drop=True)
-    )
+    final_depth_chart = pd.concat(results).sort_values(["Team", "Pos.", "Depth"]).reset_index(drop=True)
+
+        # Manually Override some players Depth
+    manual_depth = {
+        "Joe Flacco": 2,
+        "Joe Burrow": 1,
+        "Davis Mills": 2,
+        "C.J. Stroud": 1,
+        "Justin Fields": 2,
+        "Patrick Mahomes": 1,
+        "Carson Wentz": 3,
+        "Kyler Murray": 1,
+        "J.J. McCarthy": 2,
+        "Justin Jefferson": 1,
+        "Jauan Jennings": 2,
+        "Jordan Addison": 3,
+        "Jameis Winston": 2,
+        "Jaxson Dart": 1
+    }
+
+    final_depth_chart["Depth"] = final_depth_chart["Player"].map(manual_depth).fillna(final_depth_chart["Depth"])
+
+    final_depth_chart["Depth"] = final_depth_chart["Depth"].astype(int)
+
+    final_depth_chart = final_depth_chart.sort_values(
+        ["Team", "Pos.", "Depth"]
+    ).reset_index(drop=True)
+
+    return final_depth_chart
 
 
 def teamtotals(dflist, schedule):
@@ -2102,6 +2208,8 @@ def analysis(useful, individualtotals):
         
         if passatt != 0 and passints != 0 and totalpasstds + totalrectds + totalrushtds != 0:
             QBDom.at[i, 'Off Focus'] = round(passyds/passatt + passtds/passints + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
+        elif passatt != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+            QBDom.at[i, 'Off Focus'] = round(passyds/passatt + passtds + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
         else:
             QBDom.at[i, 'Off Focus'] = 0
 

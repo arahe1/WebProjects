@@ -6,13 +6,17 @@ from Imports import PyFunc as ps
 
 listicle = ps.get_nfl_week_files(2025, folder="CSVs")
 DFs = ps.importstats(listicle)
-prevdepth = ps.build_depth_chart(DFs, 2025)
-newrosters = ps.get_preseason_rosters(2026)
+Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')
+Week = len(DFs)+1
 Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
-Dominance = ps.analysis(Total_Stats,IndividualTotals)['FlexDom']
-Draft = ps.get_nfl_draft(year)
+Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
+Dominance = ps.analysis(Total_Stats,IndividualTotals)
+Dominance = pd.concat([Dominance["QBDom"], Dominance["FlexDom"]], ignore_index=True)
+prevdepth = ps.build_depth_chart(Useful, 2025)
+newrosters = ps.get_preseason_rosters(2026)
+Draft = ps.get_nfl_draft(2026)
 updated_depth = ps.update_depth_chart(prevdepth, newrosters, Dominance, Draft)
-
-updated_depth.to_csv("Preseason_DepthChart_2026.csv", index=False)
+updated_depth = updated_depth[["Team", "Player", "Pos.", "Age", "HT", "WT", "Exp", "Depth"]]
+updated_depth.to_csv("CSVs/Preseason_DepthChart_2026.csv", index=False)
 

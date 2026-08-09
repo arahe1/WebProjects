@@ -17,6 +17,6 @@ prevdepth = ps.build_depth_chart(Useful, 2025)
 newrosters = ps.get_preseason_rosters(2026)
 Draft = ps.get_nfl_draft(2026)
 updated_depth = ps.update_depth_chart(prevdepth, newrosters, Dominance, Draft)
-updated_depth = updated_depth[["Team", "Player", "Pos.", "Age", "HT", "WT", "Exp", "Depth"]]
+updated_depth = updated_depth[["Team", "Player", "Pos.", "Age", "Exp", "Depth"]]
 updated_depth.to_csv("CSVs/Preseason_DepthChart_2026.csv", index=False)
 

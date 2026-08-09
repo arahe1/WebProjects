@@ -842,6 +842,88 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
 
     return final_depth_chart
 
+def assign_remaining_stats_by_position(df1, df2, df3):
+
+    stats = [
+        "PassYds", "PassTD", "Rec", "RecYds", "RecTD",
+        "RushAtt", "RushYds", "RushTD"
+    ]
+
+    for df in [df1, df2, df3]:
+        cols = df.select_dtypes(include="number").columns
+        df[cols] = df[cols].replace([np.inf, -np.inf], np.nan)
+        df[cols] = df[cols].fillna(0).round().astype(int)
+
+    for df in [df1, df2, df3]:
+        cols = df.select_dtypes(include="number").columns
+        df[cols] = df[cols].round().astype(int)
+
+    # Match totals by Team AND Position
+    team_pos_values = df1[["Team", "Pos."] + stats].merge(
+        df2[["Team", "Pos."] + stats],
+        on=["Team", "Pos."],
+        how="left",
+        suffixes=("_df1", "_df2")
+    )
+
+    # Subtract df2 from df1
+    for stat in stats:
+        team_pos_values[stat] = (
+            team_pos_values[f"{stat}_df1"]
+            - team_pos_values[f"{stat}_df2"]
+        )
+
+    team_pos_values = team_pos_values[
+        ["Team", "Pos."] + stats
+    ]
+
+    # Find highest-depth player at each Team + Position
+    # who has zeroes in all stat columns
+    eligible = df3[
+        df3[stats].fillna(0).eq(0).all(axis=1)
+    ]
+
+    target_players = (
+        eligible
+        .sort_values(["Team", "Pos.", "Depth"])
+        .drop_duplicates(["Team", "Pos."], keep="first")
+        [["Team", "Pos.", "Player"]]
+    )
+
+    # Mark target players
+    df3 = df3.merge(
+        target_players.assign(_target=True),
+        on=["Team", "Pos.", "Player"],
+        how="left"
+    )
+
+    # Bring calculated Team + Position values over
+    df3 = df3.merge(
+        team_pos_values,
+        on=["Team", "Pos."],
+        how="left",
+        suffixes=("", "_new")
+    )
+
+    # Assign remaining stats
+    for stat in stats:
+        mask = df3["_target"].eq(True)
+
+        df3.loc[mask, stat] = (
+            df3.loc[mask, f"{stat}_new"]
+            .fillna(0)
+            .round()
+            .astype(int)
+        )
+
+    # Clean up
+    df3 = df3.drop(
+        columns=["_target"] +
+        [f"{stat}_new" for stat in stats]
+    )
+
+    return df3
+        
 
 def teamtotals(dflist, schedule):
        # Initialize a list to collect results

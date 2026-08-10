@@ -1235,7 +1235,7 @@ def preseason_prediction_html(df):
 
     <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
 
-    <h1>Week Preseason Predictions</h1>
+    <h1>Preseason Predictions</h1>
 
     <div class="topnav">
     <input type="text" id="searchBar" placeholder="Search...">

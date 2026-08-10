@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import os
 import subprocess
 pd.set_option('display.max_columns', None)
@@ -14,7 +15,26 @@ IndividualTotals = ps.individualtotals(DFs)
 
 depth_chart = pd.read_csv("CSVs/Preseason_Depthchart_2026.csv")
 
+#Conform to Stathead Labels
+depth_chart["Team"] = depth_chart["Team"].replace({
+    "GB": "GNB",
+    "KC": "KAN",
+    "LV": "LVR",
+    "NO": "NOR",
+    "NE": "NWE",
+    "SF": "SFO",
+    "TB": "TAM"
+})
+
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
+
+useful_totals = (
+    Useful.groupby(["Team", "Pos."])
+      .sum(numeric_only=True)
+      .reset_index()
+)
+
+useful_totals["Team"] = useful_totals["Team"].replace({"WAS": "WSH"})
 
 Useful = Useful.drop(columns=["Team"])
 Useful = Useful.drop(columns=["Pos."])
@@ -25,11 +45,18 @@ Useful = depth_chart.merge(
     how="left"
 )
 
+Useful = ps.standardize_player_names(Useful)
+
 TeamTotals = ps.teamtotals(DFs, Schedule)
 ROS = ps.ROSdataframe(Useful, TeamTotals, Week, Schedule)
+
+dupes = ROS.loc[ROS["Player"].duplicated(keep=False), "Player"].unique()
+print(dupes)
+
 All_DataFrames = ps.rosfinaldataframes(ROS)
 
 df = All_DataFrames['Rest Of Season']
+df = ps.standardize_player_names(df)
 
 df = df.drop(columns=["PPR"])
 df = df.drop(columns=["STD"])
@@ -40,34 +67,47 @@ df = df.merge(
     how="left"
 )
 
+
 multipliers = {
-    1: 1.00,
+    1: 0.90,
     2: 0.60,
     3: 0.30,
     4: 0.10,
-    5: 0.10,
-    6: 0.10,
-    7: 0.10,
-    8: 0.10,
-    9: 0.10,
-    10: 0.10,
-    11: 0.10,
-    12: 0.10,
-    13: 0.10,
-    14: 0.10,
-    15: 0.10,
-    16: 0.10,
-    17: 0.10,
-    18: 0.10,
-    19: 0.10,
-    20: 0.10
+    5: 0.05,
+    6: 0.05,
+    7: 0,
+    8: 0,
+    9: 0,
+    10: 0,
+    11: 0,
+    12: 0,
+    13: 0,
+    14: 0,
+    15: 0,
+    16: 0,
+    17: 0,
+    18: 0,
+    19: 0,
+    20: 0
 }
 
+#for depth, multiplier in multipliers.items():
+#    df.loc[
+#        df["Depth"] == depth,
+#        ["PassYds","PassTD","Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]
+#    ] *= multiplier
+
 for depth, multiplier in multipliers.items():
-    df.loc[
-        df["Depth"] == depth,
-        ["PassYds","PassTD","Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]
-    ] *= multiplier
+    mask = df["Depth"] == depth
+    df.loc[mask, ["PassYds","PassTD","Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]] = (
+        df.loc[mask, ["PassYds","PassTD","Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]]
+        .astype(float)
+        .mul(multiplier)
+        .round()
+        .fillna(0)
+        .replace([np.inf, -np.inf], 0)
+        .astype(int)
+    )
 
 team_totals = (
     Useful.groupby(["Team", "Pos."])
@@ -82,7 +122,7 @@ team_totals_future = (
 )
 
 
-df = ps.assign_remaining_stats_by_position(team_totals, team_totals_future, df)
+df = ps.assign_remaining_stats_by_position(useful_totals, team_totals_future, df)
 
 cols = df.select_dtypes(include="number").columns
 df[cols] = df[cols].clip(lower=0)
@@ -92,6 +132,11 @@ df.to_csv(full_path, index=False)
 
 team_totals = team_totals.drop(columns=["Age", "Exp", "Depth", "Week", "IndComp%", "TeamComp%", "PassYds%", "PassTD%", "IndCatch%", "TmCatch%", "RecYds%", "RecTD%", "Rush%", "RushYds%", "RushTD%"])
 
+ps.preseason_prediction_html(df)
+
+with open("Useful_Totals.md", "w", encoding="utf-8") as f:
+    useful_totals.to_markdown(buf=f, index=False)
+    
 with open("Team_Totals.md", "w", encoding="utf-8") as f:
     team_totals.to_markdown(buf=f, index=False)
 

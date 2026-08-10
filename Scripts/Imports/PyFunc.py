@@ -402,6 +402,7 @@ def get_preseason_rosters(year):
              "min", "ne", "no", "nyg", 
              "nyj", "phi", "pit", "sf", 
              "sea", "tb", "ten", "wsh" ] 
+
     
     all_players = [] 
     headers = { "User-Agent": "Mozilla/5.0" } 
@@ -606,7 +607,6 @@ def standardize_player_names(df):
         "Joshua Palmer": "Josh Palmer",
         "Mecole Hardman Jr.": "Mecole Hardman",
         "Luther Burden III": "Luther Burden",
-        "Scotty Miller": "Scott Miller",
         "Harold Fannin Jr.": "Harold Fannin",
         "Joe Milton III": "Joe Milton",
         "Anthony Richardson Sr.": "Anthony Richardson",
@@ -620,7 +620,8 @@ def standardize_player_names(df):
         "Hollywood Brown": "Marquise Brown",
         "DK Metcalf": "D.K. Metcalf",
         "Deebo Samuel Sr.": "Deebo Samuel",
-        "Chris Godwin Jr.": "Chris Godwin"
+        "Chris Godwin Jr.": "Chris Godwin",
+        "Kyle Pitts Sr.": "Kyle Pitts"
     }
     df["Player"] = (df["Player"].replace(name_fixes)
     )
@@ -829,7 +830,20 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
         "Jauan Jennings": 2,
         "Jordan Addison": 3,
         "Jameis Winston": 2,
-        "Jaxson Dart": 1
+        "Jaxson Dart": 1,
+        "Kyle Pitts": 1,
+        "Tyson Bagent": 2,
+        "Caleb Williams": 1,
+        "Cam Ward": 1,
+        "Mitchell Trubisky": 2,
+        "KC Concepcion": 3,
+        "Denzel Boston": 4,
+        "Jerry Jeudy": 1,
+        "Cedric Tillman": 2,
+        "Cyrus Allen": 3,
+        "Tyquan Thornton": 4,
+        "DeVonta Smith": 1,
+        "Makai Lemon": 2
     }
 
     final_depth_chart["Depth"] = final_depth_chart["Player"].map(manual_depth).fillna(final_depth_chart["Depth"])
@@ -842,87 +856,463 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
 
     return final_depth_chart
 
+
 def assign_remaining_stats_by_position(df1, df2, df3):
+    for df in [df1, df2, df3]:
+        df["Team"] = df["Team"].astype(str).str.replace("\xa0", " ", regex=False).str.strip()
+        df["Pos."] = df["Pos."].astype(str).str.replace("\xa0", " ", regex=False).str.strip()
+
 
     stats = [
         "PassYds", "PassTD", "Rec", "RecYds", "RecTD",
         "RushAtt", "RushYds", "RushTD"
     ]
 
+    # ---------------------------------------------------------
+    # Clean numeric columns
+    # ---------------------------------------------------------
     for df in [df1, df2, df3]:
         cols = df.select_dtypes(include="number").columns
-        df[cols] = df[cols].replace([np.inf, -np.inf], np.nan)
-        df[cols] = df[cols].fillna(0).round().astype(int)
-
-    for df in [df1, df2, df3]:
-        cols = df.select_dtypes(include="number").columns
-        df[cols] = df[cols].round().astype(int)
-
-    # Match totals by Team AND Position
-    team_pos_values = df1[["Team", "Pos."] + stats].merge(
-        df2[["Team", "Pos."] + stats],
-        on=["Team", "Pos."],
-        how="left",
-        suffixes=("_df1", "_df2")
-    )
-
-    # Subtract df2 from df1
-    for stat in stats:
-        team_pos_values[stat] = (
-            team_pos_values[f"{stat}_df1"]
-            - team_pos_values[f"{stat}_df2"]
-        )
-
-    team_pos_values = team_pos_values[
-        ["Team", "Pos."] + stats
-    ]
-
-    # Find highest-depth player at each Team + Position
-    # who has zeroes in all stat columns
-    eligible = df3[
-        df3[stats].fillna(0).eq(0).all(axis=1)
-    ]
-
-    target_players = (
-        eligible
-        .sort_values(["Team", "Pos.", "Depth"])
-        .drop_duplicates(["Team", "Pos."], keep="first")
-        [["Team", "Pos.", "Player"]]
-    )
-
-    # Mark target players
-    df3 = df3.merge(
-        target_players.assign(_target=True),
-        on=["Team", "Pos.", "Player"],
-        how="left"
-    )
-
-    # Bring calculated Team + Position values over
-    df3 = df3.merge(
-        team_pos_values,
-        on=["Team", "Pos."],
-        how="left",
-        suffixes=("", "_new")
-    )
-
-    # Assign remaining stats
-    for stat in stats:
-        mask = df3["_target"].eq(True)
-
-        df3.loc[mask, stat] = (
-            df3.loc[mask, f"{stat}_new"]
+        df[cols] = (
+            df[cols]
+            .replace([np.inf, -np.inf], np.nan)
             .fillna(0)
             .round()
             .astype(int)
         )
 
-    # Clean up
-    df3 = df3.drop(
-        columns=["_target"] +
-        [f"{stat}_new" for stat in stats]
+    # ---------------------------------------------------------
+    # 1. Get Team + Position totals
+    #
+    # df1 = last year's totals
+    # df2 = current projected totals
+    # ---------------------------------------------------------
+    df1_totals = (
+        df1.groupby(["Team", "Pos."])[stats]
+        .sum()
+        .reset_index()
     )
 
+    df2_totals = (
+        df2.groupby(["Team", "Pos."])[stats]
+        .sum()
+        .reset_index()
+    )
+
+    # ---------------------------------------------------------
+    # 2. Historical - projected = remaining
+    # ---------------------------------------------------------
+    remaining = df1_totals.merge(
+        df2_totals,
+        on=["Team", "Pos."],
+        how="left",
+        suffixes=("_last", "_projected")
+    )
+
+    for stat in stats:
+        remaining[stat] = (
+            remaining[f"{stat}_last"].fillna(0)
+            - remaining[f"{stat}_projected"].fillna(0)
+        )
+
+    # ---------------------------------------------------------
+    # 3. Allocate each Team + Position leftover
+    #    to the top 3 players by Depth
+    # ---------------------------------------------------------
+    for _, row in remaining.iterrows():
+
+        team = row["Team"]
+        pos = row["Pos."]
+
+        players = df3[
+            (df3["Team"] == team) &
+            (df3["Pos."] == pos)
+        ].sort_values("Depth").head(3)
+
+        if players.empty:
+            continue
+
+        for stat in stats:
+
+            amount = int(round(row[stat]))
+            # Negative passing yards/TDs:
+            # remove evenly from top 2 QBs
+            if pos == "QB" and stat in ["PassYds", "PassTD"] and amount < 0:
+
+                amount = int(round(amount * 0.80))
+
+                qbs = (
+                    df3[
+                        (df3["Team"] == team) &
+                        (df3["Pos."] == "QB")
+                    ]
+                    .sort_values("Depth")
+                    .head(2)
+                )
+
+                if not qbs.empty:
+
+                    base = abs(amount) // len(qbs)
+                    remainder = abs(amount) % len(qbs)
+
+                    for i, idx in enumerate(qbs.index):
+
+                        change = base + (1 if i < remainder else 0)
+
+                        df3.loc[idx, stat] -= change
+
+                continue
+
+            if amount == 0:
+                continue
+
+            base = amount // len(players)
+            remainder = abs(amount) % len(players)
+
+            for i, idx in enumerate(players.index):
+
+                change = base
+
+                if i < remainder:
+                    change += 1
+
+                # Preserve the sign of the leftover
+                if amount < 0:
+                    change = -change
+
+                df3.loc[idx, stat] += change
+
+    # Redistribute Depth 3 QB passing stats to Depth 1 and 2
+
+    for team in df3["Team"].unique():
+
+        qbs = (
+            df3[
+                (df3["Team"] == team) &
+                (df3["Pos."] == "QB")
+            ]
+            .sort_values("Depth")
+        )
+
+        if len(qbs) < 3:
+            continue
+
+        qb1 = qbs.iloc[0].name
+        qb2 = qbs.iloc[1].name
+        qb3 = qbs.iloc[2].name
+
+        for stat in ["PassYds", "PassTD"]:
+
+            depth3_value = int(df3.loc[qb3, stat])
+
+            if depth3_value == 0:
+                continue
+
+            df3.loc[qb3, stat] -= depth3_value
+
+            base = depth3_value // 2
+            remainder = depth3_value % 2
+
+            df3.loc[qb1, stat] += base + remainder
+            df3.loc[qb2, stat] += base
+
+    # ---------------------------------------------------------
+    # 4. Reconcile Passing vs Receiving at the TEAM level
+    #
+    # Passing yards should equal receiving yards
+    # Passing TDs should equal receiving TDs
+    #
+    # 70% -> WR
+    # 30% -> TE
+    # ---------------------------------------------------------
+    for team in df3["Team"].unique():
+
+        team_mask = df3["Team"] == team
+
+        pass_yds = df3.loc[team_mask, "PassYds"].sum()
+        rec_yds = df3.loc[team_mask, "RecYds"].sum()
+
+        pass_td = df3.loc[team_mask, "PassTD"].sum()
+        rec_td = df3.loc[team_mask, "RecTD"].sum()
+
+        # -----------------------------------------------------
+        # Receiving yards adjustment
+        # -----------------------------------------------------
+        rec_yd_diff = int(pass_yds - rec_yds)
+
+        if rec_yd_diff != 0:
+
+            wrs = (
+                df3[
+                    (df3["Team"] == team) &
+                    (df3["Pos."] == "WR")
+                ]
+                .sort_values("Depth")
+                .head(3)
+            )
+
+            tes = (
+                df3[
+                    (df3["Team"] == team) &
+                    (df3["Pos."] == "TE")
+                ]
+                .sort_values("Depth")
+                .head(3)
+            )
+
+            # 70% WR / 30% TE
+            if not wrs.empty and not tes.empty:
+                wr_amount = int(round(rec_yd_diff * 0.70))
+                te_amount = rec_yd_diff - wr_amount
+
+            elif not wrs.empty:
+                wr_amount = rec_yd_diff
+                te_amount = 0
+
+            elif not tes.empty:
+                wr_amount = 0
+                te_amount = rec_yd_diff
+
+            else:
+                wr_amount = 0
+                te_amount = 0
+
+            # Distribute WR portion
+            if not wrs.empty and wr_amount != 0:
+
+                base = abs(wr_amount) // len(wrs)
+                remainder = abs(wr_amount) % len(wrs)
+
+                for i, idx in enumerate(wrs.index):
+
+                    change = base + (1 if i < remainder else 0)
+
+                    if wr_amount < 0:
+                        change = -change
+
+                    df3.loc[idx, "RecYds"] += change
+
+            # Distribute TE portion
+            if not tes.empty and te_amount != 0:
+
+                base = abs(te_amount) // len(tes)
+                remainder = abs(te_amount) % len(tes)
+
+                for i, idx in enumerate(tes.index):
+
+                    change = base + (1 if i < remainder else 0)
+
+                    if te_amount < 0:
+                        change = -change
+
+                    df3.loc[idx, "RecYds"] += change
+
+        # -----------------------------------------------------
+        # Receiving TD adjustment
+        # -----------------------------------------------------
+        rec_td_diff = int(pass_td - rec_td)
+
+        if rec_td_diff != 0:
+
+            wrs = (
+                df3[
+                    (df3["Team"] == team) &
+                    (df3["Pos."] == "WR")
+                ]
+                .sort_values("Depth")
+                .head(3)
+            )
+
+            tes = (
+                df3[
+                    (df3["Team"] == team) &
+                    (df3["Pos."] == "TE")
+                ]
+                .sort_values("Depth")
+                .head(3)
+            )
+
+            # 70% WR / 30% TE
+            if not wrs.empty and not tes.empty:
+                wr_amount = int(round(rec_td_diff * 0.70))
+                te_amount = rec_td_diff - wr_amount
+
+            elif not wrs.empty:
+                wr_amount = rec_td_diff
+                te_amount = 0
+
+            elif not tes.empty:
+                wr_amount = 0
+                te_amount = rec_td_diff
+
+            else:
+                wr_amount = 0
+                te_amount = 0
+
+            # Distribute WR TDs
+            if not wrs.empty and wr_amount != 0:
+
+                base = abs(wr_amount) // len(wrs)
+                remainder = abs(wr_amount) % len(wrs)
+
+                for i, idx in enumerate(wrs.index):
+
+                    change = base + (1 if i < remainder else 0)
+
+                    if wr_amount < 0:
+                        change = -change
+
+                    df3.loc[idx, "RecTD"] += change
+
+            # Distribute TE TDs
+            if not tes.empty and te_amount != 0:
+
+                base = abs(te_amount) // len(tes)
+                remainder = abs(te_amount) % len(tes)
+
+                for i, idx in enumerate(tes.index):
+
+                    change = base + (1 if i < remainder else 0)
+
+                    if te_amount < 0:
+                        change = -change
+
+                    df3.loc[idx, "RecTD"] += change
+
     return df3
+
+def preseason_prediction_html(df):
+    html_string = df.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
+    
+    # Full HTML file with sorting and ALL rows shown
+    html_script = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title> PreSeason NFL Predictions </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
+    <link rel="icon" type="image/svg+xml" href="/WebProjects/images/favicon.svg" />
+    <link rel="shortcut icon" href="/WebProjects/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/WebProjects/images/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MyWebSit" />
+    <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
+
+    <link rel="stylesheet" href="/WebProjects/style.css">
+
+
+    </head>
+    <body>
+
+    <div class="topnav">
+    <a href="/WebProjects/index.html">Home</a>
+        <div class="dropdown">
+        <button class="dropbtn active">Football
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+            <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+            <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+            <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+            <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
+        </div>
+        </div>
+        <div class="dropdown">
+        <button class="dropbtn">Baseball
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions</a>
+            <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions</a>
+        </div>
+        </div>
+    <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
+    <a href="/WebProjects/about.html">About</a>
+    </div>
+
+
+    <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
+
+    <h1>Week Preseason Predictions</h1>
+
+    <div class="topnav">
+    <input type="text" id="searchBar" placeholder="Search...">
+    </div>
+
+
+    {html_string}
+
+    <script>
+    function getCellValue(row, index) {{
+        return row.cells[index].textContent.trim();
+    }}
+
+    function comparer(index, asc) {{
+        return function(a, b) {{
+        const v1 = getCellValue(a, index);
+        const v2 = getCellValue(b, index);
+
+        const num1 = parseFloat(v1);
+        const num2 = parseFloat(v2);
+        const bothNumbers = !isNaN(num1) && !isNaN(num2);
+
+        if (bothNumbers) {{
+            return asc ? num1 - num2 : num2 - num1;
+        }} else {{
+            return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+        }}
+        }};
+    }}
+
+    document.addEventListener("DOMContentLoaded", function () {{
+        document.querySelectorAll("th").forEach(function (th, index) {{
+        let ascending = true;
+        if (index === 0) return;
+        th.addEventListener("click", function () {{
+            const table = th.closest("table");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            rows.sort(comparer(index, ascending));
+            //rows.forEach(row => tbody.appendChild(row));
+            rows.forEach((row, i) => {{
+                row.cells[0].textContent = i + 1; // Reset Rank to match new row position
+                tbody.appendChild(row);
+            }});
+            ascending = !ascending;
+        }});
+        }});
+    }});
+    </script>
+
+    
+
+    <script>
+    const searchBar = document.getElementById('searchBar');
+    const table = document.querySelector('table');
+    const rows = table.getElementsByTagName('tr');
+
+    searchBar.addEventListener('keyup', function () {{
+        const searchText = searchBar.value.toLowerCase();
+
+        for (let i = 1; i < rows.length; i++) {{
+        const row = rows[i];
+        const rowText = row.textContent.toLowerCase();
+        row.style.display = rowText.includes(searchText) ? '' : 'none';
+        }}
+    }});
+    </script>
+
+    
+
+    </body>
+    </html>
+    """
+
+    # Save to HTML file
+    with open(f"Preseason_Predictions.html", "w", encoding="utf-8") as f:
+        f.write(html_script)
         
 
 def teamtotals(dflist, schedule):
@@ -1310,6 +1700,7 @@ def weeklyhtml(alldataframes, week):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
             </div>
             </div>
             <div class="dropdown">
@@ -1576,33 +1967,33 @@ def ROSdataframe(useful, teamtotals, week, schedule):
 
             players.append(row['Player'])
 
-            predictedrushes.append(np.clip(np.round(rushes.mean()).astype(int), 0, None))
-            predictedrushyards.append(np.clip(np.round(rushyards.mean()).astype(int), 0, None))
+            predictedrushes.append(np.clip(int(np.round(np.nanmean(np.nan_to_num(rushes, nan=0)))), 0, None))
+            predictedrushyards.append(np.clip(int(np.round(np.nanmean(np.nan_to_num(rushyards, nan=0)))), 0, None))
             predictedrushtds.append(np.clip(np.round(rushtds.mean(),1), 0, None))
 
-            predictedreceptions.append(np.clip(np.round(receptions.mean()).astype(int), 0, None))
-            predictedreceivingyards.append(np.clip(np.round(receivingyards.mean()).astype(int), 0, None))
+            predictedreceptions.append(np.clip(int(np.round(np.nanmean(np.nan_to_num(receptions, nan=0)))), 0, None))
+            predictedreceivingyards.append(np.clip(int(np.round(np.nanmean(np.nan_to_num(receivingyards, nan=0)))), 0, None))
             predictedreceivingtds.append(np.clip(np.round(receivingtds.mean(),1), 0, None))
 
-            predictedpassingyards.append(np.clip(np.round(passingyards.mean()).astype(int), 0, None))
+            predictedpassingyards.append(np.clip(int(np.round(np.nanmean(np.nan_to_num(passingyards, nan=0)))), 0, None))
             predictedpassingtds.append(np.clip(np.round(passingtds.mean(),1), 0, None))
             
 
             # Fantasy scoring
             ppr = (
-                np.round(rushyards.mean()).astype(int) / 10 +
-                np.round(receivingyards.mean()).astype(int) / 10 +
-                np.round(passingyards.mean()).astype(int) / 25 +
-                np.round(receptions.mean()).astype(int) +
+                int(np.round(np.nanmean(np.nan_to_num(rushyards, nan=0)))) / 10 +
+                int(np.round(np.nanmean(np.nan_to_num(receivingyards, nan=0)))) / 10 +
+                int(np.round(np.nanmean(np.nan_to_num(passingyards, nan=0)))) / 25 +
+                int(np.round(np.nanmean(np.nan_to_num(receptions, nan=0)))) +
                 (np.round(rushtds.mean(),1) + np.round(receivingtds.mean(),1)) * 6 +
                 np.round(passingtds.mean(),1) * 4
             )
             pprs.append(ppr)
 
             std = (
-                np.round(rushyards.mean()).astype(int) / 10 +
-                np.round(receivingyards.mean()).astype(int) / 10 +
-                np.round(passingyards.mean()).astype(int) / 25 +
+                int(np.round(np.nanmean(np.nan_to_num(rushyards, nan=0)))) / 10 +
+                int(np.round(np.nanmean(np.nan_to_num(receivingyards, nan=0)))) / 10 +
+                int(np.round(np.nanmean(np.nan_to_num(passingyards, nan=0)))) / 25 +
                 (np.round(rushtds.mean(),1) + np.round(receivingtds.mean(),1)) * 6 +
                 np.round(passingtds.mean(),1) * 4
             )
@@ -1758,6 +2149,7 @@ def roshtml(alldataframes):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
             </div>
             </div>
             <div class="dropdown">
@@ -2116,6 +2508,7 @@ def teampredictionshtml(finalscores, week):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
             </div>
             </div>
         <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
@@ -2617,6 +3010,7 @@ def dominancehtml(alldataframes):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
             </div>
             </div>
             <div class="dropdown">
@@ -3195,6 +3589,7 @@ def preseasonmlbhittinghtml(future):
                     <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                     <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                     <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+                    <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -3774,6 +4169,7 @@ def preseasonmlbpitchinghtml(future):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
             </div>
             </div>
             <div class="dropdown">

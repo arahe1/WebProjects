@@ -8,6 +8,117 @@ import time
 import unicodedata
 import random
 
+#Age Regression
+def age_adjust_projections(row, curves):
+    pos = row["Pos."]
+    current_age = row["Age"] - 1
+    target_age = row["Age"]
+
+    # metrics: projection column -> aging-curve metric
+    metrics = {
+        "RushYds": "Rush Y/A",
+        "RushTD": "Rush TD/A",
+        "PassYds": "Pass Y/A",
+        "PassTD": "Pass TD/A",
+        "Int": "INT/A",
+        "RecYds": "Y/Rec",
+        "RecTD": "Rec TD/Rec"
+    }
+
+    for projection_col, metric in metrics.items():
+
+        if pos not in curves or metric not in curves[pos]:
+            continue
+
+        coef = curves[pos][metric]
+
+        # Expected rate at current and future age
+        current_rate = np.polyval(coef, current_age)
+        future_rate = np.polyval(coef, target_age)
+
+        if (
+            not np.isfinite(current_rate)
+            or not np.isfinite(future_rate)
+            or current_rate <= 0
+            or future_rate <= 0
+        ):
+            continue
+
+        # Aging factor
+        factor = future_rate / current_rate
+
+        # Adjust the existing projection
+        row[projection_col] *= factor
+
+    row["Age"] = target_age
+
+    return row
+
+
+def build_age_curves(Total_Stats):
+    Total_Stats = Total_Stats.copy()
+
+    # Convert age from "years-days" to decimal age, then round to 0.5
+    age = Total_Stats["Age"].str.split("-", expand=True).astype(float)
+    Total_Stats["Age"] = age[0] + round(age[1] / 365.25)
+    #Total_Stats["Age"] = (Total_Stats["age_decimal"] * 2).round() / 2
+
+    #Total_Stats = Total_Stats.drop(columns=["Age"])
+
+    # Average stats by age and position
+    age_pos = (
+        Total_Stats
+        .groupby(["Age", "Pos."])
+        .mean(numeric_only=True)
+        .reset_index()
+    )
+
+    # Create age curve dataframe
+    Age_Curve = age_pos[["Age", "Pos."]].copy()
+
+    Age_Curve["Pass Y/A"] = age_pos["PassYds"] / age_pos["PassAtt"]
+    Age_Curve["Pass TD/A"] = age_pos["PassTD"] / age_pos["PassAtt"]
+    Age_Curve["INT/A"] = age_pos["Int"] / age_pos["PassAtt"]
+
+    Age_Curve["Rush Y/A"] = age_pos["RushYds"] / age_pos["RushAtt"]
+    Age_Curve["Rush TD/A"] = age_pos["RushTD"] / age_pos["RushAtt"]
+
+    Age_Curve["Y/Rec"] = age_pos["RecYds"] / age_pos["Rec"]
+    Age_Curve["Rec TD/Rec"] = age_pos["RecTD"] / age_pos["Rec"]
+
+    # Metrics to fit
+    metrics = [
+        "Rush Y/A",
+        "Pass Y/A",
+        "INT/A",
+        "Pass TD/A",
+        "Y/Rec",
+        "Rush TD/A",
+        "Rec TD/Rec"
+    ]
+
+    # Fit quadratic polynomial for each position/metric
+    curves = {}
+
+    for pos in Age_Curve["Pos."].unique():
+        curves[pos] = {}
+
+        for metric in metrics:
+            data = (
+                Age_Curve[Age_Curve["Pos."] == pos]
+                [["Age", metric]]
+                .dropna()
+            )
+
+            if len(data) >= 3:
+                curves[pos][metric] = np.polyfit(
+                    data["Age"],
+                    data[metric],
+                    2
+                )
+
+    return Age_Curve, curves
+
 
 #NFL Scripts
 def split_df_by_position(df, position_col="Pos."):
@@ -1317,7 +1428,7 @@ def preseason_prediction_html(dfs):
         </div>
 
                 <div class="topnav">
-        <a {"class='active'" if name == "All" else ""} href="All.html">SuperFlex</a>
+        <a {"class='active'" if name == "All" else ""} href="All.html">All</a>
         <a {"class='active'" if name == "QB" else ""} href="QB.html">QB</a>
         <a {"class='active'" if name == "WR" else ""} href="WR.html">WR</a>
         <a {"class='active'" if name == "RB" else ""} href="RB.html">RB</a>
@@ -1973,7 +2084,7 @@ def injuryremovalros(ros):
 
 def ROSdataframe(useful, teamtotals, week, schedule):
 
-    statcolumns = ['Player', 'Team', 'Pos.', 'PPR', 'STD', 'PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    statcolumns = ['Player', 'Team', 'Pos.', 'Age', 'PPR', 'STD', 'PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
 
     # Prepare your output DataFrame
     ROS = pd.DataFrame()

@@ -13,6 +13,8 @@ Week = 1
 Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 
+Age_Curve, curves = ps.build_age_curves(Total_Stats)
+
 depth_chart = pd.read_csv("CSVs/Preseason_Depthchart_2026.csv")
 
 #Conform to Stathead Labels
@@ -90,12 +92,6 @@ multipliers = {
     20: 0
 }
 
-#for depth, multiplier in multipliers.items():
-#    df.loc[
-#        df["Depth"] == depth,
-#        ["PassYds","PassTD","Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]
-#    ] *= multiplier
-
 for depth, multiplier in multipliers.items():
     mask = df["Depth"] == depth
     df.loc[mask, ["PassYds","PassTD", "Int", "Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]] = (
@@ -124,6 +120,10 @@ team_totals_future = (
 
 df = ps.assign_remaining_stats_by_position(useful_totals, team_totals_future, df)
 
+df = df.apply(ps.age_adjust_projections, axis=1, curves=curves)
+
+df = df.round(0)
+
 df = ps.add_fantasy_points(df)
 
 cols = df.select_dtypes(include="number").columns
@@ -134,12 +134,12 @@ dfs = ps.split_df_by_position(df)
 full_path = os.path.join('CSVs', 'PreSeason_2026.csv')
 df.to_csv(full_path, index=False)
 
-team_totals = team_totals.drop(columns=["Age", "Exp", "Depth", "Week", "IndComp%", "TeamComp%", "PassYds%", "PassTD%", "IndCatch%", "TmCatch%", "RecYds%", "RecTD%", "Rush%", "RushYds%", "RushTD%"])
+team_totals = team_totals.drop(columns=["Exp", "Depth", "Week", "IndComp%", "TeamComp%", "PassYds%", "PassTD%", "IndCatch%", "TmCatch%", "RecYds%", "RecTD%", "Rush%", "RushYds%", "RushTD%"])
 
 ps.preseason_prediction_html(dfs)
 
-#with open("Useful_Totals.md", "w", encoding="utf-8") as f:
-#    useful_totals.to_markdown(buf=f, index=False)
+with open("Useful.md", "w", encoding="utf-8") as f:
+    Useful.to_markdown(buf=f, index=False)
     
 #with open("Team_Totals.md", "w", encoding="utf-8") as f:
 #    team_totals.to_markdown(buf=f, index=False)

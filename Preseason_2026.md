@@ -1,931 +1,931 @@
-|   Rank | Player                   | Team   | Pos.   |   PassYds |   PassTD |   Rec |   RecYds |   RecTD |   RushAtt |   RushYds |   RushTD |   Depth |
-|-------:|:-------------------------|:-------|:-------|----------:|---------:|------:|---------:|--------:|----------:|----------:|---------:|--------:|
-|      1 | Jacoby Brissett          | ARI    | QB     |      3917 |       28 |     0 |        0 |       0 |        47 |       224 |        2 |       1 |
-|      2 | Carson Beck              | ARI    | QB     |       409 |        1 |     0 |        0 |       0 |         6 |        57 |        0 |       2 |
-|      3 | Gardner Minshew II       | ARI    | QB     |         0 |        0 |     0 |        0 |       0 |        14 |        60 |        0 |       3 |
-|      4 | Kedon Slovis             | ARI    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|      5 | James Conner             | ARI    | RB     |         0 |        0 |    52 |      311 |       5 |       179 |       638 |        5 |       1 |
-|      6 | Jeremiyah Love           | ARI    | RB     |         0 |        0 |    13 |      123 |       0 |        29 |       200 |        0 |       2 |
-|      7 | Zonovan Knight           | ARI    | RB     |         0 |        0 |    21 |      188 |       1 |        62 |       305 |        3 |       3 |
-|      8 | Tyler Allgeier           | ARI    | RB     |         0 |        0 |     2 |        9 |       0 |        13 |        47 |        1 |       4 |
-|      9 | Trey Benson              | ARI    | RB     |         0 |        0 |     3 |       13 |       0 |         6 |        31 |        0 |       5 |
-|     10 | Evan Hull                | ARI    | RB     |         0 |        0 |     0 |        1 |       0 |         2 |         6 |        0 |       6 |
-|     11 | Corey Kiner              | ARI    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|     12 | Trey McBride             | ARI    | TE     |         0 |        0 |   118 |     1167 |      10 |         0 |         0 |        0 |       1 |
-|     13 | Elijah Higgins           | ARI    | TE     |         0 |        0 |    30 |      277 |       1 |         0 |         0 |        0 |       2 |
-|     14 | Tip Reiman               | ARI    | TE     |         0 |        0 |    16 |      128 |       0 |         0 |         0 |        0 |       3 |
-|     15 | Teagan Quitoriano        | ARI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|     16 | Jameson Geers            | ARI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|     17 | Kenny Yeboah             | ARI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|     18 | Rivaldo Fairweather      | ARI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|     19 | Shawn Bowman             | ARI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|     20 | Michael Wilson           | ARI    | WR     |         0 |        0 |    85 |     1049 |       7 |         3 |         5 |        1 |       1 |
-|     21 | Marvin Harrison Jr.      | ARI    | WR     |         0 |        0 |    54 |      683 |       4 |         2 |         5 |        0 |       2 |
-|     22 | Kendrick Bourne          | ARI    | WR     |         0 |        0 |    31 |      358 |       1 |         2 |         5 |        0 |       3 |
-|     23 | Jalen Brooks             | ARI    | WR     |         0 |        0 |     1 |       14 |       0 |         0 |         0 |        0 |       4 |
-|     24 | Xavier Weaver            | ARI    | WR     |         0 |        0 |     1 |        5 |       0 |         0 |         0 |        0 |       5 |
-|     25 | Reggie Virgil            | ARI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|     26 | Devin Duvernay           | ARI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|     27 | Simi Fehoko              | ARI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|     28 | Bryson Green             | ARI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|     29 | Harrison Wallace III     | ARI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|     30 | Ihmir Smith-Marsette     | ARI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|     31 | Michael Penix            | ATL    | QB     |      2649 |       11 |     0 |        0 |       0 |        35 |       125 |        2 |       1 |
-|     32 | Tua Tagovailoa           | ATL    | QB     |      1344 |       10 |     0 |        0 |       0 |        18 |        47 |        0 |       2 |
-|     33 | Cooper Rush              | ATL    | QB     |         0 |        0 |     0 |        0 |       0 |         9 |        19 |        0 |       3 |
-|     34 | Jack Strand              | ATL    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|     35 | Bijan Robinson           | ATL    | RB     |         0 |        0 |    73 |      746 |       4 |       285 |      1388 |        8 |       1 |
-|     36 | Brian Robinson Jr.       | ATL    | RB     |         0 |        0 |    12 |       91 |       0 |        99 |       417 |        4 |       2 |
-|     37 | Nathan Carter            | ATL    | RB     |         0 |        0 |     8 |       77 |       0 |        53 |       244 |        3 |       3 |
-|     38 | Tyler Goodson            | ATL    | RB     |         0 |        0 |     0 |        2 |       0 |         2 |         3 |        0 |       4 |
-|     39 | Cash Jones               | ATL    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|     40 | Kyle Pitts               | ATL    | TE     |         0 |        0 |    76 |      808 |       5 |         1 |         2 |        0 |       1 |
-|     41 | Austin Hooper            | ATL    | TE     |         0 |        0 |    15 |      207 |       1 |         1 |         1 |        0 |       2 |
-|     42 | Charlie Woerner          | ATL    | TE     |         0 |        0 |     5 |       67 |       0 |         0 |         1 |        0 |       3 |
-|     43 | Jack Velling             | ATL    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|     44 | Joshua Simon             | ATL    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|     45 | Drake London             | ATL    | WR     |         0 |        0 |    95 |     1331 |      10 |         1 |         1 |        0 |       1 |
-|     46 | Zachariah Branch         | ATL    | WR     |         0 |        0 |    14 |      273 |       0 |         0 |         1 |        0 |       2 |
-|     47 | Olamide Zaccheaus        | ATL    | WR     |         0 |        0 |    25 |      363 |       1 |         0 |         9 |        0 |       3 |
-|     48 | Jahan Dotson             | ATL    | WR     |         0 |        0 |     2 |       24 |       0 |         0 |         0 |        0 |       4 |
-|     49 | Dylan Drummond           | ATL    | WR     |         0 |        0 |     1 |        4 |       0 |         0 |         0 |        0 |       5 |
-|     50 | Chris Blair              | ATL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|     51 | Antwane Wells Jr.        | ATL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|     52 | Keelan Marion            | ATL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|     53 | Kristian Wilkerson       | ATL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|     54 | Le'Meke Brockington      | ATL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|     55 | Vinny Anthony II         | ATL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|     56 | Lamar Jackson            | BAL    | QB     |      2713 |       21 |     0 |        0 |       0 |        82 |       440 |        2 |       1 |
-|     57 | Tyler Huntley            | BAL    | QB     |       659 |        3 |     0 |        0 |       0 |        55 |       348 |        0 |       2 |
-|     58 | Joe Fagnano              | BAL    | QB     |         0 |        0 |     0 |        0 |       0 |         9 |        59 |        0 |       3 |
-|     59 | Skylar Thompson          | BAL    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|     60 | Derrick Henry            | BAL    | RB     |         0 |        0 |    24 |      207 |       1 |       302 |      1558 |       15 |       1 |
-|     61 | Adam Randall             | BAL    | RB     |         0 |        0 |     9 |       76 |       1 |        40 |       224 |        2 |       2 |
-|     62 | Justice Hill             | BAL    | RB     |         0 |        0 |    19 |      159 |       0 |        49 |       268 |        2 |       3 |
-|     63 | Rasheen Ali              | BAL    | RB     |         0 |        0 |     2 |        8 |       0 |         0 |         3 |        0 |       4 |
-|     64 | Dontae McMillan          | BAL    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|     65 | Elijah Tau-Tolliver      | BAL    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|     66 | Mark Andrews             | BAL    | TE     |         0 |        0 |    59 |      545 |       6 |        15 |        44 |        1 |       1 |
-|     67 | Matthew Hibner           | BAL    | TE     |         0 |        0 |    13 |      178 |       1 |         2 |         2 |        0 |       2 |
-|     68 | Josh Cuevas              | BAL    | TE     |         0 |        0 |    13 |      177 |       1 |         2 |         2 |        0 |       3 |
-|     69 | Durham Smythe            | BAL    | TE     |         0 |        0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
-|     70 | Ty Pezza                 | BAL    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|     71 | Zay Flowers              | BAL    | WR     |         0 |        0 |    91 |     1312 |       8 |        15 |        56 |        1 |       1 |
-|     72 | Rashod Bateman           | BAL    | WR     |         0 |        0 |    30 |      425 |       4 |         2 |         3 |        0 |       2 |
-|     73 | Ja'Kobi Lane             | BAL    | WR     |         0 |        0 |    14 |      252 |       2 |         2 |         2 |        0 |       3 |
-|     74 | Devontez Walker          | BAL    | WR     |         0 |        0 |     1 |       19 |       0 |         0 |         0 |        0 |       4 |
-|     75 | Chris Moore              | BAL    | WR     |         0 |        0 |     1 |       12 |       0 |         0 |         1 |        0 |       5 |
-|     76 | Elijah Sarratt           | BAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|     77 | LaJohntay Wester         | BAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|     78 | Cornelius Johnson        | BAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|     79 | Cortez Braham Jr.        | BAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|     80 | Dayton Wade              | BAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|     81 | Octavian Smith Jr.       | BAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|     82 | Xavier Guillory          | BAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|     83 | Josh Allen               | BUF    | QB     |      3579 |       26 |     0 |        0 |       0 |       100 |       529 |       13 |       1 |
-|     84 | Kyle Allen               | BUF    | QB     |       402 |        3 |     0 |        0 |       0 |        13 |        18 |        1 |       2 |
-|     85 | Shane Buechele           | BUF    | QB     |         0 |        0 |     0 |        0 |       0 |         8 |        38 |        0 |       3 |
-|     86 | James Cook               | BUF    | RB     |         0 |        0 |    36 |      322 |       3 |       304 |      1592 |       12 |       1 |
-|     87 | Ty Johnson               | BUF    | RB     |         0 |        0 |    20 |      223 |       2 |        63 |       270 |        3 |       2 |
-|     88 | Ray Davis                | BUF    | RB     |         0 |        0 |    11 |       95 |       1 |        50 |       234 |        0 |       3 |
-|     89 | Frank Gore Jr.           | BUF    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|     90 | Ian Wheeler              | BUF    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|     91 | Dalton Kincaid           | BUF    | TE     |         0 |        0 |    54 |      769 |       8 |         0 |         0 |        0 |       1 |
-|     92 | Dawson Knox              | BUF    | TE     |         0 |        0 |    27 |      310 |       3 |         0 |         0 |        0 |       2 |
-|     93 | Jackson Hawes            | BUF    | TE     |         0 |        0 |    12 |      124 |       2 |         0 |         0 |        0 |       3 |
-|     94 | Keleki Latu              | BUF    | TE     |         0 |        0 |     2 |       11 |       0 |         0 |         0 |        0 |       4 |
-|     95 | Shane Zylstra            | BUF    | TE     |         0 |        0 |     0 |        3 |       0 |         0 |         0 |        0 |       5 |
-|     96 | D.J. Moore               | BUF    | WR     |         0 |        1 |    68 |      882 |       7 |        16 |        85 |        1 |       1 |
-|     97 | Khalil Shakir            | BUF    | WR     |         0 |        1 |    68 |      732 |       4 |         3 |        14 |        0 |       2 |
-|     98 | Keon Coleman             | BUF    | WR     |         0 |        1 |    39 |      444 |       2 |         3 |        14 |        0 |       3 |
-|     99 | Josh Palmer              | BUF    | WR     |         0 |        0 |     3 |       41 |       0 |         0 |         0 |        0 |       4 |
-|    100 | Tyrell Shavers           | BUF    | WR     |         0 |        0 |     1 |       12 |       0 |         0 |         0 |        0 |       5 |
-|    101 | Dante Pettis             | BUF    | WR     |         0 |        0 |     1 |       13 |       0 |         0 |         0 |        0 |       6 |
-|    102 | Skyler Bell              | BUF    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    103 | Mecole Hardman           | BUF    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    104 | Trent Sherfield          | BUF    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    105 | Quentin Skinner          | BUF    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    106 | Ja'Mori Maclin           | BUF    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    107 | Mac Dalena               | BUF    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    108 | Max Tomczak              | BUF    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    109 | Stephen Gosnell          | BUF    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
-|    110 | Bryce Young              | CAR    | QB     |      2877 |       21 |     0 |        0 |       0 |        50 |       206 |        2 |       1 |
-|    111 | Kenny Pickett            | CAR    | QB     |       427 |        3 |     0 |        0 |       0 |        11 |        45 |        0 |       2 |
-|    112 | Haynes King              | CAR    | QB     |         0 |        0 |     0 |        0 |       0 |         1 |         8 |        0 |       3 |
-|    113 | Kyle Trask               | CAR    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    114 | Chuba Hubbard            | CAR    | RB     |         0 |        0 |    43 |      313 |       4 |       211 |       859 |        3 |       1 |
-|    115 | AJ Dillon                | CAR    | RB     |         0 |        0 |    15 |      122 |       0 |        97 |       439 |        2 |       2 |
-|    116 | Trevor Etienne           | CAR    | RB     |         0 |        0 |    14 |       98 |       0 |        82 |       383 |        2 |       3 |
-|    117 | Anthony Tyus III         | CAR    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    118 | Jonathon Brooks          | CAR    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    119 | Miles Davis              | CAR    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    120 | Tommy Tremble            | CAR    | TE     |         0 |        0 |    34 |      290 |       3 |         1 |         1 |        0 |       1 |
-|    121 | Ja'Tavion Sanders        | CAR    | TE     |         0 |        0 |    30 |      216 |       1 |         0 |         0 |        0 |       2 |
-|    122 | Mitchell Evans           | CAR    | TE     |         0 |        0 |    12 |      123 |       1 |         0 |         0 |        0 |       3 |
-|    123 | James Mitchell           | CAR    | TE     |         0 |        0 |     2 |        9 |       0 |         0 |         0 |        0 |       4 |
-|    124 | Feleipe Franks           | CAR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    125 | Caden Prieskorn          | CAR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    126 | Chamon Metayer           | CAR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    127 | Tetairoa McMillan        | CAR    | WR     |         0 |        0 |    86 |     1133 |       8 |         4 |        27 |        0 |       1 |
-|    128 | Jalen Coker              | CAR    | WR     |         0 |        0 |    55 |      607 |       5 |         3 |        27 |        0 |       2 |
-|    129 | Xavier Legette           | CAR    | WR     |         0 |        0 |    36 |      374 |       2 |         3 |        27 |        0 |       3 |
-|    130 | Chris Brazzell II        | CAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    131 | Casey Washington         | CAR    | WR     |         0 |        0 |     1 |       11 |       0 |         0 |         0 |        0 |       5 |
-|    132 | Brycen Tremayne          | CAR    | WR     |         0 |        0 |     1 |        8 |       0 |         0 |         0 |        0 |       6 |
-|    133 | David Moore              | CAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    134 | Dan Chisena              | CAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    135 | Elijah Cooks             | CAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    136 | Ja'seem Reed             | CAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    137 | Jimmy Horn Jr.           | CAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    138 | John Metchie III         | CAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    139 | Malick Meiga             | CAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    140 | Roc Taylor               | CAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
-|    141 | Caleb Williams           | CHI    | QB     |      3622 |       26 |     1 |       18 |       1 |        69 |       350 |        3 |       1 |
-|    142 | Tyson Bagent             | CHI    | QB     |       367 |        1 |     1 |        2 |       0 |        10 |        30 |        0 |       2 |
-|    143 | Case Keenum              | CHI    | QB     |         0 |        0 |     0 |        2 |       0 |         0 |        10 |        0 |       3 |
-|    144 | Miller Moss              | CHI    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    145 | D'Andre Swift            | CHI    | RB     |         0 |        0 |    34 |      306 |       1 |       238 |      1151 |       10 |       1 |
-|    146 | Kyle Monangai            | CHI    | RB     |         0 |        0 |    14 |      126 |       0 |       127 |       585 |        3 |       2 |
-|    147 | Brittain Brown           | CHI    | RB     |         0 |        0 |     4 |       31 |       0 |        35 |       182 |        2 |       3 |
-|    148 | Roschon Johnson          | CHI    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         4 |        0 |       4 |
-|    149 | Coleman Bennett          | CHI    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    150 | Salvon Ahmed             | CHI    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    151 | Colston Loveland         | CHI    | TE     |         0 |        0 |    61 |      763 |       7 |         1 |         0 |        0 |       1 |
-|    152 | Sam Roush                | CHI    | TE     |         0 |        0 |    11 |      108 |       0 |         0 |         0 |        0 |       2 |
-|    153 | Cole Kmet                | CHI    | TE     |         0 |        0 |    20 |      214 |       1 |         0 |         1 |        0 |       3 |
-|    154 | Nikola Kalinic           | CHI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    155 | Stephen Carlson          | CHI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    156 | Hayden Large             | CHI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    157 | Qadir Ismail             | CHI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    158 | Rome Odunze              | CHI    | WR     |         1 |        1 |    86 |     1187 |      11 |         9 |        38 |        1 |       1 |
-|    159 | Luther Burden            | CHI    | WR     |         1 |        0 |    64 |      808 |       4 |         8 |        64 |        0 |       2 |
-|    160 | Zavion Thomas            | CHI    | WR     |         0 |        0 |    33 |      380 |       3 |         8 |        38 |        0 |       3 |
-|    161 | Jahdae Walker            | CHI    | WR     |         0 |        0 |     2 |       16 |       0 |         0 |         0 |        0 |       4 |
-|    162 | Kalif Raymond            | CHI    | WR     |         0 |        0 |     1 |       16 |       0 |         0 |         1 |        0 |       5 |
-|    163 | Scotty Miller            | CHI    | WR     |         0 |        0 |     2 |       14 |       0 |         0 |         0 |        0 |       6 |
-|    164 | JP Richardson            | CHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    165 | Kaden Davis              | CHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    166 | Kyron Hudson             | CHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    167 | Maurice Alexander        | CHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    168 | Omari Kelly              | CHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    169 | Joe Burrow               | CIN    | QB     |      3091 |       28 |     0 |        0 |       0 |        30 |        80 |        0 |       1 |
-|    170 | Joe Flacco               | CIN    | QB     |      1203 |        8 |     0 |        0 |       0 |        12 |        27 |        1 |       2 |
-|    171 | Josh Johnson             | CIN    | QB     |         0 |        0 |     0 |        0 |       0 |        14 |        64 |        1 |       3 |
-|    172 | Sean Clifford            | CIN    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    173 | Chase Brown              | CIN    | RB     |         0 |        0 |    62 |      388 |       5 |       218 |       954 |        6 |       1 |
-|    174 | Samaje Perine            | CIN    | RB     |         0 |        0 |    17 |       96 |       0 |        80 |       357 |        3 |       2 |
-|    175 | Tahj Brooks              | CIN    | RB     |         0 |        0 |     8 |       49 |       0 |        33 |       134 |        0 |       3 |
-|    176 | Kendall Milton           | CIN    | RB     |         0 |        0 |     0 |        0 |       0 |         3 |         3 |        0 |       4 |
-|    177 | Gary Brightwell          | CIN    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    178 | Jamal Haynes             | CIN    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    179 | Kentrel Bullock          | CIN    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    180 | Mike Gesicki             | CIN    | TE     |         0 |        0 |    47 |      464 |       4 |         1 |         1 |        0 |       1 |
-|    181 | Tanner Hudson            | CIN    | TE     |         0 |        0 |    28 |      252 |       3 |         0 |         1 |        0 |       2 |
-|    182 | Drew Sample              | CIN    | TE     |         0 |        0 |    23 |      179 |       1 |         0 |         1 |        0 |       3 |
-|    183 | Cam Grandy               | CIN    | TE     |         0 |        0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
-|    184 | Erick All Jr.            | CIN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    185 | Jack Endries             | CIN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    186 | Josh Kattus              | CIN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    187 | Ja'Marr Chase            | CIN    | WR     |         0 |        0 |   132 |     1531 |      11 |         3 |        21 |        0 |       1 |
-|    188 | Tee Higgins              | CIN    | WR     |         0 |        0 |    60 |      856 |       9 |         3 |         6 |        0 |       2 |
-|    189 | Andrei Iosivas           | CIN    | WR     |         0 |        0 |    34 |      467 |       3 |         2 |        10 |        0 |       3 |
-|    190 | Mitchell Tinsley         | CIN    | WR     |         0 |        0 |     0 |       10 |       0 |         0 |         0 |        0 |       4 |
-|    191 | Colbie Young             | CIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    192 | Ke'Shawn Williams        | CIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         1 |        0 |       6 |
-|    193 | Charlie Jones            | CIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    194 | Dohnte Meyers            | CIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    195 | Jordan Moore             | CIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    196 | Kendric Pryor            | CIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    197 | Noah Thomas              | CIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    198 | Xavier Johnson           | CIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    199 | Dillon Gabriel           | CLE    | QB     |      1066 |        8 |     0 |        0 |       0 |        23 |       151 |        0 |       1 |
-|    200 | Shedeur Sanders          | CLE    | QB     |      1390 |        7 |     0 |        0 |       0 |        29 |       231 |        1 |       2 |
-|    201 | Taylen Green             | CLE    | QB     |         0 |        0 |     0 |        0 |       0 |         4 |        26 |        0 |       3 |
-|    202 | Deshaun Watson           | CLE    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    203 | Quinshon Judkins         | CLE    | RB     |         0 |        0 |    45 |      276 |       1 |       249 |       886 |        7 |       1 |
-|    204 | Raheim Sanders           | CLE    | RB     |         0 |        0 |    25 |      156 |       0 |        75 |       242 |        3 |       2 |
-|    205 | Dylan Sampson            | CLE    | RB     |         0 |        0 |    25 |      189 |       1 |        29 |        76 |        1 |       3 |
-|    206 | Ahmani Marshall          | CLE    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    207 | Davon Booth              | CLE    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    208 | Harold Fannin            | CLE    | TE     |         0 |        0 |    81 |      700 |       7 |         3 |        14 |        1 |       1 |
-|    209 | Jack Stoll               | CLE    | TE     |         0 |        0 |    15 |       89 |       2 |         2 |         1 |        0 |       2 |
-|    210 | Joe Royer                | CLE    | TE     |         0 |        0 |    15 |       62 |       1 |         2 |         1 |        0 |       3 |
-|    211 | Brenden Bates            | CLE    | TE     |         0 |        0 |     0 |        4 |       0 |         0 |         0 |        0 |       4 |
-|    212 | Blake Whiteheart         | CLE    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    213 | Carsen Ryan              | CLE    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    214 | Jerry Jeudy              | CLE    | WR     |         0 |        0 |    61 |      583 |       1 |         7 |        52 |        0 |       1 |
-|    215 | Cedric Tillman           | CLE    | WR     |         0 |        0 |    36 |      285 |       2 |         6 |        51 |        0 |       2 |
-|    216 | KC Concepcion            | CLE    | WR     |         0 |        0 |    18 |       91 |       0 |         6 |        51 |        0 |       3 |
-|    217 | Denzel Boston            | CLE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    218 | Isaiah Bond              | CLE    | WR     |         0 |        0 |     1 |       16 |       0 |         0 |         2 |        0 |       5 |
-|    219 | Malachi Corley           | CLE    | WR     |         0 |        0 |     1 |        5 |       0 |         1 |         8 |        0 |       6 |
-|    220 | Jamari Thrash            | CLE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    221 | Tylan Wallace            | CLE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    222 | Gage Larvadain           | CLE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    223 | Aaron Anderson           | CLE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    224 | Kole Wilson              | CLE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    225 | Luke Floriea             | CLE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    226 | Dak Prescott             | DAL    | QB     |      4045 |       28 |     0 |        0 |       0 |        45 |       161 |        2 |       1 |
-|    227 | Joe Milton               | DAL    | QB     |       690 |        3 |     0 |        0 |       0 |        11 |       131 |        0 |       2 |
-|    228 | Sam Howell               | DAL    | QB     |         0 |        0 |     0 |        0 |       0 |         2 |        13 |        0 |       3 |
-|    229 | Javonte Williams         | DAL    | RB     |         0 |        0 |    39 |      173 |       3 |       244 |      1174 |       11 |       1 |
-|    230 | Jaydon Blue              | DAL    | RB     |         0 |        0 |    10 |       60 |       0 |        89 |       354 |        2 |       2 |
-|    231 | Malik Davis              | DAL    | RB     |         0 |        0 |     9 |       58 |       0 |        42 |       229 |        1 |       3 |
-|    232 | Phil Mafah               | DAL    | RB     |         0 |        0 |     3 |       17 |       0 |         8 |        29 |        2 |       4 |
-|    233 | Israel Abanikanda        | DAL    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    234 | Jashaun Corbin           | DAL    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    235 | Jake Ferguson            | DAL    | TE     |         0 |        0 |    77 |      579 |       8 |         1 |         1 |        0 |       1 |
-|    236 | Brevyn Spann-Ford        | DAL    | TE     |         0 |        0 |    16 |      128 |       1 |         0 |         0 |        0 |       2 |
-|    237 | Luke Schoonmaker         | DAL    | TE     |         0 |        0 |    12 |      115 |       0 |         0 |         0 |        0 |       3 |
-|    238 | DJ Rogers                | DAL    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    239 | Michael Trigg            | DAL    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    240 | Princeton Fant           | DAL    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    241 | Zack Kuntz               | DAL    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    242 | George Pickens           | DAL    | WR     |         0 |        0 |   114 |     1686 |      10 |         7 |        33 |        0 |       1 |
-|    243 | CeeDee Lamb              | DAL    | WR     |         0 |        0 |    86 |     1221 |       5 |         7 |        33 |        0 |       2 |
-|    244 | Ryan Flournoy            | DAL    | WR     |         0 |        0 |    48 |      637 |       4 |         6 |        41 |        0 |       3 |
-|    245 | KaVontae Turpin          | DAL    | WR     |         0 |        0 |     3 |       42 |       0 |         2 |         9 |        0 |       4 |
-|    246 | Tyler Johnson            | DAL    | WR     |         0 |        0 |     1 |       13 |       0 |         0 |         0 |        0 |       5 |
-|    247 | Marquez Valdes-Scantling | DAL    | WR     |         0 |        0 |     1 |        6 |       0 |         0 |         0 |        0 |       6 |
-|    248 | Jonathan Mingo           | DAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    249 | Anthony Smith            | DAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    250 | Camden Brown             | DAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    251 | Denzel Mims              | DAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    252 | Jaden Smith              | DAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    253 | Jordan Hudson            | DAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    254 | Traeshon Holden          | DAL    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    255 | Bo Nix                   | DEN    | QB     |      3677 |       24 |     0 |        0 |       0 |        72 |       321 |        5 |       1 |
-|    256 | Jarrett Stidham          | DEN    | QB     |       254 |        1 |     0 |        0 |       0 |        11 |        17 |        0 |       2 |
-|    257 | Sam Ehlinger             | DEN    | QB     |         0 |        0 |     0 |        0 |       0 |         1 |        17 |        0 |       3 |
-|    258 | J.K. Dobbins             | DEN    | RB     |         0 |        0 |    27 |      150 |       1 |       234 |      1134 |        7 |       1 |
-|    259 | RJ Harvey                | DEN    | RB     |         0 |        0 |    40 |      303 |       4 |        93 |       327 |        5 |       2 |
-|    260 | Jonah Coleman            | DEN    | RB     |         0 |        0 |    12 |       95 |       0 |         9 |        23 |        0 |       3 |
-|    261 | Jaleel McLaughlin        | DEN    | RB     |         0 |        0 |     1 |        6 |       0 |         8 |        37 |        0 |       4 |
-|    262 | Tyler Badie              | DEN    | RB     |         0 |        0 |     1 |        7 |       0 |         0 |         1 |        0 |       5 |
-|    263 | Cody Schrader            | DEN    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    264 | Evan Engram              | DEN    | TE     |         0 |        0 |    51 |      488 |       1 |         1 |         4 |        0 |       1 |
-|    265 | Adam Trautman            | DEN    | TE     |         0 |        0 |    16 |      172 |       1 |         0 |         2 |        0 |       2 |
-|    266 | Nate Adkins              | DEN    | TE     |         0 |        0 |    10 |       86 |       1 |         0 |         1 |        0 |       3 |
-|    267 | Justin Joly              | DEN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    268 | Lucas Krull              | DEN    | TE     |         0 |        0 |     1 |        4 |       0 |         0 |         0 |        0 |       5 |
-|    269 | Caleb Lohner             | DEN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    270 | Dallen Bentley           | DEN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    271 | Jaylen Waddle            | DEN    | WR     |        10 |        0 |    90 |     1163 |       8 |         6 |        47 |        1 |       1 |
-|    272 | Courtland Sutton         | DEN    | WR     |         2 |        0 |    74 |      906 |       5 |         6 |        20 |        0 |       2 |
-|    273 | Troy Franklin            | DEN    | WR     |         3 |        0 |    50 |      519 |       3 |         5 |        23 |        0 |       3 |
-|    274 | Michael Bandy            | DEN    | WR     |         0 |        0 |     2 |       18 |       1 |         0 |         0 |        0 |       4 |
-|    275 | Pat Bryant               | DEN    | WR     |         0 |        0 |     2 |       21 |       0 |         0 |         0 |        0 |       5 |
-|    276 | Lil'Jordan Humphrey      | DEN    | WR     |         0 |        0 |     1 |        8 |       0 |         0 |         0 |        0 |       6 |
-|    277 | Cameron Ross             | DEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    278 | Dane Key                 | DEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    279 | Hakeem Butler            | DEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    280 | Joseph Manjack IV        | DEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    281 | Kolbe Katsis             | DEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    282 | Kyre Duplessis           | DEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    283 | Kyrese Rowan             | DEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    284 | Marvin Mims Jr.          | DEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
-|    285 | Jared Goff               | DET    | QB     |      4124 |       31 |     0 |        0 |       0 |        19 |        42 |        0 |       1 |
-|    286 | Joshua Dobbs             | DET    | QB     |       440 |        3 |     0 |        0 |       0 |        30 |         0 |        0 |       2 |
-|    287 | Luke Altmyer             | DET    | QB     |         0 |        0 |     0 |        0 |       0 |         6 |         0 |        0 |       3 |
-|    288 | Jahmyr Gibbs             | DET    | RB     |         1 |        1 |    73 |      590 |       4 |       248 |      1265 |       14 |       1 |
-|    289 | Isiah Pacheco            | DET    | RB     |         1 |        0 |    20 |      146 |       1 |       124 |       525 |        4 |       2 |
-|    290 | Jacob Saylors            | DET    | RB     |         1 |        0 |     8 |       72 |       0 |        35 |       168 |        3 |       3 |
-|    291 | Sione Vaki               | DET    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    292 | Jabari Small             | DET    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    293 | Justin Jackson           | DET    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    294 | Kye Robichaux            | DET    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    295 | Raheem Blackshear        | DET    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    296 | Sam LaPorta              | DET    | TE     |         0 |        0 |    63 |      803 |       4 |         0 |         0 |        0 |       1 |
-|    297 | Brock Wright             | DET    | TE     |         0 |        0 |    13 |      126 |       2 |         0 |         0 |        0 |       2 |
-|    298 | Anthony Firkser          | DET    | TE     |         0 |        0 |     8 |       68 |       1 |         0 |         0 |        0 |       3 |
-|    299 | Tyler Conklin            | DET    | TE     |         0 |        0 |     1 |       12 |       0 |         0 |         0 |        0 |       4 |
-|    300 | Zach Horton              | DET    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    301 | Miles Kitselman          | DET    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    302 | Nick Muse                | DET    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    303 | Thomas Gordon            | DET    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    304 | Amon-Ra St. Brown        | DET    | WR     |         0 |        0 |   126 |     1458 |      12 |         3 |        16 |        0 |       1 |
-|    305 | Jameson Williams         | DET    | WR     |         0 |        0 |    62 |      902 |       6 |         3 |        15 |        0 |       2 |
-|    306 | Greg Dortch              | DET    | WR     |         0 |        0 |    35 |      359 |       4 |         6 |        10 |        0 |       3 |
-|    307 | Isaac TeSlaa             | DET    | WR     |         0 |        0 |     2 |       22 |       1 |         0 |         0 |        0 |       4 |
-|    308 | Tay Martin               | DET    | WR     |         0 |        0 |     1 |        6 |       0 |         0 |         0 |        0 |       5 |
-|    309 | Cedrick Wilson Jr.       | DET    | WR     |         0 |        0 |     0 |        3 |       0 |         0 |         0 |        0 |       6 |
-|    310 | Malik Cunningham         | DET    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    311 | Kendrick Law             | DET    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    312 | Tom Kennedy              | DET    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    313 | Dominic Lovett           | DET    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    314 | Jackson Meeks            | DET    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    315 | Lucky Jackson            | DET    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    316 | Tarik Black              | DET    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    317 | Jordan Love              | GNB    | QB     |      3028 |       20 |     0 |        0 |       0 |        52 |       244 |        0 |       1 |
-|    318 | Tyrod Taylor             | GNB    | QB     |       978 |        7 |     0 |        0 |       0 |        52 |       291 |        2 |       2 |
-|    319 | Kyle McCord              | GNB    | QB     |         0 |        0 |     0 |        0 |       0 |         6 |        38 |        0 |       3 |
-|    320 | Kyron Drones             | GNB    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    321 | Josh Jacobs              | GNB    | RB     |         0 |        0 |    41 |      326 |       1 |       281 |      1134 |       14 |       1 |
-|    322 | Chris Brooks             | GNB    | RB     |         0 |        0 |    17 |      100 |       0 |        62 |       231 |        1 |       2 |
-|    323 | Damien Martinez          | GNB    | RB     |         0 |        0 |     6 |       46 |       0 |        43 |       166 |        1 |       3 |
-|    324 | Jaden Nixon              | GNB    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    325 | MarShawn Lloyd           | GNB    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    326 | Pierre Strong Jr.        | GNB    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    327 | Tucker Kraft             | GNB    | TE     |         0 |        0 |    61 |      953 |      11 |         1 |         2 |        0 |       1 |
-|    328 | Josh Whyle               | GNB    | TE     |         0 |        0 |    12 |       97 |       2 |         0 |         1 |        0 |       2 |
-|    329 | Luke Musgrave            | GNB    | TE     |         0 |        0 |     9 |      125 |       2 |         0 |         0 |        0 |       3 |
-|    330 | Drake Dabney             | GNB    | TE     |         0 |        0 |     1 |        3 |       0 |         0 |         0 |        0 |       4 |
-|    331 | Drew Biber               | GNB    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    332 | Luke Lachey              | GNB    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    333 | McCallan Castles         | GNB    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    334 | Messiah Swinson          | GNB    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    335 | RJ Maryland              | GNB    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    336 | Thomas Yassmin           | GNB    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    337 | Christian Watson         | GNB    | WR     |         0 |        0 |    83 |     1245 |       9 |         6 |        20 |        0 |       1 |
-|    338 | Jayden Reed              | GNB    | WR     |         0 |        0 |    59 |      632 |       1 |         7 |        59 |        0 |       2 |
-|    339 | Matthew Golden           | GNB    | WR     |         0 |        0 |    42 |      464 |       1 |        11 |        38 |        0 |       3 |
-|    340 | Savion Williams          | GNB    | WR     |         0 |        0 |     2 |       11 |       0 |         2 |         5 |        0 |       4 |
-|    341 | Skyy Moore               | GNB    | WR     |         0 |        0 |     0 |        4 |       0 |         0 |         1 |        0 |       5 |
-|    342 | Bo Melton                | GNB    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    343 | Isaiah Neyor             | GNB    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    344 | J. Michael Sturdivant    | GNB    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    345 | Kaden Prather            | GNB    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    346 | Kisean Johnson           | GNB    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    347 | Will Sheppard            | GNB    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    348 | C.J. Stroud              | HOU    | QB     |      2831 |       18 |     0 |        0 |       0 |        52 |       226 |        1 |       1 |
-|    349 | Davis Mills              | HOU    | QB     |      1224 |        7 |     0 |        0 |       0 |        21 |       108 |        3 |       2 |
-|    350 | Graham Mertz             | HOU    | QB     |         0 |        0 |     0 |        0 |       0 |         3 |        13 |        1 |       3 |
-|    351 | Woody Marks              | HOU    | RB     |         0 |        0 |    27 |      200 |       3 |       199 |       707 |        2 |       1 |
-|    352 | David Montgomery         | HOU    | RB     |         0 |        2 |    14 |      126 |       0 |       112 |       478 |        6 |       2 |
-|    353 | Jawhar Jordan            | HOU    | RB     |         0 |        1 |    13 |       59 |       0 |        75 |       309 |        1 |       3 |
-|    354 | British Brooks           | HOU    | RB     |         0 |        0 |     0 |        0 |       0 |         2 |         9 |        0 |       4 |
-|    355 | Owen Wright              | HOU    | RB     |         0 |        0 |     0 |        0 |       0 |         1 |         2 |        0 |       5 |
-|    356 | Josh Pitsenberger        | HOU    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    357 | Noah Whittington         | HOU    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    358 | Dalton Schultz           | HOU    | TE     |         0 |        0 |    76 |      708 |       4 |         1 |         1 |        0 |       1 |
-|    359 | Marlin Klein             | HOU    | TE     |         0 |        0 |     7 |       70 |       0 |         1 |         1 |        0 |       2 |
-|    360 | Cade Stover              | HOU    | TE     |         0 |        0 |    11 |      110 |       0 |         2 |         1 |        0 |       3 |
-|    361 | Foster Moreau            | HOU    | TE     |         0 |        0 |     2 |        9 |       0 |         0 |         0 |        0 |       4 |
-|    362 | Brevin Jordan            | HOU    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    363 | Layne Pryor              | HOU    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    364 | Nico Collins             | HOU    | WR     |         0 |        0 |   104 |     1465 |      10 |         4 |        24 |        1 |       1 |
-|    365 | Jayden Higgins           | HOU    | WR     |         0 |        0 |    58 |      714 |       7 |         4 |         9 |        0 |       2 |
-|    366 | Xavier Hutchinson        | HOU    | WR     |         0 |        0 |    45 |      544 |       4 |         3 |        14 |        0 |       3 |
-|    367 | Jaylin Noel              | HOU    | WR     |         0 |        0 |     2 |       26 |       0 |         0 |         2 |        0 |       4 |
-|    368 | Justin Watson            | HOU    | WR     |         0 |        0 |     1 |        8 |       0 |         0 |         0 |        0 |       5 |
-|    369 | Jared Wayne              | HOU    | WR     |         0 |        0 |     2 |       16 |       0 |         0 |         0 |        0 |       6 |
-|    370 | DJ Turner                | HOU    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    371 | Daniel Sobkowicz         | HOU    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    372 | Jha'Quan Jackson         | HOU    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    373 | Josh Kelly               | HOU    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    374 | Lewis Bond               | HOU    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    375 | Montrell Washington      | HOU    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    376 | Tank Dell                | HOU    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    377 | Treyvhon Saunders        | HOU    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
-|    378 | Daniel Jones             | IND    | QB     |      3275 |       20 |     0 |        4 |       0 |        49 |       183 |        5 |       1 |
-|    379 | Riley Leonard            | IND    | QB     |       794 |        5 |     1 |        4 |       0 |        11 |        58 |        4 |       2 |
-|    380 | Anthony Richardson       | IND    | QB     |         0 |        0 |     3 |       25 |       0 |        12 |        12 |        1 |       3 |
-|    381 | Easton Stick             | IND    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    382 | Jonathan Taylor          | IND    | RB     |         0 |        0 |    48 |      363 |       2 |       291 |      1411 |       16 |       1 |
-|    383 | Seth McGowan             | IND    | RB     |         0 |        0 |     8 |       61 |       0 |        34 |       153 |        2 |       2 |
-|    384 | DJ Giddens               | IND    | RB     |         0 |        0 |     8 |       61 |       0 |        48 |       201 |        1 |       3 |
-|    385 | Anderson Castle          | IND    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    386 | Roydell Williams         | IND    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    387 | Ulysses Bentley IV       | IND    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    388 | Tyler Warren             | IND    | TE     |         0 |        0 |    68 |      738 |       4 |         2 |         6 |        1 |       1 |
-|    389 | Mo Alie-Cox              | IND    | TE     |         0 |        0 |    17 |      149 |       2 |         2 |         1 |        0 |       2 |
-|    390 | Will Mallory             | IND    | TE     |         0 |        0 |     9 |      123 |       0 |         2 |         1 |        0 |       3 |
-|    391 | Pharaoh Brown            | IND    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    392 | Sean McKeon              | IND    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    393 | Carson Towt              | IND    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    394 | Drew Ogletree            | IND    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    395 | Alec Pierce              | IND    | WR     |         0 |        0 |    81 |     1328 |       9 |         2 |         9 |        0 |       1 |
-|    396 | Josh Downs               | IND    | WR     |         0 |        0 |    71 |      742 |       5 |         2 |         9 |        0 |       2 |
-|    397 | Ashton Dulin             | IND    | WR     |         0 |        0 |    38 |      462 |       3 |         1 |        24 |        0 |       3 |
-|    398 | Nick Westbrook-Ikhine    | IND    | WR     |         0 |        0 |     2 |        9 |       0 |         0 |         0 |        0 |       4 |
-|    399 | Coleman Owen             | IND    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    400 | Anthony Gould            | IND    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    401 | Laquon Treadwell         | IND    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    402 | Deion Burks              | IND    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    403 | EJ Horton Jr.            | IND    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    404 | Eli Pancol               | IND    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    405 | Liam Clifford            | IND    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    406 | Raylen Sharpe            | IND    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    407 | Sahmir Hagans            | IND    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    408 | Trevor Lawrence          | JAX    | QB     |      3632 |       26 |     0 |        0 |       0 |        69 |       313 |        9 |       1 |
-|    409 | Nick Mullens             | JAX    | QB     |       394 |        3 |     0 |        0 |       0 |        24 |        19 |        0 |       2 |
-|    410 | Carter Bradley           | JAX    | QB     |         0 |        0 |     0 |        0 |       0 |         1 |        19 |        0 |       3 |
-|    411 | Joey Aguilar             | JAX    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    412 | Chris Rodriguez          | JAX    | RB     |         0 |        0 |    15 |      135 |       3 |       185 |       795 |        7 |       1 |
-|    413 | Bhayshul Tuten           | JAX    | RB     |         0 |        0 |    23 |      152 |       3 |       115 |       450 |        4 |       2 |
-|    414 | Ameer Abdullah           | JAX    | RB     |         0 |        0 |    18 |      138 |       2 |        68 |       278 |        1 |       3 |
-|    415 | DeeJay Dallas            | JAX    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         6 |        0 |       4 |
-|    416 | J'Mari Taylor            | JAX    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    417 | LeQuint Allen Jr.        | JAX    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    418 | Brenton Strange          | JAX    | TE     |         0 |        0 |    60 |      668 |       5 |         0 |         0 |        0 |       1 |
-|    419 | Nate Boerkircher         | JAX    | TE     |         0 |        0 |     4 |       42 |       0 |         0 |         0 |        0 |       2 |
-|    420 | Hunter Long              | JAX    | TE     |         0 |        0 |     9 |       83 |       1 |         0 |         0 |        0 |       3 |
-|    421 | Tanner Koziol            | JAX    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    422 | Quintin Morris           | JAX    | TE     |         0 |        0 |     0 |        3 |       0 |         0 |         0 |        0 |       5 |
-|    423 | Ethan Conner             | JAX    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    424 | Patrick Herbert          | JAX    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    425 | Parker Washington        | JAX    | WR     |         0 |        0 |    87 |     1187 |       7 |         8 |        16 |        0 |       1 |
-|    426 | Brian Thomas             | JAX    | WR     |         0 |        0 |    68 |      918 |       4 |         7 |        30 |        1 |       2 |
-|    427 | Travis Hunter            | JAX    | WR     |         0 |        0 |    55 |      647 |       4 |         7 |        16 |        0 |       3 |
-|    428 | Jakobi Meyers            | JAX    | WR     |         0 |        0 |     4 |       47 |       0 |         0 |         2 |        0 |       4 |
-|    429 | Austin Trammell          | JAX    | WR     |         0 |        0 |     0 |        6 |       0 |         0 |         0 |        0 |       5 |
-|    430 | Tim Jones                | JAX    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    431 | Brady Boyd               | JAX    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    432 | CJ Williams              | JAX    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    433 | Chandler Brayboy         | JAX    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    434 | Josh Cameron             | JAX    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    435 | Michael Wortham          | JAX    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    436 | Trebor Pena              | JAX    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    437 | Patrick Mahomes          | KAN    | QB     |      3362 |       20 |     1 |        3 |       0 |        95 |       602 |        6 |       1 |
-|    438 | Justin Fields            | KAN    | QB     |       943 |        5 |     0 |        4 |       0 |       104 |       571 |        6 |       2 |
-|    439 | Chris Oladokun           | KAN    | QB     |         0 |        0 |     0 |        4 |       0 |        36 |       182 |        2 |       3 |
-|    440 | Garrett Nussmeier        | KAN    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    441 | Kenneth Walker III       | KAN    | RB     |         0 |        0 |    38 |      291 |       1 |       234 |       972 |        6 |       1 |
-|    442 | Emmett Johnson           | KAN    | RB     |         0 |        0 |     9 |       39 |       1 |        41 |        70 |        2 |       2 |
-|    443 | Emari Demercado          | KAN    | RB     |         0 |        0 |    14 |       78 |       1 |        57 |       190 |        1 |       3 |
-|    444 | Brashard Smith           | KAN    | RB     |         0 |        0 |     3 |       17 |       0 |         4 |        15 |        0 |       4 |
-|    445 | EJ Smith                 | KAN    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    446 | Jaydn Ott                | KAN    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    447 | Travis Kelce             | KAN    | TE     |         0 |        0 |    75 |      847 |       6 |         1 |         1 |        0 |       1 |
-|    448 | Noah Gray                | KAN    | TE     |         0 |        0 |    18 |      199 |       0 |         0 |         0 |        0 |       2 |
-|    449 | Jared Wiley              | KAN    | TE     |         0 |        0 |     6 |       89 |       0 |         0 |         0 |        0 |       3 |
-|    450 | Jake Briningstool        | KAN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    451 | John Michael Gyllenborg  | KAN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    452 | Mason Pline              | KAN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    453 | Tre Watson               | KAN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    454 | Rashee Rice              | KAN    | WR     |         0 |        0 |   123 |     1483 |      13 |        16 |        45 |        2 |       1 |
-|    455 | Xavier Worthy            | KAN    | WR     |         0 |        0 |    52 |      790 |       2 |        13 |        68 |        1 |       2 |
-|    456 | Cyrus Allen              | KAN    | WR     |         0 |        0 |    22 |      406 |       1 |         3 |         4 |        1 |       3 |
-|    457 | Tyquan Thornton          | KAN    | WR     |         0 |        0 |     2 |       53 |       0 |         0 |         0 |        0 |       4 |
-|    458 | Nikko Remigio            | KAN    | WR     |         0 |        0 |     0 |        1 |       0 |         0 |         1 |        0 |       5 |
-|    459 | Jalen Royals             | KAN    | WR     |         0 |        0 |     0 |        1 |       0 |         0 |         0 |        0 |       6 |
-|    460 | Jason Brownlee           | KAN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    461 | Jimmy Holiday            | KAN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    462 | Andrew Armstrong         | KAN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    463 | Jacob De Jesus           | KAN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    464 | Jeff Caldwell            | KAN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    465 | Jeff Weimer              | KAN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    466 | Omari Evans              | KAN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    467 | Xavier Loyd              | KAN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
-|    468 | Justin Herbert           | LAC    | QB     |      3422 |       25 |     0 |        0 |       0 |        81 |       487 |        2 |       1 |
-|    469 | Trey Lance               | LAC    | QB     |       543 |        1 |     0 |        0 |       0 |        49 |       238 |        0 |       2 |
-|    470 | DJ Uiagalelei            | LAC    | QB     |         0 |        0 |     0 |        0 |       0 |         6 |        29 |        0 |       3 |
-|    471 | Omarion Hampton          | LAC    | RB     |         0 |        0 |    57 |      333 |       2 |       207 |       923 |        6 |       1 |
-|    472 | Kimani Vidal             | LAC    | RB     |         0 |        0 |    14 |      124 |       2 |       120 |       515 |        3 |       2 |
-|    473 | Jaret Patterson          | LAC    | RB     |         0 |        0 |     6 |       26 |       1 |        37 |       160 |        2 |       3 |
-|    474 | Keaton Mitchell          | LAC    | RB     |         0 |        0 |     2 |        8 |       0 |         7 |        42 |        0 |       4 |
-|    475 | Amar Johnson             | LAC    | RB     |         0 |        0 |     0 |        0 |       0 |         1 |         3 |        0 |       5 |
-|    476 | Greg Desrosiers Jr.      | LAC    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    477 | David Njoku              | LAC    | TE     |         0 |        0 |    48 |      500 |       5 |         1 |         1 |        0 |       1 |
-|    478 | Charlie Kolar            | LAC    | TE     |         0 |        0 |    15 |      218 |       1 |         0 |         1 |        0 |       2 |
-|    479 | Evan Svoboda             | LAC    | TE     |         0 |        0 |     6 |      135 |       1 |         0 |         0 |        0 |       3 |
-|    480 | Jerand Bradley           | LAC    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    481 | Johnny Pascuzzi          | LAC    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    482 | Oronde Gadsden           | LAC    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    483 | Quentin Johnston         | LAC    | WR     |         0 |        0 |   100 |     1220 |       9 |         2 |        12 |        0 |       1 |
-|    484 | Ladd McConkey            | LAC    | WR     |         0 |        0 |    86 |      930 |       4 |         2 |         5 |        0 |       2 |
-|    485 | KeAndre Lambert-Smith    | LAC    | WR     |         0 |        0 |    49 |      470 |       1 |         2 |         5 |        0 |       3 |
-|    486 | Brenen Thompson          | LAC    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    487 | Derius Davis             | LAC    | WR     |         0 |        0 |     0 |        1 |       0 |         0 |         0 |        0 |       5 |
-|    488 | Dalevon Campbell         | LAC    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    489 | Devonte Ross             | LAC    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    490 | JaQuae Jackson           | LAC    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    491 | Luke Grimm               | LAC    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    492 | Mante Morrow             | LAC    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    493 | Sincere Brown            | LAC    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    494 | Tre' Harris              | LAC    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    495 | Matthew Stafford         | LAR    | QB     |      4361 |       43 |     0 |        0 |       0 |        29 |         3 |        0 |       1 |
-|    496 | Ty Simpson               | LAR    | QB     |       346 |        3 |     0 |        0 |       0 |         5 |         3 |        0 |       2 |
-|    497 | Matthew Caldwell         | LAR    | QB     |         0 |        0 |     0 |        0 |       0 |         4 |         3 |        0 |       3 |
-|    498 | Stetson Bennett          | LAR    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    499 | Kyren Williams           | LAR    | RB     |         0 |        0 |    34 |      259 |       3 |       253 |      1219 |       10 |       1 |
-|    500 | Blake Corum              | LAR    | RB     |         0 |        0 |     7 |       39 |       0 |       118 |       604 |        5 |       2 |
-|    501 | Ronnie Rivers            | LAR    | RB     |         0 |        0 |     3 |       19 |       0 |        42 |       221 |        1 |       3 |
-|    502 | Jarquez Hunter           | LAR    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    503 | Dean Connors             | LAR    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    504 | Jordan Waters            | LAR    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    505 | Max Klare                | LAR    | TE     |         0 |        0 |    20 |      231 |       4 |         1 |         0 |        0 |       1 |
-|    506 | Colby Parkinson          | LAR    | TE     |         0 |        0 |    48 |      495 |       9 |         0 |         0 |        0 |       2 |
-|    507 | Tyler Higbee             | LAR    | TE     |         0 |        0 |    32 |      366 |       4 |         0 |         0 |        0 |       3 |
-|    508 | Terrance Ferguson        | LAR    | TE     |         0 |        0 |     2 |       26 |       0 |         0 |         0 |        0 |       4 |
-|    509 | Davis Allen              | LAR    | TE     |         0 |        0 |     1 |       10 |       0 |         0 |         0 |        0 |       5 |
-|    510 | Dan Villari              | LAR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    511 | Mark Redman              | LAR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    512 | Rohan Jones              | LAR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    513 | Puka Nacua               | LAR    | WR     |         0 |        0 |   143 |     1903 |      12 |        14 |        99 |        1 |       1 |
-|    514 | Davante Adams            | LAR    | WR     |         0 |        0 |    66 |      897 |      12 |         1 |         8 |        0 |       2 |
-|    515 | Xavier Smith             | LAR    | WR     |         0 |        0 |    29 |      442 |       2 |         1 |         8 |        0 |       3 |
-|    516 | Jordan Whittington       | LAR    | WR     |         0 |        0 |     2 |       16 |       0 |         0 |         2 |        0 |       4 |
-|    517 | Konata Mumpfield         | LAR    | WR     |         0 |        0 |     1 |        4 |       0 |         0 |         0 |        0 |       5 |
-|    518 | Brennan Presley          | LAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    519 | CJ Daniels               | LAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    520 | Mario Williams           | LAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    521 | Tru Edwards              | LAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    522 | Tyler Scott              | LAR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    523 | Fernando Mendoza         | LVR    | QB     |       798 |        6 |     0 |        0 |       0 |        11 |        31 |        0 |       1 |
-|    524 | Kirk Cousins             | LVR    | QB     |      2517 |       14 |     0 |        0 |       0 |        21 |        41 |        2 |       2 |
-|    525 | Aidan O'Connell          | LVR    | QB     |         0 |        0 |     0 |        0 |       0 |        15 |        66 |        1 |       3 |
-|    526 | Jacob Clark              | LVR    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    527 | Ashton Jeanty            | LVR    | RB     |         0 |        0 |    56 |      350 |       5 |       256 |       943 |        5 |       1 |
-|    528 | Mike Washington Jr.      | LVR    | RB     |         0 |        0 |     7 |       42 |       0 |        23 |        84 |        0 |       2 |
-|    529 | Dare Ogunbowale          | LVR    | RB     |         0 |        0 |    11 |       64 |       0 |        28 |        92 |        0 |       3 |
-|    530 | Dylan Laube              | LVR    | RB     |         0 |        0 |     0 |        2 |       0 |         0 |         1 |        0 |       4 |
-|    531 | Chris Collier            | LVR    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    532 | Roman Hemby              | LVR    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    533 | Brock Bowers             | LVR    | TE     |         0 |        0 |    83 |      894 |       7 |         1 |         1 |        0 |       1 |
-|    534 | Michael Mayer            | LVR    | TE     |         0 |        0 |    29 |      294 |       2 |         1 |         1 |        0 |       2 |
-|    535 | Ian Thomas               | LVR    | TE     |         0 |        0 |     6 |       79 |       1 |         0 |         0 |        0 |       3 |
-|    536 | Carter Runyon            | LVR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    537 | Albert Okwuegbunam Jr.   | LVR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    538 | Chris Myarick            | LVR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    539 | Patrick Gurd             | LVR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    540 | Tre Tucker               | LVR    | WR     |         0 |        0 |    65 |      823 |       4 |        14 |        42 |        0 |       1 |
-|    541 | Jalen Nailor             | LVR    | WR     |         0 |        0 |    32 |      470 |       1 |         0 |        11 |        0 |       2 |
-|    542 | Jack Bech                | LVR    | WR     |         0 |        0 |    17 |      276 |       0 |         1 |         1 |        0 |       3 |
-|    543 | Deven Thompkins          | LVR    | WR     |         0 |        0 |     0 |        6 |       0 |         0 |         2 |        0 |       4 |
-|    544 | Dareke Young             | LVR    | WR     |         0 |        0 |     0 |        5 |       0 |         0 |         0 |        0 |       5 |
-|    545 | Shedrick Jackson         | LVR    | WR     |         0 |        0 |     1 |       10 |       0 |         0 |         1 |        0 |       6 |
-|    546 | Justin Shorter           | LVR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    547 | Brandon Johnson          | LVR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    548 | Chase Roberts            | LVR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    549 | Corey Rucker             | LVR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    550 | Dont'e Thornton Jr.      | LVR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    551 | E.J. Williams Jr.        | LVR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    552 | Malik Benson             | LVR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    553 | Phillip Dorsett          | LVR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
-|    554 | Malik Willis             | MIA    | QB     |      1665 |       14 |     1 |        2 |       0 |       109 |       620 |       10 |       1 |
-|    555 | Quinn Ewers              | MIA    | QB     |      1649 |        9 |     0 |        2 |       0 |        44 |       200 |        2 |       2 |
-|    556 | Cam Miller               | MIA    | QB     |         0 |        0 |     0 |        2 |       0 |        25 |       152 |        3 |       3 |
-|    557 | De'Von Achane            | MIA    | RB     |         0 |        0 |    65 |      471 |       5 |       245 |      1353 |        9 |       1 |
-|    558 | Jaylen Wright            | MIA    | RB     |         0 |        0 |    11 |       65 |       0 |        91 |       358 |        3 |       2 |
-|    559 | Ollie Gordon             | MIA    | RB     |         0 |        0 |     3 |       28 |       0 |        42 |       126 |        1 |       3 |
-|    560 | Anthony Hankerson        | MIA    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    561 | Carlos Washington Jr.    | MIA    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    562 | Donovan Edwards          | MIA    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    563 | Greg Dulcich             | MIA    | TE     |         0 |        0 |    52 |      617 |       4 |         1 |         1 |        0 |       1 |
-|    564 | Will Kacmarek            | MIA    | TE     |         0 |        0 |    11 |      120 |       2 |         1 |         1 |        0 |       2 |
-|    565 | Seydou Traore            | MIA    | TE     |         0 |        0 |    11 |      120 |       1 |         0 |         1 |        0 |       3 |
-|    566 | Ben Sims                 | MIA    | TE     |         0 |        0 |     0 |        4 |       0 |         0 |         0 |        0 |       4 |
-|    567 | Cole Turner              | MIA    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    568 | Jeremiah Franklin        | MIA    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    569 | Malik Washington         | MIA    | WR     |         3 |        0 |    79 |      800 |       6 |        16 |       113 |        1 |       1 |
-|    570 | Caleb Douglas            | MIA    | WR     |         3 |        0 |    39 |      522 |       3 |         2 |        13 |        0 |       2 |
-|    571 | Chris Bell               | MIA    | WR     |         2 |        0 |    38 |      522 |       2 |         1 |        12 |        0 |       3 |
-|    572 | Jalen Tolbert            | MIA    | WR     |         0 |        0 |     2 |       26 |       0 |         0 |         0 |        0 |       4 |
-|    573 | Tutu Atwell              | MIA    | WR     |         0 |        0 |     1 |       16 |       0 |         0 |         0 |        0 |       5 |
-|    574 | Tahj Washington          | MIA    | WR     |         0 |        0 |     1 |        5 |       0 |         0 |         0 |        0 |       6 |
-|    575 | Kevin Coleman Jr.        | MIA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    576 | AJ Henning               | MIA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    577 | Donaven McCulley         | MIA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    578 | Jalen Reagor             | MIA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    579 | Terrace Marshall Jr.     | MIA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    580 | Theo Wease Jr.           | MIA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    581 | Kyler Murray             | MIN    | QB     |      2376 |       14 |     0 |        0 |       0 |       108 |       669 |        4 |       1 |
-|    582 | J.J. McCarthy            | MIN    | QB     |      1199 |        7 |     0 |        0 |       0 |        62 |       339 |        5 |       2 |
-|    583 | Carson Wentz             | MIN    | QB     |         0 |        0 |     0 |        0 |       0 |        36 |       220 |        1 |       3 |
-|    584 | Max Brosmer              | MIN    | QB     |        66 |        0 |     0 |        0 |       0 |         2 |         2 |        0 |       4 |
-|    585 | Aaron Jones              | MIN    | RB     |         0 |        0 |    37 |      266 |       2 |       186 |       776 |        4 |       1 |
-|    586 | Jordan Mason             | MIN    | RB     |         0 |        0 |    15 |       56 |       0 |       123 |       569 |        4 |       2 |
-|    587 | Demond Claiborne         | MIN    | RB     |         0 |        0 |     5 |       27 |       0 |        28 |       110 |        0 |       3 |
-|    588 | Zavier Scott             | MIN    | RB     |         0 |        0 |     2 |       10 |       0 |         3 |        12 |        0 |       4 |
-|    589 | Jordan Mims              | MIN    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    590 | T.J. Hockenson           | MIN    | TE     |         0 |        0 |    52 |      505 |       5 |         1 |         0 |        0 |       1 |
-|    591 | Josh Oliver              | MIN    | TE     |         0 |        0 |    14 |      193 |       3 |         0 |         0 |        0 |       2 |
-|    592 | Ben Yurosek              | MIN    | TE     |         0 |        0 |     5 |       98 |       0 |         0 |         0 |        0 |       3 |
-|    593 | Bryson Nesbit            | MIN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    594 | Gavin Bartholomew        | MIN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    595 | Marshall Lang            | MIN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    596 | Justin Jefferson         | MIN    | WR     |         0 |        0 |    83 |     1207 |       3 |         2 |        26 |        1 |       1 |
-|    597 | Jauan Jennings           | MIN    | WR     |         0 |        0 |    48 |      739 |       7 |         2 |        24 |        0 |       2 |
-|    598 | Jordan Addison           | MIN    | WR     |         0 |        0 |    27 |      538 |       1 |         2 |        51 |        0 |       3 |
-|    599 | Tai Felton               | MIN    | WR     |         0 |        0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
-|    600 | Jeshaun Jones            | MIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    601 | Myles Price              | MIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    602 | Dillon Bell              | MIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    603 | Dontae Fleming           | MIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    604 | Marcus Sanders Jr.       | MIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    605 | Michael Briscoe          | MIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    606 | Terrill Davis            | MIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    607 | Trayvon Rudolph          | MIN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    608 | Drake Maye               | NWE    | QB     |      4086 |       29 |     1 |        1 |       0 |        99 |       419 |        4 |       1 |
-|    609 | Behren Morton            | NWE    | QB     |       373 |        2 |     0 |        1 |       0 |         7 |        13 |        0 |       2 |
-|    610 | Tommy DeVito             | NWE    | QB     |         0 |        0 |     0 |        0 |       0 |         7 |        13 |        0 |       3 |
-|    611 | TreVeyon Henderson       | NWE    | RB     |         0 |        0 |    36 |      240 |       2 |       193 |       954 |       10 |       1 |
-|    612 | Rhamondre Stevenson      | NWE    | RB     |         0 |        0 |    27 |      285 |       1 |       128 |       577 |        6 |       2 |
-|    613 | Terrell Jennings         | NWE    | RB     |         0 |        0 |     7 |       56 |       0 |        50 |       187 |        2 |       3 |
-|    614 | Jam Miller               | NWE    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    615 | Lan Larison              | NWE    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    616 | Myles Montgomery         | NWE    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    617 | Hunter Henry             | NWE    | TE     |         0 |        0 |    60 |      759 |       7 |         0 |         0 |        0 |       1 |
-|    618 | Eli Raridon              | NWE    | TE     |         0 |        0 |     8 |      112 |       1 |         0 |         0 |        0 |       2 |
-|    619 | Julian Hill              | NWE    | TE     |         0 |        0 |    13 |      160 |       1 |         0 |         0 |        0 |       3 |
-|    620 | CJ Dippre                | NWE    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    621 | Jack Westover            | NWE    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    622 | Mitch Van Vooren         | NWE    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    623 | Tanner Arkin             | NWE    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    624 | A.J. Brown               | NWE    | WR     |         0 |        0 |   104 |     1354 |       9 |         4 |        10 |        0 |       1 |
-|    625 | Romeo Doubs              | NWE    | WR     |         0 |        0 |    59 |      828 |       6 |         3 |         9 |        0 |       2 |
-|    626 | Kayshon Boutte           | NWE    | WR     |         0 |        0 |    38 |      582 |       4 |         3 |         9 |        0 |       3 |
-|    627 | Mack Hollins             | NWE    | WR     |         0 |        0 |     5 |       59 |       0 |         0 |         0 |        0 |       4 |
-|    628 | Kyle Williams            | NWE    | WR     |         0 |        0 |     1 |       10 |       0 |         0 |         0 |        0 |       5 |
-|    629 | DeMario Douglas          | NWE    | WR     |         0 |        0 |     1 |       12 |       0 |         0 |         0 |        0 |       6 |
-|    630 | Tejhaun Palmer           | NWE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    631 | Cameron Dorner           | NWE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    632 | Efton Chism III          | NWE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    633 | Jalen Hurd               | NWE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    634 | Jeremiah Webb            | NWE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    635 | Jimmy Kibble             | NWE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    636 | Kobe Prentice            | NWE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    637 | Kyle Dixon               | NWE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
-|    638 | Nick DeGennaro           | NWE    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      15 |
-|    639 | Tyler Shough             | NOR    | QB     |      2782 |       11 |     1 |        0 |       0 |        65 |       275 |        4 |       1 |
-|    640 | Spencer Rattler          | NOR    | QB     |      1358 |        8 |     0 |        0 |       0 |        41 |       210 |        1 |       2 |
-|    641 | Zach Wilson              | NOR    | QB     |         0 |        0 |     0 |        0 |       0 |        12 |        27 |        1 |       3 |
-|    642 | Hunter Dekkers           | NOR    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    643 | Travis Etienne           | NOR    | RB     |         0 |        0 |    33 |      260 |       6 |       248 |      1105 |        7 |       1 |
-|    644 | Alvin Kamara             | NOR    | RB     |         0 |        0 |    33 |      175 |       1 |       145 |       571 |        2 |       2 |
-|    645 | Devin Neal               | NOR    | RB     |         0 |        0 |    12 |       65 |       2 |        57 |       250 |        2 |       3 |
-|    646 | Kendre Miller            | NOR    | RB     |         0 |        0 |     2 |        7 |       0 |        11 |        45 |        0 |       4 |
-|    647 | Audric Estime            | NOR    | RB     |         0 |        0 |     2 |       12 |       0 |         5 |        23 |        0 |       5 |
-|    648 | Ty Chandler              | NOR    | RB     |         0 |        0 |     1 |        3 |       0 |         5 |        13 |        0 |       6 |
-|    649 | CJ Donaldson             | NOR    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    650 | Juwan Johnson            | NOR    | TE     |        19 |        1 |    74 |      909 |       2 |        18 |        38 |        1 |       1 |
-|    651 | Oscar Delp               | NOR    | TE     |        19 |        0 |    10 |      163 |       0 |        17 |        38 |        0 |       2 |
-|    652 | Noah Fant                | NOR    | TE     |        19 |        0 |    20 |      254 |       1 |        17 |        38 |        0 |       3 |
-|    653 | Moliki Matavao           | NOR    | TE     |         0 |        0 |     0 |        3 |       0 |         0 |         0 |        0 |       4 |
-|    654 | Zaire Mitchell-Paden     | NOR    | TE     |         0 |        0 |     0 |        2 |       0 |         0 |         0 |        0 |       5 |
-|    655 | Treyton Welch            | NOR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    656 | Cody Hardy               | NOR    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    657 | Chris Olave              | NOR    | WR     |         0 |        0 |   111 |     1443 |       7 |         2 |         5 |        0 |       1 |
-|    658 | Jordyn Tyson             | NOR    | WR     |         0 |        0 |    21 |      403 |       0 |         2 |         5 |        0 |       2 |
-|    659 | Ronnie Bell              | NOR    | WR     |         0 |        0 |    25 |      458 |       2 |         1 |         4 |        0 |       3 |
-|    660 | Devaughn Vele            | NOR    | WR     |         0 |        0 |     3 |       36 |       0 |         0 |         0 |        0 |       4 |
-|    661 | Bryce Lance              | NOR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    662 | Mason Tipton             | NOR    | WR     |         0 |        0 |     1 |        4 |       0 |         0 |         1 |        0 |       6 |
-|    663 | Jalen Moreno-Cropper     | NOR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    664 | Barion Brown             | NOR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    665 | Brock Rechsteiner        | NOR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    666 | Bub Means                | NOR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    667 | Charles Hawkins          | NOR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    668 | Kevin Austin Jr.         | NOR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    669 | Trey Palmer              | NOR    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    670 | Jaxson Dart              | NYG    | QB     |      2151 |       14 |     1 |       23 |       0 |        84 |       482 |        9 |       1 |
-|    671 | Jameis Winston           | NYG    | QB     |      1663 |        6 |     0 |      125 |       3 |        23 |       101 |        3 |       2 |
-|    672 | Brandon Allen            | NYG    | QB     |         0 |        0 |     0 |       23 |       1 |         4 |        33 |        1 |       3 |
-|    673 | Cam Skattebo             | NYG    | RB     |         0 |        0 |    44 |      383 |       3 |       198 |       785 |        9 |       1 |
-|    674 | Tyrone Tracy Jr.         | NYG    | RB     |         0 |        0 |    26 |      200 |       1 |       135 |       556 |        2 |       2 |
-|    675 | Devin Singletary         | NYG    | RB     |         0 |        0 |     8 |       63 |       0 |        63 |       246 |        1 |       3 |
-|    676 | Eric Gray                | NYG    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    677 | Damon Bankston           | NYG    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    678 | Dante Miller             | NYG    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    679 | Theo Johnson             | NYG    | TE     |         0 |        0 |    42 |      523 |       5 |         0 |         0 |        0 |       1 |
-|    680 | Isaiah Likely            | NYG    | TE     |         0 |        0 |    18 |      237 |       1 |         0 |         0 |        0 |       2 |
-|    681 | Tanner Conner            | NYG    | TE     |         0 |        0 |     5 |       79 |       0 |         0 |         0 |        0 |       3 |
-|    682 | Chris Manhertz           | NYG    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    683 | Thomas Fidone II         | NYG    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    684 | Malik Nabers             | NYG    | WR     |        11 |        1 |    86 |     1200 |       6 |         1 |         2 |        0 |       1 |
-|    685 | Calvin Austin III        | NYG    | WR     |        11 |        0 |    47 |      501 |       1 |         1 |         2 |        0 |       2 |
-|    686 | Darius Slayton           | NYG    | WR     |        11 |        0 |    38 |      431 |       0 |         1 |         1 |        0 |       3 |
-|    687 | Darnell Mooney           | NYG    | WR     |         0 |        0 |     3 |       46 |       0 |         0 |         0 |        0 |       4 |
-|    688 | Malachi Fields           | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    689 | Isaiah Hodgins           | NYG    | WR     |         0 |        0 |     1 |       13 |       0 |         0 |         0 |        0 |       6 |
-|    690 | JuJu Smith-Schuster      | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    691 | Gunner Olszewski         | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    692 | Ryan Miller              | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    693 | Braxton Berrios          | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    694 | Jalin Hyatt              | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    695 | Beaux Collins            | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    696 | Dalen Cambre             | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    697 | Xavier Gipson            | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
-|    698 | Odell Beckham Jr.        | NYG    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      15 |
-|    699 | Geno Smith               | NYJ    | QB     |      2308 |       15 |     0 |        0 |       0 |        55 |       233 |        2 |       1 |
-|    700 | Brady Cook               | NYJ    | QB     |       802 |        1 |     0 |        0 |       0 |        41 |       219 |        2 |       2 |
-|    701 | Cade Klubnik             | NYJ    | QB     |         0 |        0 |     0 |        0 |       0 |        15 |       123 |        1 |       3 |
-|    702 | Bailey Zappe             | NYJ    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    703 | Breece Hall              | NYJ    | RB     |         2 |        1 |    38 |      368 |       1 |       240 |      1059 |        4 |       1 |
-|    704 | Braelon Allen            | NYJ    | RB     |         1 |        0 |    11 |       87 |       0 |        60 |       263 |        2 |       2 |
-|    705 | Isaiah Davis             | NYJ    | RB     |         1 |        0 |    11 |      102 |       0 |        31 |       149 |        0 |       3 |
-|    706 | Kene Nwangwu             | NYJ    | RB     |         0 |        0 |     0 |        0 |       0 |         2 |         7 |        0 |       4 |
-|    707 | Chip Trayanum            | NYJ    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    708 | Sam Scott                | NYJ    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    709 | Kenyon Sadiq             | NYJ    | TE     |         0 |        0 |    12 |      128 |       2 |         0 |         0 |        0 |       1 |
-|    710 | Mason Taylor             | NYJ    | TE     |         0 |        0 |    45 |      409 |       1 |         0 |         0 |        0 |       2 |
-|    711 | Jeremy Ruckert           | NYJ    | TE     |         0 |        0 |    18 |      178 |       0 |         0 |         0 |        0 |       3 |
-|    712 | Jelani Woods             | NYJ    | TE     |         0 |        0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
-|    713 | Chase Curtis             | NYJ    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    714 | Connor Hulstein          | NYJ    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    715 | Garrett Wilson           | NYJ    | WR     |         0 |        0 |    99 |     1131 |      10 |         4 |        12 |        0 |       1 |
-|    716 | Omar Cooper Jr.          | NYJ    | WR     |         0 |        0 |    23 |      292 |       1 |         4 |        12 |        0 |       2 |
-|    717 | Adonai Mitchell          | NYJ    | WR     |         0 |        0 |    30 |      384 |       2 |         3 |        11 |        0 |       3 |
-|    718 | Tim Patrick              | NYJ    | WR     |         0 |        0 |     2 |       19 |       0 |         0 |         0 |        0 |       4 |
-|    719 | Isaiah Williams          | NYJ    | WR     |         0 |        0 |     2 |       11 |       0 |         0 |         2 |        0 |       5 |
-|    720 | Arian Smith              | NYJ    | WR     |         0 |        0 |     0 |        3 |       0 |         0 |         1 |        0 |       6 |
-|    721 | Cam Camper               | NYJ    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    722 | Caullin Lacy             | NYJ    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    723 | DT Sheffield             | NYJ    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    724 | Jamaal Pritchett         | NYJ    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    725 | Malik McClain            | NYJ    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    726 | Quincy Skinner Jr.       | NYJ    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    727 | Jalen Hurts              | PHI    | QB     |      2822 |       23 |     0 |        0 |       0 |        90 |       371 |        8 |       1 |
-|    728 | Andy Dalton              | PHI    | QB     |       730 |        3 |     0 |        0 |       0 |        11 |        25 |        0 |       2 |
-|    729 | Tanner McKee             | PHI    | QB     |         0 |        0 |     0 |        0 |       0 |        12 |        33 |        0 |       3 |
-|    730 | Cole Payton              | PHI    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    731 | Saquon Barkley           | PHI    | RB     |         0 |        0 |    36 |      273 |       2 |       264 |      1092 |        7 |       1 |
-|    732 | Tank Bigsby              | PHI    | RB     |         0 |        0 |     6 |       54 |       0 |        63 |       330 |        2 |       2 |
-|    733 | Will Shipley             | PHI    | RB     |         0 |        0 |    10 |       55 |       0 |        36 |       168 |        0 |       3 |
-|    734 | Dameon Pierce            | PHI    | RB     |         0 |        0 |     0 |        0 |       0 |         1 |         3 |        0 |       4 |
-|    735 | Elijah Mitchell          | PHI    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    736 | Carson Steele            | PHI    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    737 | Dallas Goedert           | PHI    | TE     |         0 |        0 |    61 |      594 |      11 |         0 |         0 |        0 |       1 |
-|    738 | Eli Stowers              | PHI    | TE     |         0 |        0 |     5 |       50 |       1 |         0 |         0 |        0 |       2 |
-|    739 | Grant Calcaterra         | PHI    | TE     |         0 |        0 |     9 |       72 |       0 |         0 |         0 |        0 |       3 |
-|    740 | Johnny Mundt             | PHI    | TE     |         0 |        0 |     1 |       11 |       0 |         0 |         0 |        0 |       4 |
-|    741 | Stone Smartt             | PHI    | TE     |         0 |        0 |     0 |        3 |       0 |         0 |         0 |        0 |       5 |
-|    742 | Cameron Latu             | PHI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    743 | E.J. Jenkins             | PHI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    744 | Dae'Quan Wright          | PHI    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    745 | DeVonta Smith            | PHI    | WR     |         0 |        0 |    96 |     1287 |       6 |         0 |         0 |        0 |       1 |
-|    746 | Makai Lemon              | PHI    | WR     |         0 |        0 |    35 |      468 |       2 |         1 |         0 |        0 |       2 |
-|    747 | Marquise Brown           | PHI    | WR     |         0 |        0 |    48 |      637 |       4 |         1 |         1 |        0 |       3 |
-|    748 | Dontayvion Wicks         | PHI    | WR     |         0 |        0 |     3 |       36 |       0 |         0 |         0 |        0 |       4 |
-|    749 | Elijah Moore             | PHI    | WR     |         0 |        0 |     1 |       10 |       0 |         1 |         2 |        0 |       5 |
-|    750 | Samori Toure             | PHI    | WR     |         0 |        0 |     1 |        2 |       0 |         0 |         0 |        0 |       6 |
-|    751 | Darius Cooper            | PHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    752 | Britain Covey            | PHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    753 | Brandon Hayes            | PHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    754 | Danny Gray               | PHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    755 | Erik Ezukanma            | PHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    756 | Johnny Wilson            | PHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    757 | Quez Watkins             | PHI    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    758 | Aaron Rodgers            | PIT    | QB     |      3024 |       22 |     1 |        3 |       0 |        16 |        55 |        1 |       1 |
-|    759 | Mason Rudolph            | PIT    | QB     |       608 |        4 |     0 |        3 |       0 |        12 |        11 |        0 |       2 |
-|    760 | Drew Allar               | PIT    | QB     |         0 |        0 |     0 |        3 |       0 |         0 |         1 |        0 |       3 |
-|    761 | Will Howard              | PIT    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    762 | Rico Dowdle              | PIT    | RB     |         0 |        0 |    51 |      378 |       2 |       209 |       931 |        6 |       1 |
-|    763 | Jaylen Warren            | PIT    | RB     |         0 |        0 |    44 |      325 |       2 |       134 |       597 |        4 |       2 |
-|    764 | Eli Heidenreich          | PIT    | RB     |         0 |        0 |    19 |      123 |       1 |         6 |        25 |        1 |       3 |
-|    765 | Kaleb Johnson            | PIT    | RB     |         0 |        0 |     0 |        2 |       0 |         4 |        11 |        0 |       4 |
-|    766 | Travis Homer             | PIT    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    767 | Lew Nichols              | PIT    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    768 | Max Hurleman             | PIT    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    769 | Pat Freiermuth           | PIT    | TE     |         0 |        0 |    55 |      568 |       5 |         8 |        38 |        1 |       1 |
-|    770 | Darnell Washington       | PIT    | TE     |         0 |        0 |    39 |      371 |       2 |         8 |        38 |        1 |       2 |
-|    771 | Robert Tonyan            | PIT    | TE     |         0 |        0 |    19 |      150 |       1 |         8 |        37 |        1 |       3 |
-|    772 | Jaheim Bell              | PIT    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    773 | Lake McRee               | PIT    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    774 | Lance Mason              | PIT    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    775 | D.K. Metcalf             | PIT    | WR     |         0 |        0 |    69 |      960 |       7 |         1 |        14 |        1 |       1 |
-|    776 | Michael Pittman Jr.      | PIT    | WR     |         0 |        0 |    56 |      584 |       5 |         1 |         0 |        0 |       2 |
-|    777 | Germie Bernard           | PIT    | WR     |         0 |        0 |     9 |      138 |       1 |         0 |         1 |        0 |       3 |
-|    778 | Roman Wilson             | PIT    | WR     |         0 |        0 |     2 |       21 |       0 |         0 |         0 |        0 |       4 |
-|    779 | Kaden Wetjen             | PIT    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    780 | Ben Skowronek            | PIT    | WR     |         0 |        0 |     0 |        3 |       0 |         0 |         0 |        0 |       6 |
-|    781 | Jakobie Keeney-James     | PIT    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    782 | Brandon Smith            | PIT    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    783 | Cole Burgess             | PIT    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    784 | Colton Dowell            | PIT    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    785 | Joaquin Davis            | PIT    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    786 | Levi Wentz               | PIT    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    787 | Sam Darnold              | SEA    | QB     |      3766 |       24 |     0 |        0 |       0 |        29 |        81 |        0 |       1 |
-|    788 | Drew Lock                | SEA    | QB     |       297 |        1 |     0 |        0 |       0 |        10 |         4 |        0 |       2 |
-|    789 | Jalen Milroe             | SEA    | QB     |         0 |        0 |     0 |        0 |       0 |         5 |         9 |        0 |       3 |
-|    790 | Jadarian Price           | SEA    | RB     |         0 |        0 |    13 |      108 |       0 |        96 |       433 |        4 |       1 |
-|    791 | Zach Charbonnet          | SEA    | RB     |         0 |        0 |    24 |      196 |       0 |       203 |       852 |       10 |       2 |
-|    792 | Emanuel Wilson           | SEA    | RB     |         0 |        0 |    16 |      136 |       0 |       130 |       567 |        4 |       3 |
-|    793 | Jacardia Wright          | SEA    | RB     |         0 |        0 |     0 |        0 |       0 |         8 |        31 |        0 |       4 |
-|    794 | George Holani            | SEA    | RB     |         0 |        0 |     0 |        1 |       0 |         2 |         5 |        0 |       5 |
-|    795 | Justin Jones             | SEA    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    796 | TJ Harden                | SEA    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    797 | AJ Barner                | SEA    | TE     |         0 |        0 |    51 |      494 |       6 |        15 |        14 |        1 |       1 |
-|    798 | Elijah Arroyo            | SEA    | TE     |         0 |        0 |    15 |      178 |       1 |         2 |         0 |        0 |       2 |
-|    799 | Eric Saubert             | SEA    | TE     |         0 |        0 |     5 |       57 |       0 |         2 |         0 |        0 |       3 |
-|    800 | Nick Kallerup            | SEA    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    801 | Nick Vannett             | SEA    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    802 | Jaxon Smith-Njigba       | SEA    | WR     |         0 |        0 |   126 |     1864 |      10 |         5 |        50 |        0 |       1 |
-|    803 | Tory Horton              | SEA    | WR     |         0 |        0 |    39 |      511 |       7 |         4 |        22 |        0 |       2 |
-|    804 | Cooper Kupp              | SEA    | WR     |         0 |        0 |    35 |      495 |       1 |         4 |        22 |        0 |       3 |
-|    805 | Cody White               | SEA    | WR     |         0 |        0 |     0 |       14 |       0 |         0 |         0 |        0 |       4 |
-|    806 | Rashid Shaheed           | SEA    | WR     |         0 |        0 |     1 |        9 |       0 |         0 |         3 |        0 |       5 |
-|    807 | Velus Jones Jr.          | SEA    | WR     |         0 |        0 |     0 |        0 |       0 |         1 |         3 |        0 |       6 |
-|    808 | Jake Bobo                | SEA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    809 | Emmanuel Henderson Jr.   | SEA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    810 | Irv Charles              | SEA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    811 | Montorie Foster Jr.      | SEA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    812 | Rashad Rochelle          | SEA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    813 | Ricky White III          | SEA    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    814 | Brock Purdy              | SFO    | QB     |      3053 |       27 |     0 |        0 |       0 |        58 |       253 |        5 |       1 |
-|    815 | Mac Jones                | SFO    | QB     |      1464 |        8 |     0 |        0 |       0 |        35 |        75 |        0 |       2 |
-|    816 | Adrian Martinez          | SFO    | QB     |         0 |        0 |     0 |        0 |       0 |        10 |        25 |        1 |       3 |
-|    817 | Kurtis Rourke            | SFO    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    818 | Christian McCaffrey      | SFO    | RB     |         0 |        0 |    94 |      835 |       7 |       302 |      1180 |       10 |       1 |
-|    819 | Kaelon Black             | SFO    | RB     |         0 |        0 |     8 |       55 |       0 |        46 |       194 |        1 |       2 |
-|    820 | Khalil Herbert           | SFO    | RB     |         0 |        0 |     8 |       59 |       0 |        55 |       228 |        1 |       3 |
-|    821 | Isaac Guerendo           | SFO    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    822 | Jordan James             | SFO    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    823 | Patrick Taylor Jr.       | SFO    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    824 | Sincere McCormick        | SFO    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    825 | George Kittle            | SFO    | TE     |         0 |        0 |    76 |      864 |      11 |         1 |         1 |        0 |       1 |
-|    826 | Jake Tonges              | SFO    | TE     |         0 |        0 |    20 |      211 |       3 |         0 |         1 |        0 |       2 |
-|    827 | Luke Farrell             | SFO    | TE     |         0 |        0 |     6 |       70 |       1 |         0 |         1 |        0 |       3 |
-|    828 | Josiah Deguara           | SFO    | TE     |         0 |        0 |     0 |        3 |       0 |         0 |         0 |        0 |       4 |
-|    829 | Brayden Willis           | SFO    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    830 | Hayden Rucci             | SFO    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    831 | Tanner McLachlan         | SFO    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    832 | Deebo Samuel             | SFO    | WR     |         0 |        0 |    79 |     1054 |       6 |        17 |        81 |        1 |       1 |
-|    833 | Mike Evans               | SFO    | WR     |         0 |        0 |    53 |      840 |       6 |         3 |        16 |        1 |       2 |
-|    834 | De'Zhaun Stribling       | SFO    | WR     |         0 |        0 |    16 |      401 |       1 |         3 |        17 |        1 |       3 |
-|    835 | Ricky Pearsall           | SFO    | WR     |         0 |        0 |     6 |       94 |       0 |         0 |         0 |        0 |       4 |
-|    836 | Christian Kirk           | SFO    | WR     |         0 |        0 |     2 |       15 |       0 |         0 |         0 |        0 |       5 |
-|    837 | Demarcus Robinson        | SFO    | WR     |         0 |        0 |     1 |       16 |       0 |         0 |         0 |        0 |       6 |
-|    838 | Jordan Watkins           | SFO    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    839 | KhaDarel Hodge           | SFO    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    840 | Malik Turner             | SFO    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    841 | Brandon Aiyuk            | SFO    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    842 | Jacob Cowing             | SFO    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    843 | Junior Bergen            | SFO    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    844 | Trenton Irwin            | SFO    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    845 | Wesley Grimes            | SFO    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
-|    846 | Will Pauling             | SFO    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      15 |
-|    847 | Baker Mayfield           | TAM    | QB     |      2822 |       19 |     0 |        0 |       0 |        48 |       348 |        1 |       1 |
-|    848 | Jake Browning            | TAM    | QB     |      1131 |        9 |     0 |        0 |       0 |        22 |        90 |        2 |       2 |
-|    849 | Connor Bazelak           | TAM    | QB     |         0 |        0 |     0 |        0 |       0 |         3 |        11 |        1 |       3 |
-|    850 | Jalon Daniels            | TAM    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    851 | Bucky Irving             | TAM    | RB     |         0 |        0 |    55 |      445 |       4 |       284 |      1020 |        4 |       1 |
-|    852 | Sean Tucker              | TAM    | RB     |         0 |        0 |    13 |       52 |       2 |        80 |       323 |        6 |       2 |
-|    853 | Josh Williams            | TAM    | RB     |         0 |        0 |    10 |       32 |       1 |        34 |       154 |        2 |       3 |
-|    854 | Kadarius Calloway        | TAM    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    855 | Kenny Gainwell           | TAM    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    856 | Cade Otton               | TAM    | TE     |         0 |        0 |    58 |      567 |       1 |         0 |         0 |        0 |       1 |
-|    857 | Devin Culp               | TAM    | TE     |         0 |        0 |     2 |       42 |       1 |         0 |         0 |        0 |       2 |
-|    858 | Bauer Sharp              | TAM    | TE     |         0 |        0 |     1 |       38 |       0 |         0 |         0 |        0 |       3 |
-|    859 | Payne Durham             | TAM    | TE     |         0 |        0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
-|    860 | Ko Kieft                 | TAM    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    861 | Kenny Fletcher Jr.       | TAM    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    862 | Emeka Egbuka             | TAM    | WR     |         0 |        0 |    91 |     1274 |       9 |         5 |        25 |        0 |       1 |
-|    863 | Chris Godwin             | TAM    | WR     |         0 |        0 |    71 |      856 |       6 |         4 |        15 |        0 |       2 |
-|    864 | Tez Johnson              | TAM    | WR     |         0 |        0 |    43 |      558 |       4 |         7 |        23 |        0 |       3 |
-|    865 | Jalen McMillan           | TAM    | WR     |         0 |        0 |     5 |       73 |       0 |         0 |         0 |        0 |       4 |
-|    866 | David Sills V            | TAM    | WR     |         0 |        0 |     1 |       11 |       0 |         0 |         0 |        0 |       5 |
-|    867 | Kameron Johnson          | TAM    | WR     |         0 |        0 |     0 |        3 |       0 |         0 |         1 |        0 |       6 |
-|    868 | Dean Patterson           | TAM    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    869 | Dennis Houston           | TAM    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    870 | Eric Rivers Jr.          | TAM    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    871 | Garrett Greene           | TAM    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    872 | Ted Hurst III            | TAM    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    873 | Cam Ward                 | TEN    | QB     |      2554 |        9 |     0 |        0 |       0 |        36 |       134 |        2 |       1 |
-|    874 | Mitchell Trubisky        | TEN    | QB     |       698 |        7 |     0 |        0 |       0 |        25 |        21 |        0 |       2 |
-|    875 | Hendon Hooker            | TEN    | QB     |         0 |        0 |     0 |        0 |       0 |         5 |         4 |        0 |       3 |
-|    876 | Will Levis               | TEN    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    877 | Tony Pollard             | TEN    | RB     |         0 |        0 |    31 |      173 |       0 |       210 |       941 |        5 |       1 |
-|    878 | Michael Carter           | TEN    | RB     |         0 |        0 |    28 |      197 |       0 |        78 |       302 |        1 |       2 |
-|    879 | Tyjae Spears             | TEN    | RB     |         0 |        0 |    19 |      100 |       0 |        39 |       166 |        1 |       3 |
-|    880 | Nicholas Singleton       | TEN    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    881 | Julius Chestnut          | TEN    | RB     |         0 |        0 |     0 |        0 |       0 |         1 |         2 |        0 |       5 |
-|    882 | Kalel Mullings           | TEN    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         1 |        0 |       6 |
-|    883 | Gunnar Helm              | TEN    | TE     |         0 |        0 |    58 |      472 |       4 |         0 |         0 |        0 |       1 |
-|    884 | Daniel Bellinger         | TEN    | TE     |         0 |        0 |    28 |      327 |       2 |         0 |         0 |        0 |       2 |
-|    885 | David Martin-Robinson    | TEN    | TE     |         0 |        0 |    18 |      169 |       0 |         0 |         0 |        0 |       3 |
-|    886 | Kylen Granson            | TEN    | TE     |         0 |        0 |     0 |        4 |       0 |         0 |         0 |        0 |       4 |
-|    887 | Jaren Kanak              | TEN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    888 | Joel Wilson              | TEN    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    889 | Wan'Dale Robinson        | TEN    | WR     |         0 |        0 |    96 |     1109 |       6 |         3 |         6 |        0 |       1 |
-|    890 | Carnell Tate             | TEN    | WR     |         0 |        0 |    16 |      233 |       2 |         3 |         5 |        0 |       2 |
-|    891 | Elic Ayomanor            | TEN    | WR     |         0 |        0 |    28 |      381 |       2 |         3 |         5 |        0 |       3 |
-|    892 | Chimere Dike             | TEN    | WR     |         0 |        0 |     4 |       38 |       0 |         2 |         2 |        0 |       4 |
-|    893 | Calvin Ridley            | TEN    | WR     |         0 |        0 |     2 |       33 |       0 |         0 |         0 |        0 |       5 |
-|    894 | Xavier Restrepo          | TEN    | WR     |         0 |        0 |     1 |       16 |       0 |         0 |         0 |        0 |       6 |
-|    895 | Mason Kinsey             | TEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    896 | Bryce Oliver             | TEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    897 | Courtney Jackson         | TEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    898 | Hank Beatty              | TEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    899 | K.J. Osborn              | TEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    900 | Lance McCutcheon         | TEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
-|    901 | Tyren Montgomery         | TEN    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
-|    902 | Jayden Daniels           | WSH    | QB     |      2358 |       14 |     0 |        0 |       0 |       137 |       648 |        4 |       1 |
-|    903 | Marcus Mariota           | WSH    | QB     |      1172 |        7 |     0 |        0 |       0 |        60 |       332 |        2 |       2 |
-|    904 | Athan Kaliakmanis        | WSH    | QB     |         0 |        0 |     0 |        0 |       0 |        16 |        70 |        1 |       3 |
-|    905 | Sam Hartman              | WSH    | QB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
-|    906 | Jacory Croskey-Merritt   | WSH    | RB     |         0 |        0 |    12 |       98 |       0 |       190 |       868 |        9 |       1 |
-|    907 | Rachaad White            | WSH    | RB     |         0 |        0 |    25 |      169 |       0 |       113 |       501 |        5 |       2 |
-|    908 | Kaytron Allen            | WSH    | RB     |         0 |        0 |     1 |       38 |       0 |        36 |       174 |        1 |       3 |
-|    909 | Jeremy McNichols         | WSH    | RB     |         0 |        0 |     2 |       20 |       0 |         4 |        21 |        0 |       4 |
-|    910 | Jerome Ford              | WSH    | RB     |         0 |        0 |     2 |        7 |       0 |         2 |         5 |        0 |       5 |
-|    911 | Robert Henry Jr.         | WSH    | RB     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    912 | Chig Okonkwo             | WSH    | TE     |         0 |        0 |    44 |      521 |       8 |         0 |         0 |        0 |       1 |
-|    913 | John Bates               | WSH    | TE     |         0 |        0 |    18 |      155 |       2 |         0 |         0 |        0 |       2 |
-|    914 | Ben Sinnott              | WSH    | TE     |         0 |        0 |    12 |      121 |       1 |         0 |         0 |        0 |       3 |
-|    915 | Colson Yankoff           | WSH    | TE     |         0 |        0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
-|    916 | Lawrence Cager           | WSH    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    917 | Quentin Moore            | WSH    | TE     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
-|    918 | Terry McLaurin           | WSH    | WR     |         0 |        0 |    77 |     1140 |       6 |         7 |        31 |        1 |       1 |
-|    919 | Stefon Diggs             | WSH    | WR     |         0 |        0 |    68 |      847 |       2 |         6 |        30 |        0 |       2 |
-|    920 | Luke McCaffrey           | WSH    | WR     |         0 |        0 |    22 |      365 |       2 |         6 |        30 |        0 |       3 |
-|    921 | Treylon Burks            | WSH    | WR     |         0 |        0 |     2 |       28 |       0 |         0 |         0 |        0 |       4 |
-|    922 | Antonio Williams         | WSH    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
-|    923 | Van Jefferson            | WSH    | WR     |         0 |        0 |     2 |       19 |       0 |         0 |         0 |        0 |       6 |
-|    924 | Dyami Brown              | WSH    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
-|    925 | Jaylin Lane              | WSH    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
-|    926 | Jacoby Jones             | WSH    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
-|    927 | River Cracraft           | WSH    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
-|    928 | Jaden Bradley            | WSH    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
-|    929 | Nick Nash                | WSH    | WR     |         0 |        0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|   Rank | Player                   | Team   | Pos.   |    PPR |    Std |   PassYds |   PassTD |   Int |   Rec |   RecYds |   RecTD |   RushAtt |   RushYds |   RushTD |   Depth |
+|-------:|:-------------------------|:-------|:-------|-------:|-------:|----------:|---------:|------:|------:|---------:|--------:|----------:|----------:|---------:|--------:|
+|      1 | Jacoby Brissett          | ARI    | QB     | 286.96 | 286.96 |      3914 |       28 |     8 |     0 |        0 |       0 |        47 |       224 |        2 |       1 |
+|      2 | Carson Beck              | ARI    | QB     |  26.18 |  26.18 |       412 |        1 |     0 |     0 |        0 |       0 |         6 |        57 |        0 |       2 |
+|      3 | Gardner Minshew II       | ARI    | QB     |   4    |   4    |         0 |        0 |     1 |     0 |        0 |       0 |        14 |        60 |        0 |       3 |
+|      4 | Kedon Slovis             | ARI    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|      5 | James Conner             | ARI    | RB     | 207.2  | 155.2  |         0 |        0 |     0 |    52 |      312 |       5 |       180 |       640 |        5 |       1 |
+|      6 | Jeremiyah Love           | ARI    | RB     |  45.2  |  32.2  |         0 |        0 |     0 |    13 |      123 |       0 |        29 |       199 |        0 |       2 |
+|      7 | Zonovan Knight           | ARI    | RB     |  94.1  |  73.1  |         0 |        0 |     0 |    21 |      187 |       1 |        61 |       304 |        3 |       3 |
+|      8 | Tyler Allgeier           | ARI    | RB     |  13.6  |  11.6  |         0 |        0 |     0 |     2 |        9 |       0 |        13 |        47 |        1 |       4 |
+|      9 | Trey Benson              | ARI    | RB     |   7.4  |   4.4  |         0 |        0 |     0 |     3 |       13 |       0 |         6 |        31 |        0 |       5 |
+|     10 | Evan Hull                | ARI    | RB     |   0.7  |   0.7  |         0 |        0 |     0 |     0 |        1 |       0 |         2 |         6 |        0 |       6 |
+|     11 | Corey Kiner              | ARI    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|     12 | Trey McBride             | ARI    | TE     | 294.7  | 176.7  |         0 |        0 |     0 |   118 |     1167 |      10 |         0 |         0 |        0 |       1 |
+|     13 | Elijah Higgins           | ARI    | TE     |  63.7  |  33.7  |         0 |        0 |     0 |    30 |      277 |       1 |         0 |         0 |        0 |       2 |
+|     14 | Tip Reiman               | ARI    | TE     |  28.8  |  12.8  |         0 |        0 |     0 |    16 |      128 |       0 |         0 |         0 |        0 |       3 |
+|     15 | Teagan Quitoriano        | ARI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|     16 | Jameson Geers            | ARI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|     17 | Kenny Yeboah             | ARI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|     18 | Rivaldo Fairweather      | ARI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|     19 | Shawn Bowman             | ARI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|     20 | Michael Wilson           | ARI    | WR     | 238.5  | 153.5  |         0 |        0 |     0 |    85 |     1050 |       7 |         3 |         5 |        1 |       1 |
+|     21 | Marvin Harrison Jr.      | ARI    | WR     | 146.6  |  92.6  |         0 |        0 |     0 |    54 |      681 |       4 |         2 |         5 |        0 |       2 |
+|     22 | Kendrick Bourne          | ARI    | WR     |  73.3  |  42.3  |         0 |        0 |     0 |    31 |      358 |       1 |         2 |         5 |        0 |       3 |
+|     23 | Jalen Brooks             | ARI    | WR     |   2.4  |   1.4  |         0 |        0 |     0 |     1 |       14 |       0 |         0 |         0 |        0 |       4 |
+|     24 | Xavier Weaver            | ARI    | WR     |   1.6  |   0.6  |         0 |        0 |     0 |     1 |        6 |       0 |         0 |         0 |        0 |       5 |
+|     25 | Reggie Virgil            | ARI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|     26 | Devin Duvernay           | ARI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|     27 | Simi Fehoko              | ARI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|     28 | Bryson Green             | ARI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|     29 | Harrison Wallace III     | ARI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|     30 | Ihmir Smith-Marsette     | ARI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|     31 | Michael Penix            | ATL    | QB     | 164.38 | 164.38 |      2647 |       11 |     5 |     0 |        0 |       0 |        35 |       125 |        2 |       1 |
+|     32 | Tua Tagovailoa           | ATL    | QB     |  78.5  |  78.5  |      1345 |       10 |    10 |     0 |        0 |       0 |        18 |        47 |        0 |       2 |
+|     33 | Cooper Rush              | ATL    | QB     |   0    |   0    |         0 |        0 |     5 |     0 |        0 |       0 |         9 |        19 |        0 |       3 |
+|     34 | Jack Strand              | ATL    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|     35 | Bijan Robinson           | ATL    | RB     | 358.4  | 285.4  |         0 |        0 |     0 |    73 |      745 |       4 |       285 |      1389 |        8 |       1 |
+|     36 | Brian Robinson Jr.       | ATL    | RB     |  86.8  |  74.8  |         0 |        0 |     0 |    12 |       91 |       0 |        99 |       417 |        4 |       2 |
+|     37 | Nathan Carter            | ATL    | RB     |  58.1  |  50.1  |         0 |        0 |     0 |     8 |       78 |       0 |        53 |       243 |        3 |       3 |
+|     38 | Tyler Goodson            | ATL    | RB     |   0.5  |   0.5  |         0 |        0 |     0 |     0 |        2 |       0 |         2 |         3 |        0 |       4 |
+|     39 | Cash Jones               | ATL    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|     40 | Kyle Pitts               | ATL    | TE     | 187.1  | 111.1  |         0 |        0 |     0 |    76 |      809 |       5 |         1 |         2 |        0 |       1 |
+|     41 | Austin Hooper            | ATL    | TE     |  41.8  |  26.8  |         0 |        0 |     0 |    15 |      207 |       1 |         1 |         1 |        0 |       2 |
+|     42 | Charlie Woerner          | ATL    | TE     |  11.7  |   6.7  |         0 |        0 |     0 |     5 |       66 |       0 |         0 |         1 |        0 |       3 |
+|     43 | Jack Velling             | ATL    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|     44 | Joshua Simon             | ATL    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|     45 | Drake London             | ATL    | WR     | 289.2  | 193.2  |         0 |        0 |     0 |    96 |     1332 |      10 |         1 |         0 |        0 |       1 |
+|     46 | Zachariah Branch         | ATL    | WR     |  41.2  |  27.2  |         0 |        0 |     0 |    14 |      272 |       0 |         0 |         0 |        0 |       2 |
+|     47 | Olamide Zaccheaus        | ATL    | WR     |  67    |  43    |         0 |        0 |     0 |    24 |      362 |       1 |         0 |         8 |        0 |       3 |
+|     48 | Jahan Dotson             | ATL    | WR     |   4.4  |   2.4  |         0 |        0 |     0 |     2 |       24 |       0 |         0 |         0 |        0 |       4 |
+|     49 | Dylan Drummond           | ATL    | WR     |   1.4  |   0.4  |         0 |        0 |     0 |     1 |        4 |       0 |         0 |         0 |        0 |       5 |
+|     50 | Chris Blair              | ATL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|     51 | Antwane Wells Jr.        | ATL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|     52 | Keelan Marion            | ATL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|     53 | Kristian Wilkerson       | ATL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|     54 | Le'Meke Brockington      | ATL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|     55 | Vinny Anthony II         | ATL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|     56 | Lamar Jackson            | BAL    | QB     | 230.42 | 230.42 |      2713 |       21 |     9 |     0 |        0 |       0 |        84 |       439 |        2 |       1 |
+|     57 | Tyler Huntley            | BAL    | QB     |  72.8  |  72.8  |       660 |        3 |     0 |     0 |        0 |       0 |        56 |       344 |        0 |       2 |
+|     58 | Joe Fagnano              | BAL    | QB     |   5.8  |   5.8  |         0 |        0 |     0 |     0 |        0 |       0 |         9 |        58 |        0 |       3 |
+|     59 | Skylar Thompson          | BAL    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|     60 | Derrick Henry            | BAL    | RB     | 296.8  | 272.8  |         0 |        0 |     0 |    24 |      207 |       1 |       302 |      1561 |       15 |       1 |
+|     61 | Adam Randall             | BAL    | RB     |  56.9  |  47.9  |         0 |        0 |     0 |     9 |       76 |       1 |        40 |       223 |        2 |       2 |
+|     62 | Justice Hill             | BAL    | RB     |  73.6  |  54.6  |         0 |        0 |     0 |    19 |      160 |       0 |        49 |       266 |        2 |       3 |
+|     63 | Rasheen Ali              | BAL    | RB     |   3    |   1    |         0 |        0 |     0 |     2 |        7 |       0 |         0 |         3 |        0 |       4 |
+|     64 | Dontae McMillan          | BAL    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|     65 | Elijah Tau-Tolliver      | BAL    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|     66 | Mark Andrews             | BAL    | TE     | 159    | 101    |         0 |        0 |     0 |    58 |      546 |       6 |        15 |        44 |        1 |       1 |
+|     67 | Matthew Hibner           | BAL    | TE     |  38    |  24    |         0 |        0 |     0 |    14 |      178 |       1 |         2 |         2 |        0 |       2 |
+|     68 | Josh Cuevas              | BAL    | TE     |  36.9  |  23.9  |         0 |        0 |     0 |    13 |      177 |       1 |         2 |         2 |        0 |       3 |
+|     69 | Durham Smythe            | BAL    | TE     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
+|     70 | Ty Pezza                 | BAL    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|     71 | Zay Flowers              | BAL    | WR     | 281.7  | 190.7  |         0 |        0 |     0 |    91 |     1312 |       8 |        15 |        55 |        1 |       1 |
+|     72 | Rashod Bateman           | BAL    | WR     |  95.8  |  66.8  |         0 |        0 |     0 |    29 |      425 |       4 |         2 |         3 |        0 |       2 |
+|     73 | Ja'Kobi Lane             | BAL    | WR     |  52.5  |  37.5  |         0 |        0 |     0 |    15 |      252 |       2 |         2 |         3 |        0 |       3 |
+|     74 | Devontez Walker          | BAL    | WR     |   2.9  |   1.9  |         0 |        0 |     0 |     1 |       19 |       0 |         0 |         0 |        0 |       4 |
+|     75 | Chris Moore              | BAL    | WR     |   2.3  |   1.3  |         0 |        0 |     0 |     1 |       12 |       0 |         0 |         1 |        0 |       5 |
+|     76 | Elijah Sarratt           | BAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|     77 | LaJohntay Wester         | BAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|     78 | Cornelius Johnson        | BAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|     79 | Cortez Braham Jr.        | BAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|     80 | Dayton Wade              | BAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|     81 | Octavian Smith Jr.       | BAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|     82 | Xavier Guillory          | BAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|     83 | Josh Allen               | BUF    | QB     | 360.46 | 360.46 |      3584 |       26 |     9 |     0 |        0 |       0 |       100 |       531 |       13 |       1 |
+|     84 | Kyle Allen               | BUF    | QB     |  35.58 |  35.58 |       397 |        3 |     0 |     0 |        0 |       0 |        13 |        17 |        1 |       2 |
+|     85 | Shane Buechele           | BUF    | QB     |   3.7  |   3.7  |         0 |        0 |     0 |     0 |        0 |       0 |         8 |        37 |        0 |       3 |
+|     86 | James Cook               | BUF    | RB     | 312.5  | 275.5  |         0 |        0 |     0 |    37 |      323 |       3 |       304 |      1592 |       11 |       1 |
+|     87 | Ty Johnson               | BUF    | RB     |  98.3  |  79.3  |         0 |        0 |     0 |    19 |      222 |       2 |        63 |       271 |        3 |       2 |
+|     88 | Ray Davis                | BUF    | RB     |  55.8  |  44.8  |         0 |        0 |     0 |    11 |       95 |       1 |        50 |       233 |        1 |       3 |
+|     89 | Frank Gore Jr.           | BUF    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|     90 | Ian Wheeler              | BUF    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|     91 | Dalton Kincaid           | BUF    | TE     | 179    | 125    |         0 |        0 |     0 |    54 |      770 |       8 |         0 |         0 |        0 |       1 |
+|     92 | Dawson Knox              | BUF    | TE     |  76    |  49    |         0 |        0 |     0 |    27 |      310 |       3 |         0 |         0 |        0 |       2 |
+|     93 | Jackson Hawes            | BUF    | TE     |  36.3  |  24.3  |         0 |        0 |     0 |    12 |      123 |       2 |         0 |         0 |        0 |       3 |
+|     94 | Keleki Latu              | BUF    | TE     |   3.1  |   1.1  |         0 |        0 |     0 |     2 |       11 |       0 |         0 |         0 |        0 |       4 |
+|     95 | Shane Zylstra            | BUF    | TE     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         0 |        0 |       5 |
+|     96 | D.J. Moore               | BUF    | WR     | 215.9  | 148.9  |         0 |        1 |     0 |    67 |      883 |       7 |        16 |        86 |        1 |       1 |
+|     97 | Khalil Shakir            | BUF    | WR     | 171.6  | 102.6  |         0 |        1 |     0 |    69 |      731 |       4 |         3 |        15 |        0 |       2 |
+|     98 | Keon Coleman             | BUF    | WR     | 100.9  |  61.9  |         0 |        1 |     0 |    39 |      444 |       2 |         3 |        15 |        0 |       3 |
+|     99 | Josh Palmer              | BUF    | WR     |   7.1  |   4.1  |         0 |        0 |     0 |     3 |       41 |       0 |         0 |         0 |        0 |       4 |
+|    100 | Tyrell Shavers           | BUF    | WR     |   2.2  |   1.2  |         0 |        0 |     0 |     1 |       12 |       0 |         0 |         0 |        0 |       5 |
+|    101 | Dante Pettis             | BUF    | WR     |   2.3  |   1.3  |         0 |        0 |     0 |     1 |       13 |       0 |         0 |         0 |        0 |       6 |
+|    102 | Skyler Bell              | BUF    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    103 | Mecole Hardman           | BUF    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    104 | Trent Sherfield          | BUF    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    105 | Quentin Skinner          | BUF    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    106 | Ja'Mori Maclin           | BUF    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    107 | Mac Dalena               | BUF    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    108 | Max Tomczak              | BUF    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    109 | Stephen Gosnell          | BUF    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
+|    110 | Bryce Young              | CAR    | QB     | 211.86 | 211.86 |      2879 |       21 |    10 |     0 |        0 |       0 |        50 |       207 |        2 |       1 |
+|    111 | Kenny Pickett            | CAR    | QB     |  27.4  |  27.4  |       425 |        3 |     3 |     0 |        0 |       0 |        11 |        44 |        0 |       2 |
+|    112 | Haynes King              | CAR    | QB     |   0.8  |   0.8  |         0 |        0 |     0 |     0 |        0 |       0 |         1 |         8 |        0 |       3 |
+|    113 | Kyle Trask               | CAR    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    114 | Chuba Hubbard            | CAR    | RB     | 202    | 159    |         0 |        0 |     0 |    43 |      313 |       4 |       211 |       857 |        3 |       1 |
+|    115 | AJ Dillon                | CAR    | RB     |  84.3  |  68.3  |         0 |        0 |     0 |    16 |      122 |       0 |        97 |       441 |        2 |       2 |
+|    116 | Trevor Etienne           | CAR    | RB     |  73.1  |  60.1  |         0 |        0 |     0 |    13 |       98 |       0 |        82 |       383 |        2 |       3 |
+|    117 | Anthony Tyus III         | CAR    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    118 | Jonathon Brooks          | CAR    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    119 | Miles Davis              | CAR    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    120 | Tommy Tremble            | CAR    | TE     |  79.9  |  46.9  |         0 |        0 |     0 |    33 |      288 |       3 |         1 |         1 |        0 |       1 |
+|    121 | Ja'Tavion Sanders        | CAR    | TE     |  57.8  |  27.8  |         0 |        0 |     0 |    30 |      218 |       1 |         0 |         0 |        0 |       2 |
+|    122 | Mitchell Evans           | CAR    | TE     |  31.3  |  18.3  |         0 |        0 |     0 |    13 |      123 |       1 |         0 |         0 |        0 |       3 |
+|    123 | James Mitchell           | CAR    | TE     |   2.9  |   0.9  |         0 |        0 |     0 |     2 |        9 |       0 |         0 |         0 |        0 |       4 |
+|    124 | Feleipe Franks           | CAR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    125 | Caden Prieskorn          | CAR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    126 | Chamon Metayer           | CAR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    127 | Tetairoa McMillan        | CAR    | WR     | 249.9  | 163.9  |         0 |        0 |     0 |    86 |     1132 |       8 |         4 |        27 |        0 |       1 |
+|    128 | Jalen Coker              | CAR    | WR     | 149.5  |  93.5  |         0 |        0 |     0 |    56 |      608 |       5 |         3 |        27 |        0 |       2 |
+|    129 | Xavier Legette           | CAR    | WR     |  87.1  |  52.1  |         0 |        0 |     0 |    35 |      374 |       2 |         3 |        27 |        0 |       3 |
+|    130 | Chris Brazzell II        | CAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    131 | Casey Washington         | CAR    | WR     |   2.1  |   1.1  |         0 |        0 |     0 |     1 |       11 |       0 |         0 |         0 |        0 |       5 |
+|    132 | Brycen Tremayne          | CAR    | WR     |   1.8  |   0.8  |         0 |        0 |     0 |     1 |        8 |       0 |         0 |         0 |        0 |       6 |
+|    133 | David Moore              | CAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    134 | Dan Chisena              | CAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    135 | Elijah Cooks             | CAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    136 | Ja'seem Reed             | CAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    137 | Jimmy Horn Jr.           | CAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    138 | John Metchie III         | CAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    139 | Malick Meiga             | CAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    140 | Roc Taylor               | CAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
+|    141 | Caleb Williams           | CHI    | QB     | 300.8  | 299.8  |      3625 |       26 |     5 |     1 |       19 |       1 |        69 |       349 |        3 |       1 |
+|    142 | Tyson Bagent             | CHI    | QB     |  22.86 |  21.86 |       364 |        1 |     0 |     1 |        2 |       0 |        10 |        31 |        0 |       2 |
+|    143 | Case Keenum              | CHI    | QB     |   1.1  |   1.1  |         0 |        0 |     0 |     0 |        1 |       0 |         0 |        10 |        0 |       3 |
+|    144 | Miller Moss              | CHI    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    145 | D'Andre Swift            | CHI    | RB     | 245.9  | 211.9  |         0 |        0 |     0 |    34 |      308 |       1 |       238 |      1151 |       10 |       1 |
+|    146 | Kyle Monangai            | CHI    | RB     | 103    |  89    |         0 |        0 |     0 |    14 |      125 |       0 |       127 |       585 |        3 |       2 |
+|    147 | Brittain Brown           | CHI    | RB     |  37.2  |  33.2  |         0 |        0 |     0 |     4 |       30 |       0 |        35 |       182 |        2 |       3 |
+|    148 | Roschon Johnson          | CHI    | RB     |   0.4  |   0.4  |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         4 |        0 |       4 |
+|    149 | Coleman Bennett          | CHI    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    150 | Salvon Ahmed             | CHI    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    151 | Colston Loveland         | CHI    | TE     | 180.1  | 118.1  |         0 |        0 |     0 |    62 |      761 |       7 |         1 |         0 |        0 |       1 |
+|    152 | Sam Roush                | CHI    | TE     |  20.9  |  10.9  |         0 |        0 |     0 |    10 |      109 |       0 |         0 |         0 |        0 |       2 |
+|    153 | Cole Kmet                | CHI    | TE     |  47.6  |  27.6  |         0 |        0 |     0 |    20 |      215 |       1 |         0 |         1 |        0 |       3 |
+|    154 | Nikola Kalinic           | CHI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    155 | Stephen Carlson          | CHI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    156 | Hayden Large             | CHI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    157 | Qadir Ismail             | CHI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    158 | Rome Odunze              | CHI    | WR     | 284.74 | 198.74 |         1 |        1 |     0 |    86 |     1189 |      11 |         9 |        38 |        1 |       1 |
+|    159 | Luther Burden            | CHI    | WR     | 175.04 | 111.04 |         1 |        0 |     0 |    64 |      806 |       4 |         8 |        64 |        0 |       2 |
+|    160 | Zavion Thomas            | CHI    | WR     |  91.9  |  59.9  |         0 |        0 |     0 |    32 |      381 |       3 |         8 |        38 |        0 |       3 |
+|    161 | Jahdae Walker            | CHI    | WR     |   3.6  |   1.6  |         0 |        0 |     0 |     2 |       16 |       0 |         0 |         0 |        0 |       4 |
+|    162 | Kalif Raymond            | CHI    | WR     |   3.6  |   1.6  |         0 |        0 |     0 |     2 |       15 |       0 |         0 |         1 |        0 |       5 |
+|    163 | Scotty Miller            | CHI    | WR     |   3.4  |   1.4  |         0 |        0 |     0 |     2 |       14 |       0 |         0 |         0 |        0 |       6 |
+|    164 | JP Richardson            | CHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    165 | Kaden Davis              | CHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    166 | Kyron Hudson             | CHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    167 | Maurice Alexander        | CHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    168 | Omari Kelly              | CHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    169 | Joe Burrow               | CIN    | QB     | 227.6  | 227.6  |      3090 |       28 |     8 |     0 |        0 |       0 |        30 |        80 |        0 |       1 |
+|    170 | Joe Flacco               | CIN    | QB     |  82.64 |  82.64 |      1201 |        8 |     3 |     0 |        0 |       0 |        12 |        26 |        1 |       2 |
+|    171 | Josh Johnson             | CIN    | QB     |   8.2  |   8.2  |         0 |        0 |     2 |     0 |        0 |       0 |        14 |        62 |        1 |       3 |
+|    172 | Sean Clifford            | CIN    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    173 | Chase Brown              | CIN    | RB     | 264.4  | 200.4  |         0 |        0 |     0 |    64 |      389 |       5 |       217 |       955 |        6 |       1 |
+|    174 | Samaje Perine            | CIN    | RB     |  79.3  |  63.3  |         0 |        0 |     0 |    16 |       96 |       0 |        81 |       357 |        3 |       2 |
+|    175 | Tahj Brooks              | CIN    | RB     |  25.1  |  18.1  |         0 |        0 |     0 |     7 |       48 |       0 |        33 |       133 |        0 |       3 |
+|    176 | Kendall Milton           | CIN    | RB     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        0 |       0 |         3 |         3 |        0 |       4 |
+|    177 | Gary Brightwell          | CIN    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    178 | Jamal Haynes             | CIN    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    179 | Kentrel Bullock          | CIN    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    180 | Mike Gesicki             | CIN    | TE     | 117.6  |  70.6  |         0 |        0 |     0 |    47 |      465 |       4 |         1 |         1 |        0 |       1 |
+|    181 | Tanner Hudson            | CIN    | TE     |  71.2  |  43.2  |         0 |        0 |     0 |    28 |      251 |       3 |         0 |         1 |        0 |       2 |
+|    182 | Drew Sample              | CIN    | TE     |  46.9  |  23.9  |         0 |        0 |     0 |    23 |      178 |       1 |         0 |         1 |        0 |       3 |
+|    183 | Cam Grandy               | CIN    | TE     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
+|    184 | Erick All Jr.            | CIN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    185 | Jack Endries             | CIN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    186 | Josh Kattus              | CIN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    187 | Ja'Marr Chase            | CIN    | WR     | 354.2  | 221.2  |         0 |        0 |     0 |   133 |     1531 |      11 |         3 |        21 |        0 |       1 |
+|    188 | Tee Higgins              | CIN    | WR     | 200    | 140    |         0 |        0 |     0 |    60 |      854 |       9 |         3 |         6 |        0 |       2 |
+|    189 | Andrei Iosivas           | CIN    | WR     |  98.7  |  65.7  |         0 |        0 |     0 |    33 |      467 |       3 |         2 |        10 |        0 |       3 |
+|    190 | Mitchell Tinsley         | CIN    | WR     |   1    |   1    |         0 |        0 |     0 |     0 |       10 |       0 |         0 |         0 |        0 |       4 |
+|    191 | Colbie Young             | CIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    192 | Ke'Shawn Williams        | CIN    | WR     |   0.1  |   0.1  |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         1 |        0 |       6 |
+|    193 | Charlie Jones            | CIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    194 | Dohnte Meyers            | CIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    195 | Jordan Moore             | CIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    196 | Kendric Pryor            | CIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    197 | Noah Thomas              | CIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    198 | Xavier Johnson           | CIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    199 | Dillon Gabriel           | CLE    | QB     |  83.66 |  83.66 |      1064 |        8 |     3 |     0 |        0 |       0 |        23 |       151 |        0 |       1 |
+|    200 | Shedeur Sanders          | CLE    | QB     |  88.78 |  88.78 |      1392 |        7 |    12 |     0 |        0 |       0 |        29 |       231 |        1 |       2 |
+|    201 | Taylen Green             | CLE    | QB     |   2.6  |   2.6  |         0 |        0 |     0 |     0 |        0 |       0 |         4 |        26 |        0 |       3 |
+|    202 | Deshaun Watson           | CLE    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    203 | Quinshon Judkins         | CLE    | RB     | 208    | 164    |         0 |        0 |     0 |    44 |      276 |       1 |       249 |       884 |        7 |       1 |
+|    204 | Raheim Sanders           | CLE    | RB     |  83.9  |  57.9  |         0 |        0 |     0 |    26 |      155 |       0 |        75 |       244 |        3 |       2 |
+|    205 | Dylan Sampson            | CLE    | RB     |  63.6  |  38.6  |         0 |        0 |     0 |    25 |      190 |       1 |        29 |        76 |        1 |       3 |
+|    206 | Ahmani Marshall          | CLE    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    207 | Davon Booth              | CLE    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    208 | Harold Fannin            | CLE    | TE     | 200.4  | 119.4  |         0 |        0 |     0 |    81 |      700 |       7 |         5 |        14 |        1 |       1 |
+|    209 | Jack Stoll               | CLE    | TE     |  36    |  21    |         0 |        0 |     0 |    15 |       89 |       2 |         1 |         1 |        0 |       2 |
+|    210 | Joe Royer                | CLE    | TE     |  27.3  |  12.3  |         0 |        0 |     0 |    15 |       62 |       1 |         1 |         1 |        0 |       3 |
+|    211 | Brenden Bates            | CLE    | TE     |   0.4  |   0.4  |         0 |        0 |     0 |     0 |        4 |       0 |         0 |         0 |        0 |       4 |
+|    212 | Blake Whiteheart         | CLE    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    213 | Carsen Ryan              | CLE    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    214 | Jerry Jeudy              | CLE    | WR     | 130.8  |  69.8  |         0 |        0 |     0 |    61 |      586 |       1 |         7 |        52 |        0 |       1 |
+|    215 | Cedric Tillman           | CLE    | WR     |  81.4  |  45.4  |         0 |        0 |     0 |    36 |      283 |       2 |         6 |        51 |        0 |       2 |
+|    216 | KC Concepcion            | CLE    | WR     |  32.1  |  14.1  |         0 |        0 |     0 |    18 |       90 |       0 |         6 |        51 |        0 |       3 |
+|    217 | Denzel Boston            | CLE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    218 | Isaiah Bond              | CLE    | WR     |   2.8  |   1.8  |         0 |        0 |     0 |     1 |       16 |       0 |         0 |         2 |        0 |       5 |
+|    219 | Malachi Corley           | CLE    | WR     |   2.3  |   1.3  |         0 |        0 |     0 |     1 |        5 |       0 |         1 |         8 |        0 |       6 |
+|    220 | Jamari Thrash            | CLE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    221 | Tylan Wallace            | CLE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    222 | Gage Larvadain           | CLE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    223 | Aaron Anderson           | CLE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    224 | Kole Wilson              | CLE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    225 | Luke Floriea             | CLE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    226 | Dak Prescott             | DAL    | QB     | 283.92 | 283.92 |      4043 |       27 |     7 |     0 |        0 |       0 |        46 |       162 |        2 |       1 |
+|    227 | Joe Milton               | DAL    | QB     |  48.88 |  48.88 |       692 |        4 |     4 |     0 |        0 |       0 |        11 |       132 |        0 |       2 |
+|    228 | Sam Howell               | DAL    | QB     |   1.4  |   1.4  |         0 |        0 |     0 |     0 |        0 |       0 |         1 |        14 |        0 |       3 |
+|    229 | Javonte Williams         | DAL    | RB     | 258    | 219    |         0 |        0 |     0 |    39 |      174 |       3 |       244 |      1176 |       11 |       1 |
+|    230 | Jaydon Blue              | DAL    | RB     |  63.3  |  53.3  |         0 |        0 |     0 |    10 |       59 |       0 |        90 |       354 |        2 |       2 |
+|    231 | Malik Davis              | DAL    | RB     |  43.5  |  34.5  |         0 |        0 |     0 |     9 |       58 |       0 |        41 |       227 |        1 |       3 |
+|    232 | Phil Mafah               | DAL    | RB     |  19.6  |  16.6  |         0 |        0 |     0 |     3 |       17 |       0 |         8 |        29 |        2 |       4 |
+|    233 | Israel Abanikanda        | DAL    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    234 | Jashaun Corbin           | DAL    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    235 | Jake Ferguson            | DAL    | TE     | 183    | 106    |         0 |        0 |     0 |    77 |      579 |       8 |         1 |         1 |        0 |       1 |
+|    236 | Brevyn Spann-Ford        | DAL    | TE     |  34.8  |  18.8  |         0 |        0 |     0 |    16 |      128 |       1 |         0 |         0 |        0 |       2 |
+|    237 | Luke Schoonmaker         | DAL    | TE     |  23.5  |  11.5  |         0 |        0 |     0 |    12 |      115 |       0 |         0 |         0 |        0 |       3 |
+|    238 | DJ Rogers                | DAL    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    239 | Michael Trigg            | DAL    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    240 | Princeton Fant           | DAL    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    241 | Zack Kuntz               | DAL    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    242 | George Pickens           | DAL    | WR     | 345.6  | 231.6  |         0 |        0 |     0 |   114 |     1683 |      10 |         7 |        33 |        0 |       1 |
+|    243 | CeeDee Lamb              | DAL    | WR     | 241.6  | 155.6  |         0 |        0 |     0 |    86 |     1223 |       5 |         7 |        33 |        0 |       2 |
+|    244 | Ryan Flournoy            | DAL    | WR     | 139.9  |  91.9  |         0 |        0 |     0 |    48 |      638 |       4 |         6 |        41 |        0 |       3 |
+|    245 | KaVontae Turpin          | DAL    | WR     |   8.1  |   5.1  |         0 |        0 |     0 |     3 |       42 |       0 |         2 |         9 |        0 |       4 |
+|    246 | Tyler Johnson            | DAL    | WR     |   2.3  |   1.3  |         0 |        0 |     0 |     1 |       13 |       0 |         0 |         0 |        0 |       5 |
+|    247 | Marquez Valdes-Scantling | DAL    | WR     |   1.6  |   0.6  |         0 |        0 |     0 |     1 |        6 |       0 |         0 |         0 |        0 |       6 |
+|    248 | Jonathan Mingo           | DAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    249 | Anthony Smith            | DAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    250 | Camden Brown             | DAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    251 | Denzel Mims              | DAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    252 | Jaden Smith              | DAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    253 | Jordan Hudson            | DAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    254 | Traeshon Holden          | DAL    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    255 | Bo Nix                   | DEN    | QB     | 283.08 | 283.08 |      3677 |       24 |    11 |     0 |        0 |       0 |        72 |       320 |        5 |       1 |
+|    256 | Jarrett Stidham          | DEN    | QB     |  15.96 |  15.96 |       254 |        1 |     0 |     0 |        0 |       0 |        11 |        18 |        0 |       2 |
+|    257 | Sam Ehlinger             | DEN    | QB     |   1.7  |   1.7  |         0 |        0 |     0 |     0 |        0 |       0 |         1 |        17 |        0 |       3 |
+|    258 | J.K. Dobbins             | DEN    | RB     | 203.6  | 176.6  |         0 |        0 |     0 |    27 |      151 |       1 |       234 |      1135 |        7 |       1 |
+|    259 | RJ Harvey                | DEN    | RB     | 156.9  | 116.9  |         0 |        0 |     0 |    40 |      302 |       4 |        92 |       327 |        5 |       2 |
+|    260 | Jonah Coleman            | DEN    | RB     |  23.7  |  11.7  |         0 |        0 |     0 |    12 |       95 |       0 |        10 |        22 |        0 |       3 |
+|    261 | Jaleel McLaughlin        | DEN    | RB     |   5.3  |   4.3  |         0 |        0 |     0 |     1 |        6 |       0 |         8 |        37 |        0 |       4 |
+|    262 | Tyler Badie              | DEN    | RB     |   1.8  |   0.8  |         0 |        0 |     0 |     1 |        7 |       0 |         0 |         1 |        0 |       5 |
+|    263 | Cody Schrader            | DEN    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    264 | Evan Engram              | DEN    | TE     | 106.3  |  55.3  |         0 |        0 |     0 |    51 |      488 |       1 |         1 |         5 |        0 |       1 |
+|    265 | Adam Trautman            | DEN    | TE     |  39.3  |  23.3  |         0 |        0 |     0 |    16 |      172 |       1 |         0 |         1 |        0 |       2 |
+|    266 | Nate Adkins              | DEN    | TE     |  24.8  |  14.8  |         0 |        0 |     0 |    10 |       87 |       1 |         0 |         1 |        0 |       3 |
+|    267 | Justin Joly              | DEN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    268 | Lucas Krull              | DEN    | TE     |   1.4  |   0.4  |         0 |        0 |     0 |     1 |        4 |       0 |         0 |         0 |        0 |       5 |
+|    269 | Caleb Lohner             | DEN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    270 | Dallen Bentley           | DEN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    271 | Jaylen Waddle            | DEN    | WR     | 265.48 | 175.48 |        12 |        0 |     0 |    90 |     1163 |       8 |         6 |        47 |        1 |       1 |
+|    272 | Courtland Sutton         | DEN    | WR     | 196.72 | 122.72 |         3 |        0 |     0 |    74 |      906 |       5 |         6 |        20 |        0 |       2 |
+|    273 | Troy Franklin            | DEN    | WR     | 122.42 |  72.42 |         3 |        0 |     0 |    50 |      520 |       3 |         5 |        23 |        0 |       3 |
+|    274 | Michael Bandy            | DEN    | WR     |   9.9  |   7.9  |         0 |        0 |     0 |     2 |       19 |       1 |         0 |         0 |        0 |       4 |
+|    275 | Pat Bryant               | DEN    | WR     |   4.1  |   2.1  |         0 |        0 |     0 |     2 |       21 |       0 |         0 |         0 |        0 |       5 |
+|    276 | Lil'Jordan Humphrey      | DEN    | WR     |   1.8  |   0.8  |         0 |        0 |     0 |     1 |        8 |       0 |         0 |         0 |        0 |       6 |
+|    277 | Cameron Ross             | DEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    278 | Dane Key                 | DEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    279 | Hakeem Butler            | DEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    280 | Joseph Manjack IV        | DEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    281 | Kolbe Katsis             | DEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    282 | Kyre Duplessis           | DEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    283 | Kyrese Rowan             | DEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    284 | Marvin Mims Jr.          | DEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
+|    285 | Jared Goff               | DET    | QB     | 279.06 | 279.06 |      4124 |       31 |     7 |     0 |        0 |       0 |        19 |        41 |        0 |       1 |
+|    286 | Joshua Dobbs             | DET    | QB     |  29.7  |  29.7  |       440 |        3 |     0 |     0 |        0 |       0 |        30 |         1 |        0 |       2 |
+|    287 | Luke Altmyer             | DET    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         6 |         0 |        0 |       3 |
+|    288 | Jahmyr Gibbs             | DET    | RB     | 369.34 | 297.34 |         1 |        1 |     0 |    72 |      590 |       4 |       247 |      1263 |       14 |       1 |
+|    289 | Isiah Pacheco            | DET    | RB     | 118.24 |  97.24 |         1 |        0 |     0 |    21 |      146 |       1 |       125 |       526 |        4 |       2 |
+|    290 | Jacob Saylors            | DET    | RB     |  50.14 |  42.14 |         1 |        0 |     0 |     8 |       72 |       0 |        35 |       169 |        3 |       3 |
+|    291 | Sione Vaki               | DET    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    292 | Jabari Small             | DET    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    293 | Justin Jackson           | DET    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    294 | Kye Robichaux            | DET    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    295 | Raheem Blackshear        | DET    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    296 | Sam LaPorta              | DET    | TE     | 169.3  | 104.3  |         0 |        0 |     0 |    65 |      803 |       4 |         0 |         0 |        0 |       1 |
+|    297 | Brock Wright             | DET    | TE     |  37.6  |  24.6  |         0 |        0 |     0 |    13 |      126 |       2 |         0 |         0 |        0 |       2 |
+|    298 | Anthony Firkser          | DET    | TE     |  21.8  |  12.8  |         0 |        0 |     0 |     9 |       68 |       1 |         0 |         0 |        0 |       3 |
+|    299 | Tyler Conklin            | DET    | TE     |   2.2  |   1.2  |         0 |        0 |     0 |     1 |       12 |       0 |         0 |         0 |        0 |       4 |
+|    300 | Zach Horton              | DET    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    301 | Miles Kitselman          | DET    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    302 | Nick Muse                | DET    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    303 | Thomas Gordon            | DET    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    304 | Amon-Ra St. Brown        | DET    | WR     | 344.9  | 218.9  |         0 |        0 |     0 |   126 |     1453 |      12 |         3 |        16 |        0 |       1 |
+|    305 | Jameson Williams         | DET    | WR     | 190    | 128    |         0 |        0 |     0 |    62 |      905 |       6 |         3 |        15 |        0 |       2 |
+|    306 | Greg Dortch              | DET    | WR     |  96.1  |  61.1  |         0 |        0 |     0 |    35 |      361 |       4 |         6 |        10 |        0 |       3 |
+|    307 | Isaac TeSlaa             | DET    | WR     |  10.2  |   8.2  |         0 |        0 |     0 |     2 |       22 |       1 |         0 |         0 |        0 |       4 |
+|    308 | Tay Martin               | DET    | WR     |   1.6  |   0.6  |         0 |        0 |     0 |     1 |        6 |       0 |         0 |         0 |        0 |       5 |
+|    309 | Cedrick Wilson Jr.       | DET    | WR     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         0 |        0 |       6 |
+|    310 | Malik Cunningham         | DET    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    311 | Kendrick Law             | DET    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    312 | Tom Kennedy              | DET    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    313 | Dominic Lovett           | DET    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    314 | Jackson Meeks            | DET    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    315 | Lucky Jackson            | DET    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    316 | Tarik Black              | DET    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    317 | Jordan Love              | GNB    | QB     | 213.86 | 213.86 |      3029 |       20 |     6 |     0 |        0 |       0 |        52 |       247 |        0 |       1 |
+|    318 | Tyrod Taylor             | GNB    | QB     |  92.42 |  92.42 |       978 |        7 |     8 |     0 |        0 |       0 |        52 |       293 |        2 |       2 |
+|    319 | Kyle McCord              | GNB    | QB     |   3.9  |   3.9  |         0 |        0 |     0 |     0 |        0 |       0 |         6 |        39 |        0 |       3 |
+|    320 | Kyron Drones             | GNB    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    321 | Josh Jacobs              | GNB    | RB     | 277    | 236    |         0 |        0 |     0 |    41 |      326 |       1 |       281 |      1134 |       14 |       1 |
+|    322 | Chris Brooks             | GNB    | RB     |  56.1  |  39.1  |         0 |        0 |     0 |    17 |      100 |       0 |        61 |       231 |        1 |       2 |
+|    323 | Damien Martinez          | GNB    | RB     |  33.2  |  27.2  |         0 |        0 |     0 |     6 |       46 |       0 |        44 |       166 |        1 |       3 |
+|    324 | Jaden Nixon              | GNB    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    325 | MarShawn Lloyd           | GNB    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    326 | Pierre Strong Jr.        | GNB    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    327 | Tucker Kraft             | GNB    | TE     | 222.9  | 161.9  |         0 |        0 |     0 |    61 |      957 |      11 |         1 |         2 |        0 |       1 |
+|    328 | Josh Whyle               | GNB    | TE     |  32.7  |  21.7  |         0 |        0 |     0 |    11 |       96 |       2 |         0 |         1 |        0 |       2 |
+|    329 | Luke Musgrave            | GNB    | TE     |  31.5  |  24.5  |         0 |        0 |     0 |     7 |      125 |       2 |         0 |         0 |        0 |       3 |
+|    330 | Drake Dabney             | GNB    | TE     |   1.2  |   0.2  |         0 |        0 |     0 |     1 |        2 |       0 |         0 |         0 |        0 |       4 |
+|    331 | Drew Biber               | GNB    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    332 | Luke Lachey              | GNB    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    333 | McCallan Castles         | GNB    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    334 | Messiah Swinson          | GNB    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    335 | RJ Maryland              | GNB    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    336 | Thomas Yassmin           | GNB    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    337 | Christian Watson         | GNB    | WR     | 263.5  | 180.5  |         0 |        0 |     0 |    83 |     1245 |       9 |         6 |        20 |        0 |       1 |
+|    338 | Jayden Reed              | GNB    | WR     | 134.2  |  75.2  |         0 |        0 |     0 |    59 |      632 |       1 |         7 |        60 |        0 |       2 |
+|    339 | Matthew Golden           | GNB    | WR     |  98    |  56    |         0 |        0 |     0 |    42 |      463 |       1 |        11 |        37 |        0 |       3 |
+|    340 | Savion Williams          | GNB    | WR     |   3.6  |   1.6  |         0 |        0 |     0 |     2 |       11 |       0 |         2 |         5 |        0 |       4 |
+|    341 | Skyy Moore               | GNB    | WR     |   0.5  |   0.5  |         0 |        0 |     0 |     0 |        4 |       0 |         0 |         1 |        0 |       5 |
+|    342 | Bo Melton                | GNB    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    343 | Isaiah Neyor             | GNB    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    344 | J. Michael Sturdivant    | GNB    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    345 | Kaden Prather            | GNB    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    346 | Kisean Johnson           | GNB    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    347 | Will Sheppard            | GNB    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    348 | C.J. Stroud              | HOU    | QB     | 197.68 | 197.68 |      2832 |       18 |     8 |     0 |        0 |       0 |        52 |       224 |        1 |       1 |
+|    349 | Davis Mills              | HOU    | QB     | 101.66 | 101.66 |      1224 |        7 |     2 |     0 |        0 |       0 |        21 |       107 |        3 |       2 |
+|    350 | Graham Mertz             | HOU    | QB     |   7.3  |   7.3  |         0 |        0 |     0 |     0 |        0 |       0 |         3 |        13 |        1 |       3 |
+|    351 | Woody Marks              | HOU    | RB     | 146.9  | 120.9  |         0 |        0 |     0 |    26 |      202 |       3 |       199 |       707 |        2 |       1 |
+|    352 | David Montgomery         | HOU    | RB     | 119.3  | 104.3  |         0 |        2 |     0 |    15 |      125 |       0 |       112 |       478 |        6 |       2 |
+|    353 | Jawhar Jordan            | HOU    | RB     |  59.8  |  46.8  |         0 |        1 |     0 |    13 |       58 |       0 |        75 |       310 |        1 |       3 |
+|    354 | British Brooks           | HOU    | RB     |   0.8  |   0.8  |         0 |        0 |     0 |     0 |        0 |       0 |         2 |         8 |        0 |       4 |
+|    355 | Owen Wright              | HOU    | RB     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        0 |       0 |         1 |         2 |        0 |       5 |
+|    356 | Josh Pitsenberger        | HOU    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    357 | Noah Whittington         | HOU    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    358 | Dalton Schultz           | HOU    | TE     | 170.9  |  94.9  |         0 |        0 |     0 |    76 |      708 |       4 |         1 |         1 |        0 |       1 |
+|    359 | Marlin Klein             | HOU    | TE     |  14.2  |   7.2  |         0 |        0 |     0 |     7 |       71 |       0 |         1 |         1 |        0 |       2 |
+|    360 | Cade Stover              | HOU    | TE     |  22.1  |  11.1  |         0 |        0 |     0 |    11 |      110 |       0 |         2 |         1 |        0 |       3 |
+|    361 | Foster Moreau            | HOU    | TE     |   2.8  |   0.8  |         0 |        0 |     0 |     2 |        8 |       0 |         0 |         0 |        0 |       4 |
+|    362 | Brevin Jordan            | HOU    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    363 | Layne Pryor              | HOU    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    364 | Nico Collins             | HOU    | WR     | 318    | 215    |         0 |        0 |     0 |   103 |     1466 |      10 |         4 |        24 |        1 |       1 |
+|    365 | Jayden Higgins           | HOU    | WR     | 172.4  | 114.4  |         0 |        0 |     0 |    58 |      715 |       7 |         4 |         9 |        0 |       2 |
+|    366 | Xavier Hutchinson        | HOU    | WR     | 124.7  |  79.7  |         0 |        0 |     0 |    45 |      543 |       4 |         3 |        14 |        0 |       3 |
+|    367 | Jaylin Noel              | HOU    | WR     |   5.8  |   2.8  |         0 |        0 |     0 |     3 |       26 |       0 |         0 |         2 |        0 |       4 |
+|    368 | Justin Watson            | HOU    | WR     |   1.8  |   0.8  |         0 |        0 |     0 |     1 |        8 |       0 |         0 |         0 |        0 |       5 |
+|    369 | Jared Wayne              | HOU    | WR     |   3.6  |   1.6  |         0 |        0 |     0 |     2 |       16 |       0 |         0 |         0 |        0 |       6 |
+|    370 | DJ Turner                | HOU    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    371 | Daniel Sobkowicz         | HOU    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    372 | Jha'Quan Jackson         | HOU    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    373 | Josh Kelly               | HOU    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    374 | Lewis Bond               | HOU    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    375 | Montrell Washington      | HOU    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    376 | Tank Dell                | HOU    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    377 | Treyvhon Saunders        | HOU    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
+|    378 | Daniel Jones             | IND    | QB     | 243.8  | 243.8  |      3280 |       20 |     8 |     0 |        4 |       0 |        49 |       182 |        5 |       1 |
+|    379 | Riley Leonard            | IND    | QB     |  70.86 |  69.86 |       789 |        5 |     6 |     1 |        4 |       0 |        11 |        59 |        4 |       2 |
+|    380 | Anthony Richardson       | IND    | QB     |  12.7  |   9.7  |         0 |        0 |     0 |     3 |       25 |       0 |        12 |        12 |        1 |       3 |
+|    381 | Easton Stick             | IND    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    382 | Jonathan Taylor          | IND    | RB     | 333.2  | 285.2  |         0 |        0 |     0 |    48 |      361 |       2 |       293 |      1411 |       16 |       1 |
+|    383 | Seth McGowan             | IND    | RB     |  41.5  |  33.5  |         0 |        0 |     0 |     8 |       62 |       0 |        34 |       153 |        2 |       2 |
+|    384 | DJ Giddens               | IND    | RB     |  40.3  |  32.3  |         0 |        0 |     0 |     8 |       62 |       0 |        46 |       201 |        1 |       3 |
+|    385 | Anderson Castle          | IND    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    386 | Roydell Williams         | IND    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    387 | Ulysses Bentley IV       | IND    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    388 | Tyler Warren             | IND    | TE     | 171.4  | 104.4  |         0 |        0 |     0 |    67 |      738 |       4 |         2 |         6 |        1 |       1 |
+|    389 | Mo Alie-Cox              | IND    | TE     |  44    |  27    |         0 |        0 |     0 |    17 |      149 |       2 |         2 |         1 |        0 |       2 |
+|    390 | Will Mallory             | IND    | TE     |  22.4  |  12.4  |         0 |        0 |     0 |    10 |      123 |       0 |         2 |         1 |        0 |       3 |
+|    391 | Pharaoh Brown            | IND    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    392 | Sean McKeon              | IND    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    393 | Carson Towt              | IND    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    394 | Drew Ogletree            | IND    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    395 | Alec Pierce              | IND    | WR     | 268.6  | 187.6  |         0 |        0 |     0 |    81 |     1327 |       9 |         2 |         9 |        0 |       1 |
+|    396 | Josh Downs               | IND    | WR     | 176    | 105    |         0 |        0 |     0 |    71 |      741 |       5 |         2 |         9 |        0 |       2 |
+|    397 | Ashton Dulin             | IND    | WR     | 104.8  |  66.8  |         0 |        0 |     0 |    38 |      464 |       3 |         1 |        24 |        0 |       3 |
+|    398 | Nick Westbrook-Ikhine    | IND    | WR     |   2.9  |   0.9  |         0 |        0 |     0 |     2 |        9 |       0 |         0 |         0 |        0 |       4 |
+|    399 | Coleman Owen             | IND    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    400 | Anthony Gould            | IND    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    401 | Laquon Treadwell         | IND    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    402 | Deion Burks              | IND    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    403 | EJ Horton Jr.            | IND    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    404 | Eli Pancol               | IND    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    405 | Liam Clifford            | IND    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    406 | Raylen Sharpe            | IND    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    407 | Sahmir Hagans            | IND    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    408 | Trevor Lawrence          | JAX    | QB     | 316.62 | 316.62 |      3633 |       26 |     9 |     0 |        0 |       0 |        67 |       313 |        9 |       1 |
+|    409 | Nick Mullens             | JAX    | QB     |  29.62 |  29.62 |       393 |        3 |     0 |     0 |        0 |       0 |        25 |        19 |        0 |       2 |
+|    410 | Carter Bradley           | JAX    | QB     |   1.9  |   1.9  |         0 |        0 |     0 |     0 |        0 |       0 |         2 |        19 |        0 |       3 |
+|    411 | Joey Aguilar             | JAX    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    412 | Chris Rodriguez          | JAX    | RB     | 168.3  | 153.3  |         0 |        0 |     0 |    15 |      135 |       3 |       184 |       798 |        7 |       1 |
+|    413 | Bhayshul Tuten           | JAX    | RB     | 124.9  | 101.9  |         0 |        0 |     0 |    23 |      152 |       3 |       116 |       447 |        4 |       2 |
+|    414 | Ameer Abdullah           | JAX    | RB     |  77.6  |  59.6  |         0 |        0 |     0 |    18 |      138 |       2 |        68 |       278 |        1 |       3 |
+|    415 | DeeJay Dallas            | JAX    | RB     |   0.6  |   0.6  |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         6 |        0 |       4 |
+|    416 | J'Mari Taylor            | JAX    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    417 | LeQuint Allen Jr.        | JAX    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    418 | Brenton Strange          | JAX    | TE     | 156.7  |  96.7  |         0 |        0 |     0 |    60 |      667 |       5 |         0 |         0 |        0 |       1 |
+|    419 | Nate Boerkircher         | JAX    | TE     |   8.2  |   4.2  |         0 |        0 |     0 |     4 |       42 |       0 |         0 |         0 |        0 |       2 |
+|    420 | Hunter Long              | JAX    | TE     |  23.4  |  14.4  |         0 |        0 |     0 |     9 |       84 |       1 |         0 |         0 |        0 |       3 |
+|    421 | Tanner Koziol            | JAX    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    422 | Quintin Morris           | JAX    | TE     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         0 |        0 |       5 |
+|    423 | Ethan Conner             | JAX    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    424 | Patrick Herbert          | JAX    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    425 | Parker Washington        | JAX    | WR     | 249.1  | 162.1  |         0 |        0 |     0 |    87 |     1185 |       7 |         8 |        16 |        0 |       1 |
+|    426 | Brian Thomas             | JAX    | WR     | 193.8  | 124.8  |         0 |        0 |     0 |    69 |      918 |       4 |         7 |        30 |        1 |       2 |
+|    427 | Travis Hunter            | JAX    | WR     | 144.5  |  90.5  |         0 |        0 |     0 |    54 |      649 |       4 |         7 |        16 |        0 |       3 |
+|    428 | Jakobi Meyers            | JAX    | WR     |   8.9  |   4.9  |         0 |        0 |     0 |     4 |       47 |       0 |         0 |         2 |        0 |       4 |
+|    429 | Austin Trammell          | JAX    | WR     |   0.6  |   0.6  |         0 |        0 |     0 |     0 |        6 |       0 |         0 |         0 |        0 |       5 |
+|    430 | Tim Jones                | JAX    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    431 | Brady Boyd               | JAX    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    432 | CJ Williams              | JAX    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    433 | Chandler Brayboy         | JAX    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    434 | Josh Cameron             | JAX    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    435 | Michael Wortham          | JAX    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    436 | Trebor Pena              | JAX    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    437 | Patrick Mahomes          | KAN    | QB     | 287.78 | 286.78 |      3357 |       20 |    12 |     1 |        3 |       0 |        95 |       602 |        6 |       1 |
+|    438 | Justin Fields            | KAN    | QB     | 149.46 | 149.46 |       944 |        5 |     1 |     0 |        4 |       0 |       104 |       573 |        6 |       2 |
+|    439 | Chris Oladokun           | KAN    | QB     |  30.7  |  30.7  |         0 |        0 |     0 |     0 |        4 |       0 |        36 |       183 |        2 |       3 |
+|    440 | Garrett Nussmeier        | KAN    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    441 | Kenneth Walker III       | KAN    | RB     | 206.1  | 168.1  |         0 |        0 |     0 |    38 |      291 |       1 |       234 |       970 |        6 |       1 |
+|    442 | Emmett Johnson           | KAN    | RB     |  38    |  29    |         0 |        0 |     0 |     9 |       39 |       1 |        41 |        71 |        2 |       2 |
+|    443 | Emari Demercado          | KAN    | RB     |  52.9  |  38.9  |         0 |        0 |     0 |    14 |       78 |       1 |        57 |       191 |        1 |       3 |
+|    444 | Brashard Smith           | KAN    | RB     |   6.2  |   3.2  |         0 |        0 |     0 |     3 |       17 |       0 |         4 |        15 |        0 |       4 |
+|    445 | EJ Smith                 | KAN    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    446 | Jaydn Ott                | KAN    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    447 | Travis Kelce             | KAN    | TE     | 194.5  | 120.5  |         0 |        0 |     0 |    74 |      844 |       6 |         1 |         1 |        0 |       1 |
+|    448 | Noah Gray                | KAN    | TE     |  37.9  |  19.9  |         0 |        0 |     0 |    18 |      199 |       0 |         0 |         0 |        0 |       2 |
+|    449 | Jared Wiley              | KAN    | TE     |  16.1  |   9.1  |         0 |        0 |     0 |     7 |       91 |       0 |         0 |         0 |        0 |       3 |
+|    450 | Jake Briningstool        | KAN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    451 | John Michael Gyllenborg  | KAN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    452 | Mason Pline              | KAN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    453 | Tre Watson               | KAN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    454 | Rashee Rice              | KAN    | WR     | 365.7  | 242.7  |         0 |        0 |     0 |   123 |     1482 |      13 |        16 |        45 |        2 |       1 |
+|    455 | Xavier Worthy            | KAN    | WR     | 155.7  | 103.7  |         0 |        0 |     0 |    52 |      790 |       2 |        13 |        67 |        1 |       2 |
+|    456 | Cyrus Allen              | KAN    | WR     |  75    |  53    |         0 |        0 |     0 |    22 |      405 |       1 |         3 |         5 |        1 |       3 |
+|    457 | Tyquan Thornton          | KAN    | WR     |   7.2  |   5.2  |         0 |        0 |     0 |     2 |       52 |       0 |         0 |         0 |        0 |       4 |
+|    458 | Nikko Remigio            | KAN    | WR     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        1 |       0 |         0 |         1 |        0 |       5 |
+|    459 | Jalen Royals             | KAN    | WR     |   0.1  |   0.1  |         0 |        0 |     0 |     0 |        1 |       0 |         0 |         0 |        0 |       6 |
+|    460 | Jason Brownlee           | KAN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    461 | Jimmy Holiday            | KAN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    462 | Andrew Armstrong         | KAN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    463 | Jacob De Jesus           | KAN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    464 | Jeff Caldwell            | KAN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    465 | Jeff Weimer              | KAN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    466 | Omari Evans              | KAN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    467 | Xavier Loyd              | KAN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
+|    468 | Justin Herbert           | LAC    | QB     | 271.52 | 271.52 |      3423 |       25 |    13 |     0 |        0 |       0 |        82 |       486 |        2 |       1 |
+|    469 | Trey Lance               | LAC    | QB     |  43.08 |  43.08 |       542 |        1 |     3 |     0 |        0 |       0 |        50 |       234 |        0 |       2 |
+|    470 | DJ Uiagalelei            | LAC    | QB     |   2.8  |   2.8  |         0 |        0 |     0 |     0 |        0 |       0 |         7 |        28 |        0 |       3 |
+|    471 | Omarion Hampton          | LAC    | RB     | 231.2  | 174.2  |         0 |        0 |     0 |    57 |      335 |       2 |       205 |       927 |        6 |       1 |
+|    472 | Kimani Vidal             | LAC    | RB     | 107.1  |  94.1  |         0 |        0 |     0 |    13 |      122 |       2 |       118 |       519 |        3 |       2 |
+|    473 | Jaret Patterson          | LAC    | RB     |  43.7  |  36.7  |         0 |        0 |     0 |     7 |       26 |       1 |        37 |       161 |        2 |       3 |
+|    474 | Keaton Mitchell          | LAC    | RB     |   7    |   5    |         0 |        0 |     0 |     2 |        8 |       0 |         8 |        42 |        0 |       4 |
+|    475 | Amar Johnson             | LAC    | RB     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        0 |       0 |         1 |         3 |        0 |       5 |
+|    476 | Greg Desrosiers Jr.      | LAC    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    477 | David Njoku              | LAC    | TE     | 128    |  80    |         0 |        0 |     0 |    48 |      499 |       5 |         1 |         1 |        0 |       1 |
+|    478 | Charlie Kolar            | LAC    | TE     |  42.9  |  27.9  |         0 |        0 |     0 |    15 |      218 |       1 |         0 |         1 |        0 |       2 |
+|    479 | Evan Svoboda             | LAC    | TE     |  25.6  |  19.6  |         0 |        0 |     0 |     6 |      136 |       1 |         0 |         0 |        0 |       3 |
+|    480 | Jerand Bradley           | LAC    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    481 | Johnny Pascuzzi          | LAC    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    482 | Oronde Gadsden           | LAC    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    483 | Quentin Johnston         | LAC    | WR     | 277.4  | 177.4  |         0 |        0 |     0 |   100 |     1221 |       9 |         2 |        13 |        0 |       1 |
+|    484 | Ladd McConkey            | LAC    | WR     | 203.5  | 117.5  |         0 |        0 |     0 |    86 |      930 |       4 |         2 |         5 |        0 |       2 |
+|    485 | KeAndre Lambert-Smith    | LAC    | WR     | 102.3  |  53.3  |         0 |        0 |     0 |    49 |      469 |       1 |         2 |         4 |        0 |       3 |
+|    486 | Brenen Thompson          | LAC    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    487 | Derius Davis             | LAC    | WR     |   0.1  |   0.1  |         0 |        0 |     0 |     0 |        1 |       0 |         0 |         0 |        0 |       5 |
+|    488 | Dalevon Campbell         | LAC    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    489 | Devonte Ross             | LAC    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    490 | JaQuae Jackson           | LAC    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    491 | Luke Grimm               | LAC    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    492 | Mante Morrow             | LAC    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    493 | Sincere Brown            | LAC    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    494 | Tre' Harris              | LAC    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    495 | Matthew Stafford         | LAR    | QB     | 332.78 | 332.78 |      4362 |       43 |     7 |     0 |        0 |       0 |        29 |         3 |        0 |       1 |
+|    496 | Ty Simpson               | LAR    | QB     |  26.1  |  26.1  |       345 |        3 |     0 |     0 |        0 |       0 |         5 |         3 |        0 |       2 |
+|    497 | Matthew Caldwell         | LAR    | QB     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        0 |       0 |         4 |         3 |        0 |       3 |
+|    498 | Stetson Bennett          | LAR    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    499 | Kyren Williams           | LAR    | RB     | 258.7  | 225.7  |         0 |        0 |     0 |    33 |      259 |       3 |       252 |      1218 |       10 |       1 |
+|    500 | Blake Corum              | LAR    | RB     | 102.5  |  94.5  |         0 |        0 |     0 |     8 |       39 |       0 |       118 |       606 |        5 |       2 |
+|    501 | Ronnie Rivers            | LAR    | RB     |  32.9  |  29.9  |         0 |        0 |     0 |     3 |       19 |       0 |        43 |       220 |        1 |       3 |
+|    502 | Jarquez Hunter           | LAR    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    503 | Dean Connors             | LAR    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    504 | Jordan Waters            | LAR    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    505 | Max Klare                | LAR    | TE     |  67.1  |  47.1  |         0 |        0 |     0 |    20 |      231 |       4 |         1 |         0 |        0 |       1 |
+|    506 | Colby Parkinson          | LAR    | TE     | 151.3  | 103.3  |         0 |        0 |     0 |    48 |      493 |       9 |         0 |         0 |        0 |       2 |
+|    507 | Tyler Higbee             | LAR    | TE     |  92.7  |  60.7  |         0 |        0 |     0 |    32 |      367 |       4 |         0 |         0 |        0 |       3 |
+|    508 | Terrance Ferguson        | LAR    | TE     |   4.7  |   2.7  |         0 |        0 |     0 |     2 |       27 |       0 |         0 |         0 |        0 |       4 |
+|    509 | Davis Allen              | LAR    | TE     |   2    |   1    |         0 |        0 |     0 |     1 |       10 |       0 |         0 |         0 |        0 |       5 |
+|    510 | Dan Villari              | LAR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    511 | Mark Redman              | LAR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    512 | Rohan Jones              | LAR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    513 | Puka Nacua               | LAR    | WR     | 422    | 278    |         0 |        0 |     0 |   144 |     1901 |      12 |        14 |        99 |        1 |       1 |
+|    514 | Davante Adams            | LAR    | WR     | 228.6  | 162.6  |         0 |        0 |     0 |    66 |      898 |      12 |         1 |         8 |        0 |       2 |
+|    515 | Xavier Smith             | LAR    | WR     |  85.1  |  57.1  |         0 |        0 |     0 |    28 |      443 |       2 |         1 |         8 |        0 |       3 |
+|    516 | Jordan Whittington       | LAR    | WR     |   3.8  |   1.8  |         0 |        0 |     0 |     2 |       16 |       0 |         0 |         2 |        0 |       4 |
+|    517 | Konata Mumpfield         | LAR    | WR     |   1.4  |   0.4  |         0 |        0 |     0 |     1 |        4 |       0 |         0 |         0 |        0 |       5 |
+|    518 | Brennan Presley          | LAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    519 | CJ Daniels               | LAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    520 | Mario Williams           | LAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    521 | Tru Edwards              | LAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    522 | Tyler Scott              | LAR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    523 | Fernando Mendoza         | LVR    | QB     |  58.94 |  58.94 |       796 |        6 |     0 |     0 |        0 |       0 |        10 |        31 |        0 |       1 |
+|    524 | Kirk Cousins             | LVR    | QB     | 162.86 | 162.86 |      2519 |       14 |     5 |     0 |        0 |       0 |        23 |        41 |        2 |       2 |
+|    525 | Aidan O'Connell          | LVR    | QB     |  12.6  |  12.6  |         0 |        0 |     0 |     0 |        0 |       0 |        14 |        66 |        1 |       3 |
+|    526 | Jacob Clark              | LVR    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    527 | Ashton Jeanty            | LVR    | RB     | 245.4  | 189.4  |         0 |        0 |     0 |    56 |      351 |       5 |       256 |       943 |        5 |       1 |
+|    528 | Mike Washington Jr.      | LVR    | RB     |  19.5  |  12.5  |         0 |        0 |     0 |     7 |       41 |       0 |        23 |        84 |        0 |       2 |
+|    529 | Dare Ogunbowale          | LVR    | RB     |  26.6  |  15.6  |         0 |        0 |     0 |    11 |       64 |       0 |        28 |        92 |        0 |       3 |
+|    530 | Dylan Laube              | LVR    | RB     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        2 |       0 |         0 |         1 |        0 |       4 |
+|    531 | Chris Collier            | LVR    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    532 | Roman Hemby              | LVR    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    533 | Brock Bowers             | LVR    | TE     | 220.4  | 137.4  |         0 |        0 |     0 |    83 |      893 |       8 |         1 |         1 |        0 |       1 |
+|    534 | Michael Mayer            | LVR    | TE     |  64.6  |  35.6  |         0 |        0 |     0 |    29 |      295 |       1 |         1 |         1 |        0 |       2 |
+|    535 | Ian Thomas               | LVR    | TE     |  19.9  |  13.9  |         0 |        0 |     0 |     6 |       79 |       1 |         0 |         0 |        0 |       3 |
+|    536 | Carter Runyon            | LVR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    537 | Albert Okwuegbunam Jr.   | LVR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    538 | Chris Myarick            | LVR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    539 | Patrick Gurd             | LVR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    540 | Tre Tucker               | LVR    | WR     | 175.5  | 110.5  |         0 |        0 |     0 |    65 |      823 |       4 |        14 |        42 |        0 |       1 |
+|    541 | Jalen Nailor             | LVR    | WR     |  86.1  |  54.1  |         0 |        0 |     0 |    32 |      470 |       1 |         0 |        11 |        0 |       2 |
+|    542 | Jack Bech                | LVR    | WR     |  44.7  |  27.7  |         0 |        0 |     0 |    17 |      276 |       0 |         1 |         1 |        0 |       3 |
+|    543 | Deven Thompkins          | LVR    | WR     |   0.8  |   0.8  |         0 |        0 |     0 |     0 |        6 |       0 |         0 |         2 |        0 |       4 |
+|    544 | Dareke Young             | LVR    | WR     |   0.5  |   0.5  |         0 |        0 |     0 |     0 |        5 |       0 |         0 |         0 |        0 |       5 |
+|    545 | Shedrick Jackson         | LVR    | WR     |   2.1  |   1.1  |         0 |        0 |     0 |     1 |       10 |       0 |         0 |         1 |        0 |       6 |
+|    546 | Justin Shorter           | LVR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    547 | Brandon Johnson          | LVR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    548 | Chase Roberts            | LVR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    549 | Corey Rucker             | LVR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    550 | Dont'e Thornton Jr.      | LVR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    551 | E.J. Williams Jr.        | LVR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    552 | Malik Benson             | LVR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    553 | Phillip Dorsett          | LVR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
+|    554 | Malik Willis             | MIA    | QB     | 245.76 | 244.76 |      1674 |       14 |     0 |     1 |        2 |       0 |       108 |       616 |       10 |       1 |
+|    555 | Quinn Ewers              | MIA    | QB     | 119.7  | 119.7  |      1640 |        9 |     7 |     0 |        2 |       0 |        43 |       199 |        2 |       2 |
+|    556 | Cam Miller               | MIA    | QB     |  33.3  |  33.3  |         0 |        0 |     0 |     0 |        2 |       0 |        24 |       151 |        3 |       3 |
+|    557 | De'Von Achane            | MIA    | RB     | 333.9  | 266.9  |         0 |        0 |     0 |    67 |      474 |       5 |       244 |      1355 |        9 |       1 |
+|    558 | Jaylen Wright            | MIA    | RB     |  69    |  60    |         0 |        0 |     0 |     9 |       63 |       0 |        92 |       357 |        3 |       2 |
+|    559 | Ollie Gordon             | MIA    | RB     |  24.2  |  21.2  |         0 |        0 |     0 |     3 |       27 |       0 |        42 |       125 |        1 |       3 |
+|    560 | Anthony Hankerson        | MIA    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    561 | Carlos Washington Jr.    | MIA    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    562 | Donovan Edwards          | MIA    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    563 | Greg Dulcich             | MIA    | TE     | 131.9  |  79.9  |         0 |        0 |     0 |    52 |      618 |       3 |         1 |         1 |        0 |       1 |
+|    564 | Will Kacmarek            | MIA    | TE     |  35.1  |  24.1  |         0 |        0 |     0 |    11 |      120 |       2 |         1 |         1 |        0 |       2 |
+|    565 | Seydou Traore            | MIA    | TE     |  35    |  24    |         0 |        0 |     0 |    11 |      119 |       2 |         0 |         1 |        0 |       3 |
+|    566 | Ben Sims                 | MIA    | TE     |   0.4  |   0.4  |         0 |        0 |     0 |     0 |        4 |       0 |         0 |         0 |        0 |       4 |
+|    567 | Cole Turner              | MIA    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    568 | Jeremiah Franklin        | MIA    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    569 | Malik Washington         | MIA    | WR     | 212.42 | 133.42 |         3 |        0 |     0 |    79 |      800 |       6 |        16 |       113 |        1 |       1 |
+|    570 | Caleb Douglas            | MIA    | WR     | 110.62 |  71.62 |         3 |        0 |     0 |    39 |      522 |       3 |         2 |        13 |        0 |       2 |
+|    571 | Chris Bell               | MIA    | WR     | 104.48 |  65.48 |         2 |        0 |     0 |    39 |      522 |       2 |         1 |        12 |        0 |       3 |
+|    572 | Jalen Tolbert            | MIA    | WR     |   4.6  |   2.6  |         0 |        0 |     0 |     2 |       26 |       0 |         0 |         0 |        0 |       4 |
+|    573 | Tutu Atwell              | MIA    | WR     |   2.6  |   1.6  |         0 |        0 |     0 |     1 |       16 |       0 |         0 |         0 |        0 |       5 |
+|    574 | Tahj Washington          | MIA    | WR     |   0.5  |   0.5  |         0 |        0 |     0 |     0 |        5 |       0 |         0 |         0 |        0 |       6 |
+|    575 | Kevin Coleman Jr.        | MIA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    576 | AJ Henning               | MIA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    577 | Donaven McCulley         | MIA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    578 | Jalen Reagor             | MIA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    579 | Terrace Marshall Jr.     | MIA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    580 | Theo Wease Jr.           | MIA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    581 | Kyler Murray             | MIN    | QB     | 227.72 | 227.72 |      2378 |       14 |     7 |     0 |        0 |       0 |       110 |       666 |        4 |       1 |
+|    582 | J.J. McCarthy            | MIN    | QB     | 117.62 | 117.62 |      1198 |        7 |    11 |     0 |        0 |       0 |        63 |       337 |        5 |       2 |
+|    583 | Carson Wentz             | MIN    | QB     |  19.9  |  19.9  |         0 |        0 |     4 |     0 |        0 |       0 |        36 |       219 |        1 |       3 |
+|    584 | Max Brosmer              | MIN    | QB     |   0.8  |   0.8  |        65 |        0 |     1 |     0 |        0 |       0 |         2 |         2 |        0 |       4 |
+|    585 | Aaron Jones              | MIN    | RB     | 172.4  | 134.4  |         0 |        0 |     0 |    38 |      266 |       2 |       186 |       778 |        3 |       1 |
+|    586 | Jordan Mason             | MIN    | RB     | 106.4  |  92.4  |         0 |        0 |     0 |    14 |       56 |       0 |       123 |       568 |        5 |       2 |
+|    587 | Demond Claiborne         | MIN    | RB     |  18.6  |  13.6  |         0 |        0 |     0 |     5 |       27 |       0 |        28 |       109 |        0 |       3 |
+|    588 | Zavier Scott             | MIN    | RB     |   4.2  |   2.2  |         0 |        0 |     0 |     2 |       10 |       0 |         3 |        12 |        0 |       4 |
+|    589 | Jordan Mims              | MIN    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    590 | T.J. Hockenson           | MIN    | TE     | 132.7  |  80.7  |         0 |        0 |     0 |    52 |      507 |       5 |         1 |         0 |        0 |       1 |
+|    591 | Josh Oliver              | MIN    | TE     |  51.4  |  37.4  |         0 |        0 |     0 |    14 |      194 |       3 |         0 |         0 |        0 |       2 |
+|    592 | Ben Yurosek              | MIN    | TE     |  14.5  |   9.5  |         0 |        0 |     0 |     5 |       95 |       0 |         0 |         0 |        0 |       3 |
+|    593 | Bryson Nesbit            | MIN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    594 | Gavin Bartholomew        | MIN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    595 | Marshall Lang            | MIN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    596 | Justin Jefferson         | MIN    | WR     | 230.4  | 147.4  |         0 |        0 |     0 |    83 |     1208 |       3 |         2 |        26 |        1 |       1 |
+|    597 | Jauan Jennings           | MIN    | WR     | 167.2  | 118.2  |         0 |        0 |     0 |    49 |      738 |       7 |         2 |        24 |        0 |       2 |
+|    598 | Jordan Addison           | MIN    | WR     |  90.9  |  64.9  |         0 |        0 |     0 |    26 |      538 |       1 |         2 |        51 |        0 |       3 |
+|    599 | Tai Felton               | MIN    | WR     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
+|    600 | Jeshaun Jones            | MIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    601 | Myles Price              | MIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    602 | Dillon Bell              | MIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    603 | Dontae Fleming           | MIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    604 | Marcus Sanders Jr.       | MIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    605 | Michael Briscoe          | MIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    606 | Terrill Davis            | MIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    607 | Trayvon Rudolph          | MIN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    608 | Drake Maye               | NWE    | QB     | 332.24 | 331.24 |      4086 |       29 |     7 |     1 |        1 |       0 |        99 |       417 |        4 |       1 |
+|    609 | Behren Morton            | NWE    | QB     |  24.42 |  24.42 |       373 |        2 |     0 |     0 |        1 |       0 |         7 |        14 |        0 |       2 |
+|    610 | Tommy DeVito             | NWE    | QB     |   1.4  |   1.4  |         0 |        0 |     0 |     0 |        0 |       0 |         7 |        14 |        0 |       3 |
+|    611 | TreVeyon Henderson       | NWE    | RB     | 227.4  | 191.4  |         0 |        0 |     0 |    36 |      238 |       2 |       194 |       956 |       10 |       1 |
+|    612 | Rhamondre Stevenson      | NWE    | RB     | 155.2  | 128.2  |         0 |        0 |     0 |    27 |      287 |       1 |       127 |       575 |        6 |       2 |
+|    613 | Terrell Jennings         | NWE    | RB     |  43.3  |  36.3  |         0 |        0 |     0 |     7 |       56 |       0 |        50 |       187 |        2 |       3 |
+|    614 | Jam Miller               | NWE    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    615 | Lan Larison              | NWE    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    616 | Myles Montgomery         | NWE    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    617 | Hunter Henry             | NWE    | TE     | 178    | 118    |         0 |        0 |     0 |    60 |      760 |       7 |         0 |         0 |        0 |       1 |
+|    618 | Eli Raridon              | NWE    | TE     |  25.2  |  17.2  |         0 |        0 |     0 |     8 |      112 |       1 |         0 |         0 |        0 |       2 |
+|    619 | Julian Hill              | NWE    | TE     |  34.9  |  21.9  |         0 |        0 |     0 |    13 |      159 |       1 |         0 |         0 |        0 |       3 |
+|    620 | CJ Dippre                | NWE    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    621 | Jack Westover            | NWE    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    622 | Mitch Van Vooren         | NWE    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    623 | Tanner Arkin             | NWE    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    624 | A.J. Brown               | NWE    | WR     | 300.6  | 196.6  |         0 |        0 |     0 |   104 |     1356 |      10 |         4 |        10 |        0 |       1 |
+|    625 | Romeo Doubs              | NWE    | WR     | 173.5  | 113.5  |         0 |        0 |     0 |    60 |      826 |       5 |         3 |         9 |        0 |       2 |
+|    626 | Kayshon Boutte           | NWE    | WR     | 120.2  |  83.2  |         0 |        0 |     0 |    37 |      583 |       4 |         3 |         9 |        0 |       3 |
+|    627 | Mack Hollins             | NWE    | WR     |  10.8  |   5.8  |         0 |        0 |     0 |     5 |       58 |       0 |         0 |         0 |        0 |       4 |
+|    628 | Kyle Williams            | NWE    | WR     |   2    |   1    |         0 |        0 |     0 |     1 |       10 |       0 |         0 |         0 |        0 |       5 |
+|    629 | DeMario Douglas          | NWE    | WR     |   2.2  |   1.2  |         0 |        0 |     0 |     1 |       12 |       0 |         0 |         0 |        0 |       6 |
+|    630 | Tejhaun Palmer           | NWE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    631 | Cameron Dorner           | NWE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    632 | Efton Chism III          | NWE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    633 | Jalen Hurd               | NWE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    634 | Jeremiah Webb            | NWE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    635 | Jimmy Kibble             | NWE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    636 | Kobe Prentice            | NWE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    637 | Kyle Dixon               | NWE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
+|    638 | Nick DeGennaro           | NWE    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      15 |
+|    639 | Tyler Shough             | NOR    | QB     | 191.48 | 190.48 |      2777 |       11 |     8 |     1 |        0 |       0 |        66 |       274 |        4 |       1 |
+|    640 | Spencer Rattler          | NOR    | QB     | 103.34 | 103.34 |      1361 |        8 |     5 |     0 |        0 |       0 |        42 |       209 |        1 |       2 |
+|    641 | Zach Wilson              | NOR    | QB     |   8.6  |   8.6  |         0 |        0 |     0 |     0 |        0 |       0 |        13 |        26 |        1 |       3 |
+|    642 | Hunter Dekkers           | NOR    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    643 | Travis Etienne           | NOR    | RB     | 247.5  | 214.5  |         0 |        0 |     0 |    33 |      262 |       6 |       249 |      1103 |        7 |       1 |
+|    644 | Alvin Kamara             | NOR    | RB     | 123.4  |  92.4  |         0 |        0 |     0 |    31 |      177 |       1 |       145 |       567 |        2 |       2 |
+|    645 | Devin Neal               | NOR    | RB     |  66.4  |  55.4  |         0 |        0 |     0 |    11 |       64 |       2 |        57 |       250 |        2 |       3 |
+|    646 | Kendre Miller            | NOR    | RB     |   7.2  |   5.2  |         0 |        0 |     0 |     2 |        7 |       0 |        11 |        45 |        0 |       4 |
+|    647 | Audric Estime            | NOR    | RB     |   5.5  |   3.5  |         0 |        0 |     0 |     2 |       12 |       0 |         5 |        23 |        0 |       5 |
+|    648 | Ty Chandler              | NOR    | RB     |   2.6  |   1.6  |         0 |        0 |     0 |     1 |        3 |       0 |         4 |        13 |        0 |       6 |
+|    649 | CJ Donaldson             | NOR    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    650 | Juwan Johnson            | NOR    | TE     | 190.56 | 117.56 |        19 |        1 |     0 |    73 |      910 |       2 |        18 |        38 |        1 |       1 |
+|    651 | Oscar Delp               | NOR    | TE     |  25.76 |  14.76 |        19 |        0 |     0 |    11 |      162 |       0 |        17 |        38 |        0 |       2 |
+|    652 | Noah Fant                | NOR    | TE     |  55.86 |  35.86 |        19 |        0 |     0 |    20 |      253 |       1 |        17 |        38 |        0 |       3 |
+|    653 | Moliki Matavao           | NOR    | TE     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         0 |        0 |       4 |
+|    654 | Zaire Mitchell-Paden     | NOR    | TE     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        2 |       0 |         0 |         0 |        0 |       5 |
+|    655 | Treyton Welch            | NOR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    656 | Cody Hardy               | NOR    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    657 | Chris Olave              | NOR    | WR     | 295.9  | 184.9  |         0 |        0 |     1 |   111 |     1444 |       7 |         2 |         5 |        0 |       1 |
+|    658 | Jordyn Tyson             | NOR    | WR     |  61.6  |  40.6  |         0 |        0 |     0 |    21 |      401 |       0 |         2 |         5 |        0 |       2 |
+|    659 | Ronnie Bell              | NOR    | WR     |  82.9  |  57.9  |         0 |        0 |     0 |    25 |      455 |       2 |         1 |         4 |        0 |       3 |
+|    660 | Devaughn Vele            | NOR    | WR     |   6.6  |   3.6  |         0 |        0 |     0 |     3 |       36 |       0 |         0 |         0 |        0 |       4 |
+|    661 | Bryce Lance              | NOR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    662 | Mason Tipton             | NOR    | WR     |   1.5  |   0.5  |         0 |        0 |     0 |     1 |        4 |       0 |         0 |         1 |        0 |       6 |
+|    663 | Jalen Moreno-Cropper     | NOR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    664 | Barion Brown             | NOR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    665 | Brock Rechsteiner        | NOR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    666 | Bub Means                | NOR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    667 | Charles Hawkins          | NOR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    668 | Kevin Austin Jr.         | NOR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    669 | Trey Palmer              | NOR    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    670 | Jaxson Dart              | NYG    | QB     | 239.64 | 238.64 |      2151 |       14 |     4 |     1 |       23 |       0 |        85 |       483 |        9 |       1 |
+|    671 | Jameis Winston           | NYG    | QB     | 135.06 | 135.06 |      1659 |        6 |     7 |     0 |      127 |       3 |        23 |       100 |        3 |       2 |
+|    672 | Brandon Allen            | NYG    | QB     |   9.7  |   9.7  |         0 |        0 |     4 |     0 |       24 |       1 |         3 |        33 |        1 |       3 |
+|    673 | Cam Skattebo             | NYG    | RB     | 238.9  | 194.9  |         0 |        0 |     0 |    44 |      382 |       4 |       198 |       787 |        9 |       1 |
+|    674 | Tyrone Tracy Jr.         | NYG    | RB     | 125.6  |  99.6  |         0 |        0 |     0 |    26 |      201 |       2 |       135 |       555 |        2 |       2 |
+|    675 | Devin Singletary         | NYG    | RB     |  50.8  |  42.8  |         0 |        0 |     0 |     8 |       63 |       1 |        63 |       245 |        1 |       3 |
+|    676 | Eric Gray                | NYG    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    677 | Damon Bankston           | NYG    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    678 | Dante Miller             | NYG    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    679 | Theo Johnson             | NYG    | TE     | 124.3  |  82.3  |         0 |        0 |     0 |    42 |      523 |       5 |         0 |         0 |        0 |       1 |
+|    680 | Isaiah Likely            | NYG    | TE     |  41.5  |  23.5  |         0 |        0 |     0 |    18 |      235 |       0 |         0 |         0 |        0 |       2 |
+|    681 | Tanner Conner            | NYG    | TE     |  12.9  |   7.9  |         0 |        0 |     0 |     5 |       79 |       0 |         0 |         0 |        0 |       3 |
+|    682 | Chris Manhertz           | NYG    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    683 | Thomas Fidone II         | NYG    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    684 | Malik Nabers             | NYG    | WR     | 240.34 | 154.34 |        11 |        1 |     0 |    86 |     1197 |       5 |         1 |         2 |        0 |       1 |
+|    685 | Calvin Austin III        | NYG    | WR     | 103.64 |  56.64 |        11 |        0 |     0 |    47 |      500 |       1 |         1 |         2 |        0 |       2 |
+|    686 | Darius Slayton           | NYG    | WR     |  75.54 |  37.54 |        11 |        0 |     0 |    38 |      430 |       0 |         1 |         1 |        0 |       3 |
+|    687 | Darnell Mooney           | NYG    | WR     |   7.6  |   4.6  |         0 |        0 |     0 |     3 |       46 |       0 |         0 |         0 |        0 |       4 |
+|    688 | Malachi Fields           | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    689 | Isaiah Hodgins           | NYG    | WR     |   2.3  |   1.3  |         0 |        0 |     0 |     1 |       13 |       0 |         0 |         0 |        0 |       6 |
+|    690 | JuJu Smith-Schuster      | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    691 | Gunner Olszewski         | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    692 | Ryan Miller              | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    693 | Braxton Berrios          | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    694 | Jalin Hyatt              | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    695 | Beaux Collins            | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    696 | Dalen Cambre             | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    697 | Xavier Gipson            | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
+|    698 | Odell Beckham Jr.        | NYG    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      15 |
+|    699 | Geno Smith               | NYJ    | QB     | 153.8  | 153.8  |      2310 |       15 |    17 |     0 |        0 |       0 |        56 |       234 |        2 |       1 |
+|    700 | Brady Cook               | NYJ    | QB     |  41.84 |  41.84 |       801 |        1 |    14 |     0 |        0 |       0 |        41 |       218 |        2 |       2 |
+|    701 | Cade Klubnik             | NYJ    | QB     |  18.3  |  18.3  |         0 |        0 |     0 |     0 |        0 |       0 |        14 |       123 |        1 |       3 |
+|    702 | Bailey Zappe             | NYJ    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    703 | Breece Hall              | NYJ    | RB     | 214.58 | 176.58 |         2 |        1 |     0 |    38 |      368 |       1 |       239 |      1057 |        4 |       1 |
+|    704 | Braelon Allen            | NYJ    | RB     |  58.14 |  47.14 |         1 |        0 |     0 |    11 |       87 |       0 |        61 |       264 |        2 |       2 |
+|    705 | Isaiah Davis             | NYJ    | RB     |  36.24 |  25.24 |         1 |        0 |     0 |    11 |      102 |       0 |        31 |       150 |        0 |       3 |
+|    706 | Kene Nwangwu             | NYJ    | RB     |   0.7  |   0.7  |         0 |        0 |     0 |     0 |        0 |       0 |         2 |         7 |        0 |       4 |
+|    707 | Chip Trayanum            | NYJ    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    708 | Sam Scott                | NYJ    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    709 | Kenyon Sadiq             | NYJ    | TE     |  36.8  |  24.8  |         0 |        0 |     0 |    12 |      128 |       2 |         0 |         0 |        0 |       1 |
+|    710 | Mason Taylor             | NYJ    | TE     |  91.9  |  46.9  |         0 |        0 |     0 |    45 |      409 |       1 |         0 |         0 |        0 |       2 |
+|    711 | Jeremy Ruckert           | NYJ    | TE     |  35.9  |  17.9  |         0 |        0 |     0 |    18 |      179 |       0 |         0 |         0 |        0 |       3 |
+|    712 | Jelani Woods             | NYJ    | TE     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
+|    713 | Chase Curtis             | NYJ    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    714 | Connor Hulstein          | NYJ    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    715 | Garrett Wilson           | NYJ    | WR     | 273.5  | 174.5  |         0 |        0 |     0 |    99 |     1133 |      10 |         4 |        12 |        0 |       1 |
+|    716 | Omar Cooper Jr.          | NYJ    | WR     |  59.3  |  36.3  |         0 |        0 |     0 |    23 |      291 |       1 |         4 |        12 |        0 |       2 |
+|    717 | Adonai Mitchell          | NYJ    | WR     |  81.4  |  51.4  |         0 |        0 |     0 |    30 |      383 |       2 |         3 |        11 |        0 |       3 |
+|    718 | Tim Patrick              | NYJ    | WR     |   3.9  |   1.9  |         0 |        0 |     0 |     2 |       19 |       0 |         0 |         0 |        0 |       4 |
+|    719 | Isaiah Williams          | NYJ    | WR     |   3.3  |   1.3  |         0 |        0 |     0 |     2 |       11 |       0 |         0 |         2 |        0 |       5 |
+|    720 | Arian Smith              | NYJ    | WR     |   0.4  |   0.4  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         1 |        0 |       6 |
+|    721 | Cam Camper               | NYJ    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    722 | Caullin Lacy             | NYJ    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    723 | DT Sheffield             | NYJ    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    724 | Jamaal Pritchett         | NYJ    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    725 | Malik McClain            | NYJ    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    726 | Quincy Skinner Jr.       | NYJ    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    727 | Jalen Hurts              | PHI    | QB     | 282.04 | 282.04 |      2821 |       23 |     4 |     0 |        0 |       0 |        90 |       372 |        8 |       1 |
+|    728 | Andy Dalton              | PHI    | QB     |  39.6  |  39.6  |       730 |        3 |     2 |     0 |        0 |       0 |        11 |        24 |        0 |       2 |
+|    729 | Tanner McKee             | PHI    | QB     |   1.3  |   1.3  |         0 |        0 |     1 |     0 |        0 |       0 |        12 |        33 |        0 |       3 |
+|    730 | Cole Payton              | PHI    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    731 | Saquon Barkley           | PHI    | RB     | 226.6  | 190.6  |         0 |        0 |     0 |    36 |      274 |       2 |       265 |      1092 |        7 |       1 |
+|    732 | Tank Bigsby              | PHI    | RB     |  56.5  |  50.5  |         0 |        0 |     0 |     6 |       54 |       0 |        63 |       331 |        2 |       2 |
+|    733 | Will Shipley             | PHI    | RB     |  32.1  |  22.1  |         0 |        0 |     0 |    10 |       54 |       0 |        35 |       167 |        0 |       3 |
+|    734 | Dameon Pierce            | PHI    | RB     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        0 |       0 |         1 |         3 |        0 |       4 |
+|    735 | Elijah Mitchell          | PHI    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    736 | Carson Steele            | PHI    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    737 | Dallas Goedert           | PHI    | TE     | 186.2  | 125.2  |         0 |        0 |     0 |    61 |      592 |      11 |         0 |         0 |        0 |       1 |
+|    738 | Eli Stowers              | PHI    | TE     |  16.2  |  11.2  |         0 |        0 |     0 |     5 |       52 |       1 |         0 |         0 |        0 |       2 |
+|    739 | Grant Calcaterra         | PHI    | TE     |  16.3  |   7.3  |         0 |        0 |     0 |     9 |       73 |       0 |         0 |         0 |        0 |       3 |
+|    740 | Johnny Mundt             | PHI    | TE     |   2    |   1    |         0 |        0 |     0 |     1 |       10 |       0 |         0 |         0 |        0 |       4 |
+|    741 | Stone Smartt             | PHI    | TE     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         0 |        0 |       5 |
+|    742 | Cameron Latu             | PHI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    743 | E.J. Jenkins             | PHI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    744 | Dae'Quan Wright          | PHI    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    745 | DeVonta Smith            | PHI    | WR     | 260.5  | 164.5  |         0 |        0 |     0 |    96 |     1285 |       6 |         0 |         0 |        0 |       1 |
+|    746 | Makai Lemon              | PHI    | WR     |  99.9  |  64.9  |         0 |        0 |     0 |    35 |      469 |       3 |         1 |         0 |        0 |       2 |
+|    747 | Marquise Brown           | PHI    | WR     | 129.8  |  81.8  |         0 |        0 |     0 |    48 |      637 |       3 |         1 |         1 |        0 |       3 |
+|    748 | Dontayvion Wicks         | PHI    | WR     |   6.6  |   3.6  |         0 |        0 |     0 |     3 |       36 |       0 |         0 |         0 |        0 |       4 |
+|    749 | Elijah Moore             | PHI    | WR     |   2.2  |   1.2  |         0 |        0 |     0 |     1 |       10 |       0 |         1 |         2 |        0 |       5 |
+|    750 | Samori Toure             | PHI    | WR     |   1.2  |   0.2  |         0 |        0 |     0 |     1 |        2 |       0 |         0 |         0 |        0 |       6 |
+|    751 | Darius Cooper            | PHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    752 | Britain Covey            | PHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    753 | Brandon Hayes            | PHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    754 | Danny Gray               | PHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    755 | Erik Ezukanma            | PHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    756 | Johnny Wilson            | PHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    757 | Quez Watkins             | PHI    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    758 | Aaron Rodgers            | PIT    | QB     | 207.68 | 206.68 |      3022 |       22 |     7 |     1 |        3 |       0 |        15 |        55 |        1 |       1 |
+|    759 | Mason Rudolph            | PIT    | QB     |  33.8  |  33.8  |       610 |        4 |     4 |     0 |        3 |       0 |        13 |        11 |        0 |       2 |
+|    760 | Drew Allar               | PIT    | QB     |   0.4  |   0.4  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         1 |        0 |       3 |
+|    761 | Will Howard              | PIT    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    762 | Rico Dowdle              | PIT    | RB     | 230    | 179    |         0 |        0 |     0 |    51 |      377 |       2 |       209 |       933 |        6 |       1 |
+|    763 | Jaylen Warren            | PIT    | RB     | 172.1  | 128.1  |         0 |        0 |     0 |    44 |      326 |       2 |       134 |       595 |        4 |       2 |
+|    764 | Eli Heidenreich          | PIT    | RB     |  45.8  |  26.8  |         0 |        0 |     0 |    19 |      123 |       1 |         6 |        25 |        1 |       3 |
+|    765 | Kaleb Johnson            | PIT    | RB     |   1.3  |   1.3  |         0 |        0 |     0 |     0 |        2 |       0 |         4 |        11 |        0 |       4 |
+|    766 | Travis Homer             | PIT    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    767 | Lew Nichols              | PIT    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    768 | Max Hurleman             | PIT    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    769 | Pat Freiermuth           | PIT    | TE     | 150.3  |  96.3  |         0 |        0 |     0 |    54 |      565 |       5 |         8 |        38 |        1 |       1 |
+|    770 | Darnell Washington       | PIT    | TE     |  98    |  59    |         0 |        0 |     0 |    39 |      372 |       2 |         8 |        38 |        1 |       2 |
+|    771 | Robert Tonyan            | PIT    | TE     |  50.9  |  30.9  |         0 |        0 |     0 |    20 |      152 |       1 |         8 |        37 |        1 |       3 |
+|    772 | Jaheim Bell              | PIT    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    773 | Lake McRee               | PIT    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    774 | Lance Mason              | PIT    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    775 | D.K. Metcalf             | PIT    | WR     | 214.7  | 145.7  |         0 |        0 |     0 |    69 |      963 |       7 |         1 |        14 |        1 |       1 |
+|    776 | Michael Pittman Jr.      | PIT    | WR     | 144.3  |  88.3  |         0 |        0 |     0 |    56 |      583 |       5 |         1 |         0 |        0 |       2 |
+|    777 | Germie Bernard           | PIT    | WR     |  28.7  |  19.7  |         0 |        0 |     0 |     9 |      136 |       1 |         0 |         1 |        0 |       3 |
+|    778 | Roman Wilson             | PIT    | WR     |   4.1  |   2.1  |         0 |        0 |     0 |     2 |       21 |       0 |         0 |         0 |        0 |       4 |
+|    779 | Kaden Wetjen             | PIT    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    780 | Ben Skowronek            | PIT    | WR     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         0 |        0 |       6 |
+|    781 | Jakobie Keeney-James     | PIT    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    782 | Brandon Smith            | PIT    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    783 | Cole Burgess             | PIT    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    784 | Colton Dowell            | PIT    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    785 | Joaquin Davis            | PIT    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    786 | Levi Wentz               | PIT    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    787 | Sam Darnold              | SEA    | QB     | 230.56 | 230.56 |      3764 |       24 |    12 |     0 |        0 |       0 |        29 |        80 |        0 |       1 |
+|    788 | Drew Lock                | SEA    | QB     |  16.36 |  16.36 |       299 |        1 |     0 |     0 |        0 |       0 |        10 |         4 |        0 |       2 |
+|    789 | Jalen Milroe             | SEA    | QB     |   1    |   1    |         0 |        0 |     0 |     0 |        0 |       0 |         5 |        10 |        0 |       3 |
+|    790 | Jadarian Price           | SEA    | RB     |  91.2  |  78.2  |         0 |        0 |     0 |    13 |      109 |       0 |        96 |       433 |        4 |       1 |
+|    791 | Zach Charbonnet          | SEA    | RB     | 188.7  | 164.7  |         0 |        0 |     0 |    24 |      195 |       0 |       203 |       852 |       10 |       2 |
+|    792 | Emanuel Wilson           | SEA    | RB     | 110.3  |  94.3  |         0 |        0 |     0 |    16 |      136 |       0 |       130 |       567 |        4 |       3 |
+|    793 | Jacardia Wright          | SEA    | RB     |   3.1  |   3.1  |         0 |        0 |     0 |     0 |        0 |       0 |         8 |        31 |        0 |       4 |
+|    794 | George Holani            | SEA    | RB     |   0.6  |   0.6  |         0 |        0 |     0 |     0 |        1 |       0 |         2 |         5 |        0 |       5 |
+|    795 | Justin Jones             | SEA    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    796 | TJ Harden                | SEA    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    797 | AJ Barner                | SEA    | TE     | 143.7  |  92.7  |         0 |        0 |     0 |    51 |      493 |       6 |        14 |        14 |        1 |       1 |
+|    798 | Elijah Arroyo            | SEA    | TE     |  38.9  |  23.9  |         0 |        0 |     0 |    15 |      179 |       1 |         1 |         0 |        0 |       2 |
+|    799 | Eric Saubert             | SEA    | TE     |  10.7  |   5.7  |         0 |        0 |     0 |     5 |       57 |       0 |         1 |         0 |        0 |       3 |
+|    800 | Nick Kallerup            | SEA    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    801 | Nick Vannett             | SEA    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    802 | Jaxon Smith-Njigba       | SEA    | WR     | 377.5  | 251.5  |         0 |        0 |     0 |   126 |     1865 |      10 |         5 |        50 |        0 |       1 |
+|    803 | Tory Horton              | SEA    | WR     | 134.1  |  95.1  |         0 |        0 |     0 |    39 |      509 |       7 |         4 |        22 |        0 |       2 |
+|    804 | Cooper Kupp              | SEA    | WR     |  92.7  |  57.7  |         0 |        0 |     0 |    35 |      495 |       1 |         4 |        22 |        0 |       3 |
+|    805 | Cody White               | SEA    | WR     |   1.5  |   1.5  |         0 |        0 |     0 |     0 |       15 |       0 |         0 |         0 |        0 |       4 |
+|    806 | Rashid Shaheed           | SEA    | WR     |   2.2  |   1.2  |         0 |        0 |     0 |     1 |        9 |       0 |         0 |         3 |        0 |       5 |
+|    807 | Velus Jones Jr.          | SEA    | WR     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        0 |       0 |         1 |         3 |        0 |       6 |
+|    808 | Jake Bobo                | SEA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    809 | Emmanuel Henderson Jr.   | SEA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    810 | Irv Charles              | SEA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    811 | Montorie Foster Jr.      | SEA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    812 | Rashad Rochelle          | SEA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    813 | Ricky White III          | SEA    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    814 | Brock Purdy              | SFO    | QB     | 257.48 | 257.48 |      3052 |       28 |    16 |     0 |        0 |       0 |        57 |       254 |        5 |       1 |
+|    815 | Mac Jones                | SFO    | QB     |  84.04 |  84.04 |      1466 |        7 |     5 |     0 |        0 |       0 |        36 |        74 |        0 |       2 |
+|    816 | Adrian Martinez          | SFO    | QB     |   8.5  |   8.5  |         0 |        0 |     0 |     0 |        0 |       0 |        10 |        25 |        1 |       3 |
+|    817 | Kurtis Rourke            | SFO    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    818 | Christian McCaffrey      | SFO    | RB     | 397.5  | 303.5  |         0 |        0 |     0 |    94 |      835 |       7 |       302 |      1180 |       10 |       1 |
+|    819 | Kaelon Black             | SFO    | RB     |  38.9  |  30.9  |         0 |        0 |     0 |     8 |       55 |       0 |        46 |       194 |        1 |       2 |
+|    820 | Khalil Herbert           | SFO    | RB     |  42.7  |  34.7  |         0 |        0 |     0 |     8 |       59 |       0 |        55 |       228 |        1 |       3 |
+|    821 | Isaac Guerendo           | SFO    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    822 | Jordan James             | SFO    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    823 | Patrick Taylor Jr.       | SFO    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    824 | Sincere McCormick        | SFO    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    825 | George Kittle            | SFO    | TE     | 228.8  | 152.8  |         0 |        0 |     0 |    76 |      867 |      11 |         1 |         1 |        0 |       1 |
+|    826 | Jake Tonges              | SFO    | TE     |  59.1  |  39.1  |         0 |        0 |     0 |    20 |      210 |       3 |         0 |         1 |        0 |       2 |
+|    827 | Luke Farrell             | SFO    | TE     |  19.1  |  13.1  |         0 |        0 |     0 |     6 |       70 |       1 |         0 |         1 |        0 |       3 |
+|    828 | Josiah Deguara           | SFO    | TE     |   0.3  |   0.3  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         0 |        0 |       4 |
+|    829 | Brayden Willis           | SFO    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    830 | Hayden Rucci             | SFO    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    831 | Tanner McLachlan         | SFO    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    832 | Deebo Samuel             | SFO    | WR     | 234.7  | 155.7  |         0 |        0 |     0 |    79 |     1056 |       6 |        17 |        81 |        1 |       1 |
+|    833 | Mike Evans               | SFO    | WR     | 180.6  | 127.6  |         0 |        0 |     0 |    53 |      840 |       6 |         3 |        16 |        1 |       2 |
+|    834 | De'Zhaun Stribling       | SFO    | WR     |  69.6  |  53.6  |         0 |        0 |     0 |    16 |      399 |       1 |         3 |        17 |        1 |       3 |
+|    835 | Ricky Pearsall           | SFO    | WR     |  15.3  |   9.3  |         0 |        0 |     0 |     6 |       93 |       0 |         0 |         0 |        0 |       4 |
+|    836 | Christian Kirk           | SFO    | WR     |   3.5  |   1.5  |         0 |        0 |     0 |     2 |       15 |       0 |         0 |         0 |        0 |       5 |
+|    837 | Demarcus Robinson        | SFO    | WR     |   2.6  |   1.6  |         0 |        0 |     0 |     1 |       16 |       0 |         0 |         0 |        0 |       6 |
+|    838 | Jordan Watkins           | SFO    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    839 | KhaDarel Hodge           | SFO    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    840 | Malik Turner             | SFO    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    841 | Brandon Aiyuk            | SFO    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    842 | Jacob Cowing             | SFO    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    843 | Junior Bergen            | SFO    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    844 | Trenton Irwin            | SFO    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    845 | Wesley Grimes            | SFO    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      14 |
+|    846 | Will Pauling             | SFO    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      15 |
+|    847 | Baker Mayfield           | TAM    | QB     | 211.84 | 211.84 |      2821 |       19 |     9 |     0 |        0 |       0 |        48 |       350 |        1 |       1 |
+|    848 | Jake Browning            | TAM    | QB     |  72.38 |  72.38 |      1132 |        9 |    15 |     0 |        0 |       0 |        22 |        91 |        2 |       2 |
+|    849 | Connor Bazelak           | TAM    | QB     |   7.1  |   7.1  |         0 |        0 |     0 |     0 |        0 |       0 |         3 |        11 |        1 |       3 |
+|    850 | Jalon Daniels            | TAM    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    851 | Bucky Irving             | TAM    | RB     | 249    | 194    |         0 |        0 |     0 |    55 |      442 |       4 |       284 |      1018 |        4 |       1 |
+|    852 | Sean Tucker              | TAM    | RB     |  99.9  |  85.9  |         0 |        0 |     0 |    14 |       54 |       2 |        80 |       325 |        6 |       2 |
+|    853 | Josh Williams            | TAM    | RB     |  45.7  |  36.7  |         0 |        0 |     0 |     9 |       33 |       1 |        34 |       154 |        2 |       3 |
+|    854 | Kadarius Calloway        | TAM    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    855 | Kenny Gainwell           | TAM    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    856 | Cade Otton               | TAM    | TE     | 120.7  |  62.7  |         0 |        0 |     0 |    58 |      567 |       1 |         0 |         0 |        0 |       1 |
+|    857 | Devin Culp               | TAM    | TE     |  12.2  |  10.2  |         0 |        0 |     0 |     2 |       42 |       1 |         0 |         0 |        0 |       2 |
+|    858 | Bauer Sharp              | TAM    | TE     |   4.8  |   3.8  |         0 |        0 |     0 |     1 |       38 |       0 |         0 |         0 |        0 |       3 |
+|    859 | Payne Durham             | TAM    | TE     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
+|    860 | Ko Kieft                 | TAM    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    861 | Kenny Fletcher Jr.       | TAM    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    862 | Emeka Egbuka             | TAM    | WR     | 275.3  | 184.3  |         0 |        0 |     0 |    91 |     1278 |       9 |         5 |        25 |        0 |       1 |
+|    863 | Chris Godwin             | TAM    | WR     | 187.8  | 116.8  |         0 |        0 |     0 |    71 |      853 |       5 |         4 |        15 |        0 |       2 |
+|    864 | Tez Johnson              | TAM    | WR     | 131    |  88    |         0 |        0 |     0 |    43 |      557 |       5 |         7 |        23 |        0 |       3 |
+|    865 | Jalen McMillan           | TAM    | WR     |  12.3  |   7.3  |         0 |        0 |     0 |     5 |       73 |       0 |         0 |         0 |        0 |       4 |
+|    866 | David Sills V            | TAM    | WR     |   2.1  |   1.1  |         0 |        0 |     0 |     1 |       11 |       0 |         0 |         0 |        0 |       5 |
+|    867 | Kameron Johnson          | TAM    | WR     |   0.4  |   0.4  |         0 |        0 |     0 |     0 |        3 |       0 |         0 |         1 |        0 |       6 |
+|    868 | Dean Patterson           | TAM    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    869 | Dennis Houston           | TAM    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    870 | Eric Rivers Jr.          | TAM    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    871 | Garrett Greene           | TAM    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    872 | Ted Hurst III            | TAM    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    873 | Cam Ward                 | TEN    | QB     | 151.58 | 151.58 |      2552 |        9 |     6 |     0 |        0 |       0 |        36 |       135 |        2 |       1 |
+|    874 | Mitchell Trubisky        | TEN    | QB     |  57.98 |  57.98 |       702 |        7 |     0 |     0 |        0 |       0 |        23 |        19 |        0 |       2 |
+|    875 | Hendon Hooker            | TEN    | QB     |   0.5  |   0.5  |         0 |        0 |     0 |     0 |        0 |       0 |         4 |         5 |        0 |       3 |
+|    876 | Will Levis               | TEN    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    877 | Tony Pollard             | TEN    | RB     | 172.6  | 141.6  |         0 |        0 |     0 |    31 |      173 |       0 |       210 |       943 |        5 |       1 |
+|    878 | Michael Carter           | TEN    | RB     |  83.9  |  55.9  |         0 |        0 |     0 |    28 |      198 |       0 |        78 |       301 |        1 |       2 |
+|    879 | Tyjae Spears             | TEN    | RB     |  51.4  |  32.4  |         0 |        0 |     0 |    19 |       99 |       0 |        39 |       165 |        1 |       3 |
+|    880 | Nicholas Singleton       | TEN    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    881 | Julius Chestnut          | TEN    | RB     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        0 |       0 |         1 |         2 |        0 |       5 |
+|    882 | Kalel Mullings           | TEN    | RB     |   0.1  |   0.1  |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         1 |        0 |       6 |
+|    883 | Gunnar Helm              | TEN    | TE     | 129.2  |  71.2  |         0 |        0 |     0 |    58 |      472 |       4 |         0 |         0 |        0 |       1 |
+|    884 | Daniel Bellinger         | TEN    | TE     |  72.6  |  44.6  |         0 |        0 |     0 |    28 |      326 |       2 |         0 |         0 |        0 |       2 |
+|    885 | David Martin-Robinson    | TEN    | TE     |  35    |  17    |         0 |        0 |     0 |    18 |      170 |       0 |         0 |         0 |        0 |       3 |
+|    886 | Kylen Granson            | TEN    | TE     |   0.4  |   0.4  |         0 |        0 |     0 |     0 |        4 |       0 |         0 |         0 |        0 |       4 |
+|    887 | Jaren Kanak              | TEN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    888 | Joel Wilson              | TEN    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    889 | Wan'Dale Robinson        | TEN    | WR     | 249.6  | 153.6  |         0 |        0 |     0 |    96 |     1110 |       7 |         3 |         6 |        0 |       1 |
+|    890 | Carnell Tate             | TEN    | WR     |  45.9  |  29.9  |         0 |        0 |     0 |    16 |      234 |       1 |         3 |         5 |        0 |       2 |
+|    891 | Elic Ayomanor            | TEN    | WR     |  78.6  |  50.6  |         0 |        0 |     0 |    28 |      381 |       2 |         3 |         5 |        0 |       3 |
+|    892 | Chimere Dike             | TEN    | WR     |   8    |   4    |         0 |        0 |     0 |     4 |       38 |       0 |         2 |         2 |        0 |       4 |
+|    893 | Calvin Ridley            | TEN    | WR     |   5.3  |   3.3  |         0 |        0 |     0 |     2 |       33 |       0 |         0 |         0 |        0 |       5 |
+|    894 | Xavier Restrepo          | TEN    | WR     |   2.6  |   1.6  |         0 |        0 |     0 |     1 |       16 |       0 |         0 |         0 |        0 |       6 |
+|    895 | Mason Kinsey             | TEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    896 | Bryce Oliver             | TEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    897 | Courtney Jackson         | TEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    898 | Hank Beatty              | TEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    899 | K.J. Osborn              | TEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    900 | Lance McCutcheon         | TEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |
+|    901 | Tyren Montgomery         | TEN    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      13 |
+|    902 | Jayden Daniels           | WSH    | QB     | 227.5  | 227.5  |      2360 |       14 |     6 |     0 |        0 |       0 |       138 |       651 |        4 |       1 |
+|    903 | Marcus Mariota           | WSH    | QB     | 108.4  | 108.4  |      1170 |        7 |     6 |     0 |        0 |       0 |        62 |       336 |        2 |       2 |
+|    904 | Athan Kaliakmanis        | WSH    | QB     |  13.2  |  13.2  |         0 |        0 |     0 |     0 |        0 |       0 |        16 |        72 |        1 |       3 |
+|    905 | Sam Hartman              | WSH    | QB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       4 |
+|    906 | Jacory Croskey-Merritt   | WSH    | RB     | 162.4  | 150.4  |         0 |        0 |     0 |    12 |       99 |       0 |       190 |       865 |        9 |       1 |
+|    907 | Rachaad White            | WSH    | RB     | 121.1  |  97.1  |         0 |        0 |     0 |    24 |      168 |       0 |       113 |       503 |        5 |       2 |
+|    908 | Kaytron Allen            | WSH    | RB     |  29.3  |  27.3  |         0 |        0 |     0 |     2 |       38 |       0 |        36 |       175 |        1 |       3 |
+|    909 | Jeremy McNichols         | WSH    | RB     |   6.1  |   4.1  |         0 |        0 |     0 |     2 |       20 |       0 |         4 |        21 |        0 |       4 |
+|    910 | Jerome Ford              | WSH    | RB     |   3.2  |   1.2  |         0 |        0 |     0 |     2 |        7 |       0 |         2 |         5 |        0 |       5 |
+|    911 | Robert Henry Jr.         | WSH    | RB     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    912 | Chig Okonkwo             | WSH    | TE     | 144    | 100    |         0 |        0 |     0 |    44 |      520 |       8 |         0 |         0 |        0 |       1 |
+|    913 | John Bates               | WSH    | TE     |  45.5  |  27.5  |         0 |        0 |     0 |    18 |      155 |       2 |         0 |         0 |        0 |       2 |
+|    914 | Ben Sinnott              | WSH    | TE     |  30.2  |  18.2  |         0 |        0 |     0 |    12 |      122 |       1 |         0 |         0 |        0 |       3 |
+|    915 | Colson Yankoff           | WSH    | TE     |   0.2  |   0.2  |         0 |        0 |     0 |     0 |        2 |       0 |         0 |         0 |        0 |       4 |
+|    916 | Lawrence Cager           | WSH    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    917 | Quentin Moore            | WSH    | TE     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       6 |
+|    918 | Terry McLaurin           | WSH    | WR     | 236.2  | 159.2  |         0 |        0 |     0 |    77 |     1141 |       6 |         7 |        31 |        1 |       1 |
+|    919 | Stefon Diggs             | WSH    | WR     | 167.8  |  99.8  |         0 |        0 |     0 |    68 |      848 |       2 |         6 |        30 |        0 |       2 |
+|    920 | Luke McCaffrey           | WSH    | WR     |  73.3  |  51.3  |         0 |        0 |     0 |    22 |      363 |       2 |         6 |        30 |        0 |       3 |
+|    921 | Treylon Burks            | WSH    | WR     |   4.8  |   2.8  |         0 |        0 |     0 |     2 |       28 |       0 |         0 |         0 |        0 |       4 |
+|    922 | Antonio Williams         | WSH    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       5 |
+|    923 | Van Jefferson            | WSH    | WR     |   3.9  |   1.9  |         0 |        0 |     0 |     2 |       19 |       0 |         0 |         0 |        0 |       6 |
+|    924 | Dyami Brown              | WSH    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       7 |
+|    925 | Jaylin Lane              | WSH    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       8 |
+|    926 | Jacoby Jones             | WSH    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |       9 |
+|    927 | River Cracraft           | WSH    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      10 |
+|    928 | Jaden Bradley            | WSH    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      11 |
+|    929 | Nick Nash                | WSH    | WR     |   0    |   0    |         0 |        0 |     0 |     0 |        0 |       0 |         0 |         0 |        0 |      12 |

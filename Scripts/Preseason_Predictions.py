@@ -7,7 +7,7 @@ from Imports import PyFunc as ps
 
 
 listicle = ps.get_nfl_week_files(2025, folder="CSVs")
-DFs = ps.importstats(listicle)
+DFs = ps.importstats(listicle) 
 Schedule = ps.schedulemaker('CSVs/Schedule_2026.csv')
 Week = 1
 Total_Stats = ps.totalstatcombiner(DFs)
@@ -56,7 +56,7 @@ print(dupes)
 All_DataFrames = ps.rosfinaldataframes(ROS)
 
 df = All_DataFrames['Rest Of Season']
-df = ps.standardize_player_names(df)
+df = ps.standardize_player_names(df) 
 
 df = df.drop(columns=["PPR"])
 df = df.drop(columns=["STD"])
@@ -66,7 +66,6 @@ df = df.merge(
     on="Player",
     how="left"
 )
-
 
 multipliers = {
     1: 0.90,
@@ -99,8 +98,8 @@ multipliers = {
 
 for depth, multiplier in multipliers.items():
     mask = df["Depth"] == depth
-    df.loc[mask, ["PassYds","PassTD","Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]] = (
-        df.loc[mask, ["PassYds","PassTD","Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]]
+    df.loc[mask, ["PassYds","PassTD", "Int", "Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]] = (
+        df.loc[mask, ["PassYds","PassTD","Int", "Rec","RecYds","RecTD","RushAtt","RushYds","RushTD"]]
         .astype(float)
         .mul(multiplier)
         .round()
@@ -108,6 +107,7 @@ for depth, multiplier in multipliers.items():
         .replace([np.inf, -np.inf], 0)
         .astype(int)
     )
+
 
 team_totals = (
     Useful.groupby(["Team", "Pos."])
@@ -121,8 +121,11 @@ team_totals_future = (
       .reset_index()
 )
 
+#print(df.head())
 
 df = ps.assign_remaining_stats_by_position(useful_totals, team_totals_future, df)
+
+df = ps.add_fantasy_points(df)
 
 cols = df.select_dtypes(include="number").columns
 df[cols] = df[cols].clip(lower=0)

@@ -10,6 +10,55 @@ import random
 
 
 #NFL Scripts
+def add_fantasy_points(df):
+    """
+    Add PPR and Standard fantasy points to a player stats DataFrame.
+
+    Scoring:
+        Passing:
+            1 point per 25 passing yards
+            4 points per passing TD
+            -2 points per INT
+
+        Rushing:
+            1 point per 10 rushing yards
+            6 points per rushing TD
+
+        Receiving:
+            1 point per 10 receiving yards
+            6 points per receiving TD
+            PPR: 1 point per reception
+            Standard: 0 points per reception
+    """
+
+    ppr = (
+        (df["PassYds"] / 25)
+        + (df["PassTD"] * 4)
+        - (df["Int"] * 2)
+        + (df["RushYds"] / 10)
+        + (df["RushTD"] * 6)
+        + (df["RecYds"] / 10)
+        + (df["RecTD"] * 6)
+        + df["Rec"]
+    )
+
+    standard = (
+        (df["PassYds"] / 25)
+        + (df["PassTD"] * 4)
+        - (df["Int"] * 2)
+        + (df["RushYds"] / 10)
+        + (df["RushTD"] * 6)
+        + (df["RecYds"] / 10)
+        + (df["RecTD"] * 6)
+    )
+
+    col_idx = df.columns.get_loc("Pos.")
+
+    df.insert(col_idx + 1, "PPR", ppr)
+    df.insert(col_idx + 2, "Std", standard)
+
+    return df
+
 
 def get_nfl_week_files(year, folder="CSVs"):
     files = []
@@ -23,6 +72,7 @@ def get_nfl_week_files(year, folder="CSVs"):
 
     return files
 
+
 def get_nfl_scores_files(year, folder="CSVs"):
     files = []
 
@@ -34,6 +84,7 @@ def get_nfl_scores_files(year, folder="CSVs"):
     files.sort(key=lambda x: int(os.path.basename(x).split("_")[1]))
 
     return files
+
 
 def importstats(csv): #imports CSV's via list and organizes them appropriately
     Dataframes=[]
@@ -152,6 +203,7 @@ def individualtotals(dflist):
         total_ind_pass_att = 0  
         total_ind_pass_yards = 0
         total_ind_pass_td = 0
+        total_ind_int = 0
         total_ind_targets = 0
         total_ind_rec = 0
         total_ind_rec_yards = 0
@@ -163,6 +215,7 @@ def individualtotals(dflist):
         ind_total_PA = 0
         ind_total_PY = 0
         ind_total_PT = 0
+        ind_total_int = 0
         ind_total_T = 0
         ind_total_R = 0
         ind_total_RY = 0
@@ -180,6 +233,7 @@ def individualtotals(dflist):
                 ind_total_PA = df.loc[df['Team'] == player_team, 'PassAtt'].sum()
                 ind_total_PY = df.loc[df['Team'] == player_team, 'PassYds'].sum()
                 ind_total_PT = df.loc[df['Team'] == player_team, 'PassTD'].sum()
+                ind_total_int = df.loc[df['Team'] == player_team, 'Int'].sum()
                 ind_total_T = df.loc[df['Team'] == player_team, 'Tgt'].sum()
                 ind_total_R = df.loc[df['Team'] == player_team, 'Rec'].sum()
                 ind_total_RY = df.loc[df['Team'] == player_team, 'RecYds'].sum()
@@ -191,6 +245,7 @@ def individualtotals(dflist):
                 total_ind_pass_att += ind_total_PA
                 total_ind_pass_yards += ind_total_PY
                 total_ind_pass_td += ind_total_PT
+                total_ind_int += ind_total_int
                 total_ind_targets += ind_total_T
                 total_ind_rec += ind_total_R
                 total_ind_rec_yards += ind_total_RY
@@ -200,7 +255,7 @@ def individualtotals(dflist):
                 total_ind_rush_td += ind_total_RuT
 
         # Save result
-        totals.append({'Player': player, 'Pos.': player_pos, 'Team': player_team, 'TeamTotalPassAtt': total_ind_pass_att, 'TeamTotalPassYds': total_ind_pass_yards, 'TeamTotalPassTD': total_ind_pass_td, 'TeamTotalTgt': total_ind_targets , 'TeamTotalRec': total_ind_rec, 'TeamTotalRecYds': total_ind_rec_yards, 'TeamTotalRecTD': total_ind_rec_td, 'TeamTotalRushAtt': total_ind_rush_att, 'TeamTotalRushYds': total_ind_rush_yards, 'TeamTotalRushTD': total_ind_rush_td})
+        totals.append({'Player': player, 'Pos.': player_pos, 'Team': player_team, 'TeamTotalPassAtt': total_ind_pass_att, 'TeamTotalPassYds': total_ind_pass_yards, 'TeamTotalPassTD': total_ind_pass_td, 'TeamTotalInt': total_ind_int, 'TeamTotalTgt': total_ind_targets , 'TeamTotalRec': total_ind_rec, 'TeamTotalRecYds': total_ind_rec_yards, 'TeamTotalRecTD': total_ind_rec_td, 'TeamTotalRushAtt': total_ind_rush_att, 'TeamTotalRushYds': total_ind_rush_yards, 'TeamTotalRushTD': total_ind_rush_td})
     
 
     # Create the final result DataFrame
@@ -220,7 +275,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
         raise TypeError("int required for Week number")
     
     # Set up Useful Stats Dataframe columns
-    Usefulcolumns = ['Player', 'Team', 'Opp', 'Week', 'Pos.', 'G', 'PassAtt', 'PassAttStDev', 'Cmp', 'IndComp%', 'CompStDev', 'TeamComp%', 'PassYds', 'PassYdsStDev', 'PassYds%', 'PassTD', 'PassTDStDev', 'PassTD%', 'Int', 'Tgt', 'TgtStDev','Rec', 'IndCatch%', 'CatStDev', 'TmCatch%', 'RecYds', 'RecYdsStDev', 'RecYds%', 'RecTD', 'RecTDStDev', 'RecTD%', 'RushAtt', 'RushStDev', 'Rush%', 'RushYds', 'RushYdsStDev', 'RushYds%', 'RushTD', 'RushTDStDev', 'RushTD%', ]
+    Usefulcolumns = ['Player', 'Team', 'Opp', 'Week', 'Pos.', 'G', 'PassAtt', 'PassAttStDev', 'Cmp', 'IndComp%', 'CompStDev', 'TeamComp%', 'PassYds', 'PassYdsStDev', 'PassYds%', 'PassTD', 'PassTDStDev', 'PassTD%', 'Int', 'IntStDev', 'Int%', 'Tgt', 'TgtStDev','Rec', 'IndCatch%', 'CatStDev', 'TmCatch%', 'RecYds', 'RecYdsStDev', 'RecYds%', 'RecTD', 'RecTDStDev', 'RecTD%', 'RushAtt', 'RushStDev', 'Rush%', 'RushYds', 'RushYdsStDev', 'RushYds%', 'RushTD', 'RushTDStDev', 'RushTD%', ]
     Useful = pd.DataFrame(columns=Usefulcolumns)
 
     # Pre-map Opponents for quick lookup
@@ -281,6 +336,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
                 'Cmp': 'CompStDev',
                 'PassYds': 'PassYdsStDev',
                 'PassTD': 'PassTDStDev',
+                'Int': 'IntStDev',
                 'Tgt': 'TgtStDev',
                 'Rec': 'CatStDev',
                 'RecYds': 'RecYdsStDev',
@@ -315,6 +371,11 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
     Useful['PassTD%'] = np.where(
         individualtotals['TeamTotalPassTD'] != 0, (Useful['PassTD'] / individualtotals['TeamTotalPassTD']), 0)
     Useful['PassTD%'] = Useful['PassTD%'].fillna(0)
+
+        # Update Team Int Percentage
+    Useful['Int%'] = np.where(
+        individualtotals['TeamTotalInt'] != 0, (Useful['Int'] / individualtotals['TeamTotalInt']), 0)
+    Useful['Int%'] = Useful['Int%'].fillna(0)
 
     # Update Team Catch Percentage
     Useful['TmCatch%'] = np.where(
@@ -598,6 +659,7 @@ def get_nfl_draft(year):
 
     return df
 
+
 def standardize_player_names(df):
     name_fixes = {
         "Michael Penix Jr.": "Michael Penix",
@@ -627,6 +689,7 @@ def standardize_player_names(df):
     )
 
     return df
+
 
 def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
     """
@@ -1181,6 +1244,7 @@ def assign_remaining_stats_by_position(df1, df2, df3):
 
     return df3
 
+
 def preseason_prediction_html(df):
     html_string = df.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
     
@@ -1330,6 +1394,7 @@ def teamtotals(dflist, schedule):
         total_team_rush_att = 0
         total_team_rush_yards = 0
         total_team_rush_td = 0
+        total_team_int = 0
 
         for df in dflist:
             #if player in df['Player'].values:
@@ -1351,6 +1416,7 @@ def teamtotals(dflist, schedule):
             team_total_Ru = df.loc[df['Team'] == team, 'RushAtt'].sum()
             team_total_RuY = df.loc[df['Team'] == team, 'RushYds'].sum()
             team_total_RuT = df.loc[df['Team'] == team, 'RushTD'].sum()
+            team_total_Int = df.loc[df['Team'] == team, 'Int'].sum()
 
             total_team_completions += team_total_C
             total_team_pass_yards += team_total_PY
@@ -1361,9 +1427,10 @@ def teamtotals(dflist, schedule):
             total_team_rush_att += team_total_Ru
             total_team_rush_yards += team_total_RuY
             total_team_rush_td += team_total_RuT
+            total_team_int += team_total_Int
 
         # Save result
-        teamtotals.append({'Team': team, 'CmpAAV': total_team_completions, 'PassYdsAAV': total_team_pass_yards, 'PassTDAAV': total_team_pass_td, 'RecAAV': total_team_rec, 'RecYdsAAV': total_team_rec_yards, 'RecTDAAV': total_team_rec_td, 'RushAttAAV': total_team_rush_att, 'RushYdsAAV': total_team_rush_yards, 'RushTDAAV': total_team_rush_td})
+        teamtotals.append({'Team': team, 'CmpAAV': total_team_completions, 'PassYdsAAV': total_team_pass_yards, 'PassTDAAV': total_team_pass_td, 'IntAAV': total_team_int, 'RecAAV': total_team_rec, 'RecYdsAAV': total_team_rec_yards, 'RecTDAAV': total_team_rec_td, 'RushAttAAV': total_team_rush_att, 'RushYdsAAV': total_team_rush_yards, 'RushTDAAV': total_team_rush_td})
 
     TeamTotals = pd.DataFrame(teamtotals)
 
@@ -1378,7 +1445,7 @@ def teamtotals(dflist, schedule):
     return TeamTotals
 
 
-def weeklySuperFlexdataframe(useful, teamtotals):
+def weeklySuperFlexdataframe(useful, teamtotals): #Add Int's to this
 
     #Simulate 10,000 games and average for predictions
     n_simulations = 10000
@@ -1886,7 +1953,7 @@ def injuryremovalros(ros):
 
 def ROSdataframe(useful, teamtotals, week, schedule):
 
-    statcolumns = ['Player', 'Team', 'Pos.', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    statcolumns = ['Player', 'Team', 'Pos.', 'PPR', 'STD', 'PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
 
     # Prepare your output DataFrame
     ROS = pd.DataFrame()
@@ -1920,6 +1987,7 @@ def ROSdataframe(useful, teamtotals, week, schedule):
 
         predictedpassingyards = []
         predictedpassingtds = []
+        predictedints = []
 
         pprs = []
         stds = []
@@ -1937,6 +2005,7 @@ def ROSdataframe(useful, teamtotals, week, schedule):
             rand6 = np.random.uniform(-2, 2, n_simulations)
             rand7 = np.random.uniform(-2, 2, n_simulations)
             rand8 = np.random.uniform(-2, 2, n_simulations)
+            rand9 = np.random.uniform(-2, 2, n_simulations)
             if opp == 'BYE':
                 
                 rushes = np.zeros(n_simulations)
@@ -1949,6 +2018,7 @@ def ROSdataframe(useful, teamtotals, week, schedule):
 
                 passingyards = np.zeros(n_simulations)
                 passingtds = np.zeros(n_simulations)
+                ints = np.zeros(n_simulations)
                 
             else:
                 team = team_stats[opp]
@@ -1964,6 +2034,7 @@ def ROSdataframe(useful, teamtotals, week, schedule):
 
                 passingyards = (row['PassYds'] / row['G']) + row['PassYdsStDev'] * rand7 + team['PassYdsAAV'] * row['PassYds%']
                 passingtds = (row['PassTD'] / row['G']) + row['PassTDStDev'] * rand8 + team['PassTDAAV'] * row['PassTD%']
+                ints = (row['Int'] / row['G']) + row['IntStDev'] * rand9 + team['IntAAV'] * row['Int%']
 
             players.append(row['Player'])
 
@@ -1977,6 +2048,7 @@ def ROSdataframe(useful, teamtotals, week, schedule):
 
             predictedpassingyards.append(np.clip(int(np.round(np.nanmean(np.nan_to_num(passingyards, nan=0)))), 0, None))
             predictedpassingtds.append(np.clip(np.round(passingtds.mean(),1), 0, None))
+            predictedints.append(np.clip(np.round(ints.mean(),1), 0, None))
             
 
             # Fantasy scoring
@@ -2008,6 +2080,7 @@ def ROSdataframe(useful, teamtotals, week, schedule):
         ROS['RecTD'] += predictedreceivingtds
         ROS['PassYds'] += predictedpassingyards
         ROS['PassTD'] += predictedpassingtds
+        ROS['Int'] += predictedints
         ROS['PPR'] += pprs
         ROS['STD'] += stds
         ROS.iloc[:, 3:5] = ROS.iloc[:, 3:5].apply(pd.to_numeric).round(1)
@@ -2019,9 +2092,9 @@ def ROSdataframe(useful, teamtotals, week, schedule):
 
 def rosfinaldataframes(ros):
 
-    flexstatcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
-    statcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
-    Flex_ROS = pd.DataFrame(columns=flexstatcolumns)
+    #flexstatcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    statcolumns = ['Player', 'Team', 'PPR', 'STD', 'PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    Flex_ROS = pd.DataFrame(columns=statcolumns)
     WR_ROS = pd.DataFrame(columns=statcolumns)
     RB_ROS = pd.DataFrame(columns=statcolumns)
     TE_ROS = pd.DataFrame(columns=statcolumns)

@@ -10,6 +10,15 @@ import random
 
 
 #NFL Scripts
+def split_df_by_position(df, position_col="Pos."):
+    dfs = {"All": df.copy()}
+
+    for position in df[position_col].dropna().unique():
+        dfs[position] = df[df[position_col] == position].copy()
+
+    return dfs
+
+
 def add_fantasy_points(df):
     """
     Add PPR and Standard fantasy points to a player stats DataFrame.
@@ -1245,138 +1254,149 @@ def assign_remaining_stats_by_position(df1, df2, df3):
     return df3
 
 
-def preseason_prediction_html(df):
-    html_string = df.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
-    
-    # Full HTML file with sorting and ALL rows shown
-    html_script = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8">
-    <title> PreSeason NFL Predictions </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
-    <link rel="icon" type="image/svg+xml" href="/WebProjects/images/favicon.svg" />
-    <link rel="shortcut icon" href="/WebProjects/images/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/WebProjects/images/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="MyWebSit" />
-    <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
+def preseason_prediction_html(dfs):
+    for name, df in dfs.items():
 
-    <link rel="stylesheet" href="/WebProjects/style.css">
+        html_string = df.to_html(classes='display', index=False).replace('class="dataframe display"', 'class="display"')
+        
+        # Full HTML file with sorting and ALL rows shown
+        html_script = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="UTF-8">
+        <title> PreSeason NFL Predictions </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="96x96" href="/WebProjects/images/favicon-96x96.png" />
+        <link rel="icon" type="image/svg+xml" href="/WebProjects/images/favicon.svg" />
+        <link rel="shortcut icon" href="/WebProjects/images/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/WebProjects/images/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MyWebSit" />
+        <link rel="manifest" href="/WebProjects/images/site.webmanifest" />
+
+        <link rel="stylesheet" href="/WebProjects/style.css">
 
 
-    </head>
-    <body>
+        </head>
+        <body>
 
-    <div class="topnav">
-    <a href="/WebProjects/index.html">Home</a>
-        <div class="dropdown">
-        <button class="dropbtn active">Football
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
-            <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
-            <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
-            <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
-            <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
+        <div class="topnav">
+        <a href="/WebProjects/index.html">Home</a>
+            <div class="dropdown">
+            <button class="dropbtn active">Football
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/WebProjects/WeeklyPred_html/SuperFlex.html">Weekly Predictions</a>
+                <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
+                <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
+                <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
+                <a href="/WebProjects/Preseason_html/All.html">Preseason Predictions</a>
+            </div>
+            </div>
+            <div class="dropdown">
+            <button class="dropbtn">Baseball
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions</a>
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions</a>
+            </div>
+            </div>
+        <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
+        <a href="/WebProjects/about.html">About</a>
         </div>
+
+
+        <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
+
+        <h1>Preseason Predictions</h1>
+
+        <div class="topnav">
+        <input type="text" id="searchBar" placeholder="Search...">
         </div>
-        <div class="dropdown">
-        <button class="dropbtn">Baseball
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions</a>
-            <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions</a>
+
+                <div class="topnav">
+        <a {"class='active'" if name == "All" else ""} href="All.html">SuperFlex</a>
+        <a {"class='active'" if name == "QB" else ""} href="QB.html">QB</a>
+        <a {"class='active'" if name == "WR" else ""} href="WR.html">WR</a>
+        <a {"class='active'" if name == "RB" else ""} href="RB.html">RB</a>
+        <a {"class='active'" if name == "TE" else ""} href="TE.html">TE</a>
+
         </div>
-        </div>
-    <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
-    <a href="/WebProjects/about.html">About</a>
-    </div>
 
 
-    <img src="/WebProjects/images/Banner_Logo.png" alt="Header Image" class="header-img">
+        {html_string}
 
-    <h1>Preseason Predictions</h1>
-
-    <div class="topnav">
-    <input type="text" id="searchBar" placeholder="Search...">
-    </div>
-
-
-    {html_string}
-
-    <script>
-    function getCellValue(row, index) {{
-        return row.cells[index].textContent.trim();
-    }}
-
-    function comparer(index, asc) {{
-        return function(a, b) {{
-        const v1 = getCellValue(a, index);
-        const v2 = getCellValue(b, index);
-
-        const num1 = parseFloat(v1);
-        const num2 = parseFloat(v2);
-        const bothNumbers = !isNaN(num1) && !isNaN(num2);
-
-        if (bothNumbers) {{
-            return asc ? num1 - num2 : num2 - num1;
-        }} else {{
-            return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+        <script>
+        function getCellValue(row, index) {{
+            return row.cells[index].textContent.trim();
         }}
-        }};
-    }}
 
-    document.addEventListener("DOMContentLoaded", function () {{
-        document.querySelectorAll("th").forEach(function (th, index) {{
-        let ascending = true;
-        if (index === 0) return;
-        th.addEventListener("click", function () {{
-            const table = th.closest("table");
-            const tbody = table.querySelector("tbody");
-            const rows = Array.from(tbody.querySelectorAll("tr"));
-            rows.sort(comparer(index, ascending));
-            //rows.forEach(row => tbody.appendChild(row));
-            rows.forEach((row, i) => {{
-                row.cells[0].textContent = i + 1; // Reset Rank to match new row position
-                tbody.appendChild(row);
+        function comparer(index, asc) {{
+            return function(a, b) {{
+            const v1 = getCellValue(a, index);
+            const v2 = getCellValue(b, index);
+
+            const num1 = parseFloat(v1);
+            const num2 = parseFloat(v2);
+            const bothNumbers = !isNaN(num1) && !isNaN(num2);
+
+            if (bothNumbers) {{
+                return asc ? num1 - num2 : num2 - num1;
+            }} else {{
+                return asc ? v1.localeCompare(v2) : v2.localeCompare(v1);
+            }}
+            }};
+        }}
+
+        document.addEventListener("DOMContentLoaded", function () {{
+            document.querySelectorAll("th").forEach(function (th, index) {{
+            let ascending = true;
+            if (index === 0) return;
+            th.addEventListener("click", function () {{
+                const table = th.closest("table");
+                const tbody = table.querySelector("tbody");
+                const rows = Array.from(tbody.querySelectorAll("tr"));
+                rows.sort(comparer(index, ascending));
+                //rows.forEach(row => tbody.appendChild(row));
+                rows.forEach((row, i) => {{
+                    row.cells[0].textContent = i + 1; // Reset Rank to match new row position
+                    tbody.appendChild(row);
+                }});
+                ascending = !ascending;
             }});
-            ascending = !ascending;
+            }});
         }});
-        }});
-    }});
-    </script>
+        </script>
 
     
 
-    <script>
-    const searchBar = document.getElementById('searchBar');
-    const table = document.querySelector('table');
-    const rows = table.getElementsByTagName('tr');
+        <script>
+        const searchBar = document.getElementById('searchBar');
+        const table = document.querySelector('table');
+        const rows = table.getElementsByTagName('tr');
 
-    searchBar.addEventListener('keyup', function () {{
-        const searchText = searchBar.value.toLowerCase();
+        searchBar.addEventListener('keyup', function () {{
+            const searchText = searchBar.value.toLowerCase();
 
-        for (let i = 1; i < rows.length; i++) {{
-        const row = rows[i];
-        const rowText = row.textContent.toLowerCase();
-        row.style.display = rowText.includes(searchText) ? '' : 'none';
-        }}
-    }});
-    </script>
+            for (let i = 1; i < rows.length; i++) {{
+            const row = rows[i];
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(searchText) ? '' : 'none';
+            }}
+        }});
+        </script>
 
-    
+        
 
-    </body>
-    </html>
-    """
+        </body>
+        </html>
+        """
 
-    # Save to HTML file
-    with open(f"Preseason_Predictions.html", "w", encoding="utf-8") as f:
-        f.write(html_script)
+        # Save to HTML file
+        with open(f"Preseason_html/{name}.html", "w", encoding="utf-8") as f:
+            f.write(html_script)
         
 
 def teamtotals(dflist, schedule):
@@ -1767,7 +1787,7 @@ def weeklyhtml(alldataframes, week):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
-                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
+                <a href="/WebProjects/Preseason_html/All.html">Preseason Predictions</a>
             </div>
             </div>
             <div class="dropdown">
@@ -2222,7 +2242,7 @@ def roshtml(alldataframes):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
-                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
+                <a href="/WebProjects/Preseason_html/All.html">Preseason Predictions</a>
             </div>
             </div>
             <div class="dropdown">
@@ -2581,7 +2601,7 @@ def teampredictionshtml(finalscores, week):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
-                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
+                <a href="/WebProjects/Preseason_html/All.html">Preseason Predictions</a>
             </div>
             </div>
         <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
@@ -3083,7 +3103,7 @@ def dominancehtml(alldataframes):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
-                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
+                <a href="/WebProjects/Preseason_html/All.html">Preseason Predictions</a>
             </div>
             </div>
             <div class="dropdown">
@@ -3662,7 +3682,7 @@ def preseasonmlbhittinghtml(future):
                     <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                     <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                     <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
-                    <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
+                    <a href="/WebProjects/Preseason_html/All.html">Preseason Predictions</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -4242,7 +4262,7 @@ def preseasonmlbpitchinghtml(future):
                 <a href="/WebProjects/ROS_html/Rest Of Season.html">Rest of Season Predictions</a>
                 <a href="/WebProjects/WeeklyScores_html/Weekly Game Predictions.html">Weekly Game Predictions</a>
                 <a href="/WebProjects/Dominance_html/QBDom.html">Offensive Focus</a>
-                <a href="/WebProjects/Preseason_Predictions.html">Preseason Predictions</a>
+                <a href="/WebProjects/Preseason_html/All.html">Preseason Predictions</a>
             </div>
             </div>
             <div class="dropdown">

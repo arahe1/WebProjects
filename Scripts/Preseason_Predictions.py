@@ -51,7 +51,7 @@ TeamTotals = ps.teamtotals(DFs, Schedule)
 ROS = ps.ROSdataframe(Useful, TeamTotals, Week, Schedule)
 
 dupes = ROS.loc[ROS["Player"].duplicated(keep=False), "Player"].unique()
-print(dupes)
+#print(dupes)
 
 All_DataFrames = ps.rosfinaldataframes(ROS)
 
@@ -121,7 +121,6 @@ team_totals_future = (
       .reset_index()
 )
 
-#print(df.head())
 
 df = ps.assign_remaining_stats_by_position(useful_totals, team_totals_future, df)
 
@@ -130,21 +129,29 @@ df = ps.add_fantasy_points(df)
 cols = df.select_dtypes(include="number").columns
 df[cols] = df[cols].clip(lower=0)
 
+dfs = ps.split_df_by_position(df) 
+
 full_path = os.path.join('CSVs', 'PreSeason_2026.csv')
 df.to_csv(full_path, index=False)
 
 team_totals = team_totals.drop(columns=["Age", "Exp", "Depth", "Week", "IndComp%", "TeamComp%", "PassYds%", "PassTD%", "IndCatch%", "TmCatch%", "RecYds%", "RecTD%", "Rush%", "RushYds%", "RushTD%"])
 
-ps.preseason_prediction_html(df)
+ps.preseason_prediction_html(dfs)
 
-with open("Useful_Totals.md", "w", encoding="utf-8") as f:
-    useful_totals.to_markdown(buf=f, index=False)
+#with open("Useful_Totals.md", "w", encoding="utf-8") as f:
+#    useful_totals.to_markdown(buf=f, index=False)
     
-with open("Team_Totals.md", "w", encoding="utf-8") as f:
-    team_totals.to_markdown(buf=f, index=False)
+#with open("Team_Totals.md", "w", encoding="utf-8") as f:
+#    team_totals.to_markdown(buf=f, index=False)
 
-with open("Team_Totals_Future.md", "w", encoding="utf-8") as f:
-    team_totals_future.to_markdown(buf=f, index=False)
+#with open("Team_Totals_Future.md", "w", encoding="utf-8") as f:
+#    team_totals_future.to_markdown(buf=f, index=False)
 
 with open("Preseason_2026.md", "w", encoding="utf-8") as f:
     df.to_markdown(buf=f, index=False)
+
+
+
+print("Preseason Finished")
+
+

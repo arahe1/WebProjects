@@ -20,3 +20,7 @@ updated_depth = ps.update_depth_chart(prevdepth, newrosters, Dominance, Draft)
 updated_depth = updated_depth[["Team", "Player", "Pos.", "Age", "Exp", "Depth"]]
 updated_depth.to_csv("CSVs/Preseason_DepthChart_2026.csv", index=False)
 
+print("Rosters and Depth Charts Updated")
+
+
+

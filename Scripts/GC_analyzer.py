@@ -71,7 +71,7 @@ for key, df in dfs.items():
 print(parameters.keys())
 a, b = parameters["WR"]
 
-rank = [53]
+rank = [8, 25, 36, 23]
 for ele in rank:
     salary = -round(np.log(ele / a) / b)
 

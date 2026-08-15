@@ -33,12 +33,12 @@ Age_Curve["Rec TD/Rec"] = age_pos["RecTD"] / age_pos["Rec"]
 
 
 metrics = [
-    "Rush Y/A",
     "Pass Y/A",
-    "INT/A",
     "Pass TD/A",
-    "Y/Rec",
+    "INT/A",
+    "Rush Y/A",
     "Rush TD/A",
+    "Y/Rec",
     "Rec TD/Rec"
 ]
 

@@ -803,7 +803,8 @@ def standardize_player_names(df):
         "DK Metcalf": "D.K. Metcalf",
         "Deebo Samuel Sr.": "Deebo Samuel",
         "Chris Godwin Jr.": "Chris Godwin",
-        "Kyle Pitts Sr.": "Kyle Pitts"
+        "Kyle Pitts Sr.": "Kyle Pitts",
+        "Kenny Gainwell": "Kenneth Gainwell"
     }
     df["Player"] = (df["Player"].replace(name_fixes)
     )
@@ -901,7 +902,7 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
         "WR": {
             1: 85,
             2: 60,
-            3: 35,
+            3: 40,
             4: 10,
             5: 5,
             6: 0,
@@ -1019,14 +1020,32 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
         "Caleb Williams": 1,
         "Cam Ward": 1,
         "Mitchell Trubisky": 2,
-        "KC Concepcion": 3,
-        "Denzel Boston": 4,
-        "Jerry Jeudy": 1,
-        "Cedric Tillman": 2,
         "Cyrus Allen": 3,
         "Tyquan Thornton": 4,
         "DeVonta Smith": 1,
-        "Makai Lemon": 2
+        "Makai Lemon": 2,
+        "Dontayvion Wicks": 3,
+        "Kenneth Gainwell": 2,
+        "Sean Tucker": 3,
+        "Jeremiyah Love": 1,
+        "Tyler Allgeier": 2,
+        "James Conner": 3,
+        "Zonovan Knight": 4,
+        "Jonathon Brooks": 2,
+        "AJ Dillon": 3,
+        "Trevor Etienne": 4,
+        "Anthony Tyus III": 5,
+        "Deshaun Watson": 1,
+        "Dillon Gabriel": 3,
+        "Keaton Mitchell": 3,
+        "Jaret Patterson": 4,
+        "Terrance Ferguson": 1,
+        "Max Klare": 4,
+        "Rashid Shaheed": 2,
+        "Tory Horton": 4,
+        "Tyjae Spears": 2,
+        "Nicholas Singleton": 3,
+        "Michael Carter": 4 
     }
 
     final_depth_chart["Depth"] = final_depth_chart["Player"].map(manual_depth).fillna(final_depth_chart["Depth"])

@@ -1598,13 +1598,18 @@ def teamtotals(dflist, schedule):
 
     TeamTotals = pd.DataFrame(teamtotals)
 
+    #Added Standard deviations to the weekly corrections
     for column in TeamTotals.columns[1:]:
         row_index=0
         
         if (df.iloc[row_index, :len(dflist)] == 'BYE').any():
-            TeamTotals[column] = (TeamTotals[column] - TeamTotals[column].mean())/(len(dflist-1))
+            correction = (TeamTotals[column] - TeamTotals[column].mean())/(len(dflist-1))
+            
         else:
-            TeamTotals[column] = (TeamTotals[column] - TeamTotals[column].mean())/len(dflist)
+            correction = (TeamTotals[column] - TeamTotals[column].mean())/len(dflist)
+
+        TeamTotals[column] = correction
+        TeamTotals[column + 'StDev'] = correction.std()
 
     return TeamTotals
 

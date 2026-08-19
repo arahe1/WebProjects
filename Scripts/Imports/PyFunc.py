@@ -812,7 +812,7 @@ def standardize_player_names(df):
     return df
 
 
-def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df):
+def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df): #Has ability to change depth chart manually
     """
     Update depth chart after offseason roster changes.
 
@@ -1598,15 +1598,17 @@ def teamtotals(dflist, schedule):
 
     TeamTotals = pd.DataFrame(teamtotals)
 
-    #Added Standard deviations to the weekly corrections
+    #Added Standard deviations to the weekly corrections and turned AAVs into %'s
     for column in TeamTotals.columns[1:]:
         row_index=0
+
+        league_average = TeamTotals[column].mean()
         
         if (df.iloc[row_index, :len(dflist)] == 'BYE').any():
-            correction = (TeamTotals[column] - TeamTotals[column].mean())/(len(dflist-1))
+            correction = (TeamTotals[column] - TeamTotals[column].mean())/(len(dflist-1))/league_average
             
         else:
-            correction = (TeamTotals[column] - TeamTotals[column].mean())/len(dflist)
+            correction = (TeamTotals[column] - TeamTotals[column].mean())/len(dflist)/league_average
 
         TeamTotals[column] = correction
         TeamTotals[column + 'StDev'] = correction.std()
@@ -1620,7 +1622,7 @@ def weeklySuperFlexdataframe(useful, teamtotals): #Add Int's to this
     n_simulations = 10000
     team_stats = teamtotals.set_index('Team').to_dict('index')
 
-    statcolumns = ['Player', 'Team', 'Pos.', 'PPR', 'STD', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    statcolumns = ['Player', 'Team', 'Pos.', 'PPR', 'STD', 'PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
     SuperFlex = pd.DataFrame(columns=statcolumns)
 
     #Populate Superflex with Player names
@@ -1640,20 +1642,15 @@ def weeklySuperFlexdataframe(useful, teamtotals): #Add Int's to this
 
     predictedpassingyards = []
     predictedpassingtds = []
+    predictedints = []
 
     pprs = []
     stds = []
 
     for i, row in useful.iterrows():
         opp = row['Opp']
-        rand1 = np.random.uniform(-2, 2, n_simulations)
-        rand2 = np.random.uniform(-2, 2, n_simulations)
-        rand3 = np.random.uniform(-2, 2, n_simulations)
-        rand4 = np.random.uniform(-2, 2, n_simulations)
-        rand5 = np.random.uniform(-2, 2, n_simulations)
-        rand6 = np.random.uniform(-2, 2, n_simulations)
-        rand7 = np.random.uniform(-2, 2, n_simulations)
-        rand8 = np.random.uniform(-2, 2, n_simulations)
+        randoms = np.random.uniform(-2, 2, (18, n_simulations))
+
         if opp == 'BYE':
             team = 'None'
             rushes = np.zeros(n_simulations)
@@ -1666,21 +1663,25 @@ def weeklySuperFlexdataframe(useful, teamtotals): #Add Int's to this
 
             passingyards = np.zeros(n_simulations)
             passingtds = np.zeros(n_simulations)
+            ints = np.zeros(n_simulations)
             
         else:
             team = team_stats[opp]
 
             # Simulations
-            rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * rand1 + team['RushAttAAV'] * row['Rush%']
-            rushyards = (row['RushYds'] / row['G']) + row['RushYdsStDev'] * rand2 + team['RushYdsAAV'] * row['RushYds%']
-            rushtds = (row['RushTD'] / row['G']) + row['RushTDStDev'] * rand3 + team['RushTDAAV'] * row['RushTD%']
+            #Left One to see what it used to look like if the new changes bomb
+            #rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] + team['RushAttAAV'] * row['Rush%'] * row['RushAttAAVStDev'] * randoms[1]
+            rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] * (1 + team['RushAttAAV'] * row['Rush%'] * row['RushAttAAVStDev'] * randoms[1])
+            rushyards = (row['RushYds'] / row['G']) + row['RushYdsStDev'] * randoms[2] * (1 + team['RushYdsAAV'] * row['RushYds%'] * row['RushYdsAAVStDev'] * randoms[3])
+            rushtds = (row['RushTD'] / row['G']) + row['RushTDStDev'] * randoms[4] * (1 + team['RushTDAAV'] * row['RushTD%'] * row['RushTDAAVStDev'] * randoms[5])
 
-            receptions = (row['Tgt'] / row['G']) * row['IndCatch%'] + row['TgtStDev'] * row['IndCatch%'] * rand4 + team['RecAAV'] * row['TmCatch%']
-            receivingyards = (row['RecYds'] / row['G']) + row['RecYdsStDev'] * rand5 + team['RecYdsAAV'] * row['RecYds%']
-            receivingtds = (row['RecTD'] / row['G']) + row['RecTDStDev'] * rand6 + team['RecTDAAV'] * row['RecTD%']
+            receptions = (row['Tgt'] / row['G']) * row['IndCatch%'] + row['TgtStDev'] * row['IndCatch%']* randoms[6] * (1 + team['RecAAV'] * row['TmCatch%'] * row['RecAAVStDev'] * randoms[7])
+            receivingyards = (row['RecYds'] / row['G']) + row['RecYdsStDev'] * randoms[8] * (1 + team['RecYdsAAV'] * row['RecYds%'] * row['RecYdsAAVStDev'] * randoms[9])
+            receivingtds = (row['RecTD'] / row['G']) + row['RecTDStDev'] * randoms[10] * (1 + team['RecTDAAV'] * row['RecTD%'] * row['RecTDAAVStDev'] * randoms[11])
 
-            passingyards = (row['PassYds'] / row['G']) + row['PassYdsStDev'] * rand7 + team['PassYdsAAV'] * row['PassYds%']
-            passingtds = (row['PassTD'] / row['G']) + row['PassTDStDev'] * rand8 + team['PassTDAAV'] * row['PassTD%']
+            passingyards = (row['PassYds'] / row['G']) + row['PassYdsStDev'] * randoms[12] * (1 + team['PassYdsAAV'] * row['PassYds%'] * row['PassYdsAAVStDev'] * randoms[13])
+            passingtds = (row['PassTD'] / row['G']) + row['PassTDStDev'] * randoms[14] * (1 + team['PassTDAAV'] * row['PassTD%'] * row['PassTDAAVStDev'] * randoms[15])
+            ints = (row['Int'] / row['G']) + row['IntStDev'] * randoms[16] * (1 + team['IntAAV'] * row['Int%'] * row['IntAAVStDev'] * randoms[17])
 
         players.append(row['Player'])
 
@@ -1694,7 +1695,7 @@ def weeklySuperFlexdataframe(useful, teamtotals): #Add Int's to this
 
         predictedpassingyards.append(np.clip(np.round(passingyards.mean()).astype(int), 0, None))
         predictedpassingtds.append(np.clip(np.round(passingtds.mean(),1), 0, None))
-        
+        predictedints.append(np.clip(np.round(ints.mean(),1), 0, None))
 
         # Fantasy scoring
         ppr = (
@@ -1724,6 +1725,7 @@ def weeklySuperFlexdataframe(useful, teamtotals): #Add Int's to this
     SuperFlex['RecTD'] = predictedreceivingtds
     SuperFlex['PassYds'] = predictedpassingyards
     SuperFlex['PassTD'] = predictedpassingtds
+    SuperFlex['Int'] = predictedints
     SuperFlex['PPR'] = pprs
     SuperFlex['STD'] = stds
     SuperFlex.iloc[:, 3:5] = SuperFlex.iloc[:, 3:5].apply(pd.to_numeric).round(1)
@@ -2166,15 +2168,7 @@ def ROSdataframe(useful, teamtotals, week, schedule):
 
             team = row['Team']
             opp = schedule_map.get(team, 'BYE')
-            rand1 = np.random.uniform(-2, 2, n_simulations)
-            rand2 = np.random.uniform(-2, 2, n_simulations)
-            rand3 = np.random.uniform(-2, 2, n_simulations)
-            rand4 = np.random.uniform(-2, 2, n_simulations)
-            rand5 = np.random.uniform(-2, 2, n_simulations)
-            rand6 = np.random.uniform(-2, 2, n_simulations)
-            rand7 = np.random.uniform(-2, 2, n_simulations)
-            rand8 = np.random.uniform(-2, 2, n_simulations)
-            rand9 = np.random.uniform(-2, 2, n_simulations)
+            randoms = np.random.uniform(-2, 2, (18, n_simulations))
             if opp == 'BYE':
                 
                 rushes = np.zeros(n_simulations)
@@ -2193,17 +2187,17 @@ def ROSdataframe(useful, teamtotals, week, schedule):
                 team = team_stats[opp]
                 
                 # Simulations
-                rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * rand1 + team['RushAttAAV'] * row['Rush%']
-                rushyards = (row['RushYds'] / row['G']) + row['RushYdsStDev'] * rand2 + team['RushYdsAAV'] * row['RushYds%']
-                rushtds = (row['RushTD'] / row['G']) + row['RushTDStDev'] * rand3 + team['RushTDAAV'] * row['RushTD%']
+                rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] * (1 + team['RushAttAAV'] * row['Rush%'] * row['RushAttAAVStDev'] * randoms[1])
+                rushyards = (row['RushYds'] / row['G']) + row['RushYdsStDev'] * randoms[2] * (1 + team['RushYdsAAV'] * row['RushYds%'] * row['RushYdsAAVStDev'] * randoms[3])
+                rushtds = (row['RushTD'] / row['G']) + row['RushTDStDev'] * randoms[4] * (1 + team['RushTDAAV'] * row['RushTD%'] * row['RushTDAAVStDev'] * randoms[5])
 
-                receptions = (row['Tgt'] / row['G']) * row['IndCatch%'] + row['TgtStDev'] * row['IndCatch%']* rand4 + team['RecAAV'] * row['TmCatch%']
-                receivingyards = (row['RecYds'] / row['G']) + row['RecYdsStDev'] * rand5 + team['RecYdsAAV'] * row['RecYds%']
-                receivingtds = (row['RecTD'] / row['G']) + row['RecTDStDev'] * rand6 + team['RecTDAAV'] * row['RecTD%']
+                receptions = (row['Tgt'] / row['G']) * row['IndCatch%'] + row['TgtStDev'] * row['IndCatch%']* randoms[6] * (1 + team['RecAAV'] * row['TmCatch%'] * row['RecAAVStDev'] * randoms[7])
+                receivingyards = (row['RecYds'] / row['G']) + row['RecYdsStDev'] * randoms[8] * (1 + team['RecYdsAAV'] * row['RecYds%'] * row['RecYdsAAVStDev'] * randoms[9])
+                receivingtds = (row['RecTD'] / row['G']) + row['RecTDStDev'] * randoms[10] * (1 + team['RecTDAAV'] * row['RecTD%'] * row['RecTDAAVStDev'] * randoms[11])
 
-                passingyards = (row['PassYds'] / row['G']) + row['PassYdsStDev'] * rand7 + team['PassYdsAAV'] * row['PassYds%']
-                passingtds = (row['PassTD'] / row['G']) + row['PassTDStDev'] * rand8 + team['PassTDAAV'] * row['PassTD%']
-                ints = (row['Int'] / row['G']) + row['IntStDev'] * rand9 + team['IntAAV'] * row['Int%']
+                passingyards = (row['PassYds'] / row['G']) + row['PassYdsStDev'] * randoms[12] * (1 + team['PassYdsAAV'] * row['PassYds%'] * row['PassYdsAAVStDev'] * randoms[13])
+                passingtds = (row['PassTD'] / row['G']) + row['PassTDStDev'] * randoms[14] * (1 + team['PassTDAAV'] * row['PassTD%'] * row['PassTDAAVStDev'] * randoms[15])
+                ints = (row['Int'] / row['G']) + row['IntStDev'] * randoms[16] * (1 + team['IntAAV'] * row['Int%'] * row['IntAAVStDev'] * randoms[17])
 
             players.append(row['Player'])
 

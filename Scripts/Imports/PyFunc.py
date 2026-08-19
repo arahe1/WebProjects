@@ -1240,8 +1240,15 @@ def assign_remaining_stats_by_position(df1, df2, df3):
         # -----------------------------------------------------
         # Receiving yards adjustment
         # -----------------------------------------------------
-        rec_yd_diff = int(pass_yds - rec_yds)
-
+        #rec_yd_diff = int(pass_yds - rec_yds)
+        #New Lines HERE
+        if pass_yds > rec_yds:
+            df3.loc[team_mask, "PassYds"] -= int(pass_yds - rec_yds)
+            rec_yd_diff = 0
+        
+        elif rec_yds > pass_yds:
+            rec_yd_diff = int(rec_yds - pass_yds)
+            
         if rec_yd_diff != 0:
 
             wrs = (
@@ -1312,7 +1319,14 @@ def assign_remaining_stats_by_position(df1, df2, df3):
         # -----------------------------------------------------
         # Receiving TD adjustment
         # -----------------------------------------------------
-        rec_td_diff = int(pass_td - rec_td)
+        #rec_td_diff = int(pass_td - rec_td)
+        #New Lines HERE
+        if pass_td > rec_td:
+            df3.loc[team_mask, "PassTD"] -= int(pass_td - rec_td)
+            rec_td_diff = 0
+        
+        elif rec_td > pass_td:
+            rec_td_diff = int(rec_td - pass_td)
 
         if rec_td_diff != 0:
 

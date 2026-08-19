@@ -1242,6 +1242,7 @@ def assign_remaining_stats_by_position(df1, df2, df3):
         # -----------------------------------------------------
         #rec_yd_diff = int(pass_yds - rec_yds)
         #New Lines HERE
+        rec_yd_diff = 0
         if pass_yds > rec_yds:
             df3.loc[team_mask, "PassYds"] -= int(pass_yds - rec_yds)
             rec_yd_diff = 0
@@ -1321,6 +1322,7 @@ def assign_remaining_stats_by_position(df1, df2, df3):
         # -----------------------------------------------------
         #rec_td_diff = int(pass_td - rec_td)
         #New Lines HERE
+        rec_td_diff = 0
         if pass_td > rec_td:
             df3.loc[team_mask, "PassTD"] -= int(pass_td - rec_td)
             rec_td_diff = 0
@@ -2187,17 +2189,17 @@ def ROSdataframe(useful, teamtotals, week, schedule):
                 team = team_stats[opp]
                 
                 # Simulations
-                rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] * (1 + team['RushAttAAV'] * row['Rush%'] * row['RushAttAAVStDev'] * randoms[1])
-                rushyards = (row['RushYds'] / row['G']) + row['RushYdsStDev'] * randoms[2] * (1 + team['RushYdsAAV'] * row['RushYds%'] * row['RushYdsAAVStDev'] * randoms[3])
-                rushtds = (row['RushTD'] / row['G']) + row['RushTDStDev'] * randoms[4] * (1 + team['RushTDAAV'] * row['RushTD%'] * row['RushTDAAVStDev'] * randoms[5])
+                rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] * (1 + team['RushAttAAV'] * row['Rush%'] * team['RushAttAAVStDev'] * randoms[1])
+                rushyards = (row['RushYds'] / row['G']) + row['RushYdsStDev'] * randoms[2] * (1 + team['RushYdsAAV'] * row['RushYds%'] * team['RushYdsAAVStDev'] * randoms[3])
+                rushtds = (row['RushTD'] / row['G']) + row['RushTDStDev'] * randoms[4] * (1 + team['RushTDAAV'] * row['RushTD%'] * team['RushTDAAVStDev'] * randoms[5])
 
-                receptions = (row['Tgt'] / row['G']) * row['IndCatch%'] + row['TgtStDev'] * row['IndCatch%']* randoms[6] * (1 + team['RecAAV'] * row['TmCatch%'] * row['RecAAVStDev'] * randoms[7])
-                receivingyards = (row['RecYds'] / row['G']) + row['RecYdsStDev'] * randoms[8] * (1 + team['RecYdsAAV'] * row['RecYds%'] * row['RecYdsAAVStDev'] * randoms[9])
-                receivingtds = (row['RecTD'] / row['G']) + row['RecTDStDev'] * randoms[10] * (1 + team['RecTDAAV'] * row['RecTD%'] * row['RecTDAAVStDev'] * randoms[11])
+                receptions = (row['Tgt'] / row['G']) * row['IndCatch%'] + row['TgtStDev'] * row['IndCatch%']* randoms[6] * (1 + team['RecAAV'] * row['TmCatch%'] * team['RecAAVStDev'] * randoms[7])
+                receivingyards = (row['RecYds'] / row['G']) + row['RecYdsStDev'] * randoms[8] * (1 + team['RecYdsAAV'] * row['RecYds%'] * team['RecYdsAAVStDev'] * randoms[9])
+                receivingtds = (row['RecTD'] / row['G']) + row['RecTDStDev'] * randoms[10] * (1 + team['RecTDAAV'] * row['RecTD%'] * team['RecTDAAVStDev'] * randoms[11])
 
-                passingyards = (row['PassYds'] / row['G']) + row['PassYdsStDev'] * randoms[12] * (1 + team['PassYdsAAV'] * row['PassYds%'] * row['PassYdsAAVStDev'] * randoms[13])
-                passingtds = (row['PassTD'] / row['G']) + row['PassTDStDev'] * randoms[14] * (1 + team['PassTDAAV'] * row['PassTD%'] * row['PassTDAAVStDev'] * randoms[15])
-                ints = (row['Int'] / row['G']) + row['IntStDev'] * randoms[16] * (1 + team['IntAAV'] * row['Int%'] * row['IntAAVStDev'] * randoms[17])
+                passingyards = (row['PassYds'] / row['G']) + row['PassYdsStDev'] * randoms[12] * (1 + team['PassYdsAAV'] * row['PassYds%'] * team['PassYdsAAVStDev'] * randoms[13])
+                passingtds = (row['PassTD'] / row['G']) + row['PassTDStDev'] * randoms[14] * (1 + team['PassTDAAV'] * row['PassTD%'] * team['PassTDAAVStDev'] * randoms[15])
+                ints = (row['Int'] / row['G']) + row['IntStDev'] * randoms[16] * (1 + team['IntAAV'] * row['Int%'] * team['IntAAVStDev'] * randoms[17])
 
             players.append(row['Player'])
 

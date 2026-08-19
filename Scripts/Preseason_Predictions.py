@@ -117,10 +117,11 @@ team_totals_future = (
       .reset_index()
 )
 
+df = df.apply(ps.age_adjust_projections, axis=1, curves=curves)
 
 df = ps.assign_remaining_stats_by_position(useful_totals, team_totals_future, df)
 
-df = df.apply(ps.age_adjust_projections, axis=1, curves=curves)
+#df = df.apply(ps.age_adjust_projections, axis=1, curves=curves)
 
 df = df.round(0)
 

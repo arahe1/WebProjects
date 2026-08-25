@@ -29,6 +29,7 @@ depth_chart["Team"] = depth_chart["Team"].replace({
 })
 
 Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
+Previous_Year = Useful
 
 useful_totals = (
     Useful.groupby(["Team", "Pos."])
@@ -60,6 +61,8 @@ All_DataFrames = ps.rosfinaldataframes(ROS)
 df = All_DataFrames['Rest Of Season']
 df = ps.standardize_player_names(df) 
 
+#print(df.loc[df["Player"] == "Tua Tagovailoa"].to_string(index=False))
+
 df = df.drop(columns=["PPR"])
 df = df.drop(columns=["STD"])
 
@@ -71,11 +74,11 @@ df = df.merge(
 
 multipliers = {
     1: 0.90,
-    2: 0.60,
-    3: 0.30,
-    4: 0.10,
-    5: 0.05,
-    6: 0.05,
+    2: 0.80,
+    3: 0.70,
+    4: 0.25,
+    5: 0.15,
+    6: 0.10,
     7: 0,
     8: 0,
     9: 0,
@@ -119,7 +122,11 @@ team_totals_future = (
 
 df = df.apply(ps.age_adjust_projections, axis=1, curves=curves)
 
-df = ps.assign_remaining_stats_by_position(useful_totals, team_totals_future, df)
+#print(df.loc[df["Player"] == "Tua Tagovailoa"].to_string(index=False))
+
+df = ps.assign_remaining_stats_by_position(useful_totals, team_totals_future, df, Previous_Year)
+
+#print(df.loc[df["Player"] == "Tua Tagovailoa"].to_string(index=False))
 
 #df = df.apply(ps.age_adjust_projections, axis=1, curves=curves)
 
@@ -139,14 +146,14 @@ team_totals = team_totals.drop(columns=["Exp", "Depth", "Week", "IndComp%", "Tea
 
 ps.preseason_prediction_html(dfs)
 
-with open("Useful.md", "w", encoding="utf-8") as f:
-    Useful.to_markdown(buf=f, index=False)
+with open("Useful_Totals.md", "w", encoding="utf-8") as f:
+    useful_totals.to_markdown(buf=f, index=False)
     
-#with open("Team_Totals.md", "w", encoding="utf-8") as f:
-#    team_totals.to_markdown(buf=f, index=False)
+with open("2025_stats.md", "w", encoding="utf-8") as f:
+    Previous_Year.to_markdown(buf=f, index=False)
 
-#with open("Team_Totals_Future.md", "w", encoding="utf-8") as f:
-#    team_totals_future.to_markdown(buf=f, index=False)
+with open("Team_Totals_Future.md", "w", encoding="utf-8") as f:
+    team_totals_future.to_markdown(buf=f, index=False)
 
 with open("Preseason_2026.md", "w", encoding="utf-8") as f:
     df.to_markdown(buf=f, index=False)

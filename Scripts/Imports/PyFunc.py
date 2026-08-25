@@ -781,6 +781,7 @@ def get_nfl_draft(year):
 
 
 def standardize_player_names(df):
+
     name_fixes = {
         "Michael Penix Jr.": "Michael Penix",
         "Bam Knight": "Zonovan Knight",
@@ -804,7 +805,8 @@ def standardize_player_names(df):
         "Deebo Samuel Sr.": "Deebo Samuel",
         "Chris Godwin Jr.": "Chris Godwin",
         "Kyle Pitts Sr.": "Kyle Pitts",
-        "Kenny Gainwell": "Kenneth Gainwell"
+        "Kenny Gainwell": "Kenneth Gainwell",
+        "Oronde Gadsden Jr.": "Oronde Gadsden"
     }
     df["Player"] = (df["Player"].replace(name_fixes)
     )
@@ -1029,8 +1031,8 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df): #Has
         "Sean Tucker": 3,
         "Jeremiyah Love": 1,
         "Tyler Allgeier": 2,
-        "James Conner": 3,
-        "Zonovan Knight": 4,
+        "James Conner": 4,
+        "Zonovan Knight": 3,
         "Jonathon Brooks": 2,
         "AJ Dillon": 3,
         "Trevor Etienne": 4,
@@ -1059,8 +1061,8 @@ def update_depth_chart(previous_depth, new_roster, off_focus_df, draft_df): #Has
     return final_depth_chart
 
 
-def assign_remaining_stats_by_position(df1, df2, df3):
-    for df in [df1, df2, df3]:
+
+    for df in [df1, df2, df3, df4]:
         df["Team"] = df["Team"].astype(str).str.replace("\xa0", " ", regex=False).str.strip()
         df["Pos."] = df["Pos."].astype(str).str.replace("\xa0", " ", regex=False).str.strip()
 
@@ -1073,7 +1075,7 @@ def assign_remaining_stats_by_position(df1, df2, df3):
     # ---------------------------------------------------------
     # Clean numeric columns
     # ---------------------------------------------------------
-    for df in [df1, df2, df3]:
+    for df in [df1, df2, df3, df4]:
         cols = df.select_dtypes(include="number").columns
         df[cols] = (
             df[cols]
@@ -1118,74 +1120,123 @@ def assign_remaining_stats_by_position(df1, df2, df3):
         )
 
     # ---------------------------------------------------------
-    # 3. Allocate each Team + Position leftover
-    #    to the top 3 players by Depth
+    # Historical Team + Position distribution
+    # Used to determine allocation percentages by Depth
     # ---------------------------------------------------------
-    for _, row in remaining.iterrows():
+    historical_dist = (
+        df1.groupby(["Team", "Pos."])[stats]
+        .sum()
+        .reset_index()
+    )
 
-        team = row["Team"]
-        pos = row["Pos."]
+    # ---------------------------------------------------------
+    # 3. Allocate stats from players who left the team
+    #
+    # df4 = historical player stats
+    # df3 = current player stats
+    #
+    # Historical distribution determines the weights.
+    # Those weights are assigned in order to current players
+    # by Depth.
+    # ---------------------------------------------------------
+    for team in df3["Team"].unique():
 
-        players = df3[
-            (df3["Team"] == team) &
-            (df3["Pos."] == pos)
-        ].sort_values("Depth").head(3)
+        for pos in df3["Pos."].unique():
 
-        if players.empty:
-            continue
+            players = (
+                df3[
+                    (df3["Team"] == team) &
+                    (df3["Pos."] == pos)
+                ]
+                .sort_values("Depth")
+            )
 
-        for stat in stats:
+            if players.empty:
+                continue
 
-            amount = int(round(row[stat]))
-            # Negative passing yards/TDs:
-            # remove evenly from top 2 QBs
-            if pos == "QB" and stat in ["PassYds", "PassTD"] and amount < 0:
+            historical = df4[
+                (df4["Team"] == team) &
+                (df4["Pos."] == pos)
+            ].copy()
 
-                amount = int(round(amount * 0.80))
+            if historical.empty:
+                continue
 
-                qbs = (
-                    df3[
-                        (df3["Team"] == team) &
-                        (df3["Pos."] == "QB")
-                    ]
-                    .sort_values("Depth")
-                    .head(2)
+            current_names = set(players["Player"])
+
+            # Players who left the team
+            departed = historical[
+                ~historical["Player"].isin(current_names)
+            ]
+
+            if departed.empty:
+                continue
+
+            for stat in stats:
+
+                # Stats lost from departed players
+                lost_amount = int(departed[stat].sum())
+
+                if lost_amount <= 0:
+                    continue
+
+                # -------------------------------------------------
+                # Historical player distribution
+                #
+                # Rank historical players by their share of the
+                # team's production.
+                # -------------------------------------------------
+                historical_player_totals = (
+                    historical
+                    .groupby("Player")[stat]
+                    .sum()
+                    .sort_values(ascending=False)
                 )
 
-                if not qbs.empty:
+                historical_total = historical_player_totals.sum()
 
-                    base = abs(amount) // len(qbs)
-                    remainder = abs(amount) % len(qbs)
+                if historical_total <= 0:
+                    continue
 
-                    for i, idx in enumerate(qbs.index):
+                historical_pct = (
+                    historical_player_totals / historical_total
+                )
 
-                        change = base + (1 if i < remainder else 0)
+                # -------------------------------------------------
+                # Apply historical distribution by ORDER to
+                # current players by Depth.
+                #
+                # Historical #1 -> Depth 1
+                # Historical #2 -> Depth 2
+                # Historical #3 -> Depth 3
+                # etc.
+                # -------------------------------------------------
+                for i, idx in enumerate(players.index):
 
-                        df3.loc[idx, stat] -= change
+                    if i >= len(historical_pct):
+                        break
 
-                continue
+                    pct = historical_pct.iloc[i]
 
-            if amount == 0:
-                continue
+                    change = int(round(lost_amount * pct))
 
-            base = amount // len(players)
-            remainder = abs(amount) % len(players)
+                    df3.loc[idx, stat] += change
 
-            for i, idx in enumerate(players.index):
 
-                change = base
 
-                if i < remainder:
-                    change += 1
+    print("AFTER SECTION 3 - Stafford")
+    print(
+        df3[
+            (df3["Player"] == "Matthew Stafford") &
+            (df3["Team"] == "LAR")
+        ][["Player", "Team", "Depth", "PassYds", "PassTD"]]
+    )
 
-                # Preserve the sign of the leftover
-                if amount < 0:
-                    change = -change
 
-                df3.loc[idx, stat] += change
 
-    # Redistribute Depth 3 QB passing stats to Depth 1 and 2
-
+    # ---------------------------------------------------------
+    # Redistribute ALL Depth 3 QB stats to Depth 1 and 2
+    # ---------------------------------------------------------
     for team in df3["Team"].unique():
 
         qbs = (
@@ -1203,29 +1254,92 @@ def assign_remaining_stats_by_position(df1, df2, df3):
         qb2 = qbs.iloc[1].name
         qb3 = qbs.iloc[2].name
 
-        for stat in ["PassYds", "PassTD"]:
+        for stat in stats:
 
             depth3_value = int(df3.loc[qb3, stat])
 
             if depth3_value == 0:
                 continue
 
-            df3.loc[qb3, stat] -= depth3_value
+            # Remove everything from QB3
+            df3.loc[qb3, stat] = 0
 
+            # Split between QB1 and QB2
             base = depth3_value // 2
             remainder = depth3_value % 2
 
             df3.loc[qb1, stat] += base + remainder
             df3.loc[qb2, stat] += base
 
+
+    # ---------------------------------------------------------
+    # Historical receiving-yard distribution by team
+    # df1 = previous year's actual stats
+    # ---------------------------------------------------------
+    receiving_dist = (
+        df1[df1["Pos."].isin(["WR", "RB", "TE"])]
+        .groupby(["Team", "Pos."])["RecYds"]
+        .sum()
+        .unstack(fill_value=0)
+    )
+
+    for pos in ["WR", "RB", "TE"]:
+        if pos not in receiving_dist.columns:
+            receiving_dist[pos] = 0
+
+    receiving_dist["TotalRecYds"] = (
+        receiving_dist["WR"] +
+        receiving_dist["RB"] +
+        receiving_dist["TE"]
+    )
+
+    for pos in ["WR", "RB", "TE"]:
+        receiving_dist[f"{pos}_pct"] = (
+            receiving_dist[pos] /
+            receiving_dist["TotalRecYds"]
+        ).fillna(0)
+
+    # ---------------------------------------------------------
+    # Historical receiving-TD distribution by team
+    # df1 = previous year's actual stats
+    # ---------------------------------------------------------
+    receiving_td_dist = (
+        df1[df1["Pos."].isin(["WR", "RB", "TE"])]
+        .groupby(["Team", "Pos."])["RecTD"]
+        .sum()
+        .unstack(fill_value=0)
+    )
+
+    for pos in ["WR", "RB", "TE"]:
+        if pos not in receiving_td_dist.columns:
+            receiving_td_dist[pos] = 0
+
+    receiving_td_dist["TotalRecTD"] = (
+        receiving_td_dist["WR"] +
+        receiving_td_dist["RB"] +
+        receiving_td_dist["TE"]
+    )
+
+    for pos in ["WR", "RB", "TE"]:
+        receiving_td_dist[f"{pos}_pct"] = (
+            receiving_td_dist[pos] /
+            receiving_td_dist["TotalRecTD"]
+        ).fillna(0)
+
+    print("AFTER QB3 REDISTRIBUTION - Stafford")
+    print(
+        df3[
+            (df3["Player"] == "Matthew Stafford") &
+            (df3["Team"] == "LAR")
+        ][["Player", "Team", "Depth", "PassYds", "PassTD"]]
+    )
+
+
     # ---------------------------------------------------------
     # 4. Reconcile Passing vs Receiving at the TEAM level
     #
     # Passing yards should equal receiving yards
     # Passing TDs should equal receiving TDs
-    #
-    # 70% -> WR
-    # 30% -> TE
     # ---------------------------------------------------------
     for team in df3["Team"].unique():
 
@@ -1240,22 +1354,56 @@ def assign_remaining_stats_by_position(df1, df2, df3):
         # -----------------------------------------------------
         # Receiving yards adjustment
         # -----------------------------------------------------
-        #rec_yd_diff = int(pass_yds - rec_yds)
-        #New Lines HERE
-        rec_yd_diff = 0
         if pass_yds > rec_yds:
-            df3.loc[team_mask, "PassYds"] -= int(pass_yds - rec_yds)
-            rec_yd_diff = 0
+           # df3.loc[team_mask, "PassYds"] -= int(pass_yds - rec_yds)
+                pass_yd_diff = int(pass_yds - rec_yds)
+
+                qbs = (
+                    df3[
+                        (df3["Team"] == team) &
+                        (df3["Pos."] == "QB")
+                    ]
+                    .sort_values("Depth")
+                    .head(2)
+                )
+
+                if not qbs.empty:
+
+                    base = pass_yd_diff // len(qbs)
+                    remainder = pass_yd_diff % len(qbs)
+
+                    for i, idx in enumerate(qbs.index):
+
+                        change = base + (1 if i < remainder else 0)
+
+                        df3.loc[idx, "PassYds"] -= change
         
         elif rec_yds > pass_yds:
             rec_yd_diff = int(rec_yds - pass_yds)
-            
-        if rec_yd_diff != 0:
 
+            # Get this team's previous-year receiving-yard distribution
+            if team in receiving_dist.index:
+                wr_pct = receiving_dist.loc[team, "WR_pct"]
+                rb_pct = receiving_dist.loc[team, "RB_pct"]
+                te_pct = receiving_dist.loc[team, "TE_pct"]
+            else:
+                wr_pct = 0
+                rb_pct = 0
+                te_pct = 0
+            
             wrs = (
                 df3[
                     (df3["Team"] == team) &
                     (df3["Pos."] == "WR")
+                ]
+                .sort_values("Depth")
+                .head(3)
+            )
+
+            rbs = (
+                df3[
+                    (df3["Team"] == team) &
+                    (df3["Pos."] == "RB")
                 ]
                 .sort_values("Depth")
                 .head(3)
@@ -1270,21 +1418,58 @@ def assign_remaining_stats_by_position(df1, df2, df3):
                 .head(3)
             )
 
-            # 70% WR / 30% TE
-            if not wrs.empty and not tes.empty:
-                wr_amount = int(round(rec_yd_diff * 0.70))
+            # -----------------------------------------------------
+            # Allocate correction using previous year's
+            # receiving-yard distribution
+            # -----------------------------------------------------
+            if not wrs.empty and not rbs.empty and not tes.empty:
+
+                wr_amount = int(round(rec_yd_diff * wr_pct))
+                rb_amount = int(round(rec_yd_diff * rb_pct))
+
+                # TE gets the remainder so the correction is exact
+                te_amount = rec_yd_diff - wr_amount - rb_amount
+
+            elif not wrs.empty and not rbs.empty:
+
+                wr_amount = int(round(rec_yd_diff * wr_pct))
+                rb_amount = rec_yd_diff - wr_amount
+                te_amount = 0
+
+            elif not wrs.empty and not tes.empty:
+
+                wr_amount = int(round(rec_yd_diff * wr_pct))
                 te_amount = rec_yd_diff - wr_amount
+                rb_amount = 0
+
+            elif not rbs.empty and not tes.empty:
+
+                rb_amount = int(round(rec_yd_diff * rb_pct))
+                te_amount = rec_yd_diff - rb_amount
+                wr_amount = 0
 
             elif not wrs.empty:
+
                 wr_amount = rec_yd_diff
+                rb_amount = 0
+                te_amount = 0
+
+            elif not rbs.empty:
+
+                wr_amount = 0
+                rb_amount = rec_yd_diff
                 te_amount = 0
 
             elif not tes.empty:
+
                 wr_amount = 0
+                rb_amount = 0
                 te_amount = rec_yd_diff
 
             else:
+
                 wr_amount = 0
+                rb_amount = 0
                 te_amount = 0
 
             # Distribute WR portion
@@ -1300,8 +1485,23 @@ def assign_remaining_stats_by_position(df1, df2, df3):
                     if wr_amount < 0:
                         change = -change
 
-                    df3.loc[idx, "RecYds"] += change
+                    df3.loc[idx, "RecYds"] -= change
 
+            # Distribute RB portion
+            if not rbs.empty and rb_amount != 0:
+
+                base = abs(rb_amount) // len(rbs)
+                remainder = abs(rb_amount) % len(rbs)
+
+                for i, idx in enumerate(rbs.index):
+
+                    change = base + (1 if i < remainder else 0)
+
+                    if rb_amount < 0:
+                        change = -change
+
+                    df3.loc[idx, "RecYds"] -= change
+                    
             # Distribute TE portion
             if not tes.empty and te_amount != 0:
 
@@ -1315,23 +1515,61 @@ def assign_remaining_stats_by_position(df1, df2, df3):
                     if te_amount < 0:
                         change = -change
 
-                    df3.loc[idx, "RecYds"] += change
+                    df3.loc[idx, "RecYds"] -= change
+                    
+        pass_yds_after = df3.loc[team_mask, "PassYds"].sum()
+        rec_yds_after = df3.loc[team_mask, "RecYds"].sum()
 
         # -----------------------------------------------------
         # Receiving TD adjustment
         # -----------------------------------------------------
-        #rec_td_diff = int(pass_td - rec_td)
-        #New Lines HERE
-        rec_td_diff = 0
         if pass_td > rec_td:
-            df3.loc[team_mask, "PassTD"] -= int(pass_td - rec_td)
-            rec_td_diff = 0
+
+            pass_td_diff = int(pass_td - rec_td)
+
+            qbs = (
+                df3[
+                    (df3["Team"] == team) &
+                    (df3["Pos."] == "QB")
+                ]
+                .sort_values("Depth")
+                .head(2)
+            )
+
+            if not qbs.empty:
+
+                base = pass_td_diff // len(qbs)
+                remainder = pass_td_diff % len(qbs)
+
+                for i, idx in enumerate(qbs.index):
+
+                    change = base + (1 if i < remainder else 0)
+
+                    df3.loc[idx, "PassTD"] -= change
         
         elif rec_td > pass_td:
+
             rec_td_diff = int(rec_td - pass_td)
 
-        if rec_td_diff != 0:
+            # -------------------------------------------------
+            # Get this team's previous-year receiving TD
+            # distribution
+            # -------------------------------------------------
+            if team in receiving_td_dist.index:
 
+                wr_pct = receiving_td_dist.loc[team, "WR_pct"]
+                rb_pct = receiving_td_dist.loc[team, "RB_pct"]
+                te_pct = receiving_td_dist.loc[team, "TE_pct"]
+
+            else:
+
+                wr_pct = 0
+                rb_pct = 0
+                te_pct = 0
+
+            # -------------------------------------------------
+            # Get top 3 WRs
+            # -------------------------------------------------
             wrs = (
                 df3[
                     (df3["Team"] == team) &
@@ -1341,6 +1579,21 @@ def assign_remaining_stats_by_position(df1, df2, df3):
                 .head(3)
             )
 
+            # -------------------------------------------------
+            # Get top 3 RBs
+            # -------------------------------------------------
+            rbs = (
+                df3[
+                    (df3["Team"] == team) &
+                    (df3["Pos."] == "RB")
+                ]
+                .sort_values("Depth")
+                .head(3)
+            )
+
+            # -------------------------------------------------
+            # Get top 3 TEs
+            # -------------------------------------------------
             tes = (
                 df3[
                     (df3["Team"] == team) &
@@ -1350,54 +1603,724 @@ def assign_remaining_stats_by_position(df1, df2, df3):
                 .head(3)
             )
 
-            # 70% WR / 30% TE
-            if not wrs.empty and not tes.empty:
-                wr_amount = int(round(rec_td_diff * 0.70))
+            # -------------------------------------------------
+            # Allocate correction using previous year's
+            # receiving-TD distribution
+            # -------------------------------------------------
+            if not wrs.empty and not rbs.empty and not tes.empty:
+
+                wr_amount = int(round(rec_td_diff * wr_pct))
+                rb_amount = int(round(rec_td_diff * rb_pct))
+
+                # TE gets remainder so correction is exact
+                te_amount = rec_td_diff - wr_amount - rb_amount
+
+            elif not wrs.empty and not rbs.empty:
+
+                wr_amount = int(round(rec_td_diff * wr_pct))
+                rb_amount = rec_td_diff - wr_amount
+                te_amount = 0
+
+            elif not wrs.empty and not tes.empty:
+
+                wr_amount = int(round(rec_td_diff * wr_pct))
                 te_amount = rec_td_diff - wr_amount
+                rb_amount = 0
+
+            elif not rbs.empty and not tes.empty:
+
+                rb_amount = int(round(rec_td_diff * rb_pct))
+                te_amount = rec_td_diff - rb_amount
+                wr_amount = 0
 
             elif not wrs.empty:
+
                 wr_amount = rec_td_diff
+                rb_amount = 0
+                te_amount = 0
+
+            elif not rbs.empty:
+
+                wr_amount = 0
+                rb_amount = rec_td_diff
                 te_amount = 0
 
             elif not tes.empty:
+
                 wr_amount = 0
+                rb_amount = 0
                 te_amount = rec_td_diff
 
             else:
+
                 wr_amount = 0
+                rb_amount = 0
                 te_amount = 0
 
-            # Distribute WR TDs
+            # -------------------------------------------------
+            # Reduce WR receiving TDs
+            # -------------------------------------------------
             if not wrs.empty and wr_amount != 0:
 
-                base = abs(wr_amount) // len(wrs)
-                remainder = abs(wr_amount) % len(wrs)
+                base = wr_amount // len(wrs)
+                remainder = wr_amount % len(wrs)
 
                 for i, idx in enumerate(wrs.index):
 
                     change = base + (1 if i < remainder else 0)
 
-                    if wr_amount < 0:
-                        change = -change
+                    df3.loc[idx, "RecTD"] -= change
 
-                    df3.loc[idx, "RecTD"] += change
+            # -------------------------------------------------
+            # Reduce RB receiving TDs
+            # -------------------------------------------------
+            if not rbs.empty and rb_amount != 0:
 
-            # Distribute TE TDs
+                base = rb_amount // len(rbs)
+                remainder = rb_amount % len(rbs)
+
+                for i, idx in enumerate(rbs.index):
+
+                    change = base + (1 if i < remainder else 0)
+
+                    df3.loc[idx, "RecTD"] -= change
+
+            # -------------------------------------------------
+            # Reduce TE receiving TDs
+            # -------------------------------------------------
             if not tes.empty and te_amount != 0:
 
-                base = abs(te_amount) // len(tes)
-                remainder = abs(te_amount) % len(tes)
+                base = te_amount // len(tes)
+                remainder = te_amount % len(tes)
 
                 for i, idx in enumerate(tes.index):
 
                     change = base + (1 if i < remainder else 0)
 
-                    if te_amount < 0:
-                        change = -change
+                    df3.loc[idx, "RecTD"] -= change
 
-                    df3.loc[idx, "RecTD"] += change
+    print("AFTER RECONCILIATION - Stafford")
+    print(
+        df3[
+            (df3["Player"] == "Matthew Stafford") &
+            (df3["Team"] == "LAR")
+        ][["Player", "Team", "Depth", "PassYds", "PassTD"]]
+    )
+
 
     return df3
+
+
+def preseasonuseful(dflist, totalstats, individualtotals):
+    if not isinstance(dflist, list):
+        raise TypeError("Expected a list of dataframes")
+    for file in dflist:
+        if not isinstance(file, pd.DataFrame):
+            raise TypeError(f"List should contain pandas DataFrames. Got {type(file)}: {file}")
+    useful_columns = ['Team', 'Player', 'Pos.', 'Age', 'G', 'PassAtt', 'PassAttStDev', 'PassAtt%', 'PassAtt%StDev', 'Rec', 'RecStDev', 'Rec%', 'Rec%StDev', 'RushAtt', 'RushStDev', 'Rush%', 'Rush%StDev', 'PassYdsperAtt', 'PassYdsperAttStDev', 'PassTDperAtt', 'PassTDperAttStDev', 'IntperAtt', 'IntperAttStDev', 'RecYdsperAtt', 'RecYdsperAttStDev', 'RecTDperAtt', 'RecTDperAttStDev', 'RushYdsperAtt', 'RushYdsperAttStDev', 'RushTDperAtt', 'RushTDperAttStDev']
+    existing_columns = [col for col in useful_columns if col in totalstats.columns and col not in ['G', 'PassAttStDev', 'PassAtt%', 'PassAtt%StDev', 'RecStDev', 'Rec%', 'Rec%StDev', 'RushStDev', 'Rush%', 'Rush%StDev', 'PassYdsperAtt', 'PassYdsperAttStDev', 'PassTDperAtt', 'PassTDperAttStDev', 'IntperAtt', 'IntperAttStDev', 'RecYdsperAtt', 'RecYdsperAttStDev', 'RecTDperAtt', 'RecTDperAttStDev', 'RushYdsperAtt', 'RushYdsperAttStDev', 'RushTDperAtt', 'RushTDperAttStDev']]
+    Useful = totalstats[existing_columns].copy()
+
+    calculated_columns = ['G', 'PassAttStDev', 'PassAtt%', 'PassAtt%StDev', 'RecStDev', 'Rec%', 'Rec%StDev', 'RushStDev', 'Rush%', 'Rush%StDev', 'PassYdsperAtt', 'PassYdsperAttStDev', 'PassTDperAtt', 'PassTDperAttStDev', 'IntperAtt', 'IntperAttStDev', 'RecYdsperAtt', 'RecYdsperAttStDev', 'RecTDperAtt', 'RecTDperAttStDev', 'RushYdsperAtt', 'RushYdsperAttStDev', 'RushTDperAtt', 'RushTDperAttStDev']
+    for col in calculated_columns:
+        if col not in Useful.columns:
+            Useful[col] = 0.0
+    stat_fields = ['PassAtt', 'PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    player_stats = defaultdict(lambda: defaultdict(list))
+    player_games_played = defaultdict(int)
+    for df in dflist:
+        if 'Player' not in df.columns:
+            continue
+        players_in_game = set()
+        for row in df.itertuples(index=False):
+            player = getattr(row, 'Player')
+            players_in_game.add(player)
+            stats = {}
+            for stat in stat_fields:
+                if hasattr(row, stat):
+                    value = getattr(row, stat)
+                    stats[stat] = value if pd.notnull(value) else 0
+                else:
+                    stats[stat] = 0
+            for stat in ['PassAtt', 'Rec', 'RushAtt']:
+                player_stats[player][stat].append(stats[stat])
+            if stats['PassAtt'] != 0:
+                player_stats[player]['PassYdsperAtt'].append(stats['PassYds'] / stats['PassAtt'])
+                player_stats[player]['PassTDperAtt'].append(stats['PassTD'] / stats['PassAtt'])
+                player_stats[player]['IntperAtt'].append(stats['Int'] / stats['PassAtt'])
+            else:
+                player_stats[player]['PassYdsperAtt'].append(0)
+                player_stats[player]['PassTDperAtt'].append(0)
+                player_stats[player]['IntperAtt'].append(0)
+            if stats['Rec'] != 0:
+                player_stats[player]['RecYdsperAtt'].append(stats['RecYds'] / stats['Rec'])
+                player_stats[player]['RecTDperAtt'].append(stats['RecTD'] / stats['Rec'])
+            else:
+                player_stats[player]['RecYdsperAtt'].append(0)
+                player_stats[player]['RecTDperAtt'].append(0)
+            if stats['RushAtt'] != 0:
+                player_stats[player]['RushYdsperAtt'].append(stats['RushYds'] / stats['RushAtt'])
+                player_stats[player]['RushTDperAtt'].append(stats['RushTD'] / stats['RushAtt'])
+            else:
+                player_stats[player]['RushYdsperAtt'].append(0)
+                player_stats[player]['RushTDperAtt'].append(0)
+        for player in players_in_game:
+            player_games_played[player] += 1
+    individualtotals = individualtotals.set_index('Player')
+    def get_stdev(values):
+        if len(values) >= 2:
+            return np.std(values, ddof=1)
+        return 0
+    rate_columns = ['PassYdsperAtt', 'PassTDperAtt', 'IntperAtt', 'RecYdsperAtt', 'RecTDperAtt', 'RushYdsperAtt', 'RushTDperAtt']
+    for i, row in Useful.iterrows():
+        player = row['Player']
+        team = row['Team']
+        Useful.at[i, 'G'] = player_games_played.get(player, 0)
+        Useful.at[i, 'PassAttStDev'] = get_stdev(player_stats[player]['PassAtt'])
+        Useful.at[i, 'RecStDev'] = get_stdev(player_stats[player]['Rec'])
+        Useful.at[i, 'RushStDev'] = get_stdev(player_stats[player]['RushAtt'])
+        team_pass_att = individualtotals.at[player, 'TeamTotalPassAtt'] if player in individualtotals.index and 'TeamTotalPassAtt' in individualtotals.columns else 0
+        team_rec = individualtotals.at[player, 'TeamTotalRec'] if player in individualtotals.index and 'TeamTotalRec' in individualtotals.columns else 0
+        team_rush_att = individualtotals.at[player, 'TeamTotalRushAtt'] if player in individualtotals.index and 'TeamTotalRushAtt' in individualtotals.columns else 0
+        Useful.at[i, 'PassAtt%'] = row['PassAtt'] / team_pass_att if team_pass_att != 0 else 0
+        Useful.at[i, 'Rec%'] = row['Rec'] / team_rec if team_rec != 0 else 0
+        Useful.at[i, 'Rush%'] = row['RushAtt'] / team_rush_att if team_rush_att != 0 else 0
+        Useful.at[i, 'PassAtt%StDev'] = get_stdev([x / team_pass_att if team_pass_att != 0 else 0 for x in player_stats[player]['PassAtt']])
+        Useful.at[i, 'Rec%StDev'] = get_stdev([x / team_rec if team_rec != 0 else 0 for x in player_stats[player]['Rec']])
+        Useful.at[i, 'Rush%StDev'] = get_stdev([x / team_rush_att if team_rush_att != 0 else 0 for x in player_stats[player]['RushAtt']])
+        for rate in rate_columns:
+            values = player_stats[player][rate]
+            Useful.at[i, rate] = np.mean(values) if len(values) > 0 else 0
+            Useful.at[i, f'{rate}StDev'] = get_stdev(values)
+    Useful = Useful[useful_columns]
+    return Useful
+
+
+def preseason_adjustments1(Useful):
+    qb_role_changes = ['Shedeur Sanders', 'Kirk Cousins']
+    depth_limits = {'QB': 2, 'RB': 3, 'TE': 3, 'WR': 5}
+    rate_columns = ['PassYdsperAtt', 'PassTDperAtt', 'IntperAtt', 'RecYdsperAtt', 'RecTDperAtt', 'RushYdsperAtt', 'RushTDperAtt']
+    stdev_map = {'PassYdsperAtt': 'PassYdsperAttStDev', 'PassTDperAtt': 'PassTDperAttStDev', 'IntperAtt': 'IntperAttStDev', 'RecYdsperAtt': 'RecYdsperAttStDev', 'RecTDperAtt': 'RecTDperAttStDev', 'RushYdsperAtt': 'RushYdsperAttStDev', 'RushTDperAtt': 'RushTDperAttStDev'}
+    opportunity_map = {'QB': ['PassAtt/G'], 'RB': ['RushAtt/G', 'Rec/G'], 'WR': ['Rec/G', 'RushAtt/G'], 'TE': ['Rec/G', 'RushAtt/G']}
+    position_targets = {'QB': {'PassAtt/G': 550 / 17}, 'RB': {'RushAtt/G': 455 / 17, 'Rec/G': 73 / 17}, 'WR': {'Rec/G': 188 / 17}, 'TE': {'Rec/G': 90 / 17}}
+    Useful = Useful.copy().fillna(0)
+    Useful['G'] = pd.to_numeric(Useful['G'], errors='coerce').fillna(0)
+    Useful['PassAtt'] = pd.to_numeric(Useful['PassAtt'], errors='coerce').fillna(0).astype(float)
+    Useful['RushAtt'] = pd.to_numeric(Useful['RushAtt'], errors='coerce').fillna(0).astype(float)
+    Useful['Rec'] = pd.to_numeric(Useful['Rec'], errors='coerce').fillna(0).astype(float)
+    Useful['PassAtt/G'] = np.where(Useful['G'] > 0, Useful['PassAtt'] / Useful['G'], 0.0)
+    Useful['RushAtt/G'] = np.where(Useful['G'] > 0, Useful['RushAtt'] / Useful['G'], 0.0)
+    Useful['Rec/G'] = np.where(Useful['G'] > 0, Useful['Rec'] / Useful['G'], 0.0)
+    for col in rate_columns:
+        if col not in Useful.columns:
+            Useful[col] = 0.0
+        Useful[col] = pd.to_numeric(Useful[col], errors='coerce').fillna(0).astype(float)
+        if stdev_map[col] not in Useful.columns:
+            Useful[stdev_map[col]] = 0.0
+        Useful[stdev_map[col]] = pd.to_numeric(Useful[stdev_map[col]], errors='coerce').fillna(0).astype(float)
+    for team, team_df in Useful.groupby('Team'):
+        for pos, max_depth in depth_limits.items():
+            pos_df = team_df[team_df['Pos.'] == pos].copy()
+            if len(pos_df) == 0:
+                continue
+            depth_numeric = pd.to_numeric(pos_df['Depth'], errors='coerce')
+            eligible = pos_df[depth_numeric <= max_depth].copy()
+            removed = pos_df[depth_numeric > max_depth].copy()
+            if len(eligible) == 0:
+                continue
+            historical = eligible[eligible['G'] > 0].copy()
+            rookies = eligible[eligible['G'] == 0].copy()
+            for rate in rate_columns:
+                if len(rookies) == 0:
+                    continue
+                if rate.startswith('Pass'):
+                    weight_col = 'PassAtt'
+                elif rate.startswith('Rec'):
+                    weight_col = 'Rec'
+                else:
+                    weight_col = 'RushAtt'
+                valid = historical[pd.to_numeric(historical[weight_col], errors='coerce').fillna(0) > 0]
+                if len(valid) > 0:
+                    values = pd.to_numeric(valid[rate], errors='coerce').fillna(0).to_numpy()
+                    weights = pd.to_numeric(valid[weight_col], errors='coerce').fillna(0).to_numpy()
+                    weighted_rate = np.average(values, weights=weights)
+                    weighted_variance = np.average((values - weighted_rate) ** 2, weights=weights)
+                    weighted_stdev = np.sqrt(weighted_variance)
+                else:
+                    weighted_rate = 0.0
+                    weighted_stdev = 0.0
+                Useful.loc[rookies.index, rate] = weighted_rate
+                Useful.loc[rookies.index, stdev_map[rate]] = weighted_stdev
+            for opportunity in opportunity_map[pos]:
+                if len(removed) > 0:
+                    for idx in removed.index:
+                        removed_value = pd.to_numeric(Useful.at[idx, opportunity], errors='coerce')
+                        if pd.isna(removed_value):
+                            removed_value = 0.0
+                        redistribute = True
+                        if pos == 'QB' and opportunity == 'PassAtt/G' and removed_value > 5:
+                            redistribute = False
+                        if redistribute and removed_value > 0:
+                            share = removed_value / len(eligible)
+                            Useful.loc[eligible.index, opportunity] = pd.to_numeric(Useful.loc[eligible.index, opportunity], errors='coerce').fillna(0) + share
+                        Useful.at[idx, opportunity] = 0.0
+            if pos == 'QB':
+                qb1_candidates = eligible[pd.to_numeric(eligible['Depth'], errors='coerce') == 1]
+                if len(qb1_candidates) > 0:
+                    qb1_idx = qb1_candidates.index[0]
+                    qb1_pass_att_g = pd.to_numeric(Useful.at[qb1_idx, 'PassAtt/G'], errors='coerce')
+                    if pd.isna(qb1_pass_att_g):
+                        qb1_pass_att_g = 0.0
+                    if qb1_pass_att_g < 15:
+                        qb_target = position_targets['QB']['PassAtt/G']
+                        qb1_adjustment = 0.80 * max(qb_target - qb1_pass_att_g, 0)
+                        Useful.at[qb1_idx, 'PassAtt/G'] = qb1_pass_att_g + qb1_adjustment
+            if len(rookies) > 0:
+                for opportunity, target in position_targets[pos].items():
+                    if pos == 'QB' and opportunity == 'PassAtt/G':
+                        qb_pool = team_df[team_df['Pos.'] == 'QB'].copy()
+                        qb_pool['DepthNumeric'] = pd.to_numeric(qb_pool['Depth'], errors='coerce')
+                        qb_pool['PassAtt/G'] = pd.to_numeric(qb_pool['PassAtt/G'], errors='coerce').fillna(0)
+                        historical_opportunity_total = 0.0
+                        for idx in qb_pool.index:
+                            depth = qb_pool.at[idx, 'DepthNumeric']
+                            attempts_per_game = qb_pool.at[idx, 'PassAtt/G']
+                            games = pd.to_numeric(qb_pool.at[idx, 'G'], errors='coerce')
+                            if pd.isna(games):
+                                games = 0
+                            if games <= 0:
+                                continue
+                            if depth > 2 and attempts_per_game > 5:
+                                continue
+                            contribution = attempts_per_game
+                            player_name = qb_pool.at[idx, 'Player']
+                            if player_name in qb_role_changes:
+                                contribution *= 3 / 17
+                            historical_opportunity_total += contribution
+                    else:
+                        historical_opportunity_total = pd.to_numeric(historical[opportunity], errors='coerce').fillna(0).sum()
+                    rookie_remainder = max(target - historical_opportunity_total, 0)
+                    if len(rookies) == 1:
+                        Useful.loc[rookies.index, opportunity] = rookie_remainder
+                    else:
+                        rookie_depths = pd.to_numeric(rookies['Depth'], errors='coerce').fillna(max_depth).clip(lower=1)
+                        weights = 1 / rookie_depths
+                        weights = weights / weights.sum()
+                        Useful.loc[rookies.index, opportunity] = rookie_remainder * weights
+            statistical_columns = [col for col in Useful.columns if col not in ['Team', 'Player', 'Pos.', 'Age', 'Depth']]
+            if len(removed) > 0:
+                Useful.loc[removed.index, statistical_columns] = 0.0
+    Useful['PassYds'] = pd.to_numeric(Useful['PassAtt/G'], errors='coerce').fillna(0) * pd.to_numeric(Useful['PassYdsperAtt'], errors='coerce').fillna(0)
+    Useful['PassTD'] = pd.to_numeric(Useful['PassAtt/G'], errors='coerce').fillna(0) * pd.to_numeric(Useful['PassTDperAtt'], errors='coerce').fillna(0)
+    Useful['Int'] = pd.to_numeric(Useful['PassAtt/G'], errors='coerce').fillna(0) * pd.to_numeric(Useful['IntperAtt'], errors='coerce').fillna(0)
+    Useful['RecYds'] = pd.to_numeric(Useful['Rec/G'], errors='coerce').fillna(0) * pd.to_numeric(Useful['RecYdsperAtt'], errors='coerce').fillna(0)
+    Useful['RecTD'] = pd.to_numeric(Useful['Rec/G'], errors='coerce').fillna(0) * pd.to_numeric(Useful['RecTDperAtt'], errors='coerce').fillna(0)
+    Useful['RushYds'] = pd.to_numeric(Useful['RushAtt/G'], errors='coerce').fillna(0) * pd.to_numeric(Useful['RushYdsperAtt'], errors='coerce').fillna(0)
+    Useful['RushTD'] = pd.to_numeric(Useful['RushAtt/G'], errors='coerce').fillna(0) * pd.to_numeric(Useful['RushTDperAtt'], errors='coerce').fillna(0)
+    Useful = Useful.fillna(0)
+    return Useful
+
+
+def preseason_adjustments_qbs(Useful):
+    qb_role_changes = ['Shedeur Sanders', 'Kirk Cousins']
+    depth_limit = 2
+    rate_columns = ['PassYdsperAtt', 'PassTDperAtt', 'IntperAtt', 'RecYdsperAtt', 'RecTDperAtt', 'RushYdsperAtt', 'RushTDperAtt']
+    stdev_map = {'PassYdsperAtt': 'PassYdsperAttStDev', 'PassTDperAtt': 'PassTDperAttStDev', 'IntperAtt': 'IntperAttStDev', 'RecYdsperAtt': 'RecYdsperAttStDev', 'RecTDperAtt': 'RecTDperAttStDev', 'RushYdsperAtt': 'RushYdsperAttStDev', 'RushTDperAtt': 'RushTDperAttStDev'}
+    position_target = 550 / 17
+    Useful = Useful.copy().fillna(0)
+    Useful['G'] = pd.to_numeric(Useful['G'], errors='coerce').fillna(0)
+    Useful['PassAtt'] = pd.to_numeric(Useful['PassAtt'], errors='coerce').fillna(0).astype(float)
+    if 'IsRookie' not in Useful.columns: Useful['IsRookie'] = Useful['G'] == 0
+    historical_mask = Useful['G'] > 0
+    if 'PassAtt/G' not in Useful.columns: Useful['PassAtt/G'] = 0.0
+    Useful.loc[historical_mask, 'PassAtt/G'] = Useful.loc[historical_mask, 'PassAtt'] / Useful.loc[historical_mask, 'G']
+    for col in rate_columns:
+        if col not in Useful.columns: Useful[col] = 0.0
+        Useful[col] = pd.to_numeric(Useful[col], errors='coerce').fillna(0).astype(float)
+        if stdev_map[col] not in Useful.columns: Useful[stdev_map[col]] = 0.0
+        Useful[stdev_map[col]] = pd.to_numeric(Useful[stdev_map[col]], errors='coerce').fillna(0).astype(float)
+    for team, team_df in Useful.groupby('Team'):
+        pos_df = team_df[team_df['Pos.'] == 'QB'].copy()
+        if len(pos_df) == 0: continue
+        depth_numeric = pd.to_numeric(pos_df['Depth'], errors='coerce')
+        eligible = pos_df[depth_numeric <= depth_limit].copy()
+        removed = pos_df[depth_numeric > depth_limit].copy()
+        if len(eligible) == 0: continue
+        historical = eligible[~eligible['IsRookie']].copy()
+        rookies = eligible[eligible['IsRookie']].copy()
+        for rate in rate_columns:
+            if len(rookies) == 0: continue
+            valid = historical[pd.to_numeric(historical['PassAtt'], errors='coerce').fillna(0) > 0]
+            if len(valid) > 0:
+                values = pd.to_numeric(valid[rate], errors='coerce').fillna(0).to_numpy()
+                weights = pd.to_numeric(valid['PassAtt'], errors='coerce').fillna(0).to_numpy()
+                weighted_rate = np.average(values, weights=weights)
+                weighted_variance = np.average((values - weighted_rate) ** 2, weights=weights)
+                weighted_stdev = np.sqrt(weighted_variance)
+            else:
+                weighted_rate = 0.0
+                weighted_stdev = 0.0
+            Useful.loc[rookies.index, rate] = weighted_rate
+            Useful.loc[rookies.index, stdev_map[rate]] = weighted_stdev
+        for idx in removed.index:
+            removed_value = pd.to_numeric(Useful.at[idx, 'PassAtt/G'], errors='coerce')
+            if pd.isna(removed_value): removed_value = 0.0
+            if removed_value <= 5 and removed_value > 0:
+                share = removed_value / len(eligible)
+                Useful.loc[eligible.index, 'PassAtt/G'] = pd.to_numeric(Useful.loc[eligible.index, 'PassAtt/G'], errors='coerce').fillna(0) + share
+            Useful.at[idx, 'PassAtt/G'] = 0.0
+        qb1_candidates = eligible[pd.to_numeric(eligible['Depth'], errors='coerce') == 1]
+        if len(qb1_candidates) > 0:
+            qb1_idx = qb1_candidates.index[0]
+            qb1_pass_att_g = pd.to_numeric(Useful.at[qb1_idx, 'PassAtt/G'], errors='coerce')
+            if pd.isna(qb1_pass_att_g): qb1_pass_att_g = 0.0
+            if qb1_pass_att_g < 15:
+                qb1_adjustment = 0.80 * max(position_target - qb1_pass_att_g, 0)
+                Useful.at[qb1_idx, 'PassAtt/G'] = qb1_pass_att_g + qb1_adjustment
+        if len(rookies) > 0:
+            qb_pool = Useful[(Useful['Team'] == team) & (Useful['Pos.'] == 'QB')].copy()
+            qb_pool['DepthNumeric'] = pd.to_numeric(qb_pool['Depth'], errors='coerce')
+            qb_pool['PassAtt/G'] = pd.to_numeric(qb_pool['PassAtt/G'], errors='coerce').fillna(0)
+            qb_pool['G'] = pd.to_numeric(qb_pool['G'], errors='coerce').fillna(0)
+            historical_opportunity_total = 0.0
+            for idx in qb_pool.index:
+                depth = qb_pool.at[idx, 'DepthNumeric']
+                attempts_per_game = qb_pool.at[idx, 'PassAtt/G']
+                games = qb_pool.at[idx, 'G']
+                if games <= 0: continue
+                if depth > 2 and attempts_per_game > 5: continue
+                contribution = attempts_per_game
+                if qb_pool.at[idx, 'Player'] in qb_role_changes: contribution *= 3 / 17
+                historical_opportunity_total += contribution
+            rookie_remainder = max(position_target - historical_opportunity_total, 0)
+            if len(rookies) == 1:
+                Useful.loc[rookies.index, 'PassAtt/G'] = rookie_remainder
+            else:
+                rookie_depths = pd.to_numeric(rookies['Depth'], errors='coerce').fillna(depth_limit).clip(lower=1)
+                weights = 1 / rookie_depths
+                weights = weights / weights.sum()
+                Useful.loc[rookies.index, 'PassAtt/G'] = rookie_remainder * weights
+        statistical_columns = [col for col in Useful.columns if col not in ['Team', 'Player', 'Pos.', 'Age', 'Depth', 'IsRookie']]
+        if len(removed) > 0: Useful.loc[removed.index, statistical_columns] = 0.0
+    return Useful.fillna(0)
+
+
+def preseason_adjustments_rbs(Useful):
+    depth_limit = 3
+    rate_columns = ['PassYdsperAtt', 'PassTDperAtt', 'IntperAtt', 'RecYdsperAtt', 'RecTDperAtt', 'RushYdsperAtt', 'RushTDperAtt']
+    stdev_map = {'PassYdsperAtt': 'PassYdsperAttStDev', 'PassTDperAtt': 'PassTDperAttStDev', 'IntperAtt': 'IntperAttStDev', 'RecYdsperAtt': 'RecYdsperAttStDev', 'RecTDperAtt': 'RecTDperAttStDev', 'RushYdsperAtt': 'RushYdsperAttStDev', 'RushTDperAtt': 'RushTDperAttStDev'}
+    position_targets = {'RushAtt/G': 455 / 17, 'Rec/G': 73 / 17}
+    Useful = Useful.copy().fillna(0)
+    Useful['G'] = pd.to_numeric(Useful['G'], errors='coerce').fillna(0)
+    Useful['PassAtt'] = pd.to_numeric(Useful['PassAtt'], errors='coerce').fillna(0).astype(float)
+    Useful['RushAtt'] = pd.to_numeric(Useful['RushAtt'], errors='coerce').fillna(0).astype(float)
+    Useful['Rec'] = pd.to_numeric(Useful['Rec'], errors='coerce').fillna(0).astype(float)
+    if 'IsRookie' not in Useful.columns: Useful['IsRookie'] = Useful['G'] == 0
+    historical_mask = Useful['G'] > 0
+    if 'PassAtt/G' not in Useful.columns: Useful['PassAtt/G'] = 0.0
+    if 'RushAtt/G' not in Useful.columns: Useful['RushAtt/G'] = 0.0
+    if 'Rec/G' not in Useful.columns: Useful['Rec/G'] = 0.0
+    Useful.loc[historical_mask, 'PassAtt/G'] = Useful.loc[historical_mask, 'PassAtt'] / Useful.loc[historical_mask, 'G']
+    Useful.loc[historical_mask, 'RushAtt/G'] = Useful.loc[historical_mask, 'RushAtt'] / Useful.loc[historical_mask, 'G']
+    Useful.loc[historical_mask, 'Rec/G'] = Useful.loc[historical_mask, 'Rec'] / Useful.loc[historical_mask, 'G']
+    for col in rate_columns:
+        if col not in Useful.columns: Useful[col] = 0.0
+        Useful[col] = pd.to_numeric(Useful[col], errors='coerce').fillna(0).astype(float)
+        if stdev_map[col] not in Useful.columns: Useful[stdev_map[col]] = 0.0
+        Useful[stdev_map[col]] = pd.to_numeric(Useful[stdev_map[col]], errors='coerce').fillna(0).astype(float)
+    for team, team_df in Useful.groupby('Team'):
+        pos_df = team_df[team_df['Pos.'] == 'RB'].copy()
+        if len(pos_df) == 0: continue
+        depth_numeric = pd.to_numeric(pos_df['Depth'], errors='coerce')
+        eligible = pos_df[depth_numeric <= depth_limit].copy()
+        removed = pos_df[depth_numeric > depth_limit].copy()
+        if len(eligible) == 0: continue
+        historical = eligible[~eligible['IsRookie']].copy()
+        rookies = eligible[eligible['IsRookie']].copy()
+        for rate in rate_columns:
+            if len(rookies) == 0: continue
+            if rate.startswith('Pass'): weight_col = 'PassAtt'
+            elif rate.startswith('Rec'): weight_col = 'Rec'
+            else: weight_col = 'RushAtt'
+            valid = historical[pd.to_numeric(historical[weight_col], errors='coerce').fillna(0) > 0]
+            if len(valid) > 0:
+                values = pd.to_numeric(valid[rate], errors='coerce').fillna(0).to_numpy()
+                weights = pd.to_numeric(valid[weight_col], errors='coerce').fillna(0).to_numpy()
+                weighted_rate = np.average(values, weights=weights)
+                weighted_variance = np.average((values - weighted_rate) ** 2, weights=weights)
+                weighted_stdev = np.sqrt(weighted_variance)
+            else:
+                weighted_rate = 0.0
+                weighted_stdev = 0.0
+            Useful.loc[rookies.index, rate] = weighted_rate
+            Useful.loc[rookies.index, stdev_map[rate]] = weighted_stdev
+        for opportunity in ['RushAtt/G', 'Rec/G']:
+            for idx in removed.index:
+                removed_value = pd.to_numeric(Useful.at[idx, opportunity], errors='coerce')
+                if pd.isna(removed_value): removed_value = 0.0
+                if removed_value > 0:
+                    share = removed_value / len(eligible)
+                    Useful.loc[eligible.index, opportunity] = pd.to_numeric(Useful.loc[eligible.index, opportunity], errors='coerce').fillna(0) + share
+                Useful.at[idx, opportunity] = 0.0
+        if len(rookies) > 0:
+            for opportunity, target in position_targets.items():
+                historical_opportunity_total = pd.to_numeric(historical[opportunity], errors='coerce').fillna(0).sum()
+                rookie_remainder = max(target - historical_opportunity_total, 0)
+                if len(rookies) == 1:
+                    Useful.loc[rookies.index, opportunity] = rookie_remainder
+                else:
+                    rookie_depths = pd.to_numeric(rookies['Depth'], errors='coerce').fillna(depth_limit).clip(lower=1)
+                    weights = 1 / rookie_depths
+                    weights = weights / weights.sum()
+                    Useful.loc[rookies.index, opportunity] = rookie_remainder * weights
+        statistical_columns = [col for col in Useful.columns if col not in ['Team', 'Player', 'Pos.', 'Age', 'Depth', 'IsRookie']]
+        if len(removed) > 0: Useful.loc[removed.index, statistical_columns] = 0.0
+    return Useful.fillna(0)
+
+
+def preseason_adjustments_wr_te(Useful):
+    depth_limits = {'WR': 5, 'TE': 3}
+    rate_columns = ['PassYdsperAtt', 'PassTDperAtt', 'IntperAtt', 'RecYdsperAtt', 'RecTDperAtt', 'RushYdsperAtt', 'RushTDperAtt']
+    stdev_map = {'PassYdsperAtt': 'PassYdsperAttStDev', 'PassTDperAtt': 'PassTDperAttStDev', 'IntperAtt': 'IntperAttStDev', 'RecYdsperAtt': 'RecYdsperAttStDev', 'RecTDperAtt': 'RecTDperAttStDev', 'RushYdsperAtt': 'RushYdsperAttStDev', 'RushTDperAtt': 'RushTDperAttStDev'}
+    opportunity_map = {'WR': ['Rec/G', 'RushAtt/G'], 'TE': ['Rec/G', 'RushAtt/G']}
+    position_targets = {'WR': {'Rec/G': 188 / 17}, 'TE': {'Rec/G': 90 / 17}}
+    Useful = Useful.copy().fillna(0)
+    Useful['G'] = pd.to_numeric(Useful['G'], errors='coerce').fillna(0)
+    Useful['PassAtt'] = pd.to_numeric(Useful['PassAtt'], errors='coerce').fillna(0).astype(float)
+    Useful['RushAtt'] = pd.to_numeric(Useful['RushAtt'], errors='coerce').fillna(0).astype(float)
+    Useful['Rec'] = pd.to_numeric(Useful['Rec'], errors='coerce').fillna(0).astype(float)
+    if 'IsRookie' not in Useful.columns: Useful['IsRookie'] = Useful['G'] == 0
+    historical_mask = Useful['G'] > 0
+    if 'PassAtt/G' not in Useful.columns: Useful['PassAtt/G'] = 0.0
+    if 'RushAtt/G' not in Useful.columns: Useful['RushAtt/G'] = 0.0
+    if 'Rec/G' not in Useful.columns: Useful['Rec/G'] = 0.0
+    Useful.loc[historical_mask, 'PassAtt/G'] = Useful.loc[historical_mask, 'PassAtt'] / Useful.loc[historical_mask, 'G']
+    Useful.loc[historical_mask, 'RushAtt/G'] = Useful.loc[historical_mask, 'RushAtt'] / Useful.loc[historical_mask, 'G']
+    Useful.loc[historical_mask, 'Rec/G'] = Useful.loc[historical_mask, 'Rec'] / Useful.loc[historical_mask, 'G']
+    for col in rate_columns:
+        if col not in Useful.columns: Useful[col] = 0.0
+        Useful[col] = pd.to_numeric(Useful[col], errors='coerce').fillna(0).astype(float)
+        if stdev_map[col] not in Useful.columns: Useful[stdev_map[col]] = 0.0
+        Useful[stdev_map[col]] = pd.to_numeric(Useful[stdev_map[col]], errors='coerce').fillna(0).astype(float)
+    for team, team_df in Useful.groupby('Team'):
+        for pos, max_depth in depth_limits.items():
+            pos_df = team_df[team_df['Pos.'] == pos].copy()
+            if len(pos_df) == 0: continue
+            depth_numeric = pd.to_numeric(pos_df['Depth'], errors='coerce')
+            eligible = pos_df[depth_numeric <= max_depth].copy()
+            removed = pos_df[depth_numeric > max_depth].copy()
+            if len(eligible) == 0: continue
+            historical = eligible[~eligible['IsRookie']].copy()
+            rookies = eligible[eligible['IsRookie']].copy()
+            for rate in rate_columns:
+                if len(rookies) == 0: continue
+                if rate.startswith('Pass'): weight_col = 'PassAtt'
+                elif rate.startswith('Rec'): weight_col = 'Rec'
+                else: weight_col = 'RushAtt'
+                valid = historical[pd.to_numeric(historical[weight_col], errors='coerce').fillna(0) > 0]
+                if len(valid) > 0:
+                    values = pd.to_numeric(valid[rate], errors='coerce').fillna(0).to_numpy()
+                    weights = pd.to_numeric(valid[weight_col], errors='coerce').fillna(0).to_numpy()
+                    weighted_rate = np.average(values, weights=weights)
+                    weighted_variance = np.average((values - weighted_rate) ** 2, weights=weights)
+                    weighted_stdev = np.sqrt(weighted_variance)
+                else:
+                    weighted_rate = 0.0
+                    weighted_stdev = 0.0
+                Useful.loc[rookies.index, rate] = weighted_rate
+                Useful.loc[rookies.index, stdev_map[rate]] = weighted_stdev
+            for opportunity in opportunity_map[pos]:
+                for idx in removed.index:
+                    removed_value = pd.to_numeric(Useful.at[idx, opportunity], errors='coerce')
+                    if pd.isna(removed_value): removed_value = 0.0
+                    if removed_value > 0:
+                        share = removed_value / len(eligible)
+                        Useful.loc[eligible.index, opportunity] = pd.to_numeric(Useful.loc[eligible.index, opportunity], errors='coerce').fillna(0) + share
+                    Useful.at[idx, opportunity] = 0.0
+            if len(rookies) > 0:
+                for opportunity, target in position_targets[pos].items():
+                    historical_opportunity_total = pd.to_numeric(historical[opportunity], errors='coerce').fillna(0).sum()
+                    rookie_remainder = max(target - historical_opportunity_total, 0)
+                    if len(rookies) == 1:
+                        Useful.loc[rookies.index, opportunity] = rookie_remainder
+                    else:
+                        rookie_depths = pd.to_numeric(rookies['Depth'], errors='coerce').fillna(max_depth).clip(lower=1)
+                        weights = 1 / rookie_depths
+                        weights = weights / weights.sum()
+                        Useful.loc[rookies.index, opportunity] = rookie_remainder * weights
+            statistical_columns = [col for col in Useful.columns if col not in ['Team', 'Player', 'Pos.', 'Age', 'Depth', 'IsRookie']]
+            if len(removed) > 0: Useful.loc[removed.index, statistical_columns] = 0.0
+    return Useful.fillna(0)
+
+
+def calculate_preseason_stats(Useful):
+    Useful = Useful.copy().fillna(0)
+    Useful['PassYds'] = pd.to_numeric(Useful.get('PassAtt/G', 0), errors='coerce').fillna(0) * pd.to_numeric(Useful.get('PassYdsperAtt', 0), errors='coerce').fillna(0)
+    Useful['PassTD'] = pd.to_numeric(Useful.get('PassAtt/G', 0), errors='coerce').fillna(0) * pd.to_numeric(Useful.get('PassTDperAtt', 0), errors='coerce').fillna(0)
+    Useful['Int'] = pd.to_numeric(Useful.get('PassAtt/G', 0), errors='coerce').fillna(0) * pd.to_numeric(Useful.get('IntperAtt', 0), errors='coerce').fillna(0)
+    Useful['RecYds'] = pd.to_numeric(Useful.get('Rec/G', 0), errors='coerce').fillna(0) * pd.to_numeric(Useful.get('RecYdsperAtt', 0), errors='coerce').fillna(0)
+    Useful['RecTD'] = pd.to_numeric(Useful.get('Rec/G', 0), errors='coerce').fillna(0) * pd.to_numeric(Useful.get('RecTDperAtt', 0), errors='coerce').fillna(0)
+    Useful['RushYds'] = pd.to_numeric(Useful.get('RushAtt/G', 0), errors='coerce').fillna(0) * pd.to_numeric(Useful.get('RushYdsperAtt', 0), errors='coerce').fillna(0)
+    Useful['RushTD'] = pd.to_numeric(Useful.get('RushAtt/G', 0), errors='coerce').fillna(0) * pd.to_numeric(Useful.get('RushTDperAtt', 0), errors='coerce').fillna(0)
+    return Useful.fillna(0)
+
+
+
+
+def balance_passing_receiving(PreS):
+    PreS = PreS.copy()
+    numeric_columns = ['PassAtt', 'PassYds', 'PassTD', 'Rec', 'RecYds', 'RecTD']
+    for col in numeric_columns:
+        PreS[col] = pd.to_numeric(PreS[col], errors='coerce').fillna(0.0)
+    for team, team_df in PreS.groupby('Team'):
+        pass_yards_total = team_df['PassYds'].sum()
+        rec_yards_total = team_df['RecYds'].sum()
+        average_yards = (pass_yards_total + rec_yards_total) / 2
+        if pass_yards_total > 0:
+            pass_yards_ratio = average_yards / pass_yards_total
+            pass_att_ratio = 1 + ((pass_yards_ratio - 1) * 0.5)
+            PreS.loc[team_df.index, 'PassYds'] = team_df['PassYds'] * pass_yards_ratio
+            PreS.loc[team_df.index, 'PassAtt'] = team_df['PassAtt'] * pass_att_ratio
+        if rec_yards_total > 0:
+            rec_yards_ratio = average_yards / rec_yards_total
+            PreS.loc[team_df.index, 'RecYds'] = team_df['RecYds'] * rec_yards_ratio
+            PreS.loc[team_df.index, 'Rec'] = team_df['Rec'] * rec_yards_ratio
+        pass_td_total = team_df['PassTD'].sum()
+        rec_td_total = team_df['RecTD'].sum()
+        average_tds = (pass_td_total + rec_td_total) / 2
+        if pass_td_total > 0:
+            pass_td_ratio = average_tds / pass_td_total
+            PreS.loc[team_df.index, 'PassTD'] = team_df['PassTD'] * pass_td_ratio
+        if rec_td_total > 0:
+            rec_td_ratio = average_tds / rec_td_total
+            PreS.loc[team_df.index, 'RecTD'] = team_df['RecTD'] * rec_td_ratio
+    PreS = PreS.round(1)
+    return PreS
+
+
+def PreSdataframe(useful, teamtotals, week, schedule):
+    statcolumns = ['Player', 'Team', 'Pos.', 'Age', 'PPR', 'STD', 'PassAtt', 'PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+    PreS = pd.DataFrame()
+    PreS['Player'] = useful['Player']
+    PreS['Team'] = useful['Team']
+    PreS['Pos.'] = useful['Pos.']
+    PreS['Age'] = useful['Age']
+    for stat in statcolumns[4:]:
+        PreS[stat] = 0.0
+    n_simulations = 10000
+    team_stats = teamtotals.set_index('Team').to_dict('index')
+    for current_week in range(week, 18):
+        predictedrushes = []
+        predictedrushyards = []
+        predictedrushtds = []
+        predictedreceptions = []
+        predictedreceivingyards = []
+        predictedreceivingtds = []
+        predictedpassingattempts = []
+        predictedpassingyards = []
+        predictedpassingtds = []
+        predictedints = []
+        pprs = []
+        stds = []
+        schedule_map = {row[0]: row[current_week] for row in schedule.itertuples(index=False)}
+        for i, row in useful.iterrows():
+            player_team = row['Team']
+            opp = schedule_map.get(player_team, 'BYE')
+            randoms = np.random.uniform(-2, 2, (18, n_simulations))
+            if opp == 'BYE':
+                rushes = np.zeros(n_simulations)
+                rushyards = np.zeros(n_simulations)
+                rushtds = np.zeros(n_simulations)
+                receptions = np.zeros(n_simulations)
+                receivingyards = np.zeros(n_simulations)
+                receivingtds = np.zeros(n_simulations)
+                passingattempts = np.zeros(n_simulations)
+                passingyards = np.zeros(n_simulations)
+                passingtds = np.zeros(n_simulations)
+                ints = np.zeros(n_simulations)
+            else:
+                opponent = team_stats.get(opp, {})
+                rush_attempt_adjustment = opponent.get('RushAttAAV', 0) * row['Rush%']
+                rushes = row['RushAtt/G'] + row['RushStDev'] * randoms[0] * (1 + rush_attempt_adjustment * opponent.get('RushAttAAVStDev', 0) * randoms[1])
+                rushes = np.clip(rushes, 0, None)
+                rush_yards_per_att = row['RushYdsperAtt'] + row['RushYdsperAttStDev'] * randoms[2]
+                rushyards = rushes * np.clip(rush_yards_per_att, 0, None)
+                rush_td_per_att = row['RushTDperAtt'] + row['RushTDperAttStDev'] * randoms[3]
+                rushtds = rushes * np.clip(rush_td_per_att, 0, None)
+                rec_adjustment = opponent.get('RecAAV', 0) * row['Rec%']
+                receptions = row['Rec/G'] + row['RecStDev'] * randoms[4] * (1 + rec_adjustment * opponent.get('RecAAVStDev', 0) * randoms[5])
+                receptions = np.clip(receptions, 0, None)
+                rec_yards_per_att = row['RecYdsperAtt'] + row['RecYdsperAttStDev'] * randoms[6]
+                receivingyards = receptions * np.clip(rec_yards_per_att, 0, None)
+                rec_td_per_att = row['RecTDperAtt'] + row['RecTDperAttStDev'] * randoms[7]
+                receivingtds = receptions * np.clip(rec_td_per_att, 0, None)
+                pass_attempt_adjustment = opponent.get('PassAttAAV', 0)
+                passingattempts = row['PassAtt/G'] + row['PassAttStDev'] * randoms[8] * (1 + pass_attempt_adjustment * opponent.get('PassAttAAVStDev', 0) * randoms[9])
+                passingattempts = np.clip(passingattempts, 0, None)
+                pass_yards_per_att = row['PassYdsperAtt'] + row['PassYdsperAttStDev'] * randoms[10]
+                passingyards = passingattempts * np.clip(pass_yards_per_att, 0, None)
+                pass_td_per_att = row['PassTDperAtt'] + row['PassTDperAttStDev'] * randoms[11]
+                passingtds = passingattempts * np.clip(pass_td_per_att, 0, None)
+                int_per_att = row['IntperAtt'] + row['IntperAttStDev'] * randoms[12]
+                ints = passingattempts * np.clip(int_per_att, 0, None)
+            rushes_mean = int(np.round(np.nanmean(np.nan_to_num(rushes, nan=0))))
+            rushyards_mean = int(np.round(np.nanmean(np.nan_to_num(rushyards, nan=0))))
+            rushtds_mean = np.round(np.nanmean(np.nan_to_num(rushtds, nan=0)), 1)
+            receptions_mean = int(np.round(np.nanmean(np.nan_to_num(receptions, nan=0))))
+            receivingyards_mean = int(np.round(np.nanmean(np.nan_to_num(receivingyards, nan=0))))
+            receivingtds_mean = np.round(np.nanmean(np.nan_to_num(receivingtds, nan=0)), 1)
+            passingattempts_mean = int(np.round(np.nanmean(np.nan_to_num(passingattempts, nan=0))))
+            passingyards_mean = int(np.round(np.nanmean(np.nan_to_num(passingyards, nan=0))))
+            passingtds_mean = np.round(np.nanmean(np.nan_to_num(passingtds, nan=0)), 1)
+            ints_mean = np.round(np.nanmean(np.nan_to_num(ints, nan=0)), 1)
+            predictedrushes.append(rushes_mean)
+            predictedrushyards.append(rushyards_mean)
+            predictedrushtds.append(rushtds_mean)
+            predictedreceptions.append(receptions_mean)
+            predictedreceivingyards.append(receivingyards_mean)
+            predictedreceivingtds.append(receivingtds_mean)
+            predictedpassingattempts.append(passingattempts_mean)
+            predictedpassingyards.append(passingyards_mean)
+            predictedpassingtds.append(passingtds_mean)
+            predictedints.append(ints_mean)
+            ppr = rushyards_mean / 10 + receivingyards_mean / 10 + passingyards_mean / 25 + receptions_mean + (rushtds_mean + receivingtds_mean) * 6 + passingtds_mean * 4
+            std = rushyards_mean / 10 + receivingyards_mean / 10 + passingyards_mean / 25 + (rushtds_mean + receivingtds_mean) * 6 + passingtds_mean * 4
+            pprs.append(ppr)
+            stds.append(std)
+        PreS['RushAtt'] += predictedrushes
+        PreS['RushYds'] += predictedrushyards
+        PreS['RushTD'] += predictedrushtds
+        PreS['Rec'] += predictedreceptions
+        PreS['RecYds'] += predictedreceivingyards
+        PreS['RecTD'] += predictedreceivingtds
+        PreS['PassAtt'] += predictedpassingattempts
+        PreS['PassYds'] += predictedpassingyards
+        PreS['PassTD'] += predictedpassingtds
+        PreS['Int'] += predictedints
+        PreS['PPR'] += pprs
+        PreS['STD'] += stds
+
+    for team, team_df in useful.groupby('Team'):
+        qbs = team_df[team_df['Pos.'] == 'QB'].copy()
+        qbs['DepthNumeric'] = pd.to_numeric(qbs['Depth'], errors='coerce')
+        depth1 = qbs[qbs['DepthNumeric'] == 1]
+        depth2 = qbs[qbs['DepthNumeric'] == 2]
+        if len(depth1) == 0:
+            continue
+        depth1_idx = depth1.index[0]
+        depth1_games = pd.to_numeric(depth1.loc[depth1_idx, 'G'], errors='coerce')
+        depth1_games = 0 if pd.isna(depth1_games) else depth1_games
+        backup_games = min(3, max(0, 17 - depth1_games))
+        qb1_games = 17 - backup_games
+        qb1_ratio = qb1_games / 17
+        backup_ratio = backup_games / 17
+        stat_columns = ['PPR', 'STD', 'PassAtt', 'PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
+        PreS.loc[depth1_idx, stat_columns] *= qb1_ratio
+        for idx in depth2.index:
+            PreS.loc[idx, stat_columns] *= backup_ratio
+
+    PreS.iloc[:, 3:] = PreS.iloc[:, 3:].apply(pd.to_numeric, errors='coerce').round(1)
+    return PreS
 
 
 def preseason_prediction_html(dfs):

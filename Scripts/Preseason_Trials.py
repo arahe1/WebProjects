@@ -38,6 +38,7 @@ useful_totals = (
 )
 
 useful_totals["Team"] = useful_totals["Team"].replace({"WAS": "WSH"})
+    
 
 Useful = Useful.drop(columns=["Team"])
 Useful = Useful.drop(columns=["Pos."])
@@ -45,45 +46,41 @@ Useful = Useful.drop(columns=["Age"])
 
 Useful = depth_chart.merge(Useful, on="Player", how="left")
 Useful = ps.standardize_player_names(Useful)
-#print("Arizona RB total rushes:", Useful.loc[(Useful['Team'] == 'ARI') & (Useful['Pos.'] == 'RB'), 'RushAtt'].sum())
-#print(Useful.loc[(Useful['Team'] == 'ARI') & (Useful['Pos.'] == 'RB'), ['Player', 'RushAtt', 'RushTD']].to_string(index=False))
 
+Useful = ps.apply_depth_limits(Useful)
+Useful = ps.designate_rookies(Useful)
+Useful = ps.assign_rookie_rates(Useful)
+Useful = ps.adjust_rookie_percentages(Useful)
+Useful = ps.adjust_qb_role_changes(Useful)
+#Useful = ps.limit_preseason_tds(Useful, useful_totals)
 
 TeamTotals = ps.teamtotals(DFs, Schedule)
-#Useful =  ps.preseason_adjustments1(Useful)
-Useful = Useful.copy().fillna(0)
-Useful['G'] = pd.to_numeric(Useful['G'], errors='coerce').fillna(0)
-Useful['IsRookie'] = Useful['G'] == 0
-Useful = ps.preseason_adjustments_qbs(Useful)
-Useful = ps.preseason_adjustments_rbs(Useful)
-Useful = ps.preseason_adjustments_wr_te(Useful)
-Useful = ps.calculate_preseason_stats(Useful)
-Useful = Useful.drop(columns=['IsRookie'])
+#Useful =  ps.preseason_adjustments(Useful)
 
-
-print("Arizona RB total rushes:", Useful.loc[(Useful['Team'] == 'ARI') & (Useful['Pos.'] == 'RB'), 'RushAtt'].sum())
-#print(Useful.loc[(Useful['Team'] == 'ARI') & (Useful['Pos.'] == 'RB'), ['Player', 'RushAtt', 'RushTD']].to_string(index=False))
-
-
-
+print(Useful.loc[Useful['Player'] == 'Michael Wilson', 'RecTDperAtt'].iloc[0])
 PreS = ps.PreSdataframe(Useful, TeamTotals, Week, Schedule)
-print("Arizona RB total rushes:", PreS.loc[(PreS['Team'] == 'ARI') & (PreS['Pos.'] == 'RB'), 'RushAtt'].sum())
-#print(PreS.loc[(PreS['Team'] == 'ARI') & (PreS['Pos.'] == 'RB'), ['Player', 'RushAtt', 'RushTD']].to_string(index=False))
+print(PreS.loc[PreS['Player'] == 'Michael Wilson', 'RecTD'].iloc[0])
+
+
+
 
 PreS = PreS.round()
 dupes = PreS.loc[PreS["Player"].duplicated(keep=False), "Player"].unique()
 #print(dupes)
 
 PreS = ps.balance_passing_receiving(PreS)
+print(PreS.loc[PreS['Player'] == 'Michael Wilson', 'RecTD'].iloc[0])
 
 All_DataFrames = ps.rosfinaldataframes(PreS)
 
-
 df = All_DataFrames['Rest Of Season']
+print(df.loc[df['Player'] == 'Michael Wilson', 'RecTD'].iloc[0])
 
 df = ps.standardize_player_names(df) 
 
 df = df.apply(ps.age_adjust_projections, axis=1, curves=curves)
+print(df.loc[df['Player'] == 'Michael Wilson', 'RecTD'].iloc[0])
+
 df = df.round()
 
 df = df.drop(columns=["PPR"])

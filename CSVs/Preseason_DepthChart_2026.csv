@@ -19,8 +19,8 @@ ARI,Baylor Cupp,TE,26.0,1,5
 ARI,Jameson Geers,TE,23.0,0,6
 ARI,Rivaldo Fairweather,TE,24.0,1,7
 ARI,Shawn Bowman,TE,26.0,1,8
-ARI,Michael Wilson,WR,26.0,4,1
-ARI,Marvin Harrison Jr.,WR,24.0,3,2
+ARI,Marvin Harrison Jr.,WR,24.0,3,1
+ARI,Michael Wilson,WR,26.0,4,2
 ARI,Kendrick Bourne,WR,31.0,10,3
 ARI,Jalen Brooks,WR,26.0,4,4
 ARI,Xavier Weaver,WR,25.0,3,5
@@ -204,8 +204,8 @@ CLE,Shedeur Sanders,QB,24.0,2,2
 CLE,Dillon Gabriel,QB,25.0,2,3
 CLE,Taylen Green,QB,23.0,0,3
 CLE,Quinshon Judkins,RB,22.0,2,1
-CLE,Raheim Sanders,RB,24.0,2,2
-CLE,Dylan Sampson,RB,21.0,2,3
+CLE,Dylan Sampson,RB,21.0,2,2
+CLE,Raheim Sanders,RB,24.0,2,3
 CLE,Ahmani Marshall,RB,24.0,1,4
 CLE,Davon Booth,RB,24.0,0,5
 CLE,Harold Fannin,TE,22.0,2,1
@@ -213,10 +213,9 @@ CLE,Jack Stoll,TE,28.0,6,2
 CLE,Joe Royer,TE,24.0,0,3
 CLE,Brenden Bates,TE,26.0,3,4
 CLE,Blake Whiteheart,TE,26.0,4,5
-CLE,Carsen Ryan,TE,22.0,0,6
-CLE,Dae'Quan Wright,TE,22.0,0,7
-CLE,Drew Biber,TE,,0,8
-CLE,Jermaine Terry II,TE,23.0,1,9
+CLE,Carsen Ryan,TE,23.0,0,6
+CLE,Drew Biber,TE,,0,7
+CLE,Jermaine Terry II,TE,23.0,1,8
 CLE,KC Concepcion,WR,21.0,0,1
 CLE,Denzel Boston,WR,22.0,0,2
 CLE,Jerry Jeudy,WR,27.0,7,3
@@ -237,7 +236,7 @@ DAL,Jaydon Blue,RB,22.0,2,2
 DAL,Malik Davis,RB,27.0,3,3
 DAL,Phil Mafah,RB,23.0,2,4
 DAL,Israel Abanikanda,RB,23.0,3,5
-DAL,Jashaun Corbin,RB,25.0,2,6
+DAL,Jashaun Corbin,RB,26.0,2,6
 DAL,Jake Ferguson,TE,27.0,5,1
 DAL,Brevyn Spann-Ford,TE,26.0,3,2
 DAL,Luke Schoonmaker,TE,27.0,4,3
@@ -354,8 +353,9 @@ HOU,David Montgomery,RB,29.0,8,2
 HOU,Jawhar Jordan,RB,27.0,1,3
 HOU,British Brooks,RB,26.0,3,4
 HOU,Owen Wright,RB,27.0,2,5
-HOU,Josh Pitsenberger,RB,22.0,0,6
-HOU,Noah Whittington,RB,24.0,0,7
+HOU,Deuce Vaughn,RB,24.0,4,6
+HOU,Josh Pitsenberger,RB,22.0,0,7
+HOU,Noah Whittington,RB,24.0,0,8
 HOU,Dalton Schultz,TE,30.0,9,1
 HOU,Marlin Klein,TE,23.0,0,2
 HOU,Cade Stover,TE,26.0,3,3
@@ -364,18 +364,19 @@ HOU,Brevin Jordan,TE,26.0,6,5
 HOU,Layne Pryor,TE,23.0,1,6
 HOU,Louis Hansen,TE,24.0,0,7
 HOU,Nico Collins,WR,27.0,6,1
-HOU,Jayden Higgins,WR,23.0,2,2
-HOU,Xavier Hutchinson,WR,26.0,4,3
-HOU,Jaylin Noel,WR,23.0,2,4
-HOU,Justin Watson,WR,30.0,9,5
-HOU,Jared Wayne,WR,25.0,1,6
-HOU,Daniel Sobkowicz,WR,23.0,0,7
-HOU,Jha'Quan Jackson,WR,26.0,2,8
-HOU,Josh Kelly,WR,25.0,1,9
-HOU,Juwann Winfree,WR,29.0,6,10
-HOU,Lewis Bond,WR,23.0,0,11
-HOU,Tank Dell,WR,26.0,4,12
-HOU,Treyvhon Saunders,WR,22.0,0,13
+HOU,Kayshon Boutte,WR,24.0,4,2
+HOU,Jayden Higgins,WR,23.0,2,3
+HOU,Xavier Hutchinson,WR,26.0,4,4
+HOU,Sterling Shepard,WR,33.0,10,5
+HOU,Jaylin Noel,WR,23.0,2,6
+HOU,Zay Jones,WR,31.0,9,7
+HOU,Justin Watson,WR,30.0,9,8
+HOU,Jared Wayne,WR,25.0,1,9
+HOU,Daniel Sobkowicz,WR,23.0,0,10
+HOU,Josh Kelly,WR,25.0,1,11
+HOU,Lewis Bond,WR,23.0,0,12
+HOU,Tank Dell,WR,26.0,4,13
+HOU,Treyvhon Saunders,WR,22.0,0,14
 IND,Daniel Jones,QB,29.0,8,1
 IND,Riley Leonard,QB,23.0,2,2
 IND,Anthony Richardson,QB,24.0,4,3
@@ -392,7 +393,8 @@ IND,Pharaoh Brown,TE,32.0,9,4
 IND,Sean McKeon,TE,28.0,5,5
 IND,Carson Towt,TE,25.0,0,6
 IND,Drew Ogletree,TE,28.0,5,7
-IND,Tyler Moore,TE,,0,8
+IND,JJ Galbreath,TE,25.0,1,8
+IND,Tyler Moore,TE,,0,9
 IND,Alec Pierce,WR,26.0,5,1
 IND,Keenan Allen,WR,34.0,13,2
 IND,Josh Downs,WR,25.0,4,3
@@ -430,7 +432,7 @@ JAX,Austin Trammell,WR,28.0,4,5
 JAX,Tim Jones,WR,28.0,4,6
 JAX,Brady Boyd,WR,24.0,0,7
 JAX,CJ Williams,WR,23.0,0,8
-JAX,Chandler Brayboy,WR,24.0,1,9
+JAX,Chandler Brayboy,WR,25.0,1,9
 JAX,Josh Cameron,WR,23.0,0,10
 JAX,Michael Wortham,WR,24.0,0,11
 JAX,Trebor Pena,WR,24.0,0,12
@@ -487,11 +489,12 @@ LAC,Brenen Thompson,WR,23.0,0,4
 LAC,Derius Davis,WR,25.0,4,5
 LAC,Dalevon Campbell,WR,24.0,2,6
 LAC,Devonte Ross,WR,23.0,0,7
-LAC,JaQuae Jackson,WR,26.0,2,8
-LAC,Liam Clifford,WR,,0,9
-LAC,Luke Grimm,WR,25.0,1,10
-LAC,Sincere Brown,WR,24.0,0,11
-LAC,Tre' Harris,WR,24.0,2,12
+LAC,Gary Jennings,WR,29.0,3,8
+LAC,JaQuae Jackson,WR,26.0,2,9
+LAC,Liam Clifford,WR,,0,10
+LAC,Luke Grimm,WR,25.0,1,11
+LAC,Sincere Brown,WR,24.0,0,12
+LAC,Tre' Harris,WR,24.0,2,13
 LAR,Matthew Stafford,QB,38.0,18,1
 LAR,Ty Simpson,QB,23.0,0,2
 LAR,Matthew Caldwell,QB,23.0,0,3
@@ -518,9 +521,8 @@ LAR,Konata Mumpfield,WR,23.0,2,5
 LAR,Alex Bachman,WR,30.0,3,6
 LAR,Brennan Presley,WR,24.0,1,7
 LAR,CJ Daniels,WR,24.0,0,8
-LAR,Mario Williams,WR,23.0,1,9
-LAR,Tru Edwards,WR,25.0,1,10
-LAR,Tyler Scott,WR,24.0,3,11
+LAR,Tru Edwards,WR,25.0,1,9
+LAR,Tyler Scott,WR,24.0,3,10
 LV,Fernando Mendoza,QB,22.0,0,1
 LV,Kirk Cousins,QB,38.0,15,2
 LV,Aidan O'Connell,QB,27.0,4,3
@@ -567,7 +569,8 @@ MIA,Will Kacmarek,TE,23.0,0,2
 MIA,Seydou Traore,TE,24.0,0,3
 MIA,Ben Sims,TE,26.0,4,4
 MIA,Cole Turner,TE,26.0,3,5
-MIA,Jeremiah Franklin,TE,22.0,0,6
+MIA,Ethan Conner,TE,23.0,0,6
+MIA,Jeremiah Franklin,TE,22.0,0,7
 MIA,Malik Washington,WR,25.0,3,1
 MIA,Caleb Douglas,WR,22.0,0,2
 MIA,Chris Bell,WR,22.0,0,3
@@ -595,6 +598,7 @@ MIN,Ben Yurosek,TE,24.0,2,3
 MIN,Bryson Nesbit,TE,23.0,1,4
 MIN,Gavin Bartholomew,TE,23.0,2,5
 MIN,Marshall Lang,TE,24.0,1,6
+MIN,Matt Lauter,TE,,0,7
 MIN,Justin Jefferson,WR,27.0,7,1
 MIN,Jauan Jennings,WR,29.0,6,2
 MIN,Jordan Addison,WR,24.0,4,3
@@ -625,19 +629,18 @@ NE,Jack Westover,TE,27.0,2,5
 NE,Tanner Arkin,TE,23.0,0,6
 NE,A.J. Brown,WR,29.0,8,1
 NE,Romeo Doubs,WR,26.0,5,2
-NE,Kayshon Boutte,WR,24.0,4,3
-NE,Mack Hollins,WR,32.0,10,4
-NE,Kyle Williams,WR,23.0,2,5
-NE,DeMario Douglas,WR,25.0,4,6
-NE,Tejhaun Palmer,WR,26.0,1,7
-NE,Cameron Dorner,WR,22.0,0,8
-NE,Efton Chism III,WR,24.0,2,9
-NE,Jalen Hurd,WR,30.0,4,10
-NE,Jeremiah Webb,WR,25.0,1,11
-NE,Jimmy Kibble,WR,22.0,0,12
-NE,Kobe Prentice,WR,22.0,0,13
-NE,Kyle Dixon,WR,25.0,0,14
-NE,Nick DeGennaro,WR,25.0,0,15
+NE,Mack Hollins,WR,32.0,10,3
+NE,Kyle Williams,WR,23.0,2,4
+NE,DeMario Douglas,WR,25.0,4,5
+NE,Tejhaun Palmer,WR,26.0,1,6
+NE,Cameron Dorner,WR,22.0,0,7
+NE,Efton Chism III,WR,24.0,2,8
+NE,Jalen Hurd,WR,30.0,4,9
+NE,Jeremiah Webb,WR,25.0,1,10
+NE,Jimmy Kibble,WR,22.0,0,11
+NE,Kobe Prentice,WR,22.0,0,12
+NE,Kyle Dixon,WR,25.0,0,13
+NE,Nick DeGennaro,WR,25.0,0,14
 NO,Tyler Shough,QB,26.0,2,1
 NO,Spencer Rattler,QB,25.0,3,2
 NO,Zach Wilson,QB,27.0,6,3
@@ -664,7 +667,7 @@ NO,Bryce Lance,WR,24.0,0,5
 NO,Mason Tipton,WR,25.0,3,6
 NO,Jalen Moreno-Cropper,WR,25.0,1,7
 NO,Barion Brown,WR,22.0,0,8
-NO,Brock Rechsteiner,WR,23.0,0,9
+NO,Brock Rechsteiner,WR,24.0,0,9
 NO,Bub Means,WR,25.0,3,10
 NO,Kevin Austin Jr.,WR,26.0,3,11
 NO,Trey Palmer,WR,25.0,4,12
@@ -706,7 +709,8 @@ NYJ,Braelon Allen,RB,22.0,3,2
 NYJ,Isaiah Davis,RB,24.0,3,3
 NYJ,Kene Nwangwu,RB,28.0,6,4
 NYJ,Chip Trayanum,RB,24.0,0,5
-NYJ,Sam Scott,RB,23.0,0,6
+NYJ,Dominic Richardson,RB,25.0,0,6
+NYJ,Sam Scott,RB,23.0,0,7
 NYJ,Kenyon Sadiq,TE,21.0,0,1
 NYJ,Mason Taylor,TE,22.0,2,2
 NYJ,Jeremy Ruckert,TE,26.0,5,3
@@ -719,13 +723,12 @@ NYJ,Adonai Mitchell,WR,23.0,3,3
 NYJ,Tim Patrick,WR,32.0,9,4
 NYJ,Isaiah Williams,WR,25.0,3,5
 NYJ,Arian Smith,WR,24.0,2,6
-NYJ,Cam Camper,WR,24.0,1,7
+NYJ,Cam Camper,WR,25.0,1,7
 NYJ,Caullin Lacy,WR,24.0,0,8
-NYJ,DT Sheffield,WR,25.0,0,9
-NYJ,Jamaal Pritchett,WR,23.0,1,10
-NYJ,Junior Bergen,WR,23.0,1,11
-NYJ,Malik McClain,WR,23.0,0,12
-NYJ,Quincy Skinner Jr.,WR,23.0,1,13
+NYJ,Jamaal Pritchett,WR,23.0,1,9
+NYJ,Junior Bergen,WR,23.0,1,10
+NYJ,Malik McClain,WR,23.0,0,11
+NYJ,Quincy Skinner Jr.,WR,23.0,1,12
 PHI,Jalen Hurts,QB,28.0,7,1
 PHI,Andy Dalton,QB,38.0,16,2
 PHI,Tanner McKee,QB,26.0,4,3
@@ -751,10 +754,11 @@ PHI,Elijah Moore,WR,26.0,6,5
 PHI,Samori Toure,WR,28.0,3,6
 PHI,Darius Cooper,WR,24.0,2,7
 PHI,Britain Covey,WR,29.0,5,8
-PHI,Danny Gray,WR,27.0,3,9
-PHI,Erik Ezukanma,WR,26.0,3,10
-PHI,Johnny Wilson,WR,25.0,3,11
-PHI,Quez Watkins,WR,28.0,5,12
+PHI,Brandon Hayes,WR,,0,9
+PHI,Danny Gray,WR,27.0,3,10
+PHI,Erik Ezukanma,WR,26.0,3,11
+PHI,Johnny Wilson,WR,25.0,3,12
+PHI,Quez Watkins,WR,28.0,5,13
 PIT,Aaron Rodgers,QB,42.0,22,1
 PIT,Mason Rudolph,QB,31.0,9,2
 PIT,Drew Allar,QB,22.0,0,3
@@ -765,7 +769,8 @@ PIT,Eli Heidenreich,RB,23.0,0,3
 PIT,Kaleb Johnson,RB,23.0,2,4
 PIT,Travis Homer,RB,28.0,8,5
 PIT,Lew Nichols,RB,25.0,1,6
-PIT,Max Hurleman,RB,24.0,1,7
+PIT,Alex Tecza,RB,,0,7
+PIT,Max Hurleman,RB,24.0,1,8
 PIT,Pat Freiermuth,TE,27.0,6,1
 PIT,Darnell Washington,TE,25.0,4,2
 PIT,Robert Tonyan,TE,32.0,8,3
@@ -808,9 +813,10 @@ SEA,Velus Jones Jr.,WR,29.0,6,6
 SEA,Jake Bobo,WR,28.0,4,7
 SEA,Emmanuel Henderson Jr.,WR,23.0,0,8
 SEA,Irv Charles,WR,29.0,4,9
-SEA,Montorie Foster Jr.,WR,25.0,1,10
-SEA,Rashad Rochelle,WR,22.0,0,11
-SEA,Ricky White III,WR,24.0,1,12
+SEA,Julian Hicks,WR,26.0,1,10
+SEA,Montorie Foster Jr.,WR,25.0,1,11
+SEA,Rashad Rochelle,WR,22.0,0,12
+SEA,Ricky White III,WR,24.0,1,13
 SF,Brock Purdy,QB,26.0,5,1
 SF,Mac Jones,QB,27.0,6,2
 SF,Adrian Martinez,QB,26.0,2,3
@@ -829,9 +835,10 @@ SF,Luke Farrell,TE,28.0,6,3
 SF,Josiah Deguara,TE,29.0,6,4
 SF,Brayden Willis,TE,26.0,4,5
 SF,Hayden Rucci,TE,25.0,1,6
-SF,Tanner McLachlan,TE,27.0,2,7
+SF,Khalil Dinkins,TE,24.0,0,7
+SF,Tanner McLachlan,TE,27.0,2,8
 SF,Deebo Samuel,WR,30.0,8,1
-SF,Mike Evans,WR,32.0,13,2
+SF,Mike Evans,WR,33.0,13,2
 SF,De'Zhaun Stribling,WR,23.0,0,3
 SF,Ricky Pearsall,WR,25.0,3,4
 SF,Christian Kirk,WR,29.0,9,5
@@ -888,7 +895,6 @@ TEN,David Martin-Robinson,TE,26.0,3,3
 TEN,Kylen Granson,TE,28.0,6,4
 TEN,Jaren Kanak,TE,22.0,0,5
 TEN,Joel Wilson,TE,26.0,1,6
-TEN,Matt Lauter,TE,,0,7
 TEN,Wan'Dale Robinson,WR,25.0,5,1
 TEN,Carnell Tate,WR,21.0,0,2
 TEN,Elic Ayomanor,WR,23.0,2,3
@@ -910,14 +916,13 @@ WSH,Jacory Croskey-Merritt,RB,25.0,2,1
 WSH,Rachaad White,RB,27.0,5,2
 WSH,Kaytron Allen,RB,23.0,0,3
 WSH,Jeremy McNichols,RB,30.0,6,4
-WSH,Jerome Ford,RB,26.0,5,5
-WSH,Craig Reynolds,RB,30.0,7,6
-WSH,Robert Henry Jr.,RB,24.0,0,7
+WSH,Craig Reynolds,RB,30.0,7,5
+WSH,Robert Henry Jr.,RB,24.0,0,6
 WSH,Chig Okonkwo,TE,26.0,5,1
 WSH,John Bates,TE,28.0,6,2
 WSH,Ben Sinnott,TE,24.0,3,3
 WSH,Colson Yankoff,TE,26.0,3,4
-WSH,Lawrence Cager,TE,28.0,4,5
+WSH,Lawrence Cager,TE,29.0,4,5
 WSH,Quentin Moore,TE,25.0,0,6
 WSH,Tre' McKitty,TE,27.0,4,7
 WSH,Terry McLaurin,WR,30.0,8,1

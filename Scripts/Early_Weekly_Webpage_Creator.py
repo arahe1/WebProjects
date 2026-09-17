@@ -10,13 +10,19 @@ listicle2 = ps.get_nfl_week_files(2026, folder="CSVs")
 DFs1 = ps.importstats(listicle1)
 DFs2 = ps.importstats(listicle2)
 Schedule = ps.schedulemaker('CSVs/Schedule_2026.csv')
+Schedule_last = ps.schedulemaker('CSVs/Schedule_2026.csv')
 Week = len(DFs2)+1
 Total_Stats = ps.totalstatcombiner(DFs1)
 Total_Stats2 = ps.totalstatcombiner(DFs2)
-
-IndividualTotals = ps.individualtotals(DFs1)
-Useful = ps.usefulstats(DFs1, Week, Schedule, Total_Stats2, IndividualTotals)
+IndividualTotals = ps.individualtotals(DFs2)
+Useful = ps.usefulstats(DFs2, Week, Schedule, Total_Stats2, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs2, Schedule)
+TeamTotals_last = ps.teamtotals(DFs1, Schedule_last)
+# 1. Find all columns that contain 'AAV' in df1
+aav_cols = [col for col in TeamTotals.columns if 'AAV' in col]
+
+# 2. Update df1 in place using the matching columns from df2
+TeamTotals.update(TeamTotals_last[aav_cols])
 SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
 SuperFlex = ps.injuryremovalweekly(SuperFlex)
 All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)

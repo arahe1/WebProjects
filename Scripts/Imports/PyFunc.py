@@ -213,6 +213,8 @@ def schedulemaker(csv):
     Schedule = Schedule.map(lambda x: x.replace('NE', 'NWE') if isinstance(x, str) else x)
     Schedule = Schedule.map(lambda x: x.replace('SF', 'SFO') if isinstance(x, str) else x)
     Schedule = Schedule.map(lambda x: x.replace('TB', 'TAM') if isinstance(x, str) else x)
+    Schedule = Schedule.map(lambda x: x.replace('WAS', 'WSH') if isinstance(x, str) else x)
+
     return Schedule
 
 

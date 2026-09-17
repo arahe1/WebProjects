@@ -2906,7 +2906,7 @@ def weeklySuperFlexdataframe(useful, teamtotals): #Add Int's to this
             # Simulations
             #Left One to see what it used to look like if the new changes bomb
             #rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] + team['RushAttAAV'] * row['Rush%'] * row['RushAttAAVStDev'] * randoms[1]
-            rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] * (1 + team['RushAttAAV'] * row['Rush%'] * team['RushAttAAVStDev'] * randoms[1])
+            rushes = 2*(row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] * (1 + team['RushAttAAV'] * row['Rush%'] * team['RushAttAAVStDev'] * randoms[1])
             rushyards = (row['RushYds'] / row['G']) + row['RushYdsStDev'] * randoms[2] * (1 + team['RushYdsAAV'] * row['RushYds%'] * team['RushYdsAAVStDev'] * randoms[3])
             rushtds = (row['RushTD'] / row['G']) + row['RushTDStDev'] * randoms[4] * (1 + team['RushTDAAV'] * row['RushTD%'] * team['RushTDAAVStDev'] * randoms[5])
 

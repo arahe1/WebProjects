@@ -17,14 +17,7 @@ Total_Stats2 = ps.totalstatcombiner(DFs2)
 IndividualTotals = ps.individualtotals(DFs2)
 Useful = ps.usefulstats(DFs2, Week, Schedule, Total_Stats2, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs2, Schedule)
-print(TeamTotals.tail(5))
 TeamTotals_last = ps.teamtotals(DFs1, Schedule_last)
-# 1. Find all columns that contain 'AAV' in df1
-aav_cols = [col for col in TeamTotals.columns if 'AAV' in col]
-
-# 2. Update df1 in place using the matching columns from df2
-TeamTotals.update(TeamTotals_last[aav_cols])
-print(TeamTotals.tail(5))
 
 SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals_last)
 SuperFlex = ps.injuryremovalweekly(SuperFlex)

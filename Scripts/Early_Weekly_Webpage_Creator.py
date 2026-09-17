@@ -9,24 +9,15 @@ listicle2 = ps.get_nfl_week_files(2026, folder="CSVs")
 
 DFs1 = ps.importstats(listicle1)
 DFs2 = ps.importstats(listicle2)
-
 Schedule = ps.schedulemaker('CSVs/Schedule_2026.csv')
-
 Week = len(DFs2)+1
-
-Total_Stats1 = ps.totalstatcombiner(DFs1)
+Total_Stats = ps.totalstatcombiner(DFs1)
 Total_Stats2 = ps.totalstatcombiner(DFs2)
 
-
-IndividualTotals1 = ps.individualtotals(DFs1)
-IndividualTotals2 = ps.individualtotals(DFs2)
-
-Useful = ps.usefulstats(DFs1, Week, Schedule, Total_Stats1, IndividualTotals1)
-
+IndividualTotals = ps.individualtotals(DFs1)
+Useful = ps.usefulstats(DFs1, Week, Schedule, Total_Stats2, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs2, Schedule)
-print(Useful.head())
 SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
-
 SuperFlex = ps.injuryremovalweekly(SuperFlex)
 All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
 df = All_DataFrames['SuperFlex']

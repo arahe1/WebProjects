@@ -383,6 +383,7 @@ def usefulstats(dflist, week, schedule, totalstats, individualtotals):
                     val = getattr(row, stat)
                     if pd.notnull(val):
                         player_stats[player][stat].append(val)
+    Useful['Team'] = Useful['Team'].replace('WAS', 'WSH')
 
     # Now update Useful efficiently
     for i, row in Useful.iterrows():
@@ -1812,13 +1813,14 @@ def preseasonuseful1(dflist, totalstats, individualtotals):
     return Useful
 
 
-def preseasonuseful(dflist, totalstats, individualtotals):
+def preseasonuseful(dflist, week, schedule, totalstats, individualtotals):
+    
     if not isinstance(dflist, list):
         raise TypeError("Expected a list of dataframes")
     for file in dflist:
         if not isinstance(file, pd.DataFrame):
             raise TypeError(f"List should contain pandas DataFrames. Got {type(file)}: {file}")
-    useful_columns = ['Team', 'Player', 'Pos.', 'Age', 'G', 'PassAtt', 'PassAttStDev', 'PassAttperGame', 'PassAtt%', 'PassAtt%StDev', 'Rec', 'RecStDev', 'RecperGame', 'Rec%', 'Rec%StDev', 'RushAtt', 'RushStDev', 'RushAttperGame', 'Rush%', 'Rush%StDev', 'PassYdsperAtt', 'PassYdsperAttStDev', 'PassTDperAtt', 'PassTDperAttStDev', 'IntperAtt', 'IntperAttStDev', 'RecYdsperAtt', 'RecYdsperAttStDev', 'RecTDperAtt', 'RecTDperAttStDev', 'RushYdsperAtt', 'RushYdsperAttStDev', 'RushTDperAtt', 'RushTDperAttStDev']
+    useful_columns = ['Team', 'Player', 'Opp', 'Pos.', 'Age', 'G', 'PassAtt', 'PassAttStDev', 'PassAttperGame', 'PassAtt%', 'PassAtt%StDev', 'Rec', 'RecStDev', 'RecperGame', 'Rec%', 'Rec%StDev', 'RushAtt', 'RushStDev', 'RushAttperGame', 'Rush%', 'Rush%StDev', 'PassYdsperAtt', 'PassYdsperAttStDev', 'PassTDperAtt', 'PassTDperAttStDev', 'IntperAtt', 'IntperAttStDev', 'RecYdsperAtt', 'RecYdsperAttStDev', 'RecTDperAtt', 'RecTDperAttStDev', 'RushYdsperAtt', 'RushYdsperAttStDev', 'RushTDperAtt', 'RushTDperAttStDev']
     calculated_columns = ['G', 'PassAttStDev', 'PassAttperGame', 'PassAtt%', 'PassAtt%StDev', 'RecStDev', 'RecperGame', 'Rec%', 'Rec%StDev', 'RushStDev', 'RushAttperGame', 'Rush%', 'Rush%StDev', 'PassYdsperAtt', 'PassYdsperAttStDev', 'PassTDperAtt', 'PassTDperAttStDev', 'IntperAtt', 'IntperAttStDev', 'RecYdsperAtt', 'RecYdsperAttStDev', 'RecTDperAtt', 'RecTDperAttStDev', 'RushYdsperAtt', 'RushYdsperAttStDev', 'RushTDperAtt', 'RushTDperAttStDev']
     existing_columns = [col for col in useful_columns if col in totalstats.columns and col not in calculated_columns]
     Useful = totalstats[existing_columns].copy()
@@ -1913,6 +1915,7 @@ def preseasonuseful(dflist, totalstats, individualtotals):
                 Useful.at[i, rate] = totalstats.loc[totalstats['Player'] == player, 'RushYds'].iloc[0] / totalstats.loc[totalstats['Player'] == player, 'RushAtt'].iloc[0] if totalstats.loc[totalstats['Player'] == player, 'RushAtt'].iloc[0] != 0 else 0
             elif rate == 'RushTDperAtt':
                 Useful.at[i, rate] = totalstats.loc[totalstats['Player'] == player, 'RushTD'].iloc[0] / totalstats.loc[totalstats['Player'] == player, 'RushAtt'].iloc[0] if totalstats.loc[totalstats['Player'] == player, 'RushAtt'].iloc[0] != 0 else 0
+
 
     Useful = Useful[useful_columns]
     return Useful
@@ -2076,8 +2079,14 @@ def limit_preseason_tds(df, depth_col='Depth', pos_col='Pos.'):
     return result
 
 
-
-
+def reduce_td_peratt_by_depth(df, depth_col='Depth'):
+    result = df.copy()
+    reductions = {1: 0.90, 2: 0.80, 3: 0.70, 4: 0.50, 5: 0.20}
+    td_columns = ['PassTDperAtt', 'RecTDperAtt', 'RushTDperAtt']
+    for depth, multiplier in reductions.items():
+        mask = result[depth_col].eq(depth)
+        result.loc[mask, td_columns] = result.loc[mask, td_columns] * multiplier
+    return result
 
 
 def preseason_adjustments(Useful):
@@ -2850,6 +2859,7 @@ def weeklySuperFlexdataframe(useful, teamtotals): #Add Int's to this
     SuperFlex['Team'] = useful['Team']
     SuperFlex['Pos.'] = useful['Pos.']
 
+
     players = []
 
     predictedrushes = []
@@ -2886,22 +2896,25 @@ def weeklySuperFlexdataframe(useful, teamtotals): #Add Int's to this
             ints = np.zeros(n_simulations)
             
         else:
+            if opp is None:
+                print("Player:", row['Player'], row['Team'])
+                continue
             team = team_stats[opp]
 
             # Simulations
             #Left One to see what it used to look like if the new changes bomb
             #rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] + team['RushAttAAV'] * row['Rush%'] * row['RushAttAAVStDev'] * randoms[1]
-            rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] * (1 + team['RushAttAAV'] * row['Rush%'] * row['RushAttAAVStDev'] * randoms[1])
-            rushyards = (row['RushYds'] / row['G']) + row['RushYdsStDev'] * randoms[2] * (1 + team['RushYdsAAV'] * row['RushYds%'] * row['RushYdsAAVStDev'] * randoms[3])
-            rushtds = (row['RushTD'] / row['G']) + row['RushTDStDev'] * randoms[4] * (1 + team['RushTDAAV'] * row['RushTD%'] * row['RushTDAAVStDev'] * randoms[5])
+            rushes = (row['RushAtt'] / row['G']) + row['RushStDev'] * randoms[0] * (1 + team['RushAttAAV'] * row['Rush%'] * team['RushAttAAVStDev'] * randoms[1])
+            rushyards = (row['RushYds'] / row['G']) + row['RushYdsStDev'] * randoms[2] * (1 + team['RushYdsAAV'] * row['RushYds%'] * team['RushYdsAAVStDev'] * randoms[3])
+            rushtds = (row['RushTD'] / row['G']) + row['RushTDStDev'] * randoms[4] * (1 + team['RushTDAAV'] * row['RushTD%'] * team['RushTDAAVStDev'] * randoms[5])
 
-            receptions = (row['Tgt'] / row['G']) * row['IndCatch%'] + row['TgtStDev'] * row['IndCatch%']* randoms[6] * (1 + team['RecAAV'] * row['TmCatch%'] * row['RecAAVStDev'] * randoms[7])
-            receivingyards = (row['RecYds'] / row['G']) + row['RecYdsStDev'] * randoms[8] * (1 + team['RecYdsAAV'] * row['RecYds%'] * row['RecYdsAAVStDev'] * randoms[9])
-            receivingtds = (row['RecTD'] / row['G']) + row['RecTDStDev'] * randoms[10] * (1 + team['RecTDAAV'] * row['RecTD%'] * row['RecTDAAVStDev'] * randoms[11])
+            receptions = (row['Tgt'] / row['G']) * row['IndCatch%'] + row['TgtStDev'] * row['IndCatch%']* randoms[6] * (1 + team['RecAAV'] * row['TmCatch%'] * team['RecAAVStDev'] * randoms[7])
+            receivingyards = (row['RecYds'] / row['G']) + row['RecYdsStDev'] * randoms[8] * (1 + team['RecYdsAAV'] * row['RecYds%'] * team['RecYdsAAVStDev'] * randoms[9])
+            receivingtds = (row['RecTD'] / row['G']) + row['RecTDStDev'] * randoms[10] * (1 + team['RecTDAAV'] * row['RecTD%'] * team['RecTDAAVStDev'] * randoms[11])
 
-            passingyards = (row['PassYds'] / row['G']) + row['PassYdsStDev'] * randoms[12] * (1 + team['PassYdsAAV'] * row['PassYds%'] * row['PassYdsAAVStDev'] * randoms[13])
-            passingtds = (row['PassTD'] / row['G']) + row['PassTDStDev'] * randoms[14] * (1 + team['PassTDAAV'] * row['PassTD%'] * row['PassTDAAVStDev'] * randoms[15])
-            ints = (row['Int'] / row['G']) + row['IntStDev'] * randoms[16] * (1 + team['IntAAV'] * row['Int%'] * row['IntAAVStDev'] * randoms[17])
+            passingyards = (row['PassYds'] / row['G']) + row['PassYdsStDev'] * randoms[12] * (1 + team['PassYdsAAV'] * row['PassYds%'] * team['PassYdsAAVStDev'] * randoms[13])
+            passingtds = (row['PassTD'] / row['G']) + row['PassTDStDev'] * randoms[14] * (1 + team['PassTDAAV'] * row['PassTD%'] * team['PassTDAAVStDev'] * randoms[15])
+            ints = (row['Int'] / row['G']) + row['IntStDev'] * randoms[16] * (1 + team['IntAAV'] * row['Int%'] * team['IntAAVStDev'] * randoms[17])
 
         players.append(row['Player'])
 

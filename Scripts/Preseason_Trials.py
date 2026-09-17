@@ -52,6 +52,7 @@ Useful = ps.designate_rookies(Useful)
 Useful = ps.assign_rookie_rates(Useful)
 Useful = ps.adjust_rookie_percentages(Useful)
 Useful = ps.adjust_qb_role_changes(Useful)
+Useful = ps.reduce_td_peratt_by_depth(Useful)
 #Useful = ps.limit_preseason_tds(Useful, useful_totals)
 
 TeamTotals = ps.teamtotals(DFs, Schedule)

@@ -69,8 +69,9 @@ for i, df in enumerate(Dataframes):
 
 
 #Find values for a specific position
-position = "WR"
-rank = [8, 17, 24]
+position = "QB"
+#rank = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+rank = list(range(1, 21))
 
 # Parameters from your 3 curve fits
 a1, k1 = parameters[0][position]
@@ -78,7 +79,7 @@ a2, k2 = parameters[1][position]
 a3, k3 = parameters[2][position]
 
 # x range
-x = np.linspace(0, 20, 500)
+x = np.linspace(0, 100, 500)
 
 # Three fitted curves
 y1 = a1 * np.exp(-k1 * x)
@@ -99,7 +100,10 @@ for ele in rank:
     salariesranges.append([salary1, salary2, salary3])
     salaries.append(salary)
 
-print(salariesranges)
+ranges = [(max(values) - min(values))/2 for values in salariesranges]
+
+#print(salariesranges)
+print(ranges)
 print(salaries)
 
 # Plot

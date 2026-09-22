@@ -20,9 +20,9 @@ from Imports import PyFunc as ps
 #            'CSVs/Week_14_NFL_2025.csv',
 #            'CSVs/Week_15_NFL_2025.csv',
 #            'CSVs/Week_16_NFL_2025.csv']
-listicle = ps.get_nfl_week_files(2025, folder="CSVs")
+listicle = ps.get_nfl_week_files(2026, folder="CSVs")
 DFs = ps.importstats(listicle)
-Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')
+Schedule = ps.schedulemaker('CSVs/Schedule_2026.csv')
 Week = len(DFs)+1
 Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)

@@ -180,7 +180,6 @@ def importstats(csv): #imports CSV's via list and organizes them appropriately
         Dataframes.append(importer)
     for i, df in enumerate(Dataframes):
         df.columns = df.columns.str.replace('"', '', regex=False)
-        df['Rk'] = df['Rk'].str.replace('"', '', regex=False)
         df = df.drop(['Rk', 'Day', 'Date', 'Unnamed: 12', 'Opp', 'Result', 'Att', 'Att.1', 'Tgt', 'G#', 'Week','OffSnp'], axis=1)
         df = df.rename(columns={'1D': 'Rush1D', '1D.1': 'Rec1D', 'OffSnp.1': 'OffSnp', 'Att.2': 'PassAtt','TD': 'PassTD', 'Yds': 'PassYds', 'Y/A': 'PassY/A', 'Yds.1': 'SackYds', 'Succ%': 'PassSucc%', 'Att.3': 'RushAtt','TD.1': 'RushTD', 'Yds.2': 'RushYds', 'Y/A/1': 'RushY/A', 'Succ%.1': 'RushSucc%', 'Tgt.1': 'Tgt', 'Yds.3': 'RecYds', 'TD.2': 'RecTD', 'Succ%.2': 'RecSucc%'})
 
@@ -4089,35 +4088,44 @@ def analysis(useful, individualtotals):
 
 
     #Populate each DF with Player names, Team name, Position
-    for i, row in useful.iterrows():
-        keywords = ['QB']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            QBDom.at[i, 'Player'] = row['Player']
-            QBDom.at[i, 'Team'] = row['Team']
+    Domlist = [(QBDom, ['QB']), (FlexDom, ['WR', 'RB', 'TE']), (WRDom, ['WR']), (RBDom, ['RB']), (TEDom, ['TE'])]
 
-    for i, row in useful.iterrows():
-        keywords = ['WR', 'RB', 'TE']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            FlexDom.at[i, 'Player'] = row['Player']
-            FlexDom.at[i, 'Team'] = row['Team']
+    for Dom, keywords in Domlist:
+        for i, row in useful.iterrows():
+            if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+                Dom.at[i, 'Player'] = row['Player']
+                Dom.at[i, 'Team'] = row['Team']
 
-    for i, row in useful.iterrows():
-        keywords = ['WR']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            WRDom.at[i, 'Player'] = row['Player']
-            WRDom.at[i, 'Team'] = row['Team']
 
-    for i, row in useful.iterrows():
-        keywords = ['RB']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            RBDom.at[i, 'Player'] = row['Player']
-            RBDom.at[i, 'Team'] = row['Team']
+    #for i, row in useful.iterrows():
+    #    keywords = ['QB']
+    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+    #        QBDom.at[i, 'Player'] = row['Player']
+    #        QBDom.at[i, 'Team'] = row['Team']
 
-    for i, row in useful.iterrows():
-        keywords = ['TE']
-        if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-            TEDom.at[i, 'Player'] = row['Player']
-            TEDom.at[i, 'Team'] = row['Team']
+    #for i, row in useful.iterrows():
+    #    keywords = ['WR', 'RB', 'TE']
+    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+    #        FlexDom.at[i, 'Player'] = row['Player']
+    #        FlexDom.at[i, 'Team'] = row['Team']
+
+    #for i, row in useful.iterrows():
+    #    keywords = ['WR']
+    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+    #        WRDom.at[i, 'Player'] = row['Player']
+    #        WRDom.at[i, 'Team'] = row['Team']
+
+    #for i, row in useful.iterrows():
+    #    keywords = ['RB']
+    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+    #        RBDom.at[i, 'Player'] = row['Player']
+    #        RBDom.at[i, 'Team'] = row['Team']
+
+    #for i, row in useful.iterrows():
+    #    keywords = ['TE']
+    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
+    #        TEDom.at[i, 'Player'] = row['Player']
+    #        TEDom.at[i, 'Team'] = row['Team']
     
 
     for i, row in QBDom.iterrows():

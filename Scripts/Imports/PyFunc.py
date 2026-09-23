@@ -4096,76 +4096,60 @@ def analysis(useful, individualtotals):
                 Dom.at[i, 'Player'] = row['Player']
                 Dom.at[i, 'Team'] = row['Team']
 
-
-    #for i, row in useful.iterrows():
-    #    keywords = ['QB']
-    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-    #        QBDom.at[i, 'Player'] = row['Player']
-    #        QBDom.at[i, 'Team'] = row['Team']
-
-    #for i, row in useful.iterrows():
-    #    keywords = ['WR', 'RB', 'TE']
-    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-    #        FlexDom.at[i, 'Player'] = row['Player']
-    #        FlexDom.at[i, 'Team'] = row['Team']
-
-    #for i, row in useful.iterrows():
-    #    keywords = ['WR']
-    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-    #        WRDom.at[i, 'Player'] = row['Player']
-    #        WRDom.at[i, 'Team'] = row['Team']
-
-    #for i, row in useful.iterrows():
-    #    keywords = ['RB']
-    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-    #        RBDom.at[i, 'Player'] = row['Player']
-    #        RBDom.at[i, 'Team'] = row['Team']
-
-    #for i, row in useful.iterrows():
-    #    keywords = ['TE']
-    #    if any(kw.lower() in row['Pos.'].lower() for kw in keywords):
-    #        TEDom.at[i, 'Player'] = row['Player']
-    #        TEDom.at[i, 'Team'] = row['Team']
     
 
     for i, row in QBDom.iterrows():
         key = row['Player']
        
-
         usefulrow = useful[useful['Player'] == key].iloc[0]
         teamtotalrow = individualtotals[individualtotals['Player'] == key].iloc[0]
        
-
         passatt = usefulrow['PassAtt']
         passyds = usefulrow['PassYds']
         passtds = usefulrow['PassTD']
         passints = usefulrow['Int'] 
+        rushtds = usefulrow['RushTD']
         totalpasstds = teamtotalrow['TeamTotalPassTD']
         totalrectds = teamtotalrow['TeamTotalRecTD']
         totalrushtds = teamtotalrow['TeamTotalRushTD']
-        
 
-        if passatt != 0:
-            QBDom.at[i, 'YPA'] = round(passyds/passatt,1)
-        else:
-            QBDom.at[i, 'YPA'] = 0
+        def rate(num, den):
+            if den != 0:
+                stat = round(num/den,1)
+            else:
+                stat = 0
+
+            return stat
+
+        QBDom.at[i, 'YPA'] = rate(passyds,passatt)
+        QBDom.at[i, 'TD:Int'] = rate(passtds,passints)
+        QBDom.at[i, 'TotalTD%'] = rate(passtds+rushtds,totalpasstds+totalrectds+totalrushtds)
+        QBDom.at[i, 'Off Focus'] = QBDom.at[i, 'YPA'] + QBDom.at[i, 'TD:Int'] + QBDom.at[i, 'TotalTD%']
+
+
+
+
+        #if passatt != 0:
+        #    QBDom.at[i, 'YPA'] = round(passyds/passatt,1)
+        #else:
+        #    QBDom.at[i, 'YPA'] = 0
         
-        if passints != 0:
-            QBDom.at[i, 'TD:Int'] = round(passtds/passints,1)
-        else:
-            QBDom.at[i, 'TD:Int'] = 0
+        #if passints != 0:
+        #    QBDom.at[i, 'TD:Int'] = round(passtds/passints,1)
+        #else:
+        #    QBDom.at[i, 'TD:Int'] = 0
         
-        if totalpasstds + totalrectds + totalrushtds != 0:
-            QBDom.at[i, 'TotalTD%'] = round(passtds/(totalpasstds + totalrectds + totalrushtds) * 100,1)
-        else:
-            QBDom.at[i, 'TotalTD%'] = 0
+        #if totalpasstds + totalrectds + totalrushtds != 0:
+        #    QBDom.at[i, 'TotalTD%'] = round(passtds/(totalpasstds + totalrectds + totalrushtds) * 100,1)
+        #else:
+        #    QBDom.at[i, 'TotalTD%'] = 0
         
-        if passatt != 0 and passints != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            QBDom.at[i, 'Off Focus'] = round(passyds/passatt + passtds/passints + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
-        elif passatt != 0 and totalpasstds + totalrectds + totalrushtds != 0:
-            QBDom.at[i, 'Off Focus'] = round(passyds/passatt + passtds + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
-        else:
-            QBDom.at[i, 'Off Focus'] = 0
+        #if passatt != 0 and passints != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+        #    QBDom.at[i, 'Off Focus'] = round(passyds/passatt + passtds/passints + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
+        #elif passatt != 0 and totalpasstds + totalrectds + totalrushtds != 0:
+        #    QBDom.at[i, 'Off Focus'] = round(passyds/passatt + passtds + totalpasstds/(totalpasstds + totalrectds + totalrushtds),1)
+        #else:
+        #    QBDom.at[i, 'Off Focus'] = 0
 
 
     for i, row in FlexDom.iterrows():

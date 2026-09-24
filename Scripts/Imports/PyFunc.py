@@ -2874,13 +2874,16 @@ def apply_corrections(TeamTotals, dflist):
         TeamTotals[column + 'StDev'] = TeamTotals[column].std()
     return TeamTotals
 
+
 def calculate_offense(TeamTotals):
     OffenseTotals = TeamTotals[['Team']].copy()
     OffenseTotals['OffYds+'] = TeamTotals['PassYdsAAV'] + TeamTotals['RushYdsAAV']
-    OffenseTotals['OffYds+'] = OffenseTotals['OffYds+'] / OffenseTotals['OffYds+'].mean() -1
+    OffenseTotals['OffYds+'] = (OffenseTotals['OffYds+'] / OffenseTotals['OffYds+'].mean() -1).round(2)
     OffenseTotals['OffTD+'] = TeamTotals['PassTDAAV'] + TeamTotals['RushTDAAV']
-    OffenseTotals['OffTD+'] = OffenseTotals['OffTD+'] / OffenseTotals['OffTD+'].mean() -1
+    OffenseTotals['OffTD+'] = (OffenseTotals['OffTD+'] / OffenseTotals['OffTD+'].mean() -1).round(2)
     return OffenseTotals
+
+
 def weeklySuperFlexdataframe(useful, teamtotals): 
 
     #Simulate 10,000 games and average for predictions

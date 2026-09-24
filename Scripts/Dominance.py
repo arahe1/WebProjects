@@ -7,12 +7,14 @@ from Imports import PyFunc as ps
 
 listicle = ps.get_nfl_week_files(2026, folder="CSVs")
 DFs = ps.importstats(listicle)
+DFs = [df.replace("WAS", "WSH") for df in DFs]
 Schedule = ps.schedulemaker('CSVs/Schedule_2026.csv')
 Week = len(DFs)+1
 Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Total_Stats, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs, Schedule)
+print(TeamTotals)
 OffenseTotals = ps.calculate_offense(TeamTotals)
 schedule_df = ps.get_schedule(Schedule, Week)
 Useful = Useful.merge(schedule_df,on='Team',how='left')

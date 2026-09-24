@@ -19,7 +19,9 @@ Useful = Useful.merge(schedule_df,on='Team',how='left')
 Dominance = ps.analysis(Useful,IndividualTotals)
 
 for name, dataframe in Dominance.items():
-    Dominance[name] = dataframe.merge(OffenseTotals[['Team', 'OffYds+', 'OffTD+']], on='Team', how='left')
+    dataframe = dataframe.merge(OffenseTotals[['Team', 'OffYds+', 'OffTD+']], on='Team', how='left')
+    dataframe['Dominance'] = dataframe['Off Focus'] + dataframe['OffYds+'] + dataframe['OffTD+']
+    Dominance[name] = dataframe
 
 print(Dominance['QBDom'].head())
 

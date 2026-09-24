@@ -12,9 +12,16 @@ Week = len(DFs)+1
 Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Total_Stats, IndividualTotals)
+TeamTotals = ps.teamtotals(DFs, Schedule)
+OffenseTotals = ps.calculate_offense(TeamTotals)
 schedule_df = ps.get_schedule(Schedule, Week)
 Useful = Useful.merge(schedule_df,on='Team',how='left')
 Dominance = ps.analysis(Useful,IndividualTotals)
+
+for name, dataframe in Dominance.items():
+    Dominance[name] = dataframe.merge(OffenseTotals[['Team', 'OffYds+', 'OffTD+']], on='Team', how='left')
+
+print(Dominance['QBDom'].head())
 
 ps.dominancehtml(Dominance)
 

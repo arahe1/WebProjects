@@ -474,6 +474,7 @@ def usefulstats(dflist, totalstats, individualtotals):
 
     return Useful
 
+
 def get_schedule(schedule, week):
     """
     Returns a DataFrame containing Team, Opp, and Week.
@@ -2839,24 +2840,47 @@ def teamtotals(dflist, schedule):
 
     TeamTotals = pd.DataFrame(teamtotals)
 
-    #Added Standard deviations to the weekly corrections and turned AAVs into %'s
-    for column in TeamTotals.columns[1:]:
-        row_index=0
+    # #Added Standard deviations to the weekly corrections and turned AAVs into %'s
+    # for column in TeamTotals.columns[1:]:
+    #     row_index=0
 
-        league_average = TeamTotals[column].mean()
+    #     league_average = TeamTotals[column].mean()
         
-        if (df.iloc[row_index, :len(dflist)] == 'BYE').any():
-            correction = (TeamTotals[column] - TeamTotals[column].mean())/(len(dflist-1))/league_average
+    #     if (df.iloc[row_index, :len(dflist)] == 'BYE').any():
+    #         correction = (TeamTotals[column] - TeamTotals[column].mean())/(len(dflist-1))/league_average
             
-        else:
-            correction = (TeamTotals[column] - TeamTotals[column].mean())/len(dflist)/league_average
+    #     else:
+    #         correction = (TeamTotals[column] - TeamTotals[column].mean())/len(dflist)/league_average
 
-        TeamTotals[column] = correction
-        TeamTotals[column + 'StDev'] = correction.std()
+    #     TeamTotals[column] = correction
+    #     TeamTotals[column + 'StDev'] = correction.std()
 
     return TeamTotals
 
 
+def apply_corrections(TeamTotals, dflist):
+    for column in TeamTotals.columns[1:]:
+        TeamTotals[column] = TeamTotals[column].astype(float)
+        league_average = TeamTotals[column].mean()
+        for row_index, team in enumerate(TeamTotals['Team']):
+            bye_count = 0
+            for df in dflist:
+                team_row = df[df['Team'] == team]
+                if not team_row.empty and (team_row.iloc[0, 1:] == 'BYE').any():
+                    bye_count += 1
+            games_played = len(dflist) - bye_count
+            correction = (TeamTotals.loc[row_index, column] - league_average) / games_played / league_average
+            TeamTotals.loc[row_index, column] = correction
+        TeamTotals[column + 'StDev'] = TeamTotals[column].std()
+    return TeamTotals
+
+def calculate_offense(TeamTotals):
+    OffenseTotals = TeamTotals[['Team']].copy()
+    OffenseTotals['OffYds+'] = TeamTotals['PassYdsAAV'] + TeamTotals['RushYdsAAV']
+    OffenseTotals['OffYds+'] = OffenseTotals['OffYds+'] / OffenseTotals['OffYds+'].mean() -1
+    OffenseTotals['OffTD+'] = TeamTotals['PassTDAAV'] + TeamTotals['RushTDAAV']
+    OffenseTotals['OffTD+'] = OffenseTotals['OffTD+'] / OffenseTotals['OffTD+'].mean() -1
+    return OffenseTotals
 def weeklySuperFlexdataframe(useful, teamtotals): 
 
     #Simulate 10,000 games and average for predictions

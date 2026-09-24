@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 #            'CSVs/Week_14_NFL_2025.csv',
 #            'CSVs/Week_15_NFL_2025.csv',
 #            'CSVs/Week_16_NFL_2025.csv']
-listicle = get_nfl_week_files(2025, folder="CSVs")
+listicle = ps.get_nfl_week_files(2025, folder="CSVs")
 DFs = ps.importstats(listicle)
 Schedule = ps.schedulemaker('CSVs/Schedule_2025.csv')
 Week = len(DFs)+1
@@ -30,7 +30,9 @@ Total_Stats = ps.totalstatcombiner(DFs)
 #print(len(Total_Stats['Player']))
 IndividualTotals = ps.individualtotals(DFs)
 #print(len(IndividualTotals['Player']))
-Useful = ps.usefulstats(DFs, Week, Schedule, Total_Stats, IndividualTotals)
+Useful = ps.usefulstats(DFs, Total_Stats, IndividualTotals)
+schedule_df = ps.get_schedule(Schedule, Week)
+Useful = Useful.merge(schedule_df,on='Team',how='left')
 #print(IndividualTotals.head())
 #print(Useful.head())
 Dominance = ps.analysis(Useful,IndividualTotals)

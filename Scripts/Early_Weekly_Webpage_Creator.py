@@ -15,7 +15,9 @@ Week = len(DFs2)+1
 Total_Stats = ps.totalstatcombiner(DFs1)
 Total_Stats2 = ps.totalstatcombiner(DFs2)
 IndividualTotals = ps.individualtotals(DFs2)
-Useful = ps.usefulstats(DFs2, Week, Schedule, Total_Stats2, IndividualTotals)
+Useful = ps.usefulstats(DFs, Total_Stats, IndividualTotals)
+schedule_df = ps.get_schedule(Schedule, Week)
+Useful = Useful.merge(schedule_df,on='Team',how='left')
 TeamTotals = ps.teamtotals(DFs2, Schedule)
 TeamTotals_last = ps.teamtotals(DFs1, Schedule_last)
 

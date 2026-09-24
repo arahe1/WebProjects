@@ -23,7 +23,7 @@ for name, dataframe in Dominance.items():
     dataframe['Off Focus'] = pd.to_numeric(dataframe['Off Focus'], errors='coerce')
     dataframe['OffYds+'] = pd.to_numeric(dataframe['OffYds+'], errors='coerce')
     dataframe['OffTD+'] = pd.to_numeric(dataframe['OffTD+'], errors='coerce')
-    dataframe['Dominance'] = (dataframe['Off Focus'] + dataframe['OffYds+'] + dataframe['OffTD+']).round(2)
+    dataframe['Dominance'] = (dataframe['Off Focus'] + dataframe['OffYds+']).round(2)
     columns = list(dataframe.columns)
     columns.insert(3, columns.pop(columns.index('Dominance')))
     columns.insert(4, columns.pop(columns.index('Off Focus')))
@@ -31,8 +31,6 @@ for name, dataframe in Dominance.items():
     columns.insert(6, columns.pop(columns.index('OffTD+')))
     dataframe = dataframe[columns]
     Dominance[name] = dataframe
-
-print(Dominance['QBDom'].head())
 
 ps.dominancehtml(Dominance)
 

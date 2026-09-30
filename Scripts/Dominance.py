@@ -14,7 +14,7 @@ Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Total_Stats, IndividualTotals)
 TeamTotals = ps.teamtotals(DFs, Schedule)
-print(TeamTotals)
+#print(TeamTotals)
 OffenseTotals = ps.calculate_offense(TeamTotals)
 schedule_df = ps.get_schedule(Schedule, Week)
 Useful = Useful.merge(schedule_df,on='Team',how='left')
@@ -40,30 +40,30 @@ print("Dominance Updated")
 
 
 # for name, df in Dominance.items():
-#     if name == 'QB':
+#     if name == 'QBDom':
 #         df = df[df['Dominance'] > 2]
-#         plt.hist(df['Dominance'], bins=10, color='blue', edgecolor='black')
+#         plt.hist(df['Dominance'], bins='auto', color='blue', edgecolor='black')
 #         plt.title(f'Histogram of {name}')
 #         plt.xlabel('Score')
 #         plt.ylabel('Frequency')
 #         plt.show()
-#     if name == 'WR':
-#         df = df[df['Dominance'] > 40]
-#         plt.hist(df['Dominance'], bins=20, color='green', edgecolor='black')
+#     if name == 'WRDom':
+#         #df = df[df['Dominance'] > 10]
+#         plt.hist(df['Dominance'], bins='auto', color='green', edgecolor='black')
 #         plt.title(f'Histogram of {name}')
 #         plt.xlabel('Score')
 #         plt.ylabel('Frequency')
 #         plt.show()
-#     if name == 'RB':
-#         df = df[df['Dominance'] > 40]
-#         plt.hist(df['Dominance'], bins=20, color='orange', edgecolor='black')
+#     if name == 'RBDom':
+#         #df = df[df['Dominance'] > 10]
+#         plt.hist(df['Dominance'], bins='auto', color='orange', edgecolor='black')
 #         plt.title(f'Histogram of {name}')
 #         plt.xlabel('Score')
 #         plt.ylabel('Frequency')
 #         plt.show()
-#     if name == 'TE':
-#         df = df[df['Dominance'] > 40]
-#         plt.hist(df['Dominance'], bins=20, color='red', edgecolor='black')
+#     if name == 'TEDom':
+#         #df = df[df['Dominance'] > 10]
+#         plt.hist(df['Dominance'], bins='auto', color='red', edgecolor='black')
 #         plt.title(f'Histogram of {name}')
 #         plt.xlabel('Score')
 #         plt.ylabel('Frequency')

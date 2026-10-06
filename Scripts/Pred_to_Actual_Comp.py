@@ -5,7 +5,7 @@ pd.set_option('display.max_columns', None)
 from Imports import PyFunc as ps
 
 df1 = pd.read_csv("CSVs/SuperFlex.csv")
-df2 = pd.read_csv("CSVs/Week_3_NFL_2026.csv", sep=",", quoting=3)
+df2 = pd.read_csv("CSVs/Week_4_NFL_2026.csv", sep=",", quoting=3)
 df2 = df2.rename(columns={"Att.1": "RushAtt", "Yds": "PassYds","TD": "PassTD","Yds.2": "RushYds","TD.1": "RushTD","Yds.3": "RecYds","TD.2": "RecTD"})
 
 stats = ['PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
@@ -67,7 +67,7 @@ position_results = pd.DataFrame(results)
 
 
 
-with open("Model_Results_Week_3.md", "w") as f:
+with open("Model_Results_Week_4.md", "w") as f:
     for pos in position_results["Pos"].unique():
         f.write(f"# {pos}\n\n")
         f.write(position_results[position_results["Pos"] == pos].to_markdown(index=False))

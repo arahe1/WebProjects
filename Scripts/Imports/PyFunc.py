@@ -4019,7 +4019,15 @@ def teampredictionshtml(finalscores, week):
                 <a href="/WebProjects/Preseason_html/All.html">Preseason Predictions</a>
             </div>
             </div>
-        <a href="/WebProjects/PreseasonMLBPredictions.html">MLB Preseason Predictions
+            <div class="dropdown">
+            <button class="dropbtn">Baseball
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/WebProjects/PreseasonMLBHittingPredictions.html">MLB Preseason Hitting Predictions</a>
+                <a href="/WebProjects/PreseasonMLBPitchingPredictions.html">MLB Preseason Pitching Predictions</a>
+            </div>
+            </div>
         <a href="/WebProjects/Fitness_html/fitness.html">Fitness</a>
         <a href="/WebProjects/about.html">About</a>
         </div>

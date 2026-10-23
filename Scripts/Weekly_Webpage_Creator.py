@@ -8,10 +8,12 @@ listicle = ps.get_nfl_week_files(2026, folder="CSVs")
 DFs = ps.importstats(listicle)
 Schedule = ps.schedulemaker('CSVs/Schedule_2026.csv')
 Week = len(DFs)+1
+print(Week)
 Total_Stats = ps.totalstatcombiner(DFs)
 IndividualTotals = ps.individualtotals(DFs)
 Useful = ps.usefulstats(DFs, Total_Stats, IndividualTotals)
 schedule_df = ps.get_schedule(Schedule, Week)
+print(Week)
 Useful = Useful.merge(schedule_df,on='Team',how='left')
 TeamTotals = ps.teamtotals(DFs, Schedule)
 TeamTotals = ps.apply_corrections(TeamTotals, DFs)
@@ -25,6 +27,7 @@ Useful.to_csv(full_path, index=False)
 
 full_path = os.path.join('CSVs', 'SuperFlex.csv')
 df.to_csv(full_path, index=False)
+print(Week)
 
 ps.weeklyhtml(All_DataFrames, Week)
 

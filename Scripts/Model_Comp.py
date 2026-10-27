@@ -4,7 +4,8 @@ files = [
     "Model_Results_Week_3.md",
     "Model_Results_Week_4.md",
     "Model_Results_Week_5.md",
-    "Model_Results_Week_6.md"
+    "Model_Results_Week_6.md",
+    "Model_Results_Week_7.md"
 ]
 
 

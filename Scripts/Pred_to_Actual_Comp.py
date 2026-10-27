@@ -5,7 +5,7 @@ pd.set_option('display.max_columns', None)
 from Imports import PyFunc as ps
 
 df1 = pd.read_csv("CSVs/SuperFlex.csv")
-df2 = pd.read_csv("CSVs/Week_6_NFL_2026.csv", sep=",", quoting=3)
+df2 = pd.read_csv("CSVs/Week_7_NFL_2026.csv", sep=",", quoting=3)
 df2 = df2.rename(columns={"Att.1": "RushAtt", "Yds": "PassYds","TD": "PassTD","Yds.2": "RushYds","TD.1": "RushTD","Yds.3": "RecYds","TD.2": "RecTD"})
 
 stats = ['PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
@@ -32,13 +32,19 @@ for pos, stats_for_pos in position_stats.items():
         pred = pos_data[f"{stat}_df1"]
         actual = pos_data[f"{stat}_df2"]
         error = pred - actual
+        active = actual != 0
+        active_error = error[active]
 
         result = {
             "Pos": pos,
             "Stat": stat,
             "MAE": error.abs().mean(),
+            "MAE_Active": active_error.abs().mean(),
+            "Active_Count": active.sum(),
+            "Total_Count": actual.notna().sum(),
             "Bias": error.mean(),
             "RMSE": (error ** 2).mean() ** 0.5,
+            "RMSE_Active": (active_error ** 2).mean() ** 0.5,
             "Exact": (pred.round() == actual).mean() * 100,
             "Within1": (abs(pred.round() - actual) <= 1).mean() * 100
 
@@ -67,7 +73,7 @@ position_results = pd.DataFrame(results)
 
 
 
-with open("Model_Results_Week_6.md", "w") as f:
+with open("Model_Results_Week_7.md", "w") as f:
     for pos in position_results["Pos"].unique():
         f.write(f"# {pos}\n\n")
         f.write(position_results[position_results["Pos"] == pos].to_markdown(index=False))

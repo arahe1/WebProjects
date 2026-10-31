@@ -3091,7 +3091,8 @@ def get_starting_qbs(dataframe):
             name = cells[3].find("a").get_text(" ", strip=True).split("/")[0]
             name = name.split(",")
             name = " ".join(name[1].split()[:1]) + " " + name[0].split()[0]
-            name = name.title()
+            name = name[0].upper() + name[1:]
+            #name = name.title()
             qbs.append(name)
 
     qbs = list(dict.fromkeys(qbs))

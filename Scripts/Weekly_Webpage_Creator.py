@@ -16,7 +16,7 @@ Useful = Useful.merge(schedule_df,on='Team',how='left')
 TeamTotals = ps.teamtotals(DFs, Schedule)
 TeamTotals = ps.apply_corrections(TeamTotals, DFs)
 SuperFlex = ps.weeklySuperFlexdataframe(Useful, TeamTotals)
-SuperFlex = ps.get_starting_qbs(SuperFlex)
+#SuperFlex = ps.get_starting_qbs(SuperFlex)
 SuperFlex = ps.injuryremovalweekly(SuperFlex)
 All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
 df = All_DataFrames['SuperFlex']

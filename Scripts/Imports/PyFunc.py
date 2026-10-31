@@ -3087,13 +3087,15 @@ def get_starting_qbs(dataframe):
     qbs = []
     for row in soup.select("tr"):
         cells = row.find_all(["td", "th"])
-        if len(cells) > 1 and cells[0].get_text(strip=True):
-            name = cells[0].get_text(" ", strip=True).split(",")
-            name = " ".join(name[::-1]).strip() if len(name) == 2 else name[0]
-            name = re.sub(r'[^A-Za-z\s]', '', name).title().strip()
-            if name: qbs.append(name)
+        if len(cells) > 3 and cells[1].get_text(strip=True) == "QB":
+            name = cells[3].find("a").get_text(" ", strip=True).split("/")[0]
+            name = name.split(",")
+            name = " ".join(name[1].split()[:1]) + " " + name[0].split()[0]
+            name = name.title()
+            qbs.append(name)
 
     qbs = list(dict.fromkeys(qbs))
+    print(qbs)
     mask = (dataframe['Pos.'] == 'QB') & (~dataframe['Player'].isin(qbs))
     dataframe.loc[mask, dataframe.select_dtypes(include='number').columns] = 0
 

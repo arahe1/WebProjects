@@ -17,6 +17,7 @@ for filename in os.listdir(directory_path):
 
 
 SuperFlex = pd.read_csv("CSVs/SuperFlex.csv")
+SuperFlex = ps.get_starting_qbs(SuperFlex)
 SuperFlex = ps.injuryremovalweekly(SuperFlex)
 All_DataFrames = ps.weeklyfinaldataframes(SuperFlex)
 df = All_DataFrames['SuperFlex']

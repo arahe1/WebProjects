@@ -4,9 +4,31 @@ import subprocess
 pd.set_option('display.max_columns', None)
 from Imports import PyFunc as ps
 
+listicle = ps.get_nfl_week_files(2026, folder="CSVs")
+DFs = ps.importstats(listicle)
+
+combined_df = pd.concat(DFs, ignore_index=True)
+
+avg_offsnaps_df = (
+    combined_df.groupby('Player', as_index=False)['OffSnp']
+    .mean()
+    .rename(columns={'OffSnp': 'Avg_OffSnp'})
+    .sort_values(by='Avg_OffSnp', ascending=False)
+    .reset_index(drop=True)
+)
+
+
 df1 = pd.read_csv("CSVs/SuperFlex.csv")
 df2 = pd.read_csv("CSVs/Week_7_NFL_2026.csv", sep=",", quoting=3)
 df2 = df2.rename(columns={"Att.1": "RushAtt", "Yds": "PassYds","TD": "PassTD","Yds.2": "RushYds","TD.1": "RushTD","Yds.3": "RecYds","TD.2": "RecTD"})
+
+# Remove Players with less than 50% of average snaps to avoid using injured players in the model comp
+df3 = df2.merge(avg_offsnaps_df, on='Player', how='left')
+df3 = df3[df3['OffSnp'] < (df3['Avg_OffSnp'] * 0.50)].copy()
+df3 = df3[['Player']]
+df2 = df2[~df2['Player'].isin(df3['Player'])].copy()
+df1 = df1[~df1['Player'].isin(df3['Player'])].copy()
+
 
 stats = ['PassYds', 'PassTD', 'Int', 'Rec', 'RecYds', 'RecTD', 'RushAtt', 'RushYds', 'RushTD']
 merged = df1[["Player", "Pos."] + stats].merge(df2[["Player", "Pos."] + stats], on="Player", suffixes=("_df1", "_df2"))
@@ -71,13 +93,13 @@ for pos, stats_for_pos in position_stats.items():
 position_results = pd.DataFrame(results)
 
 
+print(position_results.head(10))
 
-
-with open("Model_Results_Week_7.md", "w") as f:
-    for pos in position_results["Pos"].unique():
-        f.write(f"# {pos}\n\n")
-        f.write(position_results[position_results["Pos"] == pos].to_markdown(index=False))
-        f.write("\n\n")
+#with open("Model_Results_Week_7.md", "w") as f:
+#    for pos in position_results["Pos"].unique():
+#        f.write(f"# {pos}\n\n")
+#        f.write(position_results[position_results["Pos"] == pos].to_markdown(index=False))
+#        f.write("\n\n")
 
 
 

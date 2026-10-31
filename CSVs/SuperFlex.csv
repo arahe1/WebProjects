@@ -3,7 +3,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 2,AJ Barner,SEA,TE,6.9,3.9,0,0.0,0.0,3,26,0.0,1,1,0.2
 3,AJ Dillon,CAR,RB,1.2,1.2,0,0.0,0.0,0,1,0.0,4,11,0.0
 4,Aaron Jones,MIN,RB,12.3,10.3,0,0.0,0.0,2,12,0.0,18,73,0.3
-5,Aaron Rodgers,PIT,QB,17.2,17.2,242,1.8,0.7,0,0,0.0,2,3,0.0
+5,Aaron Rodgers,PIT,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 6,Adam Prentice,DEN,FB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 7,Adam Trautman,DEN,TE,0.2,0.2,0,0.0,0.0,0,2,0.0,0,0,0.0
 8,Adonai Mitchell,NYJ,WR,7.1,4.1,0,0.0,0.0,3,41,0.0,0,0,0.0
@@ -17,7 +17,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 16,Andrew Armstrong,KAN,WR,1.8,0.8,0,0.0,0.0,1,8,0.0,0,0,0.0
 17,Andrew Beck,NYJ,FB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 18,Andrew Ogletree,IND,TE,0.2,0.2,0,0.0,0.0,0,2,0.0,0,0,0.0
-19,Andy Dalton,PHI,QB,0.0,0.0,0,0.0,1.0,0,0,0.0,0,0,0.0
+19,Andy Dalton,PHI,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 20,Anthony Gould,IND,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 21,Anthony Tyus,CAR,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 22,Anthony Tyus III,CAR,RB,2.6,2.6,0,0.0,0.0,0,0,0.0,1,8,0.3
@@ -25,11 +25,11 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 24,Arian Smith,NYJ,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 25,Ashton Dulin,IND,WR,2.0,1.0,0,0.0,0.0,1,10,0.0,0,0,0.0
 26,Ashton Jeanty,LVR,RB,17.2,12.2,0,0.0,0.0,5,45,0.4,15,47,0.1
-27,Athan Kaliakmanis,WSH,QB,13.0,13.0,186,1.0,1.0,0,0,0.0,3,16,0.0
+27,Athan Kaliakmanis,WSH,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 28,Audric Estime,CLE,RB,7.9,7.9,0,0.0,0.0,0,0,0.0,9,19,1.0
 29,Austin Ekeler,WSH,RB,3.0,2.0,0,0.0,0.0,1,10,0.0,3,10,0.0
 30,Austin Hooper,ATL,TE,2.6,1.6,0,0.0,0.0,1,10,0.1,0,0,0.0
-31,Baker Mayfield,TAM,QB,12.4,12.4,171,0.7,0.5,0,0,0.0,3,16,0.2
+31,Baker Mayfield,TAM,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 32,Barion Brown,NOR,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 33,Bauer Sharp,TAM,TE,0.3,0.3,0,0.0,0.0,0,3,0.0,0,0,0.0
 34,Ben Sinnott,WSH,TE,0.1,0.1,0,0.0,0.0,0,1,0.0,0,0,0.0
@@ -41,7 +41,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 40,Blake Corum,LAR,RB,9.3,8.3,0,0.0,0.0,1,14,0.1,9,45,0.3
 41,Blake Whiteheart,CLE,TE,1.2,1.2,0,0.0,0.0,0,6,0.1,0,0,0.0
 42,Bo Melton,GNB,WR,1.5,0.5,0,0.0,0.0,1,5,0.0,0,0,0.0
-43,Bo Nix,DEN,QB,14.7,14.7,182,1.0,0.4,0,0,0.0,4,16,0.3
+43,Bo Nix,DEN,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 44,Brady Russell,SEA,FB,0.6,0.6,0,0.0,0.0,0,6,0.0,0,0,0.0
 45,Braelon Allen,NYJ,RB,10.8,8.8,0,0.0,0.0,2,11,0.0,13,59,0.3
 46,Brandin Cooks,SFO,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
@@ -63,7 +63,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 62,Brock Purdy,SFO,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 63,Brock Wright,DET,TE,1.5,0.5,0,0.0,0.0,1,5,0.0,0,0,0.0
 64,Bryce Lance,NOR,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-65,Bryce Young,CAR,QB,21.2,21.2,285,2.0,0.7,0,0,0.0,2,6,0.2
+65,Bryce Young,CAR,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 66,Brycen Tremayne,CAR,WR,2.9,1.9,0,0.0,0.0,1,19,0.0,0,0,0.0
 67,Bucky Irving,TAM,RB,16.3,13.3,0,0.0,0.0,3,11,0.1,17,80,0.6
 68,C.J. Stroud,HOU,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
@@ -73,18 +73,18 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 72,Cade Otton,TAM,TE,5.7,2.7,0,0.0,0.0,3,27,0.0,0,0,0.0
 73,Cade Stover,HOU,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 74,Caleb Douglas,MIA,WR,13.3,10.3,0,0.0,0.0,3,61,0.7,0,0,0.0
-75,Caleb Williams,CHI,QB,21.6,21.6,255,1.3,0.3,0,0,0.0,6,32,0.5
+75,Caleb Williams,CHI,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 76,Calvin Ridley,TEN,WR,2.3,1.3,0,0.0,0.0,1,13,0.0,0,0,0.0
 77,Cam Skattebo,NYG,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-78,Cam Ward,TEN,QB,12.0,12.0,169,0.6,0.7,0,0,0.0,3,10,0.3
+78,Cam Ward,TEN,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 79,Camden Brown,DAL,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 80,Cameron Latu,NWE,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 81,Carlos Washington,MIA,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 82,Carnell Tate,TEN,WR,11.5,6.5,0,0.0,0.0,5,59,0.1,0,0,0.0
 83,Carsen Ryan,CLE,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 84,Carson Steele,PHI,RB,1.2,0.2,0,0.0,0.0,1,2,0.0,0,0,0.0
-85,Carson Wentz,MIN,QB,11.8,11.8,138,1.5,0.0,0,0,0.0,4,3,0.0
-86,Case Keenum,CHI,QB,9.7,9.7,120,0.7,0.3,0,0,0.0,2,3,0.3
+85,Carson Wentz,MIN,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
+86,Case Keenum,CHI,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 87,Cedric Tillman,NOR,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 88,CeeDee Lamb,DAL,WR,22.5,14.5,0,0.0,0.0,8,92,0.9,0,0,0.0
 89,Charlie Jones,NYG,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
@@ -116,7 +116,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 115,Colston Loveland,CHI,TE,9.3,5.3,0,0.0,0.0,4,35,0.3,0,0,0.0
 116,Connor Heyward,LVR,FB,0.3,0.3,0,0.0,0.0,0,3,0.0,1,0,0.0
 117,Cooper Kupp,SEA,WR,6.5,3.5,0,0.0,0.0,3,29,0.1,0,0,0.0
-118,Cooper Rush,ATL,QB,7.6,7.6,115,0.5,2.0,0,0,0.0,1,10,0.0
+118,Cooper Rush,ATL,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 119,Corey Kiner,NWE,RB,2.4,2.4,0,0.0,0.0,0,2,0.0,5,22,0.0
 120,Courtland Sutton,DEN,WR,5.0,3.0,0,0.0,0.0,2,24,0.1,0,0,0.0
 121,Craig Reynolds,WSH,RB,0.4,0.4,0,0.0,0.0,0,0,0.0,2,4,0.0
@@ -125,14 +125,14 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 124,D.J. Moore,BUF,WR,9.4,6.4,0,0.0,0.0,3,45,0.3,1,1,0.0
 125,D.K. Metcalf,PIT,WR,11.2,6.2,0,0.0,0.0,5,54,0.1,0,2,0.0
 126,DJ Herman,MIA,FB,0.3,0.3,0,0.0,0.0,0,3,0.0,0,0,0.0
-127,Dak Prescott,DAL,QB,19.2,19.2,263,1.9,0.7,0,0,0.0,2,11,0.0
+127,Dak Prescott,DAL,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 128,Dalen Cambre,NYG,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 129,Dallas Goedert,PHI,TE,10.9,6.9,0,0.0,0.0,4,45,0.4,0,0,0.0
 130,Dalton Kincaid,BUF,TE,10.5,6.5,0,0.0,0.0,4,53,0.2,0,0,0.0
 131,Dalton Schultz,HOU,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 132,Dameon Pierce,PHI,RB,9.9,7.9,0,0.0,0.0,2,5,0.0,12,32,0.7
 133,Daniel Bellinger,TEN,TE,1.5,0.5,0,0.0,0.0,1,5,0.0,0,0,0.0
-134,Daniel Jones,IND,QB,12.0,12.0,200,0.6,1.0,0,0,0.0,3,10,0.1
+134,Daniel Jones,IND,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 135,Dare Ogunbowale,HOU,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 136,Dareke Young,LVR,WR,0.5,0.5,0,0.0,0.0,0,5,0.0,0,0,0.0
 137,Darius Cooper,PHI,WR,6.8,5.8,0,0.0,0.0,1,22,0.6,0,0,0.0
@@ -161,7 +161,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 160,Denzel Boston,CLE,WR,10.7,7.7,0,0.0,0.0,3,53,0.4,0,0,0.0
 161,Derius Davis,LAC,WR,0.2,0.2,0,0.0,0.0,0,1,0.0,0,1,0.0
 162,Derrick Henry,BAL,RB,16.9,15.9,0,0.0,0.0,1,10,0.1,21,83,1.0
-163,Deshaun Watson,CLE,QB,16.2,16.2,212,1.0,0.4,0,0,0.0,7,31,0.1
+163,Deshaun Watson,CLE,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 164,Devaughn Vele,NOR,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 165,Deven Thompkins,LVR,WR,1.8,0.8,0,0.0,0.0,1,8,0.0,0,0,0.0
 166,Devin Duvernay,ARI,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
@@ -171,8 +171,8 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 170,Dohnte Meyers,CIN,WR,4.5,2.5,0,0.0,0.0,2,23,0.0,0,2,0.0
 171,Dontayvion Wicks,PHI,WR,8.9,5.9,0,0.0,0.0,3,47,0.2,0,0,0.0
 172,Drake London,ATL,WR,15.2,10.2,0,0.0,0.0,5,89,0.2,0,1,0.0
-173,Drake Maye,NWE,QB,22.6,22.6,255,1.9,1.1,0,0,0.0,5,30,0.3
-174,Drew Lock,SEA,QB,17.1,17.1,211,2.0,0.0,0,0,0.0,1,7,0.0
+173,Drake Maye,NWE,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
+174,Drew Lock,SEA,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 175,Drew Sample,CIN,TE,3.0,2.0,0,0.0,0.0,1,8,0.2,0,0,0.0
 176,Durham Smythe,BAL,TE,0.1,0.1,0,0.0,0.0,0,1,0.0,0,0,0.0
 177,Dyami Brown,WSH,WR,3.6,1.6,0,0.0,0.0,2,16,0.0,0,0,0.0
@@ -199,14 +199,14 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 198,Evan Engram,DEN,TE,4.6,2.6,0,0.0,0.0,2,20,0.1,0,0,0.0
 199,Evan Hull,ARI,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 200,Feleipe Franks,CAR,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-201,Fernando Mendoza,LVR,QB,2.2,2.2,48,0.0,0.0,0,0,0.0,1,3,0.0
+201,Fernando Mendoza,LVR,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 202,Foster Moreau,HOU,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 203,Frank Gore Jr.,BUF,RB,0.2,0.2,0,0.0,0.0,0,0,0.0,0,2,0.0
 204,Gardner Minshew II,ARI,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 205,Garrett Wilson,NYJ,WR,13.8,8.8,0,0.0,0.0,5,64,0.4,0,0,0.0
 206,Gary Jennings Jr,LAC,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 207,Gavin Bartholomew,MIN,TE,1.9,0.9,0,0.0,0.0,1,9,0.0,0,0,0.0
-208,Geno Smith,NYJ,QB,15.5,15.5,233,1.4,0.3,0,0,0.0,3,6,0.0
+208,Geno Smith,NYJ,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 209,George Holani,SEA,RB,5.4,3.4,0,0.0,0.0,2,13,0.0,5,15,0.1
 210,George Kittle,SFO,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 211,George Pickens,DAL,WR,13.8,8.8,0,0.0,0.0,5,70,0.3,0,0,0.0
@@ -236,12 +236,12 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 235,Jack Bech,LVR,WR,5.4,3.4,0,0.0,0.0,2,16,0.3,0,0,0.0
 236,Jack Endries,CIN,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 237,Jack Stoll,SFO,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-238,Jack Strand,ATL,QB,4.0,4.0,59,0.0,1.0,0,0,0.0,2,16,0.0
+238,Jack Strand,ATL,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 239,Jackson Hawes,BUF,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 240,Jackson Meeks,DET,TE,0.2,0.2,0,0.0,0.0,0,2,0.0,0,0,0.0
 241,Jacob Cowing,SFO,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 242,Jacob Saylors,DET,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-243,Jacoby Brissett,ARI,QB,16.5,16.5,227,1.4,0.8,0,1,0.0,4,11,0.1
+243,Jacoby Brissett,ARI,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 244,Jacory Croskey-Merritt,WSH,RB,9.0,8.0,0,0.0,0.0,1,8,0.0,13,48,0.4
 245,Jadarian Price,SEA,RB,5.7,4.7,0,0.0,0.0,1,7,0.0,9,40,0.0
 246,Jahan Dotson,ATL,WR,7.2,5.2,0,0.0,0.0,2,34,0.3,0,0,0.0
@@ -254,19 +254,19 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 253,Jaleel McLaughlin,CLE,RB,3.6,2.6,0,0.0,0.0,1,2,0.0,2,12,0.2
 254,Jalen Brooks,ARI,WR,2.1,1.1,0,0.0,0.0,1,11,0.0,0,0,0.0
 255,Jalen Coker,CAR,WR,14.1,9.1,0,0.0,0.0,5,67,0.4,0,0,0.0
-256,Jalen Hurts,PHI,QB,17.2,17.2,187,1.6,0.6,0,0,0.0,5,21,0.2
+256,Jalen Hurts,PHI,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 257,Jalen McMillan,TAM,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 258,Jalen Moreno-Cropper,NOR,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 259,Jalen Nailor,LVR,WR,2.2,1.2,0,0.0,0.0,1,12,0.0,0,0,0.0
 260,Jalen Royals,KAN,WR,2.9,1.9,0,0.0,0.0,1,7,0.2,0,0,0.0
 261,Jalen Tolbert,MIA,WR,0.7,0.7,0,0.0,0.0,0,7,0.0,0,0,0.0
 262,Jalin Hyatt,NYG,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-263,Jalon Daniels,TAM,QB,8.8,8.8,102,0.6,1.0,0,0,0.0,4,24,0.0
+263,Jalon Daniels,TAM,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 264,Jamaal Pritchett,NYJ,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 265,Jameis Winston,NYG,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 266,James Cook,BUF,RB,20.0,18.0,0,0.0,0.0,2,15,0.0,20,105,1.0
 267,Jameson Williams,DET,WR,14.3,10.3,0,0.0,0.0,4,61,0.7,0,0,0.0
-268,Jared Goff,DET,QB,22.6,22.6,299,2.3,0.0,0,0,0.0,2,2,0.2
+268,Jared Goff,DET,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 269,Jared Wayne,MIA,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 270,Jared Wiley,KAN,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 271,Jauan Jennings,MIN,WR,1.9,0.9,0,0.0,0.0,1,9,0.0,0,0,0.0
@@ -274,7 +274,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 273,Jawhar Jordan,HOU,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 274,Jaxon Smith-Njigba,SEA,WR,27.5,19.5,2,0.0,0.0,8,124,1.1,0,4,0.0
 275,Jaxson Dart,NYG,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-276,Jayden Daniels,WSH,QB,20.8,20.8,190,1.2,0.0,0,0,0.0,6,54,0.5
+276,Jayden Daniels,WSH,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 277,Jayden Reed,GNB,WR,3.2,1.2,0,0.0,0.0,2,12,0.0,0,0,0.0
 278,Jaydn Ott,KAN,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 279,Jaylen Waddle,DEN,WR,8.8,4.8,0,0.0,0.0,4,39,0.1,0,3,0.0
@@ -290,7 +290,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 289,Jerry Jeudy,CLE,WR,4.5,2.5,0,0.0,0.0,2,25,0.0,0,0,0.0
 290,Jeshaun Jones,MIN,WR,1.6,1.6,0,0.0,0.0,0,16,0.0,0,0,0.0
 291,Jimmy Horn,CAR,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-292,Joe Burrow,CIN,QB,23.2,23.2,276,2.5,0.5,0,0,0.0,3,10,0.2
+292,Joe Burrow,CIN,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 293,Joe Flacco,CIN,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 294,John Bates,WSH,TE,1.4,0.4,0,0.0,0.0,1,4,0.0,0,0,0.0
 295,John Metchie,CAR,WR,5.2,3.2,0,0.0,0.0,2,20,0.2,0,0,0.0
@@ -302,11 +302,11 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 301,Jonnu Smith,GNB,TE,2.4,1.4,0,0.0,0.0,1,14,0.0,0,0,0.0
 302,Jordan Addison,MIN,WR,7.9,4.9,0,0.0,0.0,3,37,0.2,0,0,0.0
 303,Jordan James,SFO,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-304,Jordan Love,GNB,QB,20.2,20.2,280,1.9,0.7,0,0,0.0,2,2,0.2
+304,Jordan Love,GNB,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 305,Jordan Mason,MIN,RB,9.3,9.3,0,0.0,0.0,0,0,0.0,15,63,0.5
 306,Jordan Watkins,SFO,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 307,Jordan Whittington,LAR,WR,0.2,0.2,0,0.0,0.0,0,2,0.0,0,0,0.0
-308,Josh Allen,BUF,QB,27.9,27.9,250,1.5,0.7,0,0,0.0,8,41,1.3
+308,Josh Allen,BUF,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 309,Josh Cameron,JAX,WR,4.7,3.7,0,0.0,0.0,1,19,0.3,0,0,0.0
 310,Josh Cuevas,BAL,TE,3.3,2.3,0,0.0,0.0,1,17,0.1,0,0,0.0
 311,Josh Downs,IND,WR,8.5,4.5,0,0.0,0.0,4,44,0.0,0,1,0.0
@@ -320,7 +320,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 319,Julius Chestnut,TEN,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 320,Justice Hill,BAL,RB,5.2,3.2,0,0.0,0.0,2,12,0.0,3,20,0.0
 321,Justin Fields,KAN,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-322,Justin Herbert,LAC,QB,13.6,13.6,190,0.8,1.3,0,0,0.0,5,28,0.0
+322,Justin Herbert,LAC,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 323,Justin Jefferson,MIN,WR,14.4,9.4,0,0.0,0.0,5,60,0.6,0,0,0.0
 324,Justin Joly,MIA,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 325,Justin Watson,KAN,WR,0.4,0.4,0,0.0,0.0,0,4,0.0,0,0,0.0
@@ -347,7 +347,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 346,Kene Nwangwu,NYJ,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 347,Kenneth Gainwell,TAM,RB,5.7,3.7,0,0.0,0.0,2,9,0.1,5,22,0.0
 348,Kenneth Walker III,KAN,RB,24.4,21.4,0,0.0,0.0,3,20,0.3,20,116,1.0
-349,Kenny Pickett,CAR,QB,1.8,1.8,16,0.0,0.0,0,0,0.0,1,12,0.0
+349,Kenny Pickett,CAR,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 350,Kenyon Sadiq,NYJ,TE,5.5,3.5,0,0.0,0.0,2,23,0.1,0,0,0.1
 351,Keon Coleman,BUF,WR,10.7,7.7,0,0.0,0.0,3,47,0.5,0,0,0.0
 352,Kevin Austin,NOR,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
@@ -356,7 +356,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 355,Khalil Herbert,ATL,RB,3.8,2.8,0,0.0,0.0,1,19,0.0,2,9,0.0
 356,Khalil Shakir,BUF,WR,10.0,6.0,0,0.0,0.0,4,48,0.2,0,0,0.0
 357,Kimani Vidal,LAC,RB,5.9,4.9,0,0.0,0.0,1,7,0.2,4,18,0.2
-358,Kirk Cousins,LVR,QB,20.0,20.0,268,2.3,0.7,0,0,0.0,2,1,0.0
+358,Kirk Cousins,LVR,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 359,Ko Kieft,TAM,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 360,Kolbe Katsis,DEN,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 361,Konata Mumpfield,LAR,WR,3.6,2.6,0,0.0,0.0,1,20,0.1,0,0,0.0
@@ -365,11 +365,11 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 364,Kyle Pitts,ATL,TE,9.3,6.3,0,0.0,0.0,3,27,0.6,0,0,0.0
 365,Kyle Williams,NWE,WR,3.7,2.7,0,0.0,0.0,1,21,0.1,0,0,0.0
 366,Kylen Granson,TEN,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-367,Kyler Murray,MIN,QB,11.6,11.6,165,0.6,0.4,0,0,0.0,5,26,0.0
+367,Kyler Murray,MIN,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 368,Kyren Williams,LAR,RB,20.2,15.2,0,0.0,0.0,5,34,0.1,14,70,0.7
 369,LaJohntay Wester,BAL,WR,1.6,0.6,0,0.0,0.0,1,6,0.0,0,0,0.0
 370,Ladd McConkey,LAC,WR,8.2,5.2,0,0.0,0.0,3,40,0.2,0,0,0.0
-371,Lamar Jackson,BAL,QB,21.1,21.1,242,1.5,0.2,0,0,0.0,5,36,0.3
+371,Lamar Jackson,BAL,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 372,Lan Larison,NWE,RB,2.9,0.9,0,0.0,0.0,2,9,0.0,0,0,0.0
 373,Laquon Treadwell,IND,WR,4.8,2.8,0,0.0,0.0,2,28,0.0,0,0,0.0
 374,LeQuint Allen,JAX,RB,0.2,0.2,0,0.0,0.0,0,2,0.0,0,0,0.0
@@ -390,9 +390,9 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 389,Malik Nabers,NYG,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 390,Malik Turner,SFO,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 391,Malik Washington,MIA,WR,9.4,5.4,0,0.0,0.0,4,48,0.0,1,6,0.0
-392,Malik Willis,MIA,QB,16.5,16.5,175,0.7,0.7,0,0,0.0,6,37,0.5
+392,Malik Willis,MIA,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 393,MarShawn Lloyd,GNB,RB,7.4,5.4,0,0.0,0.0,2,10,0.1,8,20,0.3
-394,Marcus Mariota,WSH,QB,11.3,11.3,112,1.3,0.0,0,0,0.0,2,16,0.0
+394,Marcus Mariota,WSH,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 395,Mark Andrews,BAL,TE,7.5,3.5,0,0.0,0.0,4,29,0.1,0,0,0.0
 396,Mark Redman,GNB,TE,0.4,0.4,0,0.0,0.0,0,4,0.0,0,0,0.0
 397,Marlin Klein,HOU,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
@@ -400,17 +400,17 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 399,Marquise Brown,PHI,WR,3.1,2.1,0,0.0,0.0,1,15,0.0,1,6,0.0
 400,Marvin Harrison Jr.,HOU,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 401,Marvin Mims,DEN,WR,2.7,1.7,0,0.0,0.0,1,16,0.0,0,1,0.0
-402,Mason Rudolph,PIT,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,2,0,0.0
+402,Mason Rudolph,PIT,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 403,Mason Taylor,NYJ,TE,7.8,4.8,0,0.0,0.0,3,24,0.4,0,0,0.0
 404,Matthew Golden,GNB,WR,15.3,10.3,0,0.0,0.0,5,78,0.4,0,1,0.0
 405,Matthew Hibner,BAL,TE,3.4,2.4,0,0.0,0.0,1,12,0.2,0,0,0.0
-406,Matthew Stafford,LAR,QB,19.6,19.6,283,2.0,1.0,0,0,0.0,2,3,0.0
+406,Matthew Stafford,LAR,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 407,Max Bredeson,MIN,FB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 408,Max Klare,LAR,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 409,Michael Burton,CLE,FB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 410,Michael Carter,TEN,RB,1.7,0.7,0,0.0,0.0,1,3,0.0,2,4,0.0
 411,Michael Mayer,LVR,TE,8.8,4.8,0,0.0,0.0,4,42,0.1,0,0,0.0
-412,Michael Penix,ATL,QB,16.5,16.5,231,1.8,0.2,0,0,0.0,2,1,0.0
+412,Michael Penix,ATL,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 413,Michael Pittman Jr.,PIT,WR,5.0,3.0,0,0.0,0.0,2,30,0.0,0,0,0.0
 414,Michael Wilson,ARI,WR,11.1,6.1,1,0.0,0.0,5,53,0.1,0,2,0.0
 415,Mike Evans,SFO,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
@@ -426,7 +426,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 425,Nate Boerkircher,JAX,TE,3.1,2.1,0,0.0,0.0,1,9,0.2,0,0,0.0
 426,Nicholas Singleton,TEN,RB,0.4,0.4,0,0.0,0.0,0,0,0.0,2,4,0.0
 427,Nick Kallerup,SEA,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-428,Nick Mullens,JAX,QB,-0.3,-0.3,0,0.0,0.0,0,0,0.0,3,0,0.0
+428,Nick Mullens,JAX,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 429,Nick Muse,ATL,TE,0.6,0.6,0,0.0,0.0,0,0,0.1,0,0,0.0
 430,Nick Vannett,BAL,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 431,Nick Westbrook-Ikhine,IND,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
@@ -445,7 +445,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 444,Pat Bryant,DEN,WR,6.9,4.9,0,0.0,0.0,2,33,0.2,0,4,0.0
 445,Pat Freiermuth,PIT,TE,9.6,6.6,0,0.0,0.0,3,29,0.6,0,1,0.0
 446,Patrick Herbert,LAC,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-447,Patrick Mahomes,KAN,QB,18.2,18.2,246,1.5,0.7,0,0,0.0,3,12,0.2
+447,Patrick Mahomes,KAN,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 448,Patrick Ricard,NYG,FB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 449,Payne Durham,TAM,TE,0.1,0.1,0,0.0,0.0,0,1,0.0,0,0,0.0
 450,Pharaoh Brown,IND,TE,0.4,0.4,0,0.0,0.0,0,4,0.0,0,0,0.0
@@ -477,7 +477,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 476,Roschon Johnson,CHI,RB,3.9,2.9,0,0.0,0.0,1,11,0.0,3,12,0.1
 477,Ryan Flournoy,DAL,WR,9.0,5.0,0,0.0,0.0,4,44,0.1,0,0,0.0
 478,Ryan Miller,MIA,WR,4.1,3.1,0,0.0,0.0,1,19,0.2,0,0,0.0
-479,Sam Darnold,SEA,QB,14.7,14.7,216,1.3,1.4,0,0,0.0,2,9,0.0
+479,Sam Darnold,SEA,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 480,Sam LaPorta,DET,TE,13.6,8.6,0,0.0,0.0,5,56,0.5,0,0,0.0
 481,Sam Roush,CHI,TE,0.5,0.5,0,0.0,0.0,0,5,0.0,0,0,0.0
 482,Samaje Perine,CIN,RB,6.5,5.5,0,0.0,0.0,1,10,0.2,5,21,0.2
@@ -496,7 +496,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 495,Spencer Rattler,NOR,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 496,Stefon Diggs,WSH,WR,14.1,9.1,0,0.0,0.0,5,43,0.8,0,0,0.0
 497,Sterling Shepard,NYJ,WR,0.2,0.2,0,0.0,0.0,0,2,0.0,0,0,0.0
-498,Stetson Bennett,LAR,QB,0.7,0.7,6,0.0,0.0,0,0,0.0,1,5,0.0
+498,Stetson Bennett,LAR,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 499,T.J. Hockenson,MIN,TE,9.7,5.7,0,0.0,0.0,4,39,0.3,0,0,0.0
 500,Tahj Brooks,CIN,RB,0.1,0.1,0,0.0,0.0,0,0,0.0,1,1,0.0
 501,Tai Felton,MIN,WR,0.7,0.7,0,0.0,0.0,0,7,0.0,0,0,0.0
@@ -505,7 +505,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 504,Tanner Arkin,NWE,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 505,Tanner Hudson,CIN,TE,4.6,2.6,0,0.0,0.0,2,8,0.3,0,0,0.0
 506,Tanner Koziol,JAX,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-507,Tanner McKee,PHI,QB,12.6,12.6,213,1.0,0.5,0,0,0.0,1,1,0.0
+507,Tanner McKee,PHI,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 508,Tay Martin,DET,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 509,Teagan Quitoriano,ARI,TE,5.7,4.7,0,0.0,0.0,1,5,0.7,0,0,0.0
 510,Ted Hurst,TAM,WR,5.0,3.0,0,0.0,0.0,2,24,0.1,0,0,0.0
@@ -519,7 +519,7 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 518,Thomas Fidone,NYG,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 519,Tim Patrick,NYJ,WR,2.4,1.4,0,0.0,0.0,1,14,0.0,0,0,0.0
 520,Tom Kennedy,DET,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-521,Tommy DeVito,NWE,QB,1.4,1.4,30,0.0,0.0,0,0,0.0,1,2,0.0
+521,Tommy DeVito,NWE,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 522,Tommy Tremble,CAR,TE,7.1,4.1,0,0.0,0.0,3,23,0.3,0,0,0.0
 523,Tony Pollard,TEN,RB,13.1,11.1,0,0.0,0.0,2,7,0.0,16,68,0.6
 524,Tory Horton,SEA,WR,3.3,2.3,0,0.0,0.0,1,11,0.2,0,0,0.0
@@ -532,12 +532,12 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 531,TreVeyon Henderson,NWE,RB,6.4,5.4,0,0.0,0.0,1,7,0.0,9,35,0.2
 532,Trent Sherfield,BUF,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 533,Trevor Etienne,CAR,RB,2.2,1.2,0,0.0,0.0,1,8,0.0,3,4,0.0
-534,Trevor Lawrence,JAX,QB,20.3,20.3,247,2.3,0.7,0,0,0.0,3,12,0.0
+534,Trevor Lawrence,JAX,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 535,Trey McBride,ARI,TE,18.3,10.3,0,0.0,0.0,8,67,0.6,0,0,0.0
 536,Treylon Burks,WSH,WR,7.4,5.4,0,0.0,0.0,2,30,0.4,0,0,0.0
 537,Treyton Welch,NOR,TE,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 538,Troy Franklin,DEN,WR,2.1,1.1,0,0.0,0.0,1,10,0.0,0,1,0.0
-539,Tua Tagovailoa,ATL,QB,1.4,1.4,34,0.0,1.0,0,0,0.0,0,0,0.0
+539,Tua Tagovailoa,ATL,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 540,Tucker Kraft,GNB,TE,10.2,6.2,0,0.0,0.0,4,43,0.3,0,1,0.0
 541,Tutu Atwell,LAR,WR,1.8,0.8,0,0.0,0.0,1,8,0.0,0,0,0.0
 542,Ty Johnson,BUF,RB,7.1,4.1,0,0.0,0.0,3,39,0.0,0,2,0.0
@@ -548,13 +548,13 @@ Rank,Player,Team,Pos.,PPR,STD,PassYds,PassTD,Int,Rec,RecYds,RecTD,RushAtt,RushYd
 547,Tyler Conklin,DET,TE,0.1,0.1,0,0.0,0.0,0,1,0.0,0,0,0.0
 548,Tyler Goodson,DAL,RB,1.6,1.6,0,0.0,0.0,0,1,0.0,4,15,0.0
 549,Tyler Higbee,LAR,TE,8.3,4.3,0,0.0,0.0,4,37,0.1,0,0,0.0
-550,Tyler Huntley,BAL,QB,14.4,14.4,182,1.0,0.3,0,0,0.0,4,19,0.2
+550,Tyler Huntley,BAL,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 551,Tyler Shough,NOR,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 552,Tyler Warren,IND,TE,14.0,8.0,0,0.0,0.0,6,43,0.4,1,1,0.2
 553,Tyquan Thornton,KAN,WR,11.5,8.5,0,0.0,0.0,3,55,0.5,0,0,0.0
-554,Tyrod Taylor,GNB,QB,-0.2,-0.2,0,0.0,0.0,0,0,0.0,2,0,0.0
+554,Tyrod Taylor,GNB,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 555,Tyrone Tracy Jr.,NYG,RB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
-556,Tyson Bagent,CHI,QB,6.0,6.0,136,0.0,1.0,0,0,0.0,2,6,0.0
+556,Tyson Bagent,CHI,QB,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 557,Van Jefferson,WSH,WR,0.0,0.0,0,0.0,0.0,0,0,0.0,0,0,0.0
 558,Velus Jones Jr.,SEA,RB,0.4,0.4,0,0.0,0.0,0,0,0.0,1,4,0.0
 559,Wan'Dale Robinson,TEN,WR,8.8,4.8,0,0.0,0.0,4,30,0.3,0,0,0.0

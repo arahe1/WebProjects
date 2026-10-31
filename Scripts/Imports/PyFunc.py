@@ -2,6 +2,7 @@ import pandas as pd
 import os
 from collections import defaultdict
 import numpy as np
+import re
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -3075,6 +3076,28 @@ def injuryremovalweekly(superflex):
     #QB = QB[~QB['Player'].isin(IR_Players)]
 
     return superflex
+
+
+def get_starting_qbs(dataframe):
+    import requests, pandas as pd, re
+
+    url = "https://www.ourlads.com/nfldepthcharts/depthchartpos/QB"
+    soup = BeautifulSoup(requests.get(url, headers={"User-Agent": "Mozilla/5.0"}).text, "html.parser")
+
+    qbs = []
+    for row in soup.select("tr"):
+        cells = row.find_all(["td", "th"])
+        if len(cells) > 1 and cells[0].get_text(strip=True):
+            name = cells[0].get_text(" ", strip=True).split(",")
+            name = " ".join(name[::-1]).strip() if len(name) == 2 else name[0]
+            name = re.sub(r'[^A-Za-z\s]', '', name).title().strip()
+            if name: qbs.append(name)
+
+    qbs = list(dict.fromkeys(qbs))
+    mask = (dataframe['Pos.'] == 'QB') & (~dataframe['Player'].isin(qbs))
+    dataframe.loc[mask, dataframe.select_dtypes(include='number').columns] = 0
+
+    return dataframe
 
 
 def weeklyfinaldataframes(superflex):

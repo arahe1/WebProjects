@@ -6,9 +6,13 @@ from Imports import PyFunc as ps
 
 directory_path = "CSVs"
 Week = 0
+year = "2026"  
+
 for filename in os.listdir(directory_path):
-    # Only count files (not directories)
-    if os.path.isfile(os.path.join(directory_path, filename)) and "NFL" in filename:
+    # Only count files containing "NFL" and the specified year
+    if (os.path.isfile(os.path.join(directory_path, filename))
+            and "NFL" in filename
+            and year in filename):
         Week += 1
 
 

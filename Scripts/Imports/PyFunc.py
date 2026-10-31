@@ -3079,7 +3079,6 @@ def injuryremovalweekly(superflex):
 
 
 def get_starting_qbs(dataframe):
-    import requests, pandas as pd, re
 
     url = "https://www.ourlads.com/nfldepthcharts/depthchartpos/QB"
     soup = BeautifulSoup(requests.get(url, headers={"User-Agent": "Mozilla/5.0"}).text, "html.parser")
@@ -3090,9 +3089,9 @@ def get_starting_qbs(dataframe):
         if len(cells) > 3 and cells[1].get_text(strip=True) == "QB":
             name = cells[3].find("a").get_text(" ", strip=True).split("/")[0]
             name = name.split(",")
-            name = " ".join(name[1].split()[:1]) + " " + name[0].split()[0]
+            name = name[1].strip() + " " + name[0].strip()
+            #name = " ".join(name[1].split()[:1]) + " " + name[0].split()[0]
             name = name[0].upper() + name[1:]
-            #name = name.title()
             qbs.append(name)
 
     qbs = list(dict.fromkeys(qbs))

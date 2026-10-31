@@ -3096,7 +3096,10 @@ def get_starting_qbs(dataframe):
 
     qbs = list(dict.fromkeys(qbs))
     print(qbs)
-    mask = (dataframe['Pos.'] == 'QB') & (~dataframe['Player'].isin(qbs))
+    #mask = (dataframe['Pos.'] == 'QB') & (~dataframe['Player'].isin(qbs))
+    mask = dataframe['Pos.'].eq('QB') & ~dataframe['Player'].isin(qbs)
+
+    print(dataframe.loc[mask, 'Player'].tolist())
     dataframe.loc[mask, dataframe.select_dtypes(include='number').columns] = 0
 
     return dataframe

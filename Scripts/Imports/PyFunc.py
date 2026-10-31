@@ -3088,22 +3088,22 @@ def get_starting_qbs(dataframe):
         cells = row.find_all(["td", "th"])
         if len(cells) > 3 and cells[1].get_text(strip=True) == "QB":
             name = cells[3].find("a").get_text(" ", strip=True).split("/")[0]
-            last, first = name.split(",", 1)
-            first = first.strip()
-            last = last.strip().split()[0]
-            name = first + " " + last
-            #name = cells[3].find("a").get_text(" ", strip=True).split("/")[0]
-            #name = name.split(",")
-            #name = name[1].split()[0] + " " + name[0].split()[0]
+            name = name.split(",")
+            name = name[1].split()[0] + " " + name[0].split()[0]
+            name = name.replace("JJ ", "J.J. ").replace("CJ ", "C.J. ")
             #name = " ".join(name[1].split()[:1]) + " " + name[0].split()[0]
+            name = " ".join(word.title() if word.isupper() else word for word in name.split())
             #name = name[0].upper() + name[1:]
-            #qbs.append(name)
+            qbs.append(name)
 
     qbs = list(dict.fromkeys(qbs))
     for index, row in dataframe.iterrows():
         if row['Pos.'] == 'QB' and row['Player'] not in qbs:
             dataframe.loc[index, dataframe.select_dtypes(include='number').columns] = 0
-
+    #Loop for checking the starters are correct
+    #for index, row in dataframe.iterrows():
+    #    if row['Pos.'] == 'QB':
+    #        print(row['Player'], row['Player'] in qbs)
 
     return dataframe
 

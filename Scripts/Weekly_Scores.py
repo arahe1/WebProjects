@@ -18,7 +18,8 @@ FinalScores = ps.teammc(Useful,HomeField)
 print(FinalScores)
 ps.teampredictionshtml(FinalScores, Week)
 
-
+full_path = os.path.join('CSVs', f'Week_{Week}_Game_Predictions.csv')
+FinalScores.to_csv(full_path, index=False)
 
 
 print("Scores Updated")

@@ -19,7 +19,7 @@ avg_offsnaps_df = (
 
 
 df1 = pd.read_csv("CSVs/SuperFlex.csv")
-df2 = pd.read_csv("CSVs/Week_7_NFL_2026.csv", sep=",", quoting=3)
+df2 = pd.read_csv("CSVs/Week_8_NFL_2026.csv", sep=",", quoting=3)
 df2 = df2.rename(columns={"Att.1": "RushAtt", "Yds": "PassYds","TD": "PassTD","Yds.2": "RushYds","TD.1": "RushTD","Yds.3": "RecYds","TD.2": "RecTD"})
 
 # Remove Players with less than 50% of average snaps to avoid using injured players in the model comp
@@ -93,13 +93,13 @@ for pos, stats_for_pos in position_stats.items():
 position_results = pd.DataFrame(results)
 
 
-print(position_results.head(10))
+#print(position_results.head(10))
 
-#with open("Model_Results_Week_7.md", "w") as f:
-#    for pos in position_results["Pos"].unique():
-#        f.write(f"# {pos}\n\n")
-#        f.write(position_results[position_results["Pos"] == pos].to_markdown(index=False))
-#        f.write("\n\n")
+with open("Model_Results_Week_8.md", "w") as f:
+    for pos in position_results["Pos"].unique():
+        f.write(f"# {pos}\n\n")
+        f.write(position_results[position_results["Pos"] == pos].to_markdown(index=False))
+        f.write("\n\n")
 
 
 

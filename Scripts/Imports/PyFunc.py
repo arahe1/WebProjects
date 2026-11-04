@@ -3820,6 +3820,8 @@ def teamwinnerschedule(csv, week):
     Schedule = Schedule.map(lambda x: x.replace('NE', 'NWE') if isinstance(x, str) else x)
     Schedule = Schedule.map(lambda x: x.replace('SF', 'SFO') if isinstance(x, str) else x)
     Schedule = Schedule.map(lambda x: x.replace('TB', 'TAM') if isinstance(x, str) else x)
+    Schedule = Schedule.map(lambda x: x.replace('WSH', 'WAS') if isinstance(x, str) else x)
+
 
     Week = 'W' + str(week)
     Schedule = Schedule[~Schedule[Week].str.contains("@", na=False)]
@@ -3985,7 +3987,6 @@ def teammc(useful,homefield):
         Simulations.append(points_for)
 
     FinalScores['Points For'] = Points_For
-
 
     HomeScores = FinalScores[FinalScores["Team"].isin(homefield["Team"])]
     AwayScores = FinalScores[~FinalScores["Team"].isin(homefield["Team"])]
